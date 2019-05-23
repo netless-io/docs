@@ -4,65 +4,16 @@ title: 简要说明
 sidebar_label: 简要说明
 ---
 
-> white 是一款全平台支持的实时互动白板，只要几行代码将 white 嵌入您的网页或者各个系统平台下的 App 当中，让您的业务具有更好的实时互动体验。
+## 支持业务
 
-## 使用场景
+sdk 客户端，目前只有对白板进行内容操作的 API，没有对白板房间进行管理的 API。
+开发者需要通过 sdk token 与白板 
 
+sdk 服务器进行交互，执行创建房间，获取房间一系列信息，以及房间管理操作。 
 
-| 场景         |
-| ------------ |
-| 在线教育     |
-| 远程会议     |
-| 设计在线审稿 |
-| 知识付费     |
-| 远程技术支持 |
-| 远程销售     |
-
-## 功能列表
+## 业务服务器和 White 的关系
+<div id="eiwrfi" data-type="puml" data-display="block" data-align="left" data-src="https://cdn.nlark.com/__puml/c2e1819cdafcd7c0fa9130187da08aee.svg" data-width="656" data-height="300" data-text="%40startuml%0A%0Aautonumber%0A%0A%E5%AE%A2%E6%88%B7%E4%BA%A7%E5%93%81%20-%3E%20%E5%AE%A2%E6%88%B7%E4%B8%9A%E5%8A%A1%E6%9C%8D%E5%8A%A1%3A%20%E5%88%9B%E5%BB%BA%E7%99%BD%E6%9D%BF%0A%0A%E5%AE%A2%E6%88%B7%E4%B8%9A%E5%8A%A1%E6%9C%8D%E5%8A%A1%20-%3E%20White%E4%BA%91%3A%20%E5%88%9B%E5%BB%BA%E7%99%BD%E6%9D%BF%EF%BC%88createRoom%EF%BC%89%0A%0AWhite%E4%BA%91%20--%3E%20%E5%AE%A2%E6%88%B7%E4%B8%9A%E5%8A%A1%E6%9C%8D%E5%8A%A1%3A%20%E8%BF%94%E5%9B%9ERoomToken%E5%92%8Cuuid%0A%0A%E5%AE%A2%E6%88%B7%E4%B8%9A%E5%8A%A1%E6%9C%8D%E5%8A%A1%20-%3E%20%E5%AE%A2%E6%88%B7%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E5%BA%93%3A%20%E8%AE%B0%E5%BD%95%E7%99%BD%E6%9D%BFuuid%0A%0A%E5%AE%A2%E6%88%B7%E4%B8%9A%E5%8A%A1%E6%9C%8D%E5%8A%A1%20--%3E%20%E5%AE%A2%E6%88%B7%E4%BA%A7%E5%93%81%3A%20%E8%BF%94%E5%9B%9ERoomToken%E5%92%8Cuuid%0A%0A%E5%AE%A2%E6%88%B7%E4%BA%A7%E5%93%81%20-%3E%20WhiteSDK%3A%20%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%EF%BC%88joinRoom%EF%BC%89%0A%0AWhiteSDK%20-%3E%20White%E4%BA%91%3A%20%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%0A%0A%40enduml"><img src="https://cdn.nlark.com/__puml/c2e1819cdafcd7c0fa9130187da08aee.svg" width="656"/></div>
 
 
-| 工具 | 画板 | 附件 | 跨平台 |
-| --- | --- | --- | --- |
-| 选择工具 | 支持无限画布 | 图片上传 | 常见浏览器 |
-| 画笔工具 | 支持显示百分比 | 图片拉大缩小 | 小程序 |
-| 文字工具 | 按比例缩放 | 图片移动 | iOS |
-| 橡皮工具 | 支持 zoom | PPT 上传 | Android |
-| 椭圆工具 | 支持视角同步 | PDF 上传 | Windows （electron） |
-| 矩形工具 | 主播模式 | Excel 上传 | Mac OS（electron） |
-| 可扩展（后续支持） | 跟随模式 | Word 上传 | |
-|  | 自由模式 | | |
-|  | 支持新开一页画布 | | |
-|  | 支持保存内容     | | |
-|  | 支持内容回放 | | |
-
-## 产品特点
-
-
-
-#### 支持带宽高品质回放
-
-开启 White 的记录回放功能，可以将课程或者会议现场自动记录下来。我们采用的高压缩比私有格式 .r2wc，一个小时的互动课程存储和 CDN 成本远低于视频。并且移动端观看体验比音视频更加出色。
-
-#### 低延时
-
-White 采用自研的网络传输引擎，深度定制了弱网下的传输策略。保证白板互动体验的延时平均在 300 ms 以内，让用户可以无感知的远程交流协作。
-
-#### 低带宽
-
-White 采用增量传输策略，每次协作只会同步有所变化的信息。在普通使用场景下，网络带宽占用低于 9kbps。在没有 wifi 的环境下使用完全不必担心流量问题。
-
-#### 矢量图像
-
-White 采用矢量绘制方案，当客户使用手机等小屏幕设备远程协作的时候。在配合 White zoom 功能的使用场景下，无论放多大都不必担心清晰度问题。
-
-#### 完过程同步
-
-White 采用自研同步方案，可以同步白板上的所有细微绘制过程和操作细节。比如在线教学中绘制一条曲线，曲线会随着老师的笔而产生，而不是在老师提笔的瞬间突兀的出现。
-
-#### 容易使用
-
-提供完善的全平台 SDK，精心设计的 api 和完善的文档可以让客户轻松接入产品。
-
-#### 高可扩展性
-
-后续我们将陆续开放自定义工具插件系统和同步引擎平台，可以让各行各业的用户更加随心所欲的享受实时同步带来的便利。
+## 结合 RTC 服务
+RTC 供应商一般也会有房间（room）或频道（channel）的概念。White 的一块白板内部称之为 room，room 的 uuid 属性全局唯一，用户可以把 RTC 的房间或频道和 White 的 room 一一对应起来。

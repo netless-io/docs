@@ -72,6 +72,13 @@
       "javascript/api-sdk/js-sdk-demo"
     ]
   },
+  "advance": {
+    "常用场景": [
+      "advance/advance-overview",
+      "advance/advance-broadcast",
+      "advance/advance-ppt"
+    ]
+  },
   "Server": {
     "产品概述": [
       "server/overview/server-introduction",
