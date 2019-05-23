@@ -9,8 +9,7 @@
       "android/quick-start/android-prepare",
       "android/quick-start/android-init-sdk",
       "android/quick-start/android-create-room",
-      "android/quick-start/android-join-room",
-      "android/quick-start/android-leave-room"
+      "android/quick-start/android-join-room"
     ],
     "高级功能": [
       "android/guides/android-tools",
