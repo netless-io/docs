@@ -3,7 +3,7 @@ id: ios-callback-lifecycle
 title: 生命周期以及事件回调
 ---
 
-本文相关代码，可以在 [White-sdk-ios-release](https://github.com/duty-os/white-sdk-ios-release/tree/v2.x) 项目的 `WhiteRoomViewController` 中查看。
+本文相关代码，可以在 [Demo](declaration.md#demo) 项目的 `WhiteRoomViewController` 中查看。
 
 `WhiteRoomViewController` 部分实现 `WhiteRoomCallbackDelegate` 协议，定义可以查看 SDK 的 `WhiteRoomCallbacks.h` 文件。 
 

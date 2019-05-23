@@ -5,7 +5,7 @@ title: 目标和流程
 
 ## 目标
 
-熟悉白板的从创建到结束的声明周期
+熟悉白板的从创建到结束的声明周期，以及事件回调。
 
 ## 流程
 
@@ -14,3 +14,7 @@ title: 目标和流程
 1. 通过与 sdk 业务服务器通讯，在 sdk 服务器端，创建房间
 1. 获得房间 uuid 与 roomToken，调用 sdk 加入房间方法
 1. 实现白板房间状态回调协议
+
+## Demo
+
+本章节相关代码，可以在 [White-sdk-ios-release](https://github.com/duty-os/white-sdk-ios-release) 中获取。

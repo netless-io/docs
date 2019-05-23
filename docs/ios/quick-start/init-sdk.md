@@ -5,7 +5,8 @@ title: 初始化 SDK
 
 在初始化 SDK 前，请确保已经完成注册账号获取 token，集成安装包等操作，详见 [集成客户端](./prepare.md)。
 
-本文介绍，引用 SDK，并进行初始化。相关代码可以在 [White-sdk-ios-release](https://github.com/duty-os/white-sdk-ios-release/tree/v2.x) 项目的`WhiteBaseViewController` 文件中查看。
+本文介绍，引用 SDK，并进行初始化。  
+本文相关代码，可以在 [Demo](declaration.md#demo) 项目的 `WhiteBaseViewController` 文件中查看。
 
 ## 引入 SDK
 

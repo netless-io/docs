@@ -6,7 +6,8 @@
     ],
     "快速开始": [
       "android/quick-start/android-declare",
-      "android/quick-start/android-installation",
+      "android/quick-start/android-prepare",
+      "android/quick-start/android-init-sdk",
       "android/quick-start/android-create-room",
       "android/quick-start/android-join-room",
       "android/quick-start/android-leave-room"
@@ -30,6 +31,7 @@
       "ios/overview/ios-release"
     ],
     "快速开始": [
+      "ios/quick-start/ios-declare",
       "ios/quick-start/ios-prepare",
       "ios/quick-start/ios-init-sdk",
       "ios/quick-start/ios-create-room",

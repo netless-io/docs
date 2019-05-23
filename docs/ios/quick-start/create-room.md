@@ -3,7 +3,7 @@ id: ios-create-room
 title: 创建房间/获取房间信息
 ---
 
-本文相关代码，可以在 [White-sdk-ios-release](https://github.com/duty-os/white-sdk-ios-release/tree/v2.x) 项目的 `WhiteUtils` 类中查看。
+本文相关代码，可以在 [Demo](declaration.md#demo) 项目的 `WhiteUtils` 类中查看。
 该部分为服务器逻辑，实际开发中，不应该在客户端实现。
 客户端应该向开发者自己的后端服务器进行请求，获取内容。
 
