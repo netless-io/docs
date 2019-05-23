@@ -20,7 +20,6 @@ https://cloudcapiv4.herewhite.com
 * {{token}} 参数
 
 sdk 服务器，通过 URL 参数中的 token 进行用户验证。
-token 来源参考：[快速开始](/zh-CN/v2/js-quickstart.md)
 
 ## 请求格式
 
