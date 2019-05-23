@@ -23,8 +23,7 @@
   },
   "iOS": {
     "产品概述": [
-      "ios/overview/ios-introduction",
-      "ios/overview/ios-release"
+      "ios/overview/ios-introduction"
     ],
     "快速开始": [
       "ios/quick-start/ios-declare",

@@ -1,6 +1,6 @@
 ---
 id: ios-declare
-title: 目标和流程
+title: 总览
 ---
 
 ## 目标
