@@ -17,4 +17,4 @@ title: 目标和流程
 
 ## Demo
 
-本章节相关代码，可以在 [White-sdk-ios-release](https://github.com/duty-os/white-sdk-ios-release) 中获取。
+demo 地址： [White-sdk-ios-release](https://github.com/duty-os/white-sdk-ios-release) 中获取。

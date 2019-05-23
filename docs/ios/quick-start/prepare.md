@@ -82,7 +82,7 @@ pod install
  open YourApp.xcworkspace
 ```
 
-### 方式二：自动集成（不建议）
+### 方式二：手动添加（不建议）
 
 1. 下载 [cocoapods发布的版本](https://github.com/duty-os/white-sdk-ios-release)。
     * 根据需要安装的对应版本，切换到不同分支。（建议选择最新的 tag，而不是最新的 commit，以保证可运行性）
