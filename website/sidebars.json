@@ -17,6 +17,7 @@
       "android/guides/android-feature",
       "android/guides/android-state",
       "android/guides/android-scenes",
+      "android/guides/android-events",
       "android/guides/android-replay"
     ],
     "API & SDK": [
@@ -43,6 +44,7 @@
       "ios/guides/ios-feature",
       "ios/guides/ios-state",
       "ios/guides/ios-scenes",
+      "ios/guides/ios-events",
       "ios/guides/ios-replay"
     ],
     "API & SDK": [
