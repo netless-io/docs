@@ -19,10 +19,6 @@
       "android/guides/android-scenes",
       "android/guides/android-events",
       "android/guides/android-replay"
-    ],
-    "API & SDK": [
-      "android/android-sdk/android-api",
-      "android/android-sdk/android-sdk-demo"
     ]
   },
   "iOS": {
@@ -46,10 +42,6 @@
       "ios/guides/ios-scenes",
       "ios/guides/ios-events",
       "ios/guides/ios-replay"
-    ],
-    "API & SDK": [
-      "ios/api-sdk/ios-api",
-      "ios/api-sdk/ios-sdk-demo"
     ]
   },
   "JavaScript": {
