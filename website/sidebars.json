@@ -30,7 +30,7 @@
       "ios/overview/ios-release"
     ],
     "快速开始": [
-      "ios/quick-start/ios-installation",
+      "ios/quick-start/ios-prepare",
       "ios/quick-start/ios-init-sdk",
       "ios/quick-start/ios-create-room",
       "ios/quick-start/ios-join-room",

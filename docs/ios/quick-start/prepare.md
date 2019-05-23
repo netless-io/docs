@@ -1,10 +1,10 @@
 ---
-id: ios-installation
+id: ios-prepare
 title: 客户端集成
 sidebar_label: 客户端集成
 ---
 
-本文介绍在正式使用白板 SDK前，需要准备的开发环境。
+本文介绍在正式使用白板 SDK 前，需要准备的开发环境。
 
 ## 前提条件
 
