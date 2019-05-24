@@ -3,7 +3,9 @@ id: ios-feature
 title: 高级功能
 ---
 
-本文中的 API，都可以在 `WhiteRoom` 类中查看。本文示例代码中的 `room` 即为 `whiteRoom` 的实例。
+本文中的 API，都可以在 `WhiteRoom.h` 文件中查看。
+
+本文示例代码中的 `room` 即为 `WhiteRoom` 的实例。
 
 ## 插入图片
 

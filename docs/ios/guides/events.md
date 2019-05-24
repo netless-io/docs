@@ -35,6 +35,9 @@
 - (void)fireMagixEvent:(WhiteEvent *)event;
 ```
 
+<details>
+<summary>暂不再支持 API</summary>
+
 ## 外部设备输入 API
 
 为了满足自行传入触碰事件的需求。这里提供以下方法，允许将触碰事件转换为 touch 事件。
@@ -53,3 +56,5 @@
 - (void)externalDeviceEventUp:(WhitePanEvent *)event;
 - (void)externalDeviceEventLeave:(WhitePanEvent *)event;
 ```
+
+</details>

@@ -3,8 +3,9 @@ id: ios-state
 title: 状态管理
 ---
 
-## 获取白板状态
+API 可能存在修改可能性，文档可能有一定滞后性。可以同时在 SDK 相关头文件中查看代码注释。
 
+## 状态获取 API
 ### 1. 房间状态
 
 ```Objective-C
@@ -58,7 +59,7 @@ title: 状态管理
 @end
 ```
 
-## 订阅白板状态变化
+## 状态回调 API
 
 当白板状态发生变化时，sdk 会回调创建时传入的 delegate 实例。
 
@@ -152,11 +153,6 @@ v2版本将事件回调拆分成了三种。v1版本中的图片替换功能，�
  自定义事件参考文档，或者 RoomTests 代码
  */
 - (void)fireMagixEvent:(WhiteEvent *)event;
-
-/*
- 该 API 迁移至 WhiteCommonCallback
- */
-//- (NSString *)urlInterrupter:(NSString *)url;
 
 @end
 ```
