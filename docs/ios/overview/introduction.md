@@ -1,9 +1,9 @@
 ---
 id: ios-introduction
-title: 简要
+title: 简要说明
 ---
 
-依赖库： YYModel，DSBridge。
+依赖库： YYModel，DSBridge-iOS。
 
 导入方式：支持 cocoapods 与 直接导入两种支持方式。
 
