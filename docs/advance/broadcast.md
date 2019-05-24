@@ -1,6 +1,6 @@
 ---
 id: advance-broadcast
-title: 主播跟随模式
+title: 主播与观众
 ---
 
 ## 目的
