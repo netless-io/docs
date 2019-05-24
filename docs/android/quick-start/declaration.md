@@ -1,6 +1,6 @@
 ---
 id: android-declare
-title: 目标和流程
+title: 概述
 ---
 
 ## 目标

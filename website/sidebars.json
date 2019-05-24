@@ -1,8 +1,7 @@
 {
   "Android": {
     "产品概述": [
-      "android/overview/android-introduction",
-      "android/overview/android-release"
+      "android/overview/android-introduction"
     ],
     "快速开始": [
       "android/quick-start/android-declare",
