@@ -13,7 +13,7 @@
     "高级功能": [
       "android/guides/android-tools",
       "android/guides/android-view",
-      "android/guides/android-feature",
+      "android/guides/android-operation",
       "android/guides/android-state",
       "android/guides/android-scenes",
       "android/guides/android-events",
@@ -35,10 +35,10 @@
     "高级功能": [
       "ios/guides/ios-tools",
       "ios/guides/ios-view",
-      "ios/guides/ios-feature",
+      "ios/guides/ios-operation",
       "ios/guides/ios-state",
-      "ios/guides/ios-scenes",
       "ios/guides/ios-events",
+      "ios/guides/ios-scenes",
       "ios/guides/ios-replay"
     ]
   },
