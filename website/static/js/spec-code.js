@@ -1,10 +1,10 @@
 window.addEventListener('load', function() {
     const urlParams = new URLSearchParams(window.location.search);
-    const platform = urlParams.get('platform').toLowerCase();
+    const platform = urlParams.get('platform');
     let i = ["ios", "web", "android"].indexOf(platform);
     console.log(`spec-code`, platform, i);
     if (platform && i != -1) {
-        changeTabActive(platform, "nav-link");
+        changeTabActive(platform.toLowerCase(), "nav-link");
         changePanActive("tab-pane", i);
     }
 });
