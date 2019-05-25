@@ -1,6 +1,6 @@
 ---
-id: ios-feature
-title: 高级功能
+id: ios-operation
+title: 白板操作
 ---
 
 本文中的 API，都可以在 `WhiteRoom.h` 文件中查看。
