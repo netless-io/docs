@@ -22,7 +22,7 @@ sidebar_label: 客户端集成
 <br>
 
 <details>
-<summary><i>安装 Cocoapods（已安装可跳过）<i></summary>
+<summary>安装 Cocoapods（已安装可跳过）</summary>
 
 如果你未接触过 Cocoapods ，我们推荐您阅读 [唐巧的博客-用CocoaPods做iOS程序的依赖管理](https://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/ "用CocoaPods做iOS程序的依赖管理") ，了解我们为何使用 Cocoapods 。另外文章中提及的淘宝源已经不再维护，需要使用 [Ruby-China RubyGems 镜像](https://gems.ruby-china.com/)替换。
 
@@ -68,7 +68,7 @@ end
 
 3. 安装 SDK。
 
-*如果长时间没有拉取过pod 仓库，可能出现无法找到我们的repo的情况，此时建议先使用* `pod repo update` 更新pod仓库。
+>如果长时间没有拉取过pod 仓库，可能出现无法找到我们的repo的情况，此时建议先使用* `pod repo update` 更新pod仓库。
 
 ```shell
 pod install
