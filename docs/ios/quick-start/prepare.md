@@ -68,7 +68,7 @@ end
 
 3. 安装 SDK。
 
->如果长时间没有拉取过pod 仓库，可能出现无法找到我们的repo的情况，此时建议先使用* `pod repo update` 更新pod仓库。
+>如果长时间没有拉取过pod 仓库，可能出现无法找到我们的repo的情况，此时建议先使用 `pod repo update` 更新pod仓库。
 
 ```shell
 pod install
