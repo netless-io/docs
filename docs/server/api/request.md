@@ -17,6 +17,8 @@ https://cloudcapiv4.herewhite.com
 
 ## 全局使用参数
 
+阅读 [接入准备](/blog/2019/05/02/first-step)，注册账号，获取该 token。
+
 * {{token}} 参数
 
 sdk 服务器，通过 URL 参数中的 token 进行用户验证。
