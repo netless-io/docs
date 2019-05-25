@@ -7,8 +7,8 @@ sidebar_label: 简要说明
 依赖库：DSBridge-Android, gson
 
 版本：
-Android SDK API Level Level: ≥ 19
-API 19 (Android 4.4) – Kitkat, released October 2013. Build version code Android.OS.BuildVersionCodes.KitKat
+Android SDK API Level Level: ≥ 19  
+API 19 (Android 4.4) – Kitkat, released October 2013
 
 相关 repo:
 

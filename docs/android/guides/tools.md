@@ -1,9 +1,9 @@
 ---
 id: android-tools
-title: 使用教具
+title: 教具使用
 ---
 
-# 教具
+## 教具
 
 ```java
 public class MemberState {
@@ -25,7 +25,7 @@ public class MemberState {
 }
 ```
 
-## 切换教具
+### 切换教具
 
 White SDK 提供多种教具，我们可以通过修改 `memberState` 来切换当前的教具。例如，将当前教具切换成「铅笔」工具可以使用如下代码。
 ```java
@@ -49,7 +49,7 @@ room.getMemberState(new Promise<MemberState>() {
 });
 ```
 
-## 教具列表
+### 教具列表
 
 | 名称 | 字符串 | 描述 |
 | :--- | :--- | :--- |
@@ -61,7 +61,7 @@ room.getMemberState(new Promise<MemberState>() {
 | 文字 | text | 编辑、输入文字 |
 
 
-## 调色盘
+### 调色盘
 
 通过如下代码可以修改调色盘的颜色。
 ```java
