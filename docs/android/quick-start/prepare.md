@@ -1,7 +1,6 @@
 ---
 id: android-prepare
-title: 集成客户端
-sidebar_label: 集成客户端
+title: 客户端集成
 ---
 
 本文介绍在正式使用白板 SDK 前，需要准备的开发环境。
