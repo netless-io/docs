@@ -54,4 +54,4 @@ public class SceneState {
 
 ## API 介绍
 
-请查看 [进阶文档-场景管理](/docs/advance/advance-scenes)
+请查看 [进阶文档-场景管理](/docs/advance/advance-scenes?platform=android)
