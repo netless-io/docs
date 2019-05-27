@@ -11,4 +11,4 @@ docker push registry.cn-hangzhou.aliyuncs.com/white/$image:latest
 
 ssh app@k8s-cloud -tt "cd /home/app/k8s-stack/site/developer.herewhite.com && \
     kubectl apply -f deploy.yml && \
-    kubectl patch deployment netless-developer-docs -n docs --patch '{\"spec\": {\"template\": {\"metadata\": {\"annotations\": {\"version\": \"$version-$hash\"}}}}}'"
+    kubectl patch deployment netless-developer-docs -n site --patch '{\"spec\": {\"template\": {\"metadata\": {\"annotations\": {\"version\": \"$version-$hash\"}}}}}'"
