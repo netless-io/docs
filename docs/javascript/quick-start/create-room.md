@@ -4,9 +4,9 @@ title: 创建并加入房间
 ---
 
 
-本文相关代码，可以在 [Demo](declaration.md#demo) 项目的 `WhiteUtils` 类中查看。
+本文相关代码，可以在 [Demo](declaration.md#demo) 中查看
 
-## 1. 安全须知
+## 安全须知
 
 创建房间/获取房间，需要使用 sdkToken，与 SDK 后端服务器，进行交互。
 该 Token，是 SDK 后端服务器，与开发者后端业务服务器通讯的凭证。掌握了这个 Token，SDK 后端服务器就会认为，这是开发者进行的操作。
@@ -14,7 +14,7 @@ title: 创建并加入房间
 Example 中，为了演示方便，将创建房间/获取房间 roomToken 操作写在了客户端中，实际业务中，为了防止有人反编译客户端代码，获取 SDKToken，不应该在任何客户端暴露该 Token。
 该 Token，应该在开发者的业务服务器代码，或者配置项中。
 
-## 2. 创建新房间，并直接获取 RoomToken
+## 创建新房间，并直接获取 RoomToken
 
 **创建者常用流程**
 
