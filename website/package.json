@@ -1,4 +1,8 @@
 {
+  "name": "netless-developer-docs",
+  "version": "1.0.0",
+  "author": "netless-io",
+  "license": "MIT",
   "scripts": {
     "examples": "docusaurus-examples",
     "start": "docusaurus-start",
