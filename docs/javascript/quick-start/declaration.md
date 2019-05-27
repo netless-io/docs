@@ -3,7 +3,7 @@ id: js-declare
 title: 概述
 ---
 
-本章节中 demo，可在 [简要](../overview/introduction.md) 中查看。
+本章节中 demo以及更多相关代码，可在 [简要](../overview/introduction.md) 中查看。
 
 ## 本章目的
 
