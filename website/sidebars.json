@@ -66,9 +66,8 @@
       "javascript/guides/js-scenes",
       "javascript/guides/js-replay"
     ],
-    "API & SDK": [
-      "javascript/api-sdk/js-api",
-      "javascript/api-sdk/js-sdk-demo"
+    "升级指南": [
+      "javascript/guides/js-v2migration"
     ]
   },
   "advance": {
