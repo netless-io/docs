@@ -50,8 +50,7 @@
   },
   "JavaScript": {
     "产品概述": [
-      "javascript/overview/js-introduction",
-      "javascript/overview/js-release"
+      "javascript/overview/js-introduction"
     ],
     "快速开始": [
       "javascript/quick-start/js-declare",
@@ -62,6 +61,8 @@
     "常用功能": [
       "javascript/guides/js-tools",
       "javascript/guides/js-state",
+      "javascript/guides/js-operation",
+      "javascript/guides/js-view",
       "javascript/guides/js-scenes",
       "javascript/guides/js-replay"
     ],
