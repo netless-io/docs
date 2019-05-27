@@ -11,12 +11,12 @@
       "android/quick-start/android-join-room"
     ],
     "高级功能": [
+      "android/guides/android-state",
       "android/guides/android-tools",
       "android/guides/android-view",
       "android/guides/android-operation",
-      "android/guides/android-state",
-      "android/guides/android-scenes",
       "android/guides/android-events",
+      "android/guides/android-scenes",
       "android/guides/android-replay"
     ],
     "升级指南": [
@@ -36,10 +36,10 @@
       "ios/quick-start/ios-callback-lifecycle"
     ],
     "高级功能": [
+      "ios/guides/ios-state",
       "ios/guides/ios-tools",
       "ios/guides/ios-view",
       "ios/guides/ios-operation",
-      "ios/guides/ios-state",
       "ios/guides/ios-events",
       "ios/guides/ios-scenes",
       "ios/guides/ios-replay"
@@ -59,10 +59,11 @@
       "javascript/quick-start/js-leave-room"
     ],
     "常用功能": [
-      "javascript/guides/js-tools",
       "javascript/guides/js-state",
-      "javascript/guides/js-operation",
+      "javascript/guides/js-tools",
       "javascript/guides/js-view",
+      "javascript/guides/js-operation",
+      "javascript/guides/js-events",
       "javascript/guides/js-scenes",
       "javascript/guides/js-replay"
     ],
