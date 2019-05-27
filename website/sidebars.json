@@ -55,9 +55,8 @@
     ],
     "快速开始": [
       "javascript/quick-start/js-declare",
-      "javascript/quick-start/js-installation",
+      "javascript/quick-start/js-prepare",
       "javascript/quick-start/js-create-room",
-      "javascript/quick-start/js-join-room",
       "javascript/quick-start/js-leave-room"
     ],
     "常用功能": [
