@@ -1,17 +1,16 @@
 ---
 id: js-declare
-title: 目标和流程
+title: 概述
 ---
 
-## 目标
+本章节中 demo，可在 [简要](../overview/introduction.md) 中查看。
 
-熟悉白板的从创建到结束的声明周期
+## 本章目的
+
+熟悉白板的从创建到结束的声明周期。
 
 ## 流程
 
 1. 创建项目集成 SDK。
-2. 在服务器创建一个房间，获得房间的唯一识别标志 `uuid`。
-3. 通过 `sdkToken` 和 `uuid`，换取具有进入此房间的秘钥  `roomToken`。
-4. 初始化 SDK，调用加入成员方法 `jionRoom` 进入房间。
-5. 监听到进入房间成功后渲染出白板.
-6. 调用 `disconnect()` 房间结束
+4. 初始化 SDK，使用 sdk token 向服务器请求，创建房间或者获取特定房间的 room token，调用 `jionRoom` 传入 uuid，room token，及房间状态变化回调。
+6. 调用 `disconnect` ，退出房间。
