@@ -46,7 +46,8 @@ var beginTimestamp = ...; // 回放的开始片段的事件，整数，Unix 时�
 var duration = ...; // 回放片段持续时长（毫秒）
 
 var promise = whiteWebSdk.replayRoom({
-    room: roomUUID
+    room: roomUUID,
+    roomToken: roomToken,
     beginTimestamp: beginTimestamp,
     duration: duration,
 });
