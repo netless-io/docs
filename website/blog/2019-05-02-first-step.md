@@ -1,5 +1,5 @@
 ---
-title: SDK 接入准备
+title: 接入准备
 ---
 
 ## 获取sdk token
