@@ -27,7 +27,7 @@ sdk 无需任何额外支持，即可运行在手写板，iPad，Surface 等设�
     * quick-start 中所用 cdn 安装形式的 demo
 
 
-## 版本列表
+## sdk 版本，及其历史版本
 
 1. [white-web-sdk](https://www.npmjs.com/package/white-web-sdk)
     * 非 React 框架开发
