@@ -41,8 +41,8 @@ const siteConfig = {
     {doc: 'javascript/overview/js-introduction', label: 'JavaScript'},
     {doc: 'android/overview/android-introduction', label: 'Android'},
     {doc: 'ios/overview/ios-introduction', label: 'iOS'},
-    {doc: 'advance/advance-overview', label: '进阶'},
     {doc: 'server/overview/server-introduction', label: 'Server'},
+    {doc: 'advance/advance-overview', label: '高级功能'},
     {
         href: 'https://github.com/netless-io',
         label: 'GitHub',
@@ -50,8 +50,8 @@ const siteConfig = {
     {blog: true, label: '博客'},
   ],
   algolia: {
-      apiKey: '3eb9507824b8be89e7a199ecaa1a9d2c',
-      indexName: 'docusaurus',
+      apiKey: 'c4ffbe3d5e68d910526120958848e816',
+      indexName: 'netless',
       algoliaOptions: {
           facetFilters: ['language:LANGUAGE', 'version:VERSION'],
       },
@@ -62,7 +62,7 @@ const siteConfig = {
 
   /* path to images for header/footer */
   headerIcon: 'img/netless.svg',
-  footerIcon: 'img/favicon.ico',
+  footerIcon: 'img/netless.svg',
   favicon: 'img/favicon.ico',
 
   /* Colors for website */
@@ -86,7 +86,7 @@ const siteConfig = {
   */
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `Copyright © ${new Date().getFullYear()} netless`,
+  copyright: `Copyright © ${new Date().getFullYear()} Netless`,
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
     theme: 'default',

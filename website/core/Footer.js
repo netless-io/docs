@@ -25,7 +25,7 @@ class Footer extends React.Component {
     return (
       <footer className="nav-footer" id="footer">
         <section className="sitemap">
-          <a href={this.props.config.baseUrl} className="nav-home">
+          <a href={this.props.config.baseUrl} style={{marginRight: 200}} className="nav-home">
             {this.props.config.footerIcon && (
               <img
                 src={this.props.config.baseUrl + this.props.config.footerIcon}
@@ -34,67 +34,49 @@ class Footer extends React.Component {
                 height="58"
               />
             )}
+            <div style={{width: 80, marginTop: 16}}>接入即互动</div>
           </a>
           <div>
-            <h5>Docs</h5>
+            <h5>产品</h5>
             <a href={this.docUrl('doc1.html', this.props.language)}>
-              Getting Started (or other categories)
+              管理控制台
             </a>
             <a href={this.docUrl('doc2.html', this.props.language)}>
-              Guides (or other categories)
+              官网网站
             </a>
             <a href={this.docUrl('doc3.html', this.props.language)}>
-              API Reference (or other categories)
+              Demo 体验
+            </a>
+            <a href={this.docUrl('doc3.html', this.props.language)}>
+              Github
             </a>
           </div>
           <div>
-            <h5>Community</h5>
+            <h5>公司</h5>
             <a href={this.pageUrl('users.html', this.props.language)}>
-              User Showcase
+              关于我们
             </a>
             <a
               href="http://stackoverflow.com/questions/tagged/"
               target="_blank"
               rel="noreferrer noopener">
-              Stack Overflow
+              加入我们
             </a>
-            <a href="https://discordapp.com/">Project Chat</a>
+            <a href="https://discordapp.com/">服务条款</a>
             <a
               href="https://twitter.com/"
               target="_blank"
               rel="noreferrer noopener">
-              Twitter
+              隐私协议
             </a>
           </div>
           <div>
-            <h5>More</h5>
-            <a href={`${this.props.config.baseUrl}blog`}>Blog</a>
-            <a href="https://github.com/">GitHub</a>
-            <a
-              className="github-button"
-              href={this.props.config.repoUrl}
-              data-icon="octicon-star"
-              data-count-href="/facebook/docusaurus/stargazers"
-              data-show-count="true"
-              data-count-aria-label="# stargazers on GitHub"
-              aria-label="Star this project on GitHub">
-              Star
-            </a>
+            <h5>联系方式</h5>
+            <a href={`${this.props.config.baseUrl}blog`}>support@herewhite.com</a>
+            <a href="https://github.com/">社区</a>
+            <a href="https://github.com/">博客</a>
           </div>
         </section>
-
-        <a
-          href="https://opensource.facebook.com/"
-          target="_blank"
-          rel="noreferrer noopener"
-          className="fbOpenSource">
-          <img
-            src={`${this.props.config.baseUrl}img/oss_logo.png`}
-            alt="Facebook Open Source"
-            width="170"
-            height="45"
-          />
-        </a>
         <section className="copyright">{this.props.config.copyright}</section>
       </footer>
     );

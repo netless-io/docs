@@ -1,6 +1,117 @@
 /* your custom css */
 
+.home-page-box {
+    width: 100%;
+    margin-top: 64px;
+    margin-bottom: 64px;
+}
 
+.home-page-box-banner {
+    width: 100%;
+    margin-bottom: 64px;
+}
+
+.home-page-box-banner-image {
+    width: 100%
+}
+
+.home-page-box-banner-image-box {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 32px;
+}
+
+.home-page-box-banner-btn {
+    width: 720px;
+    height: 180px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    margin-top: 36px;
+}
+
+.home-page-box-banner-cell {
+    width: 200px;
+    height: 188px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.home-page-box-banner-cell:hover {
+    background-color: #E1EAEA;
+}
+
+.home-page-box-banner-cell-box {
+    height: 112px;
+}
+.home-page-box-banner-icon {
+    width: 120px;
+}
+
+.home-page-box-banner-cell-title {
+    font-weight: bold;
+}
+.home-page-box-mid {
+    width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.home-page-cell-title {
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    height: 68px;
+    display: flex;
+    line-height: 68px;
+    align-content: center;
+    justify-content: center;
+}
+
+.home-page-cell-inner {
+    width: 140px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin: 4px auto;
+    text-align: center;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.home-page-cell-inner:hover {
+    background-color: #e7eaee;
+}
+
+.home-page-cell-icon {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.home-page-cell {
+    width: 280px;
+    height: 300px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    border: 1px solid #e7eaee;
+    box-sizing: border-box;
+    box-shadow: 0 16px 48px rgba(133,159,189,.08);
+    border-radius: 16px;
+}
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
