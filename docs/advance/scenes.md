@@ -1,6 +1,6 @@
 ---
 id: advance-scenes
-title: 场景管理
+title: 场景管理(ppt)
 ---
 
 ## 新增概念
