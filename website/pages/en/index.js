@@ -49,55 +49,96 @@ class Index extends React.Component {
                         <div className="home-page-cell-icon">
                             <img src={`${siteConfig.baseUrl}img/javascript.svg`}/>
                         </div>
-                        <div className="home-page-cell-inner">产品概述</div>
-                        <div className="home-page-cell-inner">快速开始</div>
-                        <div className="home-page-cell-inner">常用功能</div>
-                        <div className="home-page-cell-inner">升级指南</div>
+                        <a href={`${siteConfig.baseUrl}docs/javascript/overview/js-introduction`}>
+                            <div className="home-page-cell-inner">产品概述</div>
+                        </a>
+                        <a href={`${siteConfig.baseUrl}docs/javascript/quick-start/js-declare`}>
+                            <div className="home-page-cell-inner">快速开始</div>
+                        </a>
+                        <a href={`${siteConfig.baseUrl}docs/javascript/guides/js-state`}>
+                            <div className="home-page-cell-inner">常用功能</div>
+                        </a>
+                        <a href={`${siteConfig.baseUrl}docs/javascript/guides/js-v2migration`}>
+                            <div className="home-page-cell-inner">升级指南</div>
+                        </a>
                     </div>
                     <div className="home-page-cell">
                         <div className="home-page-cell-title">Android</div>
                         <div className="home-page-cell-icon">
                             <img src={`${siteConfig.baseUrl}img/android.svg`}/>
                         </div>
-                        <div className="home-page-cell-inner">产品概述</div>
-                        <div className="home-page-cell-inner">快速开始</div>
-                        <div className="home-page-cell-inner">常用功能</div>
-                        <div className="home-page-cell-inner">升级指南</div>
+                        <a href={`${siteConfig.baseUrl}docs/android/overview/android-introduction`}>
+                            <div className="home-page-cell-inner">产品概述</div>
+                        </a>
+                        <a href={`${siteConfig.baseUrl}docs/android/quick-start/android-declare`}>
+                            <div className="home-page-cell-inner">快速开始</div>
+                        </a>
+                        <a href={`${siteConfig.baseUrl}docs/android/guides/android-state`}>
+                            <div className="home-page-cell-inner">常用功能</div>
+                        </a>
+                        <a href={`${siteConfig.baseUrl}docs/android/guides/android-v2migration`}>
+                            <div className="home-page-cell-inner">升级指南</div>
+                        </a>
                     </div>
                     <div className="home-page-cell">
                         <div className="home-page-cell-title">iOS</div>
                         <div className="home-page-cell-icon">
                             <img src={`${siteConfig.baseUrl}img/ios.svg`}/>
                         </div>
-                        <div className="home-page-cell-inner">产品概述</div>
-                        <div className="home-page-cell-inner">快速开始</div>
-                        <div className="home-page-cell-inner">常用功能</div>
-                        <div className="home-page-cell-inner">升级指南</div>
+                        <a href={`${siteConfig.baseUrl}docs/ios/overview/ios-introduction`}>
+                            <div className="home-page-cell-inner">产品概述</div>
+                        </a>
+                        <a href={`${siteConfig.baseUrl}docs/ios/quick-start/ios-declare`}>
+                            <div className="home-page-cell-inner">快速开始</div>
+                        </a>
+                        <a href={`${siteConfig.baseUrl}docs/ios/guides/ios-state`}>
+                            <div className="home-page-cell-inner">常用功能</div>
+                        </a>
+                        <a href={`${siteConfig.baseUrl}docs/ios/guides/ios-v2migration`}>
+                            <div className="home-page-cell-inner">升级指南</div>
+                        </a>
                     </div>
                     <div className="home-page-cell">
                         <div className="home-page-cell-title">Server</div>
                         <div className="home-page-cell-icon">
                             <img src={`${siteConfig.baseUrl}img/server.svg`}/>
                         </div>
-                        <div className="home-page-cell-inner">产品概述</div>
-                        <div className="home-page-cell-inner">服务端 API</div>
+                        <a href={`${siteConfig.baseUrl}docs/server/overview/server-introduction`}>
+                            <div className="home-page-cell-inner">产品概述</div>
+                        </a>
+                        <a href={`${siteConfig.baseUrl}docs/server/api/server-request`}>
+                            <div className="home-page-cell-inner">服务端 API</div>
+                        </a>
                     </div>
                     <div className="home-page-cell">
                         <div className="home-page-cell-title">高级功能</div>
                         <div className="home-page-cell-icon">
                             <img src={`${siteConfig.baseUrl}img/features.svg`}/>
                         </div>
-                        <div className="home-page-cell-inner">场景管理</div>
-                        <div className="home-page-cell-inner">主播与观众</div>
+                        <a href={`${siteConfig.baseUrl}docs/advance/advance-overview`}>
+                            <div className="home-page-cell-inner">概览</div>
+                        </a>
+                        <a href={`${siteConfig.baseUrl}docs/advance/advance-scenes`}>
+                            <div className="home-page-cell-inner">场景管理</div>
+                        </a>
+                        <a href={`${siteConfig.baseUrl}docs/advance/advance-broadcast`}>
+                            <div className="home-page-cell-inner">主播与观众</div>
+                        </a>
                     </div>
                     <div className="home-page-cell">
                         <div className="home-page-cell-title">博客</div>
                         <div className="home-page-cell-icon">
                             <img src={`${siteConfig.baseUrl}img/blog.svg`}/>
                         </div>
-                        <div className="home-page-cell-inner">回放功能</div>
-                        <div className="home-page-cell-inner">接入准备</div>
-                        <div className="home-page-cell-inner">白板介绍</div>
+                        <a href={`${siteConfig.baseUrl}blog/2019/05/03/replay`}>
+                            <div className="home-page-cell-inner">回放功能</div>
+                        </a>
+                        <a href={`${siteConfig.baseUrl}blog/2019/05/02/first-step`}>
+                            <div className="home-page-cell-inner">接入准备</div>
+                        </a>
+                        <a href={`${siteConfig.baseUrl}blog/2019/05/01/introduction`}>
+                            <div className="home-page-cell-inner">白板介绍</div>
+                        </a>
                     </div>
                 </div>
             </div>
