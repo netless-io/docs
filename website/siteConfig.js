@@ -50,7 +50,7 @@ const siteConfig = {
     {blog: true, label: '博客'},
   ],
   algolia: {
-      apiKey: 'c4ffbe3d5e68d910526120958848e816',
+      apiKey: 'bce56855391d44d0a552221617f88f6a',
       indexName: 'netless',
       algoliaOptions: {
           facetFilters: ['language:LANGUAGE', 'version:VERSION'],
