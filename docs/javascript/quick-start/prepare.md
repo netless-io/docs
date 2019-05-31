@@ -24,8 +24,8 @@ title: 集成准备
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.0.0-beta.7.css">
-        <script src="https://sdk.herewhite.com/white-web-sdk/2.0.0-beta.7.js"></script>
+        <link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.0.0-beta.10.css">
+        <script src="https://sdk.herewhite.com/white-web-sdk/2.0.0-beta.10.js"></script>
         <script src="index.js"></script>
     </head>
     <body>
