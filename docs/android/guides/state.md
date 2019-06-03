@@ -68,7 +68,10 @@ public void getPhase(final Promise<PlayerPhase> promise) {
  */
 public void getPlayerState(final Promise<PlayerState> promise) {
 
-/** 获取播放器信息（当前时长，总市场，开始 UTC 时间戳） */
+/** 
+ * 获取播放器信息（当前时长，总时长，开始 UTC 时间戳）
+ * 时长单位为毫秒
+ */
 public void getPlayerTimeInfo(final Promise<PlayerTimeInfo> promise) {
 ```
 

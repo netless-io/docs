@@ -9,10 +9,6 @@ title: 回放
 
 ## 创建回放——快速开始
 
-房间有三种模式：临时房间、持久化房间、可回放房间。房间模式必须在创建时指定，一旦确定，将不可修改。这三种模式的特征如下。
-
-## 创建回放——快速开始
-
 ```Java
 Intent intent = getIntent();
 final String uuid = intent.getStringExtra("uuid");
