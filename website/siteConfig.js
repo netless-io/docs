@@ -52,9 +52,7 @@ const siteConfig = {
   algolia: {
       apiKey: 'c438dda9f510a0e984c1e0582e03fa62',
       indexName: 'netless',
-      algoliaOptions: {
-          facetFilters: ['language:LANGUAGE', 'version:VERSION'],
-      },
+      algoliaOptions: {},
   },
 
   // If you have users set above, you add it here:
