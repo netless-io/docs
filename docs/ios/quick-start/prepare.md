@@ -61,8 +61,8 @@ platform :ios, '9.0'
 
 target 'Your App' do
     pod 'White-SDK-iOS'
-    ## 使用动态 ppt 用户，请暂时使用以下版本
-    ## pod 'White-SDK-iOS', '2.0.0-ppt'
+    ## 六月新接入客户，请暂时使用以下版本
+    ## pod 'White-SDK-iOS', '2.0.3-ppt'
 end
 ```
 
