@@ -3,15 +3,15 @@ id: ios-events
 title: 自定义事件
 ---
 
-开发者在使用过程中，很可能有其他多种多样的需求，SDK 同样提供了部分自定义接口，以便开发者实现。
+开发者在使用过程中，很可能有其他多种多样的需求，SDK 同样提供了部分自定义接口，以便开发者实现。  
+可以简单把这个功能，类比于 iOS 的通知中心 `NSNotificationCenter` 。  
+自定义事件 API 与通知中心相似。
 
-您可以简单把这个功能，类比于 iOS 的通知中心 `NSNotificationCenter` 。自定义事件 API 与通知中心相似。
+## 注册，移除，发送自定义事件
 
-## 自定义事件
-### 注册，移除，发送自定义事件
+### 实时房间
 
 ```Objective-C
-
 @interface WhiteRoom : NSObject
 
 //注册 eventName 的自定义事件
@@ -23,40 +23,69 @@ title: 自定义事件
 - (void)dispatchMagixEvent:(NSString *)eventName payload:(NSDictionary *)payload;
 //移除 eventName 的自定事件监听
 - (void)removeMagixEventListener:(NSString *)eventName;
-
+@end
 ```
-通过上述 API，注册并发送自定义事件。
 
-### 自定义事件回调
+### 回放房间
 
-当一个已经被注册的自定义事件触发时，SDK 会回调 `WhiteRoomCallbackDelegate` ，也就是 `WhiteSDK` 的初始化方法 `- (instancetype)initWithBoardView:(WhiteBoardView *)boardView config:(WhiteSdkConfiguration *)config callbackDelegate:(id<WhiteRoomCallbackDelegate>)callbackDelegate` 中，传入的 callbacks 参数。
+> 2.0.4 版本新增 API
+
+```Objective-C
+@interface WhitePlayer : NSObject
+
+//注册 eventName 的自定义事件
+- (void)addMagixEventListener:(NSString *)eventName;
+//移除 eventName 的自定事件监听
+- (void)removeMagixEventListener:(NSString *)eventName;
+
+@end
+```
+
+## 自定义事件回调
+
+### 实时房间
+
+当一个已经被注册的自定义事件触发时，SDK 会回调在使用 `WhiteSDK` 创建 `WhiteRoom` 实例时，传入的实现了 `WhiteRoomCallbackDelegate` 协议的实例。即
+
+```Objective-C
+@interface WhiteSDK : NSObject
+- (instancetype)initWithBoardView:(WhiteBoardView *)boardView config:(WhiteSdkConfiguration *)config callbackDelegate:(id<WhiteRoomCallbackDelegate>)callbackDelegate
+@end
+``` 
+
+中的 `callbackDelegate` 参数。
+
+
+当房间中，有用户发送了对应名称的自定义事件时，SDK 会回调  `WhiteRoomCallbackDelegate` 的方法：
 
 ```Objective-C
 @protocol WhiteRoomCallbackDelegate <NSObject>
+@optional
 //自定义事件回调事件
 - (void)fireMagixEvent:(WhiteEvent *)event;
+@end
 ```
 
-<details>
-<summary>暂不再支持 API</summary>
+### 回放房间
 
-## 外部设备输入 API
+> 2.0.4 版本新增 API
 
-为了满足自行传入触碰事件的需求。这里提供以下方法，允许将触碰事件转换为 touch 事件。
-
-注意事项：
-
-1. 该 API 并不稳定，有特殊需求的用户，可以使用该系列 API，目前不保证向后兼容。
-2. **调用该 API 前，需要讲白板设置为只读模式（WhiteRoom 的 `disableOperations:` 方法）**
-3. 该 API 适用于画笔教具，无法用于选择教具；其他教具无法保证效果。
-
+与实时房间相似，当回放时，某个自定义事件发生，SDK 会回调在 `WhiteSDK` 创建 `WhitePlayer` 实例时，传入的实现了 `WhitePlayerEventDelegate` 协议的实例。即
 
 ```Objective-C
-//WhitePanEvent 有 x，y 属性。坐标原点为左上角（whiteboardView）与 iOS 方向一致。
-- (void)externalDeviceEventDown:(WhitePanEvent *)event;
-- (void)externalDeviceEventMove:(WhitePanEvent *)event;
-- (void)externalDeviceEventUp:(WhitePanEvent *)event;
-- (void)externalDeviceEventLeave:(WhitePanEvent *)event;
+@interface WhiteSDK : NSObject
+- (void)createReplayerWithConfig:(WhitePlayerConfig *)config callbacks:(nullable id<WhitePlayerEventDelegate>)eventCallbacks completionHandler:(void (^) (BOOL success, WhitePlayer * _Nullable player, NSError * _Nullable error))completionHandler;
+@end
 ```
 
-</details>
+当回放中，有用户发送了对应名称的自定义事件时，SDK 会回调  `WhiteRoomCallbackDelegate` 的方法：
+
+```Objective-C
+@protocol WhitePlayerEventDelegate <NSObject>
+@optional
+/**
+ 白板自定义事件回调，
+ */
+- (void)fireMagixEvent:(WhiteEvent *)event;
+@end
+```
