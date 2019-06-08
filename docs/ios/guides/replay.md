@@ -3,25 +3,28 @@ id: ios-replay
 title: 回放
 ---
 
-**创建房间时，需要设置为可回访房间。由于回放房间会占用更多资源，需要开发者主动设置。**
+>创建房间时，需要设置为可回放房间。由于回放房间会占用更多资源，需要开发者主动设置。  
+具体请在 [服务器文档](../../server/api/whiteboard-base.md) 中查看 创建白板 API。
 
-**具体请在 [服务器文档](../../server/api/request.md) 中查看 创建白板 API**
-
-## 创建回放——快速开始
+## 快速开始
 
 ```Objective-C
+@interface WhitePlayerViewController ()<WhitePlayerEventDelegate>
+@end
+
+@implementation WhitePlayerViewController
+
 //配置 SDK 设置
 WhiteSdkConfiguration *config = [WhiteSdkConfiguration defaultConfig];
 config.enableDebug = YES;
 //通过实例化，并已经添加在视图栈中 Whiteboard，初始化 WhiteSDK。
 self.sdk = [[WhiteSDK alloc] initWithWhiteBoardView:self.boardView config:config commonCallbackDelegate:self];
 //初始化回放配置类
-WhitePlayerConfig *playerConfig = [[WhitePlayerConfig alloc] init];
-//传入房间 UUID，还支持其他参数，在后续文档中，会逐步解释
-playerConfig.room = @"填入房间 UUID";
+WhitePlayerConfig *playerConfig = [[WhitePlayerConfig alloc] initWithRoom:@"uuid" roomToken:@"roomToken"];
 //回放房间，支持播放m3u8地址。可以播放 rtc 录制的声音内容。
 playerConfig.audioUrl = @"https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8";
 //创建 whitePlayer 实例，进行回放
+
 [self.sdk createReplayerWithConfig:playerConfig callbacks:self completionHandler:^(BOOL success, WhitePlayer * _Nonnull player, NSError * _Nonnull error) {
     if (error) {
         NSLog(@"创建回放房间失败 error:%@", [error localizedDescription]);
@@ -32,20 +35,55 @@ playerConfig.audioUrl = @"https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/
         [self.player play];
     }
 }];
+
+#pragma mark - WhitePlayerEventDelegate
+//见 WhitePlayerEvent 类解释
+- (void)phaseChanged:(WhitePlayerPhase)phase
+{
+    NSLog(@"player %s %ld", __FUNCTION__, (long)phase);
+}
+
+- (void)loadFirstFrame
+{
+    NSLog(@"player %s", __FUNCTION__);
+}
+
+- (void)sliceChanged:(NSString *)slice
+{
+    NSLog(@"player %s slice:%@", __FUNCTION__, slice);
+}
+
+- (void)playerStateChanged:(WhitePlayerState *)modifyState
+{
+    NSString *str = [modifyState jsonString];
+    NSLog(@"player %s state:%@", __FUNCTION__, str);
+}
+
+- (void)stoppedWithError:(NSError *)error
+{
+    NSLog(@"player %s error:%@", __FUNCTION__, error);
+}
+
+- (void)scheduleTimeChanged:(NSTimeInterval)time
+{
+    NSLog(@"player %s time:%f", __FUNCTION__, (double)time);
+}
+
+@end
 ```
 
-* 以上代码，可以在 [White-SDK-iOS](https://github.com/duty-os/white-sdk-ios-release) Example 中的 WhitePlayerViewController 中查看。
+>以上代码，可以在 [White-SDK-iOS](https://github.com/duty-os/white-sdk-ios-release) Example 中的 WhitePlayerViewController 中查看。
 
-### 详细类与 API
+## 详细类与 API
 
-#### `WhitePlayerConfig` 
+### WhitePlayerConfig
 
-用于初始化 WhitePlayer，传入特定的参数，可以回放房间中，不同时间的画面。
+用于初始化 WhitePlayer，传入特定的参数，通过设置 beginTimestamp，来确定开始回放的 UTC 时间。设置 duration，来确定持续时间。
 
 ```Objective-C
 @interface WhitePlayerConfig : WhiteObject
 
-- (instancetype)initWithRoom:(NSString *)roomUuid;
+- (instancetype)initWithRoom:(NSString *)roomUuid roomToken:(NSString *)roomToken;
 
 /** 房间UUID，目前必须要有 */
 @property (nonatomic, copy, nonnull) NSString *room;
@@ -60,9 +98,41 @@ playerConfig.audioUrl = @"https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/
 @end
 ```
 
-#### WhiteConsts.h
+>目前：持续时间只有在传入了开始 UTC 时间戳的时候，才生效。
 
-表示部分枚举常量
+>音频地址，暂不支持视频。Player 会自动与音频播放做同步，保证同时播放，当一方缓冲时，会一起暂停。
+
+### WhitePlayer
+
+回放类，可以将该类看做一个视频播放器。有类似播放器的播放，暂停等功能，并且可以通过 get API，获取一些 Player 的当前状态。  
+
+>Player 主动的状态变化回调，请在 [状态管理](./state.md) 或者 `WhitePlayerEvent` 查看
+
+```Objective-C
+
+@interface WhitePlayer : NSObject
+
+- (void)play;
+- (void)pause;
+//stop 后，player 资源会被释放。需要重新创建，才可以重新播放
+- (void)stop;
+//跳转至特定时间（开始时间为 0）
+- (void)seekToScheduleTime:(NSTimeInterval)beginTime;
+//设置查看模式
+- (void)setObserMode:(WhiteObserverMode)mode;
+
+//获取播放状态
+- (void)getPhaseWithResult:(void (^)(WhitePlayerPhase phase))result;
+//获取 PlayerState
+- (void)getPlayerStateWithResult:(void (^) (WhitePlayerState *state))result;
+//获取播放信息
+- (void)getPlayerTimeInfoWithResult:(void (^) (WhitePlayerTimeInfo *info))result;
+
+```
+
+### WhiteConsts.h
+
+部分枚举常量，用来表示当前的跟随模式，以及播放状态。
 
 ```Objective-C
 typedef NS_ENUM(NSInteger, WhiteObserverMode) {
@@ -80,9 +150,10 @@ typedef NS_ENUM(NSInteger, WhitePlayerPhase) {
 };
 ```
 
-#### WhitePlayerEvent
+### WhitePlayerEvent
 
-`WhitePlayerEvent` 本身不对外暴露 API，开发者在创建 WhitePlayer 时，需要传入一个实现了 `WhitePlayerEventDelegate` 的实例。当实现了对应Player 触发特定事件时，会调用该实例。
+`WhitePlayerEvent` 本身不对外暴露 API。  
+开发者在创建 `WhitePlayer` 时，需要传入一个实现了 `WhitePlayerEventDelegate` 协议的实例。Player 触发特定事件时，`WhitePlayerEvent` 会回调该实例。
 
 ```Objective-C
 @protocol WhitePlayerEventDelegate <NSObject>
@@ -100,50 +171,23 @@ typedef NS_ENUM(NSInteger, WhitePlayerPhase) {
 /** 出错暂停 */
 - (void)stoppedWithError:(NSError *)error;
 /** 进度时间变化 */
-- (void)scheduleTimeChanged:(NSInteger)time;
+- (void)scheduleTimeChanged:(NSTimeInterval)time;
 /** 添加帧出错 */
 - (void)errorWhenAppendFrame:(NSError *)error;
 /** 渲染时，出错 */
 - (void)errorWhenRender:(NSError *)error;
-/** 用户头像信息变化 */
-- (void)cursorViewsUpdate:(WhiteUpdateCursor *)updateCursor;
-
+/**
+ 2.0.4新增API
+ 白板自定义事件回调，
+ 自定义事件参考文档，或者 RoomTests 代码
+ */
+- (void)fireMagixEvent:(WhiteEvent *)event;
 @end
 ```
 
-#### WhitePlayer
+### WhitePlayerState
 
-```Objective-C
-
-@interface WhitePlayer : NSObject
-
-- (void)play;
-- (void)pause;
-//stop 后，player 资源会被释放。需要重新创建，才可以重新播放
-- (void)stop;
-//跳转至特定时间
-- (void)seekToScheduleTime:(NSTimeInterval)beginTime;
-//设置查看模式
-- (void)setObserMode:(WhiteObserverMode)mode;
-//设置跟随的用户
-- (void)setFollowUserId:(NSInteger)userId;
-
-@end
-```
-
-```Objective-C
-//获取播放状态
-- (void)getPhaseWithResult:(void (^)(WhitePlayerPhase phase))result;
-//获取 PlayerState
-- (void)getPlayerStateWithResult:(void (^) (WhitePlayerState *state))result;
-//获取播放信息
-- (void)getPlayerTimeInfoWithResult:(void (^) (WhitePlayerTimeInfo *info))result;
-
-```
-
-#### WhitePlayerState
-
-类似于 `WhiteRoom` 的 `WhiteRoomState` 。储存了所有Player 当前状态的一些属性。
+类似于 `WhiteRoom` 的 `WhiteRoomState` ，储存了回放房间的一些状态。
 
 ```Objective-C
 @interface WhitePlayerState : WhiteObject
@@ -151,8 +195,12 @@ typedef NS_ENUM(NSInteger, WhitePlayerPhase) {
 @property (nonatomic, strong, readonly, nullable) WhiteGlobalState *globalState;
 /** 房间用户状态 */
 @property (nonatomic, strong, readonly, nullable) NSArray<WhiteRoomMember *> *roomMembers;
+// 该 API 获取的信息不正确，为防止使用该 API 获取到不正确的内容，2.0.4 版本，已移除该 API
+//@property (nonatomic, strong, readonly, nullable) WhiteObserverState *observerState;
 /** 用户观察状态 */
-@property (nonatomic, strong, readonly, nullable) WhiteObserverState *observerState;
+@property (nonatomic, assign, readonly) WhiteObserverMode observerMode;
+/** 场景状态 */
+@property (nonatomic, strong, readonly, nullable) WhiteSceneState *sceneState;
 
 @end
 ```
