@@ -14,7 +14,7 @@ sdk 可以运行在任意支持 es5 的现代浏览器中，兼容性支持可�
 
 * 硬件
 
-sdk 无需任何额外支持，即可运行在手写板，iPad，Surface 等设备上。
+sdk 无需任何额外支持，即可运行在 iPad，Surface，Wacom等手写板上。
 
 ## 相关 demo
 
@@ -22,9 +22,11 @@ sdk 无需任何额外支持，即可运行在手写板，iPad，Surface 等设�
     * 有部分业务实现代码，阅读对应文档，进行部署即可快速查看集成效果。
 1. [white-react-demo](https://github.com/duty-os/white-react-demo)
     * 当遇到 bug 时，推荐使用该 demo 进行最小环境复现，迅速定位问题。
-    * 反馈问题时，如果能带上复现问题的代码，就能够更快的解决问题。
 1. [white-demo-web](https://github.com/duty-os/white-demo-web/tree/master/quickStart/2.0)
     * quick-start 中所用 cdn 安装形式的 demo
+
+>提示：
+反馈问题时，如果能带上在以上任意的 demo 中复现的代码，能够更快的解决定位问题。
 
 
 ## sdk 版本，及其历史版本
