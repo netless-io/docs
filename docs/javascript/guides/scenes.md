@@ -20,7 +20,7 @@ scenePreview(scenePath: string, div: HTMLElement, width: number, height: number)
 
 `Room` `Player` 都支持该 API，开发者可以在实时白板和回放中调用此功能。
 
->该功能无法替代截图，无法导出图片。  
+>该功能无法替代截图，无法导出图片。渲染的内容，调用时，场景的内容，不会实时更新。
 预览的位置为用户切换到对应场景时，所见场景。不同用户，所处位置不同，看到的内容也会有存在差异。
 
 ## 进阶文档
