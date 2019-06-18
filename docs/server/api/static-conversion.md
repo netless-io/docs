@@ -3,80 +3,78 @@ id: server-static-conversion
 title: 文档转图片
 ---
 
-## 发起静态文档转换任务
+## 一、静态文档转换
 
-`POST /services/static-conversion/tasks?token={{token}}`
+> 静态文档转换是指将 PPT、PPTX、Word、PDF 等格式转换成图片的服务，主要是帮助客户在白板中插入演示资料来辅助在线授课或者远程会议。
 
-* body 参数
+## 二、前置条件
 
-字段 | 类型 | 描述 |
---  | -- | -- |
-sourceUrl | boolean | 文档源 url |
-targetBucket | string | 文档转换后保存结果的目标 bucket |
-targetFolder | string | 文档转换后保存结果的目标文件夹 |
+### 1. netless 的转码服务调用示意图
 
-关于静态文档转换：
-- 用户需要在 console 控制台中注册自己的存储服务，以保证文档转换后的结果能正确输出
-- 目前文档转换后的结果图片只支持 png 格式
+> 需要在 netless 管理控制台配置三方云存储，目的是：
+>
+> 1. 允许 netless 转码服务器可以从客户的云存储空间中读取资源，写入资源。
+>
+> 2. 配置存储支持跨域，方面在白板上面展示。
 
-接口返回结果：
-```json
-{
-    "code": 200,
-    "msg": {
-        "taskId": "cc880dd5835b43a4844cbf12b3101xxx"
-    }
-}
-```
-该接口返回的 taskid 作为当前任务唯一的 id，可以用于查询当前任务进度与转换结果
+![static_conversion_frame@2x](https://ohuuyffq2.qnssl.com/static_conversion_frame@2x.png)
 
-**注意：该服务需要在 console 控制台配置存储驱动，请联系客户支持团队**
+2. 在管理控制台上开启服务
 
-## 查询静态文档转换任务进度
+## 开始使用
 
-`GET /services/static-conversion/tasks/{{taskid}}/progress?token={{token}}`
+``` typescript
+// 引入 white-web-sdk
+import {WhiteWebSdk} from "white-web-sdk";
 
-接口返回结果：
-```json
-{
-    "code": 200,
-    "msg": {
-        "task": {
-            "convertStatus": "Finished",  // 转换状态
-            "reason": "",   // 失败后消息
-            "totalPageSize": 3, // 文档总页数
-            "convertedPageSize": 3, // 文档已经转换完成页数
-            "convertedPercentage": 67, // 文档转换完成百分比
-            "staticConversionFileList": [   // 转换结果信息
-                {
-                    "width": 2338,  // 当页宽度，单位为像素
-                    "height": 1652, // 当页高度，单位为像素
-                    "conversionFileUrl": "{{targetfolder}/{{taskid}}/1.png"   // 当页图片在用户指定 bucket 中的相对路径
-                },
-                {
-                    "width": 2338,
-                    "height": 1652,
-                    "conversionFileUrl": "{{targetfolder}/{{taskid}}/2.png"
-                },
-                {
-                    "width": 2338,
-                    "height": 1652,
-                    "conversionFileUrl": "converting"   // 该页未转换完成时的标志
+// 创建 WhiteWebSdk 对象，调用 pptConverter 成员方法
+const whiteWebSdk = new WhiteWebSdk();
+const pptConverter = whiteWebSdk.pptConverter("输入 roomToken");
+
+
+// 1、调用 pptConverter 的成员方法 convert 开始转码
+// 2、convert 的参数类型参考 PptConvertParams
+type PptConvertParams = {
+    readonly url: string;
+    readonly kind: PptKind;
+    readonly target?: OssTarget;
+    readonly onProgressUpdated?: (progress: number) => void;
+    readonly checkProgressInterval?: number;
+    readonly checkProgressTimeout?: number;
+};
+
+// 请求转码，获得每一个页面的数据
+res = await pptConverter.convert({
+            // ppt 在云存储中地址，注意需要在控制台配置
+  					url: pptURL,
+  					// enum PptKind {
+            // 		Dynamic = "dynamic", pptx 转网页请参照其他文档：
+          	//  	Static = "static",	文档转图片
+       			// }
+            kind: kind, 
+  					// 云存储配置
+            //	target: {
+            // 		bucket: string,
+            //		folder: string,	
+            //		prefix: string,
+            //	},
+            target: target,
+  					// 转码进度监听
+            onProgressUpdated: progress => {
+                if (onProgress) {
+                    onProgress(PPTProgressPhase.Converting, progress);
                 }
-            ]
-        }
-    }
-}
+            },
+        });
+
+// 将获得的数据展示出来
+// Scenes 是文件树结构，filename 可以类比为你想存储在 Scene 根文件夹下叫做 filename 的子文件夹
+// room 对象是在加入房间的时候参数，具体参见其他文档：
+room.putScenes(`/${filename}`, res.scenes);
+room.setScenePath(`/${filename}/${res.scenes[0].name}`);
+
 ```
-接口说明：
 
-- 返回转换状态 convertStatus 的枚举值为  
-    - Waiting（任务排队中）
-    - Converting（任务进行中）
-    - NotFound（未找到查询任务）
-    - Finished（任务已完成）
-    - Fail（任务失败）
+## 效果展示
 
-- 该接口需要用户轮询以及时获取转换进度和信息，由于转换任务需要一定时间，建议轮询间隔为两秒。
-- 由于用户指定了保存结果的 bucket，因此该接口返回的文件 url 为 bucket 中的相对路径，前缀需要用户自行拼接
-- 转换结果为有序数组，可以按照返回顺序进行渲染
+![static_ppt_screen](https://ohuuyffq2.qnssl.com/static_ppt_screen.png)
