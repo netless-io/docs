@@ -36,6 +36,6 @@ import com.herewhite.sdk.*;
 import com.herewhite.sdk.domain.*;
 
 ...
-
+WhiteBroadView whiteBroadView = findViewById(R.id.white);
 WhiteSdk whiteSdk = new WhiteSdk(whiteBroadView this, new WhiteSdkConfiguration(DeviceType.touch, 10, 0.1));
 ```
