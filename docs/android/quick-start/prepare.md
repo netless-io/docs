@@ -33,7 +33,7 @@ allprojects {
 
 ```plain
 dependencies {
-    compile 'com.github.duty-os:white-sdk-android:2.0.0-beta10'
+    implementation 'com.github.duty-os:white-sdk-android:2.0.0-beta10'
     # 使用动态 ppt 功能的用户，请暂时使用 2.0.0-ppt 功能
 }
 ```
