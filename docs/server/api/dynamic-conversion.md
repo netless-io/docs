@@ -1,11 +1,11 @@
 ---
-id: server-static-conversion
-title: 文档转图片
+id: server-dynamic-conversion
+title: 文档转网页
 ---
 
-## 一、静态文档转换
+## 一、动态文档转换
 
-> 静态文档转换是指将 PPT、PPTX、Word、PDF 等格式转换成图片的服务，主要是帮助客户在白板中插入演示资料来辅助在线授课或者远程会议。
+> 动态文档转换是指将 PPTX 等格式转换成网页的服务，主要是帮助客户在白板中插入演示资料来辅助在线授课或者远程会议。
 
 ## 二、前置条件
 
@@ -17,11 +17,13 @@ title: 文档转图片
 >
 > 2. 配置存储支持跨域，方面在白板上面展示。
 
-![static_conversion_frame@2x](https://ohuuyffq2.qnssl.com/static_conversion_frame@2x.png)
+![dynamic_conversion_frame@2x](https://ohuuyffq2.qnssl.com/dynamic_conversion_frame@2x.png)
 
 ### 2. 在管理控制台上开启服务
 
-## 开始使用
+
+
+## 三、开始使用
 
 ``` typescript
 // 引入 white-web-sdk
@@ -51,7 +53,7 @@ res = await pptConverter.convert({
             // 		Dynamic = "dynamic", pptx 转网页请参照其他文档：
           	//  	Static = "static",	文档转图片
        			// }
-            kind: "static", 
+            kind:  "dynamic", 
   					// 云存储配置
             //	target: {
             // 		bucket: string,
@@ -77,5 +79,6 @@ room.setScenePath(`/${filename}/${res.scenes[0].name}`);
 
 ## 效果展示
 
-![static_ppt_screen](https://ohuuyffq2.qnssl.com/static_ppt_screen.png)
-
+<video style="width: 720px" loop="loop" autoplay="autoplay" id="video">
+      <source id="mp4" src="http://ogbaxzius.bkt.clouddn.com/pptx_demo.mp4" 
+</video>

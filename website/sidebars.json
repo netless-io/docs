@@ -89,6 +89,7 @@
       "server/api/server-whiteboard-base",
       "server/api/server-whiteboard-cover",
       "server/api/server-static-conversion",
+      "server/api/server-dynamic-conversion",
       "server/api/server-postman-config"
     ]
   }
