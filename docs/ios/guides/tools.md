@@ -59,6 +59,11 @@ memberState.currentApplianceName = AppliancePencil;
 [whiteRoom setMemberState:memberState];
 ```
 
+>由于 iOS webview 限制，2.0.5 之前的版本，键盘无法弹出。可以根据 [support webview keyboard](https://stackoverflow.com/questions/32449870/programmatically-focus-on-a-form-in-a-webview-wkwebview) 文章，关闭 webview 内部限制。
+
+>当文字教具框，在软键盘遮盖范围内时，iOS 系统会自动滚动进行滚动，但是软键盘消失时，不会自动回复。可以自行调用 `whiteboardView.scrollView.contentOffset = CGPointZero`。
+>2.1.0 在 whiteboardView 内部处理了键盘事件，进行了恢复。如果想要自己处理该情况，可以将 `whiteboardView` 的 `disableKeyboardHandler` 设置为 `YES`。
+
 ### 设置教具颜色，粗细
 
 `WhiteMemberState` 还有其他属性:
