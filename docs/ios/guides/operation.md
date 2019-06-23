@@ -112,29 +112,46 @@ info.uuid = @"WhiteImageInformation";
 
 目前不支持使用代码进行移动。
 
-## 用户头像显示
+## 用户信息透传
 
-* 2.0.2 版本，新增功能
+>2.1.0 新增 API
 
-### 实现步骤：
+从 2.1.0 开始，SDK 支持开发者在加入房间时，携带部分额外信息。  
+sdk，会将该信息透传给所有客户端。（注意，该属性需要满足一定约束条件，详情见下文）
 
-#### 1. 初始化
+`WhiteRoomConfig` 新增 `userPayload` 属性。允许开发者携带一部分相关信息。
 
-在初始化 SDK 时，设置 WhiteSdkConfiguration 中的 userCursor 参数。
+在其他客户端，可以通过查询房间 `roomMembers` 来获取各个用户携带的信息。
+
+>只有当该属性内容，满足 `[NSJSONSerialization isValidJSONObject:@{@"userPayload": userPayload}]` 为 YES 时。sdk 才会将该数据，完整的传递所有客户端。
+
+```Objective-C
+@interface WhiteRoomConfig : WhiteObject
+- (instancetype)initWithUuid:(NSString *)uuid roomToken:(NSString *)roomToken userPayload:(id _Nullable)userPayload;
+@end
+```
+
+### 用户头像显示
+
+>2.0.2新增 API。2.1.0 有所增强，可以完整传递
+
+1. 初始化 `WhiteSDK` 时，将 `WhiteSdkConfiguartion` 的 `userCursor` 字段，设置为 YES。
+1. 将 `WhiteRoomConfig` 的 `userPayload` 属性，设置为字典。并确保存在 `avatar` 字段，且值为用户头像地址。
+
+>2.0.2 ~ 2.1.0之前版本，请配置`WhiteRoomConfig` 的 `memberInfo`
+
+>用户头像地址，推荐使用 https 地址，否则请开启 iOS ATS 功能。
+
+相关类 API：
 
 ```Objective-C
 
 @interface WhiteSdkConfiguartion ： WhiteObject
-
 /** 显示操作用户头像(需要在加入房间时，配置用户信息) */
 @property (nonatomic, assign) BOOL userCursor;
 
 @end
 ```
-
-#### 2. 加入房间
-
-通过以下 API ，在加入房间的时候，就传入用户信息
 
 ```Objective-C
 @interface WhiteSDK : NSObject
@@ -148,12 +165,11 @@ info.uuid = @"WhiteImageInformation";
 @interface WhiteRoomConfig : WhiteObject
 //初始化房间参数，传入用户信息
 - (instancetype)initWithUuid:(NSString *)uuid roomToken:(NSString *)roomToken memberInfo:(WhiteMemberInformation * _Nullable)memberInfo;
+// 2.1.0开始，建议使用该 API
+- (instancetype)initWithUuid:(NSString *)uuid roomToken:(NSString *)roomToken userPayload:(id _Nullable)userPayload;
+
 @end
 ```
-
-在初始化房间参数 `WhiteRoomConfig` 时，传入 `WhiteMemberInformation` 实例。
-如果配置用户头像信息地址（推荐使用 https 地址，否则需要开启 iOS ATS 功能，允许 http 链接），如果不配置，则会显示 SDK 的默认占位符。
-注意： **当加入的用户 userId 一致时，后加入的用户，会将前面加入的用户踢出房间**。
 
 ## 主动延时
 
