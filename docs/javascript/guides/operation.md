@@ -57,11 +57,32 @@ room.zoomChange(3);
 let scale = room.state.zoomScale;
 ```
 
-## 显示用户鼠标信息
+## 用户信息透传
 
-* 在 `2.0.0-beta6` 中，新增了传递用户鼠标/手势信息的功能。
+>2.0.0正式版新增 API
 
-### 传入用户信息
+```Javascript
+export declare type JoinRoomParams = {
+    readonly uuid: string;
+    readonly roomToken: string;
+    readonly userPayload?: any;
+    readonly disableOperations?: boolean;
+    readonly cursorAdapter?: CursorAdapter;
+};
+```
+
+`WhiteWebSdk` `joinRoom` API 中第一个参数中的 `userPayload` 字段，现在支持任意类型（可以被 JSON 序列化即可）。
+
+该字段的信息，会由 SDK 完整的传递给服务器，各个客户端，都可以在 `room.state.roomMember` 中进行读取。
+>如果需要在 Android iOS 端使用 SDK 自带的显示用户头像功能，请在 userPayload 中的 avatar 字段传入用户头像地址。
+
+### 用户鼠标显示
+
+请参考介绍页面提供的 demo 实现
+
+<details><summary>**2.0.0-beta.6~7 用户鼠标实现**</summary>
+
+#### 1. 传入用户信息
 
 在调用 sdk `joinRoom` API 时，额外传入 `userPayload` 字段。其中 userId 应为唯一值，否则，同一个 userid，先加入房间的用户会被后来的用户踢出房间。
 具体字段为下面配置:
@@ -76,7 +97,7 @@ export type UserPayload = {
 };
 ```
 
-### 读取用户信息
+#### 2. 读取用户信息
 
 该信息会保存在 `room.state.roomMembers` 中， roomMembers 为数组，其中元素为以下格式。
 
@@ -90,7 +111,7 @@ export type RoomMember = {
 
 传入的 UserPayload 会对应转换在 `RoomMember` 的 `information` 字段中。memberId 则是 sdk 服务器，根据用户加入顺序分配的一个递增数字。
 
-### 更新用户头像信息
+#### 3. 更新用户头像信息
 
 当用户进行移动时，sdk 会回调创建 sdk 时，传入的 `onCursorViewsUpdate` 方法。
 
@@ -168,9 +189,11 @@ export type CursorView = {
 }
 ```
 
-### 主动延时
+</details>
 
-1.x 不提供该 API， `2.0.0-beta.7` 新增API。
+## 主动延时
+
+>`2.0.0-beta.7` 新增API
 
 ```JavaScript
 //延时 1 秒播放

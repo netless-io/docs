@@ -60,9 +60,8 @@ pod init
 platform :ios, '9.0'
 
 target 'Your App' do
+    # 2.1.0 与 2.0 之前的房间无法互联，详情请看版本历史
     pod 'White-SDK-iOS'
-    ## 六月新接入客户，请暂时使用以下版本
-    ## pod 'White-SDK-iOS', '2.0.3-ppt'
 end
 ```
 

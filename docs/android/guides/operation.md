@@ -60,34 +60,34 @@ WhiteSdk whiteSdk = new WhiteSdk(whiteBroadView PlayActivity.this, interrupter);
 room.zoomChange(10);
 ```
 
-## 用户头像显示
+## 用户信息透传
 
-* 2.0.0-beta7 版本新增功能
+>2.0.0 正式版新增 API
 
-### 1. 初始化
+从 2.0.0 开始，SDK 支持开发者在加入房间时，携带部分额外信息。  
+>该字段会被转换为 JSON 中的一个 value，所以需要满足 JSON 对 JSON 元素的约束。
 
-在初始化 SDK 时，设置 WhiteSdkConfiguration 中的 userCursor 参数。
+在其他客户端，可以通过查询房间 `roomMembers` 来获取各个用户携带的信息。
+
+### 用户头像显示
+
+>2.0.0-beta7 版本新增功能。2.0.0 正式版，功能有所增强。
+
+1. 初始化 SDK 时，将 `WhiteSdkConfiguration` 中的 `userCursor` 设置为 `true`。
+1. 配置加入房间时，传入的 `RoomParams` `userPayload` 字段，并且确保存在 `avatar` 字段。
 
 ```Java
 WhiteSdkConfiguration sdkConfiguration = new WhiteSdkConfiguration(DeviceType.touch, 10, 0.1, true);
 sdkConfiguration.setUserCursor(true);
 ```
 
-### 2. 加入房间
-
-`RoomParams` 增加了 `memberInfo` 属性，可以初始化传入或初始化后设置。
-像之前一样调用加入房间方法即可。
-
 ```Java
-// 初始化 MemberInformation 实例，传入 userId 属性。
-MemberInformation info = new MemberInformation("313131");
-// 设置想显示的头像
-info.setAvatar("https://white-pan.oss-cn-shanghai.aliyuncs.com/40/image/mask.jpg");
-
-RoomParams roomParams = new RoomParams("uuid", "roomToken", info);
+HashMap<String, String> payload = new HashMap<>();
+payload.put("avatar", "https://example.com/user.png");
+RoomParams roomParams = new RoomParams("uuid", "roomToken", payload);
 ```
 
-MemberInformation 的 userId 属性，会被用来检测用户登录状态， **当加入的用户 userId 一致时，后加入的用户，会将前面加入的用户踢出房间**。
+>2.0.0-beta7 版本，可以配置 `MemberInformation` 字段。
 
 ## 主动延时
 
