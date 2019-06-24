@@ -26,6 +26,7 @@ API 19 (Android 4.4) – Kitkat, released October 2013
 与之前版本 API 兼容，但是无法与低版本互连，进入同一房间。
 可以与 iOS 2.1.0，web 2.0.0 正式版互连，无法与 iOS 2.1.0 以下版本，以及 web 2.0.0-beta 开头的版本互连。
 
->2019.06.24 前接入的客户，在升级至该版本时，请联系 SDK 团队，确认服务器指向版本。
+>2019.06.24 前接入的客户，在升级至该版本时，请联系 SDK 团队，确认服务器指向版本。  
+>更多内容，请查看 [2.0.0正式版发布](/blog/2019/06/22/release-note)
 
 [历史版本列表](https://jitpack.io/com/github/duty-os/white-sdk-android/)
