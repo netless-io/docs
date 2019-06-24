@@ -72,9 +72,10 @@ class Footer extends React.Component {
           </div>
           <div>
             <h5>联系方式</h5>
-            <a href={`${this.props.config.baseUrl}blog`}>support@herewhite.com</a>
-            <a href="https://github.com/">社区</a>
-            <a href="https://github.com/">博客</a>
+              <a href="mailto:support@netless.link">
+                  support@netless.link
+              </a>
+            <a href="https://spectrum.chat/netless?tab=posts" target="_blank">社区</a>
           </div>
         </section>
         <section className="copyright">{this.props.config.copyright}</section>
