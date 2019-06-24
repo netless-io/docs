@@ -16,6 +16,10 @@ API 19 (Android 4.4) – Kitkat, released October 2013
 
 ## SDK 版本列表
 
+## [2.0.4] - 2019-06-24
+### Fix
+- 恢复只读 API（后续将拆分为两个 API）
+
 ### 2.0.3 - 2019-06-24
 #### Fix
 - 兼容旧版本静态 ppt 回放
