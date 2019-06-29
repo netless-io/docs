@@ -36,6 +36,11 @@ sdk 无需任何额外支持，即可运行在 iPad，Surface，Wacom等手写�
 1. [white-react-sdk](https://www.npmjs.com/package/white-react-sdk)
     * React 框架开发（依赖 white-web-sdk，安装时，会自动集成后者，无需重复安装）
 
+### 2.2.1 - 2019-06-29
+
+> - 支持主动调整视角
+> - 支持为动态 PPT 自定义字体文件
+
 ### 2.0.3  - 2019-06-24
 
 > - 修复：在 beta 版录制的回放时 PPT 的尺寸错误

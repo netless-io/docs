@@ -75,6 +75,41 @@ room.refrehViewSize();
 
 尺寸应该和白板在产品中的实际尺寸相同（一般而言就是浏览器页面或者应用屏幕的尺寸）。如果用户调整了窗口大小导致白板尺寸改变。应该重新调用该方法刷新尺寸。
 
+## 主动调整视角
+
+你可以通过如下方法移动视角。
+
+```javascript
+room.moveCamera({
+  centerX: 237, // 视角中心坐标的 x 坐标
+  centerY: 120, // 视角中心对准的 y 坐标
+  scale: 1.2, // 放缩比例
+});
+```
+
+通过 ``moveCamera`` 来调整视角时，你不必输入完整的参数。例如，你可以通过如下方式来仅仅调整放缩比例，而保持视角中心不变。
+
+```javascript
+room.moveCamera({
+  scale: 1.2,
+});
+```
+
+
+
+你也可以通过设置视觉矩形的方式，调整视角。
+
+> 视觉矩形表示你的视角必须容纳的区域。当你设置好视觉矩形后，视角会自动调整到刚好可以完整展示视觉矩形所表示的范围。
+
+```javascript
+room.moveCameraToContain({
+  originX: - 200,
+  originY: - 120,
+  width: 400,
+  height: 240,
+});
+```
+
 ## 相关文档
 
 [主播一对多业务实现](/docs/advance/advance-broadcast?platform=ios)
