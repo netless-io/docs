@@ -66,3 +66,11 @@ room.setMemberState({
     textSize: 1
 })
 ```
+
+## 禁止教具操作
+
+你可以通过如下方法屏蔽教具。
+
+```javascript
+room.disableDeviceInputs = false;
+```
