@@ -52,13 +52,6 @@ res = await pptConverter.convert({
           	//  	Static = "static",	文档转图片
        			// }
             kind: "static", 
-  					// 云存储配置
-            //	target: {
-            // 		bucket: string,
-            //		folder: string,	
-            //		prefix: string,
-            //	},
-            target: target,
   					// 转码进度监听
             onProgressUpdated: progress => {
                 if (onProgress) {
