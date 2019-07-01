@@ -53,3 +53,18 @@ room.pptNextStep(); // 下一页（下一步）
 room.pptPreviousStep() // 上一页（上一步）
 ```
 
+## 自定义字体
+
+如果你的 pptx 中包含了不属于我们默认字体列表中的字体，你可以通过配置自定义字体列表来支持。首先，你需要将字体文件上传到你自己的服务器或对象存储平台。然后，将字体文件的 URL 在 WhiteWebSdk 初始化时以如下代码配置。
+
+```javascript
+const whiteWebSDK = new WhiteWebSdk({
+  // 其他配置项
+  fonts: {
+    "Calibri": "https://your-cdn.com/Calibri.ttf",
+    "宋体": "https://your-cdn.com/Songti.ttf",
+    "楷体": "https://your-cdn.com/Kaiti.ttf",
+	},
+});
+```
+
