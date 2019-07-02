@@ -85,7 +85,7 @@ function bind (room) {
 var sdkToken = "阅读[集成准备]文档，获取 token";
 var uuid = "从业务服务器或者 url 地址中读取";
     // 注意加入房间的 path 为 `room/join` 而创建房间的为 `room`
-var url = `https://cloudcapiv4.herewhite.com/room/join?token=${sdkToken}?uuid=${uuid}`;
+var url = `https://cloudcapiv4.herewhite.com/room/join?token=${sdkToken}&uuid=${uuid}`;
 var requestInit = {
     method: 'POST',
     headers: {

@@ -77,7 +77,7 @@ room.refrehViewSize();
 
 ## 主动调整视角
 
-你可以通过如下方法移动视角。
+### 移动视角位置，改变缩放比例
 
 ```javascript
 room.moveCamera({
@@ -87,13 +87,15 @@ room.moveCamera({
 });
 ```
 
-通过 ``moveCamera`` 来调整视角时，你不必输入完整的参数。例如，你可以通过如下方式来仅仅调整放缩比例，而保持视角中心不变。
+通过 `moveCamera` 来调整视角时，你不必输入完整的参数。例如，你可以通过如下方式来仅仅调整放缩比例，而保持视角中心不变。
 
 ```javascript
 room.moveCamera({
   scale: 1.2,
 });
 ```
+
+### 调整整体视角位置
 
 你也可以通过设置视觉矩形的方式，调整视角。
 
@@ -108,6 +110,19 @@ room.moveCameraToContain({
 });
 ```
 
+>白板以中心点作为坐标原点，如果想要回到初始位置，并调整视角大小，可以参考以下代码:
+
+```javascript
+let width = 960;
+let heigh = 480;
+room.moveCamerToContain({
+  originX: - width / 2,
+  originY: - height / 2,
+  width: width,
+  height: height,
+})
+```
+
 ## 禁止调整视角
 
 你可以通过如下方法禁止用户手动调整视角（使用鼠标滚轮、Touch 板手势、移动端双指操作等）。
@@ -116,7 +131,7 @@ room.moveCameraToContain({
 room.disableCameraTransform = false;
 ```
 
-但这行代码并不能禁止你通过程序调整视角。
+你仍然通过程序调整视角，用户仍然可以进行笔画等输出操作。
 
 ## 相关文档
 
