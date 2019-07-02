@@ -38,35 +38,28 @@ class Footer extends React.Component {
           </a>
           <div>
             <h5>产品</h5>
-            <a href={this.docUrl('doc1.html', this.props.language)}>
+            <a target="_blank" href="https://console.herewhite.com/">
               管理控制台
             </a>
-            <a href={this.docUrl('doc2.html', this.props.language)}>
+            <a target="_blank" href="https://netless.link/">
               官网网站
             </a>
-            <a href={this.docUrl('doc3.html', this.props.language)}>
+            <a target="_blank" href="https://demo-agora-partner.herewhite.com">
               Demo 体验
             </a>
-            <a href={this.docUrl('doc3.html', this.props.language)}>
+            <a target="_blank" href="https://github.com/netless-io">
               Github
             </a>
           </div>
           <div>
             <h5>公司</h5>
-            <a href={this.pageUrl('users.html', this.props.language)}>
-              关于我们
+            <a href="mailto:hr@herewhite.com">
+                加入我们
             </a>
+            <a target="_blank" href="https://netless.link/zh-CN/service/">服务条款</a>
             <a
-              href="http://stackoverflow.com/questions/tagged/"
-              target="_blank"
-              rel="noreferrer noopener">
-              加入我们
-            </a>
-            <a href="https://discordapp.com/">服务条款</a>
-            <a
-              href="https://twitter.com/"
-              target="_blank"
-              rel="noreferrer noopener">
+              href="https://netless.link/zh-CN/privacy/"
+              target="_blank">
               隐私协议
             </a>
           </div>
