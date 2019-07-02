@@ -43,7 +43,7 @@ room.disableOperations = true;
 room.disableOperations = false;
 ```
 
->bug：该 API 没有正确阻止 MacBook 触控板等之类的手势缩放行为。
+>2.0.0 正式版修复该 API 没有正确阻止 MacBook 触控板等之类的手势缩放行为。
 
 ## 缩放
 
