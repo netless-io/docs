@@ -1,24 +1,35 @@
 ---
-title: 配置云存储和 RTC
+title: 配置云存储
 ---
 
 ## 一、目的说明
 
-> 我们将三方的存储和  RTC 配置都称为 Drive，下面我们要详细说明的是如何配置存储 Drive 和 RTC Drive。
+> 我们将三方的存储服务称为 Storage Driver，下面我们要详细说明的是如何配置 Storage Driver.
 
-### 1. 云存储
+在使用 netless 的白板或者 pptx 转网页等功能的时候难免会涉及到各种富媒体资源的同步，面对这种业务场景，我们采取的策略是将数据传到云存储，然后将云存储的地址同步给房间中的所有用户。因此我们要引入云存储的 Drive 来满足这个场景。
 
-在使用 netless 的白板或者 pptx 转网页等功能的时候难免会设计各种富媒体资源的同步，面对这种业务场景，我们采取的策略是将数据传到云存储，然后将云存储的地址同步给房间中的所有用户。因此我们要引入云存储的 Drive 来满足这个场景。
+当用户指定了 Storage Driver 后，相关资源会存储到 Storage Driver 关联的存储服务中，用户目前可以自定义配置阿里云或者七牛云的 Storage Driver。
 
-### 2. RTC
+当然 netless 也提供了一个默认的 Storage Driver 供用户使用，当使用了这个 Storage Driver 后，相关的资源将由 netless 代为保管。
 
-我们只会在回放白板和音轨同步配置的时候要求添加 RTC 的 Drive，目前只支持 Agora 做自动配置。其他家的 RTC 请咨询技术支持。
+## 二、添加 Storage Drive 的方法
 
-白板回放的设计原则是：我们会记录下全量的回放数据，客户可以通过在调用 player 方法的情况下输入开始播放时间来做和音视频的对齐。比如您在某个绝对时间点调用了音视频的录制接口，那么就在服务器上面将这个值记录下来用以后面的回放。
+在用户登录进入 netless 控制台 https://console.herewhite.com 后，可以左侧菜单栏的“个人中心”里找到入口
+![个人菜单入口](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/driverEnter.png?x-oss-process=image/resize,w_350)
 
-输入 RTC Drive 的目的是我们来帮您来调用开始录制这个接口，回放的时候也会一起输入开始值来对齐。
+之后点击右上角的“新建云存储”按钮，选择需要的云存储进行添加即可
+![driver 管理页面](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/addDriver.png)
 
+已经创建好的 Storage Driver 可以在这个页面进行管理，通过卡片右上的按钮可以进行编辑或删除等操作
+![driver 编辑](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/storageManage.png)
 
+> 请注意，当用户选择使用七牛云的存储服务时，需要额外配置一个外链域名的字段，否则 netless 将无法访问该存储服务内的资源.
 
-## 二、添加 Drive 的方法
+七牛外链字段获取位置如图：
+
+![qiniu url](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/qiniuStorageUrl.png)
+
+对应字段如图：
+
+![qiniu url](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/qiniuStorage.png?x-oss-process=image/resize,w_400)
 
