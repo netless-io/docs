@@ -18,8 +18,8 @@ pptConverter.convert({
   url: yourPPTDocumentURL,
   kind: "dynamic",
 }).then(function(result) {
-  var scenes = result.scenes;
   // scenes 就是用来创建 pptx 对应的场景的描述信息
+  var scenes = result.scenes;
 });
 ```
 
