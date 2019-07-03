@@ -38,7 +38,7 @@ room.completeImageUpload(uuid, imageUrl)
 
 >2.2.0 开始，该 API 拆分为：  
 禁止用户移动，缩放 API：`disableCameraTransform` (详情请参考 [视角操作-禁止视角变化](./view.md#disableCameraTransform))；  
-禁止用户输入 API：`disableDeviceInputs` (详情请参考 [教具使用-禁止教具操作](./tool.md#disableDeviceInputs) API。
+禁止用户输入 API：`disableDeviceInputs` (详情请参考 [教具使用-禁止教具操作](./tools.md#disableDeviceInputs) API。
 
 ```JavaScript
 // 禁止响应用户手势
