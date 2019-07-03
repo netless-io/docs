@@ -42,7 +42,7 @@ const siteConfig = {
     {doc: 'android/overview/android-introduction', label: 'Android'},
     {doc: 'ios/overview/ios-introduction', label: 'iOS'},
     {doc: 'server/overview/server-introduction', label: 'Server'},
-    {doc: 'advance/advance-overview', label: '高级功能'},
+    {doc: 'advance/advance-overview', label: '业务实现'},
     {
         href: 'https://github.com/netless-io',
         label: 'GitHub',

@@ -3,17 +3,18 @@ id: js-events
 title: 自定义事件
 ---
 
-房间内的任何成员都可以通过如下方法广播自定义事件。
+> 回放 replay 不支持发送自定义事件，如需处理特定的自定义事件，需要调用注册监听自定义事件 API
+
+## 发送自定义事件
+
+房间内的任何成员都可以通过如下方法，向房间内所有客户端，广播自定义事件。
 
 ```javascript
+// event 是事件名，必须是字符串，用于标示该事件名称
+// 该事件附带的数据，房间内接收到该事件的同时，可以读取到。`payload` 可以是任意 JavaScript 的 primitive 类型，以及不带嵌套结构的 plain object 或仅包含 plain object 的数组结构。
 room.dispatchMagixEvent(event, payload);
-```
 
-其中 ``event`` 是事件名，必须是字符串，用于标示该事件的类型。``payload`` 是该事件附带的数据，房间内接收到该事件的同时，可以读取到。``payload`` 可以是任意 JavaScript 的 primitive 类型，以及不带嵌套结构的 plain object 或仅包含 plain object 的数组结构。
-
-例如，如下形式的**发送事件**调用是合法的。
-
-```javascript
+// example
 room.dispatchMagixEvent("SendGift", {
     senderName: "ZhangJie",
     receiverName: "Lili",
@@ -23,13 +24,15 @@ room.dispatchMagixEvent("SendGift", {
 });
 ```
 
+## 监听自定义事件
+
 如果你希望监听房间内其他人发的事件，可以通过如下方式添加事件监听器。
 
 ```javascript
 room.addMagixEventListener(event, callback);
 ```
 
-其中 ``event`` 是事件名，必须是字符串。``callback`` 是一个回调函数，当房间内接收到事件时会被回调。我们可以通过如下形式注册事件监听器。
+其中 `event` 是事件名，必须是字符串。`callback` 是一个回调函数，当房间内接收到事件时会被回调。我们可以通过如下形式注册事件监听器。
 
 ```javascript
 function onRecevieGift(eventObject) {
@@ -52,14 +55,10 @@ SendGift
 },
 ```
 
-此外，你还可以注销事件监听器。
+## 注销自定义监听
 
 ```javascript
 room.removeMagixEventListener(event, callback);
-```
-
-例如，你可以通过如下代码注销刚才注册的事件监听器。
-
-```javascript
+// example
 room.removeMagixEventListener("SendGift", onRecevieGift);
 ```
