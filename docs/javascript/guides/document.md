@@ -10,7 +10,7 @@ title: 文档展示
 - 文档转图片：将文档转化成静态文件，这会让 pptx 中的交互动画、音频、视频全部丢失。
 - 文档转网页：保留 pptx 中交互动画、音频、视频的方案。
 
-如果你尚未了解如何使用我们的文档转化服务，可以先阅读[《文档转图片》](/docs/javascript/guides/js-replay)、[《文档转网页》](/docs/server/api/server-dynamic-conversion)。
+如果你尚未了解如何使用我们的文档转化服务，可以先阅读 server 端文档: [《文档转图片》](/docs/server/api/server-static-conversion)、[《文档转网页》](/docs/server/api/server-dynamic-conversion)。
 
 ## 将转化后的文档在白板上展示
 
