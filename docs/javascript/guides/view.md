@@ -1,6 +1,6 @@
 ---
 id: js-view
-title: 视角同步
+title: 视角操作
 ---
 
 sdk 提供的白板是向四方无限延伸的，同时也允许用户通过鼠标滚轮、手势等方式移动白板。因此，即便是同一块白板的同一页，不同用户的屏幕上可能看到的内容是不一样的。为了满足，所有用户观看同一内容的需求，本文引入了「`主播模式`」这个概念。
@@ -63,7 +63,7 @@ export type BroadcastState = {
 room.state.broadcastState
 ```
 
-## 视角中心同步
+## 视角中心同步<span id="refrehViewSize">
 
 同一个房间的不同用户各自的屏幕尺寸可能不一致，这将导致他们的白板都有各自不同的尺寸。实际上，房间的其他用户会将白板的中心对准主播的白板中心（注意主播和其他用户的屏幕尺寸不一定相同）。
 
@@ -75,42 +75,44 @@ room.refrehViewSize();
 
 尺寸应该和白板在产品中的实际尺寸相同（一般而言就是浏览器页面或者应用屏幕的尺寸）。如果用户调整了窗口大小导致白板尺寸改变。应该重新调用该方法刷新尺寸。
 
-## 主动调整视角
+## 调整视角<span id="moveCamera">
 
-### 移动视角位置，改变缩放比例
+>2.2.0新增 API，2.2.2 增加动画选项；回放 replay 与 实时房间 room 都支持该 API
+
+SDK 提供 `moveCamera` API，来调整视角，参数均为可选参数。SDK 会根据传入参数，调整视角中心与缩放比例。
 
 ```javascript
 room.moveCamera({
+  // 均为可选参数
+  // 视角中心，x，y 坐标原点为初始页面的额重点，xy 正方向分别为右侧，下侧。
   centerX: 237, // 视角中心坐标的 x 坐标
-  centerY: 120, // 视角中心对准的 y 坐标
+  centerY: 120, // 视角中心坐标的 y 坐标
   scale: 1.2, // 放缩比例
-});
+  animationMode: "immediately" // 2.2.2 新增 API，continuous:连续动画（默认），immediately: 瞬间完成
+})
 ```
 
-通过 `moveCamera` 来调整视角时，你不必输入完整的参数。例如，你可以通过如下方式来仅仅调整放缩比例，而保持视角中心不变。
+## 调整视觉矩形<span id="moveCameraToContain">
 
-```javascript
-room.moveCamera({
-  scale: 1.2,
-});
-```
+>2.2.0新增 API，2.2.2 增加动画选项；回放 replay 与 实时房间 room 都支持该 API
 
-### 调整整体视角位置
-
-你也可以通过设置视觉矩形的方式，调整视角。
+除了调整视角中心，SDK 还提供调整视觉矩形API。
 
 > 视觉矩形表示你的视角必须容纳的区域。当你设置好视觉矩形后，视角会自动调整到刚好可以完整展示视觉矩形所表示的范围。
 
 ```javascript
+
 room.moveCameraToContain({
-  originX: - 200,
-  originY: - 120,
-  width: 400,
-  height: 240,
+  originX: - 200, // 视觉矩形左上角在白板内部坐标位置
+  originY: - 120, // 视觉矩形左上角在白板内部坐标位置
+  width: 400, // 视觉矩形在白板内部坐标的宽度，会影响缩放比例，可以传入 ppt 的宽
+  height: 240, // 视觉矩形在白板内部坐标的高度，会影响缩放比例，可以传入 ppt 的高
+  // 动画为可选参数
+  animationMode: "immediately" // 2.2.2 新增 API，continuous:连续动画（默认），immediately: 瞬间完成
 });
 ```
 
->白板以中心点作为坐标原点，如果想要回到初始位置，并调整视角大小，可以参考以下代码:
+### 回到原点，并调整视觉矩形大小
 
 ```javascript
 let width = 960;
@@ -123,16 +125,16 @@ room.moveCamerToContain({
 })
 ```
 
-## 禁止调整视角
+## 禁止视角变化<span id="disableCameraTransform">
 
-你可以通过如下方法禁止用户手动调整视角（使用鼠标滚轮、Touch 板手势、移动端双指操作等）。
+开发者可以通过如下方法禁止用户手动调整视角（使用鼠标滚轮缩放、Touch 板手势移动，缩放、移动端双指操作移动）。
 
 ```javascript
 room.disableCameraTransform = false;
 ```
 
-你仍然通过程序调整视角，用户仍然可以进行笔画等输出操作。
+>你仍然通过程序调整视角；用户仍然可以进行笔画等输出操作。
 
 ## 相关文档
 
-[主播一对多业务实现](/docs/advance/advance-broadcast?platform=ios)
+[主播一对多业务实现](/docs/advance/advance-broadcast?platform=web)
