@@ -36,6 +36,10 @@ room.completeImageUpload(uuid, imageUrl)
 
 ## 只读
 
+>2.2.0 开始，该 API 拆分为：  
+禁止用户移动，缩放 API：`disableCameraTransform` (详情请参考 [视角操作-禁止视角变化](./view.md#disableCameraTransform))；  
+禁止用户输入 API：`disableDeviceInputs` (详情请参考 [教具使用-禁止教具操作](./tool.md#disableDeviceInputs) API。
+
 ```JavaScript
 // 禁止响应用户手势
 room.disableOperations = true;
@@ -46,6 +50,8 @@ room.disableOperations = false;
 >2.0.0 正式版修复该 API 没有正确阻止 MacBook 触控板等之类的手势缩放行为。
 
 ## 缩放
+
+>2.2.0 开始，该 API 不再推荐使用。新 API 提供动画选项，详情请参考 [视角操作-调整视角](./view.md#moveCamera)
 
 用户可以通过手势，放缩白板。
 另一方面 sdk 也支持通过 `zoomChange` 来缩放。
