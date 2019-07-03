@@ -11,6 +11,7 @@
       "android/quick-start/android-join-room"
     ],
     "常用功能": [
+      "android/guides/android-document",
       "android/guides/android-state",
       "android/guides/android-tools",
       "android/guides/android-view",
@@ -36,6 +37,7 @@
       "ios/quick-start/ios-callback-lifecycle"
     ],
     "常用功能": [
+      "ios/guides/ios-document",
       "ios/guides/ios-state",
       "ios/guides/ios-tools",
       "ios/guides/ios-view",
