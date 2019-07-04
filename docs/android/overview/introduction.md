@@ -16,12 +16,21 @@ API 19 (Android 4.4) – Kitkat, released October 2013
 
 ## SDK 版本列表
 
-## [2.0.4] - 2019-06-24
-### Fix
-- 恢复只读 API（后续将拆分为两个 API）
+### [2.3.0] - 2019-07-04
+- 增加截图 API
+- 增加根据 index 切换场景 API
 
+### [2.2.1] - 2019-07-04
+- 修复 PPT 转换工具初始化错误
+
+### [2.2.0] - 2019-07-02
+- 添加 PPT 转换支持
+- 添加动态 PPT 控制API
+- 添加视角移动，视角调整 API
+
+### [2.0.4] - 2019-06-24
+- 恢复只读 API（后续将拆分为两个 API）
 ### 2.0.3 - 2019-06-24
-#### Fix
 - 兼容旧版本静态 ppt 回放
 
 ### 2.0.0 - 2019-06-23
@@ -33,4 +42,4 @@ API 19 (Android 4.4) – Kitkat, released October 2013
 >2019.06.24 前接入的客户，在升级至该版本时，请联系 SDK 团队，确认服务器指向版本。  
 >更多内容，请查看 [2.0.0正式版发布](/blog/2019/06/22/release-note)
 
-[历史版本列表](https://jitpack.io/com/github/duty-os/white-sdk-android/)
+[历史版本列表](https://jitpack.io/#duty-os/white-sdk-android)
