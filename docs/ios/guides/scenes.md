@@ -3,6 +3,36 @@ id: ios-scenes
 title: 场景管理
 ---
 
+## 截图功能
+
+> 2.3.0 新增 API，回放房间与实时房间，均支持该功能
+
+截图大小为当前回放/实时房间展示时的大小。
+
+```Objective-C
+// 该类为 WhiteRoom 与 WhitePlayer 的父类
+@interface WhiteDisplayer : NSObject
+/**
+ 截取用户切换时，看到的场景内容，不是场景内全部内容。
+ FIXME：图片支持：只有当图片服务器支持跨域，才可以显示在截图中
+
+ @param scenePath 想要截取场景的场景路径，例如 /init；输入不存在场景路径，会返回空白图片
+ @param completionHandler 回调函数，image 可能为空
+ */
+- (void)getScenePreviewImage:(NSString *)scenePath completion:(void (^)(UIImage * _Nullable image))completionHandler;
+
+/**
+ 场景封面截图，会包含场景内全部内容
+ FIXME：图片支持：只有当图片服务器支持跨域，才可以显示在截图中
+
+ @param scenePath 想要截取场景的场景路径，例如 /init；输入不存在场景路径，会返回空白图片
+ @param completionHandler  回调函数，image 可能为空
+ */
+- (void)getSceneSnapshotImage:(NSString *)scenePath completion:(void (^)(UIImage * _Nullable image))completionHandler;
+
+@end
+```
+
 ## 相关类
 
 首先，我们需要知道场景类： `WhiteScene` 和 `WhitePptPage` 类。
