@@ -3,6 +3,20 @@ id: android-scenes
 title: 场景管理
 ---
 
+## 截图功能
+
+```Java
+/**
+ 截取用户切换时，看到的场景内容，不是场景内全部内容。
+ FIXME：图片支持：只有当图片服务器支持跨域，才可以显示在截图中
+
+ @param scenePath 想要截取场景的场景路径，例如 /init；输入不存在场景路径，会返回空白图片
+ @param completionHandler 回调函数，image 可能为空
+ */
+public void getScenePreviewImage(String scenePath, final Promise<Bitmap>promise) {}
+public void getSceneSnapshotImage(String scenePath, final Promise<Bitmap>promise) {}
+```
+
 ## 相关类
 
 首先，我们需要知道场景类： `SceneState` 和 `PptPage` 类。
