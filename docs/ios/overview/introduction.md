@@ -9,41 +9,44 @@ title: 简要说明
 
 支持版本：iOS 9+
 
-兼容性：iOS 2.1.0 之前的版本与 iOS 2.1.0 及其以后的版本，互相之间，无法互相连接，API 兼容。
+历史版本兼容性：  
+<span style="color:red">iOS 2.1.0 之前的版本与 iOS 2.1.0 及其以后的版本，连接的是不同服务器，无法互连。SDK API 保持兼容。</span>
+
 具体请看 [2.0.0正式版发布](/blog/2019/06/22/release-note)
 
 相关 repo：
 
-1. [White-sdk-ios-release](https://github.com/duty-os/white-sdk-ios-release)
+1. [White-sdk-ios-release](https://github.com/duty-os/white-sdk-ios-release) —— Cocoapods 下载库，自带部分API 调用代码
+1. [netless-swift-whiteboard](https://github.com/netless-io/netless-swift-whiteboard) —— 附带部分效果演示的 demo
 
 ---
 
 ## Changelog
-本项目的所有值得注意的更改都将记录在此文件中。
-部分未对外发布的小版本以及改动，未一一列出。
-
----
-
-## [2.3.0] - 2019-07-04
+### [2.3.0] - 2019-07-04
+#### Add
 - 增加场景预览截图 API
 - 增加场景封面截图 API
 - 增加使用 index 切换场景 API
 
-## [2.2.2] - 2019-07-02
+### [2.2.2] - 2019-07-02
+#### Fix
 - 修复 swift 环境下调用时，回放命令失效的问题
-## [2.2.0] - 2019-07-01
+### [2.2.0] - 2019-07-01
+#### Add
 - 增加文档转换 API，初始化时，支持自定义动态PPT 中字体链接
 - 增加动态PPT 控制 API
 - 增加视角控制 API
 
-## [2.1.3] - 2019-06-24
+### [2.1.3] - 2019-06-24
+#### Fix
 - 恢复只读 API（后续将拆分为两个 API）
 
 ### [2.1.2] - 2019-06-24
+#### Fix
 - 兼容旧版本的静态 ppt 回放
 
 ### [2.1.0] - 2019-06-22
-#### 兼容性变化
+#### <span style="color:red">兼容性变化</span>
 与之前版本 API 兼容，但是无法与低版本互连，进入同一房间。
 可以与 Android 2.0.0 正式版，web 2.0.0 正式版互连，无法与 Android 2.0.0-beta 以及 web 2.0.0-beta 开头的版本互连。
 
@@ -54,8 +57,6 @@ title: 简要说明
 #### Fix
 - 修复文字书写位置，被软键盘覆盖的情况下，键盘消失后，白板整体偏移问题。
 - 增加显示版本功能
-
----
 
 ### [2.0.5] - 2019-06-16
 #### Fix
@@ -75,7 +76,7 @@ title: 简要说明
 - 恢复默认用户头像支持
 
 ### [2.0.0-ppt] - 2019-05-19
-#### add
+#### Add
 - 支持与 web 端，带动态 ppt 版本连接
 
 ### [2.0.3] - 2019-04-12
@@ -100,5 +101,5 @@ title: 简要说明
 #### Add
 - 增加回放 API，并提供回放 API 示例
 - 增加测试用例代码，大部分 API 可以参考测试用例
-#### change
+#### Change
 - 修改 PPT 翻页 API，并修改示例代码
