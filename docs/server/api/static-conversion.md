@@ -45,7 +45,7 @@ title: 文档转图片（静态文档转换）
 --  | -- | -- |
 sourceUrl | stirng | 需要进行转换的文件的地址 |
 
-> 在发起转换任务前请确保您已经在 console 上开启了“文档转图片”服务并配置 QPS 上限大于 0，否则该接口将会报错
+> 在发起转换任务前请确保您已经在 console 上开启了“文档转图片”服务并配置 QPS 上限大于 0，否则该接口将会报"Service not enable"、"Task waiting line is full"等异常
 
 * body 例子
 

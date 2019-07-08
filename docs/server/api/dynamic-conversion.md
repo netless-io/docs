@@ -34,7 +34,7 @@ title: 文档转网页（动态文档转换）
 
 ## API 使用说明
 
-动态文档转换功能由“发起转换任务”和“查询转换任务”两个 API 组成
+动态文档转换功能由“发起转换任务”、“查询转换任务进度”、“查询转换结果信息”三个 API 组成
 
 ### 发起转换任务
 
@@ -46,7 +46,7 @@ title: 文档转网页（动态文档转换）
 --  | -- | -- |
 sourceUrl | stirng | 需要进行转换的文件的地址 |
 
-> 在发起转换任务前请确保您已经在 console 上开启了“文档转网页”服务并配置 QPS 上限大于 0，否则该接口将会报错
+> 在发起转换任务前请确保您已经在 console 上开启了“文档转网页”服务并配置 QPS 上限大于 0，否则该接口将会报"Service not enable"、"Task waiting line is full"等异常
 
 * body 例子
 
@@ -70,7 +70,7 @@ sourceUrl | stirng | 需要进行转换的文件的地址 |
 ```
 task UUID 长度为 32 位，是转换任务的唯一标识
 
-### 查询转换任务
+### 查询转换任务进度
 
 `GET /services/dynamic-conversion/tasks/{{taskUUID}}/progress?token={{token}}`
 
@@ -94,6 +94,24 @@ task UUID 长度为 32 位，是转换任务的唯一标识
 
 > 1. 用户使用返回结果中的 "prefix" 仅在转换结果为 "Finished" 时有效
 > 2. 转换任务需要用户轮询结果，时间间隔建议为 2 秒
+
+### 查询转换结果信息
+
+`GET {{prefix}}/dynamicConvert/{{taskUUID}}/info.json`
+
+* response 例子
+
+```JSON
+{
+    "height": 540,
+    "totalPageSize": 16,
+    "uuid": "e553f27814e84134854f6b855fd9a4fd",
+    "width": 960
+}
+```
+
+> 1. 接口地址上的 prefix 是查询任务进度接口在转换完成时返回的，prefix 前不需要再拼接其他前缀
+> 2. 该接口本质上是读取 json 文件内容，因此不需要使用 token，且返回格式不同
 
 ## SDK 封装类使用
 
