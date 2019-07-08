@@ -31,6 +31,93 @@ title: 文档转图片（静态文档转换）
 
 </details>
 
+## API 使用说明
+
+静态文档转换功能由“发起转换任务”和“查询转换任务”两个 API 组成
+
+### 发起转换任务
+
+`POST /services/static-conversion/tasks?token={{token}}`
+
+* body参数
+
+字段 | 类型 | 描述 |
+--  | -- | -- |
+sourceUrl | stirng | 需要进行转换的文件的地址 |
+
+> 在发起转换任务前请确保您已经在 console 上开启了“文档转图片”服务并配置 QPS 上限大于 0，否则该接口将会报错
+
+* body 例子
+
+```json
+{
+    "sourceUrl": "https://xxxx.xxx.xxx.com/xxxx.pptx"
+}
+```
+
+* response 例子
+
+```JSON
+{
+    "code": 200,
+    "msg": {
+        "succeed": true,
+        "reason": "",
+        "taskUUID": "xxx6a660a6274c898b1689902734cxxx"
+    }
+}
+```
+task UUID 长度为 32 位，是转换任务的唯一标识
+
+### 查询转换任务
+
+`GET /services/static-conversion/tasks/{{taskUUID}}/progress?token={{token}}`
+
+* response 例子
+
+```JSON
+{
+    "code": 200,
+    "msg": {
+        "task": {
+            "convertStatus": "Finished",
+            "reason": "",
+            "totalPageSize": 3, // 文档总页数
+            "convertedPageSize": 3, // 文档已转换完成页数
+            "convertedPercentage": 100, // 文档转换进度百分比
+            "staticConversionFileList": [  // 文档转换结果列表
+                {
+                    "width": 1652,
+                    "height": 2338,
+                    "conversionFileUrl": "staticConvert/{{taskUUID}}/1.png"
+                },
+                {
+                    "width": 1652,
+                    "height": 2338,
+                    "conversionFileUrl": "staticConvert/{{taskUUID}}/2.png"
+                },
+                {
+                    "width": 1652,
+                    "height": 2338,
+                    "conversionFileUrl": "staticConvert/{{taskUUID}}/3.png"
+                }
+            ],
+            "prefix": "https:// xxxx.xxx.xxx.com/" // 文档转换结果前缀
+        }
+    }
+}
+```
+> 1. 静态转换任务将会返回每一页的宽高，该宽高单位是 px，但由于数字可能会过大导致在白板中渲染时超出视野，用户可以仅仅使用比例，自定义合适的宽度或高度
+> 2. 用户使用返回结果中的 "prefix" 仅在转换结果为 "Finished" 时有效
+> 3. 转换任务需要用户轮询结果，时间间隔建议为 2 秒
+
+用户在发起转换任务后可以使用 taskUUID 查询任务的转换进度。转换任务有如下状态：
+- Waiting: 由于 QPS 到达上限等原因任务在等待中
+- Converting: 任务正在执行中
+- NotFound: 根据 taskUUID 未找到对应任务信息
+- Finished: 任务执行完成且正常
+- Fail: 任务执行失败
+
 ## SDK 封装类使用
 
 >iOS Android 2.2.0 新增 API

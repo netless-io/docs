@@ -31,6 +31,70 @@ title: 文档转网页（动态文档转换）
 
 </details>
 
+
+## API 使用说明
+
+动态文档转换功能由“发起转换任务”和“查询转换任务”两个 API 组成
+
+### 发起转换任务
+
+`POST /services/dynamic-conversion/tasks?token={{token}}`
+
+* body参数
+
+字段 | 类型 | 描述 |
+--  | -- | -- |
+sourceUrl | stirng | 需要进行转换的文件的地址 |
+
+> 在发起转换任务前请确保您已经在 console 上开启了“文档转网页”服务并配置 QPS 上限大于 0，否则该接口将会报错
+
+* body 例子
+
+```json
+{
+    "sourceUrl": "https://xxxx.xxx.xxx.com/xxxx.pptx"
+}
+```
+
+* response 例子
+
+```JSON
+{
+    "code": 200,
+    "msg": {
+        "succeed": true,
+        "reason": "",
+        "taskUUID": "xxx6a660a6274c898b1689902734cxxx"
+    }
+}
+```
+task UUID 长度为 32 位，是转换任务的唯一标识
+
+### 查询转换任务
+
+`GET /services/dynamic-conversion/tasks/{{taskUUID}}/progress?token={{token}}`
+
+* response 例子
+
+```JSON
+{
+    "code": 200,
+    "msg": {
+        "task": {
+            "convertStatus": "Finished",
+            "reason": "",
+            "totalPageSize": 3, // 文档总页数
+            "convertedPageSize": 3, // 文档已转换完成页数
+            "convertedPercentage": 100, // 文档转换进度百分比
+            "prefix": "https:// xxxx.xxx.xxx.com/" // 文档转换结果前缀
+        }
+    }
+}
+```
+
+> 1. 用户使用返回结果中的 "prefix" 仅在转换结果为 "Finished" 时有效
+> 2. 转换任务需要用户轮询结果，时间间隔建议为 2 秒
+
 ## SDK 封装类使用
 
 ### 使用转换 API
