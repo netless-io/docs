@@ -39,6 +39,12 @@ title: 文档转图片（静态文档转换）
 
 `POST /services/static-conversion/tasks?token={{token}}`
 
+或
+
+`POST /services/static-conversion/tasks?roomToken={{roomToken}}`
+
+>在服务端可以使用 sdk token。客户端封装类要求使用 roomToken，避免 sdk token 泄露。
+
 * body参数
 
 字段 | 类型 | 描述 |
@@ -73,6 +79,10 @@ task UUID 长度为 32 位，是转换任务的唯一标识
 
 `GET /services/static-conversion/tasks/{{taskUUID}}/progress?token={{token}}`
 
+或
+
+`GET /services/static-conversion/tasks/{{taskUUID}}/progress?roomToken={{roomToken}}`
+
 * response 例子
 
 ```JSON
@@ -102,11 +112,12 @@ task UUID 长度为 32 位，是转换任务的唯一标识
                     "conversionFileUrl": "staticConvert/{{taskUUID}}/3.png"
                 }
             ],
-            "prefix": "https:// xxxx.xxx.xxx.com/" // 文档转换结果前缀
+            "prefix": "https://xxxx.xxx.xxx.com/" // 文档转换结果前缀
         }
     }
 }
 ```
+
 > 1. 静态转换任务将会返回每一页的宽高，该宽高单位是 px，但由于数字可能会过大导致在白板中渲染时超出视野，用户可以仅仅使用比例，自定义合适的宽度或高度
 > 2. 用户使用返回结果中的 "prefix" 仅在转换结果为 "Finished" 时有效
 > 3. 转换任务需要用户轮询结果，时间间隔建议为 2 秒
