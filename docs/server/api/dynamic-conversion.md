@@ -45,7 +45,7 @@ title: 文档转网页（动态文档转换）
 
 `POST /services/dynamic-conversion/tasks?roomToken={{roomToken}}`
 
->在服务端可以使用 sdk token，在客户端使用时，可以使用 roomToken，来避免 sdk token 泄露。
+>在服务端可以使用 sdk token。客户端封装类要求使用 roomToken，避免 sdk token 泄露。
 
 * body参数
 
