@@ -57,6 +57,7 @@ sourceUrl | stirng | 需要进行转换的文件的地址 |
 
 ```json
 {
+    //请确保该文件可下载
     "sourceUrl": "https://xxxx.xxx.xxx.com/xxxx.pptx"
 }
 ```
@@ -102,6 +103,13 @@ task UUID 长度为 32 位，是转换任务的唯一标识。后续请求中需
     }
 }
 ```
+
+`convertStatus` 存在以下几种情况：
+- Waiting: 由于 QPS 到达上限等原因任务在等待中
+- Converting: 任务正在执行中
+- NotFound: 根据 taskUUID 未找到对应任务信息
+- Finished: 任务执行完成且正常
+- Fail: 任务执行失败，失败时，会有提示 reason。
 
 > 1. 用户使用返回结果中的 "prefix" 仅在转换结果为 "Finished" 时存在
 > 2. 转换任务需要用户轮询结果，时间间隔建议为 3 秒以上。
