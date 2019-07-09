@@ -32,13 +32,20 @@ title: 文档转网页（动态文档转换）
 </details>
 
 
-## API 使用说明
+## 服务端 API
 
-动态文档转换功能由“发起转换任务”、“查询转换任务进度”、“查询转换结果信息”三个 API 组成
+动态文档转换功能有`发起转换任务`、`查询转换任务进度`、`查询转换结果信息`三个网络请求接口。
 
 ### 发起转换任务
 
+
 `POST /services/dynamic-conversion/tasks?token={{token}}`
+
+或
+
+`POST /services/dynamic-conversion/tasks?roomToken={{roomToken}}`
+
+>在服务端可以使用 sdk token，在客户端使用时，可以使用 roomToken，来避免 sdk token 泄露。
 
 * body参数
 
@@ -46,9 +53,7 @@ title: 文档转网页（动态文档转换）
 --  | -- | -- |
 sourceUrl | stirng | 需要进行转换的文件的地址 |
 
-> 在发起转换任务前请确保您已经在 console 上开启了“文档转网页”服务并配置 QPS 上限大于 0，否则该接口将会报"Service not enable"、"Task waiting line is full"等异常
-
-* body 例子
+* body
 
 ```json
 {
@@ -56,7 +61,9 @@ sourceUrl | stirng | 需要进行转换的文件的地址 |
 }
 ```
 
-* response 例子
+* response
+
+> 在发起转换任务前请确保您已经在 [console](https://console.herewhite.com) 上开启了`文档转网页`服务并配置 QPS 上限大于 0，否则该接口将会报 `Service not enable`、`Task waiting line is full`。
 
 ```JSON
 {
@@ -68,13 +75,17 @@ sourceUrl | stirng | 需要进行转换的文件的地址 |
     }
 }
 ```
-task UUID 长度为 32 位，是转换任务的唯一标识
+task UUID 长度为 32 位，是转换任务的唯一标识。后续请求中需要以该 task 作为查询。
 
 ### 查询转换任务进度
 
 `GET /services/dynamic-conversion/tasks/{{taskUUID}}/progress?token={{token}}`
 
-* response 例子
+或
+
+`GET /services/dynamic-conversion/tasks/{{taskUUID}}/progress?roomToken={{roomToken}}`
+
+* response
 
 ```JSON
 {
@@ -86,20 +97,20 @@ task UUID 长度为 32 位，是转换任务的唯一标识
             "totalPageSize": 3, // 文档总页数
             "convertedPageSize": 3, // 文档已转换完成页数
             "convertedPercentage": 100, // 文档转换进度百分比
-            "prefix": "https:// xxxx.xxx.xxx.com/" // 文档转换结果前缀
+            "prefix": "https://xxxx.xxx.xxx.com/" // 文档转换结果前缀
         }
     }
 }
 ```
 
-> 1. 用户使用返回结果中的 "prefix" 仅在转换结果为 "Finished" 时有效
-> 2. 转换任务需要用户轮询结果，时间间隔建议为 2 秒
+> 1. 用户使用返回结果中的 "prefix" 仅在转换结果为 "Finished" 时存在
+> 2. 转换任务需要用户轮询结果，时间间隔建议为 3 秒以上。
 
-### 查询转换结果信息
+### 获取转换结果
 
 `GET {{prefix}}/dynamicConvert/{{taskUUID}}/info.json`
 
-* response 例子
+* response
 
 ```JSON
 {
@@ -112,6 +123,92 @@ task UUID 长度为 32 位，是转换任务的唯一标识
 
 > 1. 接口地址上的 prefix 是查询任务进度接口在转换完成时返回的，prefix 前不需要再拼接其他前缀
 > 2. 该接口本质上是读取 json 文件内容，因此不需要使用 token，且返回格式不同
+
+### 拼接 SDK 可用数据
+
+获取转换结果后，需要自行进行拼接转换为 sdk 可用的场景数据（scenes）。
+
+该部分可以交由客户端自行拼接，或者在服务器端拼好，以 JSON 格式发送给客户端。
+
+#### 1. 交由客户端自行拼接
+
+将转换结果的 `json`，`taskId`，还有 `prefix` 转给客户端，进行拼接。（推荐方式，因为客户端仍然需要转换成 sdk 支持的 scene 类进行传入）
+
+<!--DOCUSAURUS_CODE_TABS-->
+<!--Web/Typescript-->
+```javascript
+// info 为转换结果返回的 response
+const count = info.totalPageSize;
+const scenes: {name: string, ppt: PptDescription}[] = [];
+
+for (let i = 0; i < count; ++ i) {
+    const url = `${prefix}/${taskId}/slide/slide${i + 1}.xml`;
+    slideURLs[i] = url;
+    scenes[i] = {
+        // 请使用字符串
+        name: `${i + 1}`,
+        ppt: {src: url, width: info.width, height: info.height},
+    };
+}
+// scenes 即为白板支持的数据格式
+```
+<!--iOS/Objective-C-->
+```Objective-C
+// response 为转换结果返回的 response
+NSInteger count = [response[@"totalPageSize"] integerValue];
+
+NSMutableArray<WhiteScene *> *scenes = [NSMutableArray arrayWithCapacity:count];
+
+for (int i = 0; i < count; i++) {
+    NSString *url = [NSString stringWithFormat:@"%@/%@/slide/slide%d.xml", prefixUrl, taskId, i + 1];
+    WhitePptPage *pptPage = [[WhitePptPage alloc] init];
+    pptPage.src = url;
+    pptPage.width = [response[@"width"] doubleValue];
+    pptPage.height = [response[@"height"] doubleValue];
+    WhiteScene *scene = [[WhiteScene alloc] initWithName:[NSString stringWithFormat:@"%d", i+1] ppt:pptPage];
+    [scenes addObject:scene];
+}
+// scenes 数组，即为白板支持的数据格式。iOS 端接收到 JSON 后，可以主动转换为WhiteScenes
+```
+<!--Android/Java-->
+```Java
+// json 即为查询结果 API 返回的 json
+Integer count = json.get("totalPageSize").getAsInt();
+Scene[] scenes = new Scene[count];
+for (int i = 0; i < count; i++) {
+    PptPage pptPage = new PptPage(String.valueOf(i+1), json.get("width").getAsDouble(), json.get("height").getAsDouble());
+    pptPage.setSrc(prefix + "/" + taskId + "/slide/slide" + (i+1) + ".xml");
+    sliderURLs[i] = pptPage.getSrc();
+    scenes[i] = new Scene(String.valueOf(i+1), pptPage);
+}
+// scenes 数组，即为白板支持的数据格式。Android 端接收到 JSON 后，需要主动转换
+```
+<!--END_DOCUSAURUS_CODE_TABS-->
+
+#### 2. 转换成 JSON 发给客户端
+
+```JSON
+scenes: [
+    {
+        //name 为字符串即可
+        "name" : "1",
+        // height，width 为 info 中返回的宽高
+        "height" : {info.heigh},
+        "width" : {info.width},
+        //数字索引值+1，第一页即为 slide1.xml,第二页为 slide2.xml
+        "src" : {prefix}/{taskId}/slide/slide1.xml
+    },
+    {
+        //name 为字符串即可
+        "name" : "2",
+        // height，width 为 info 中返回的宽高
+        "height" : ${info.heigh},
+        "width" : ${info.width},
+        //数字索引值+1，第一页即为 slide1.xml,第二页为 slide2.xml
+        "src" : {prefix}/{taskId}/slide/slide2.xml
+    }
+]
+```
 
 ## SDK 封装类使用
 
