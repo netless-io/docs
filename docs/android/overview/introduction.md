@@ -10,7 +10,7 @@ sidebar_label: 简要说明
 Android SDK API Level Level: ≥ 19  
 API 19 (Android 4.4) – Kitkat, released October 2013
 
-相关 repo:
+## 相关 repo
 
 1. [Android-demo](https://github.com/duty-os/white-demo-android)
     * 内部开发时，使用的调试 demo，具有基础 API 调用示例
