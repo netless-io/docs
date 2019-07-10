@@ -19,7 +19,9 @@ sdk 无需任何额外支持，即可运行在 iPad，Surface，Wacom等手写�
 ## 相关 demo
 
 1. [react-whiteboard](https://github.com/netless-io/netless-react-whiteboard)
-    * 有部分业务实现代码，阅读对应文档，进行部署即可快速查看集成效果。
+    * 有部分业务实现代码，同时有线上已部署 demo。阅读对应文档，进行部署，即可快速查看集成效果。
+1. [rtc-react-whiteboard](https://github.com/leavesster/netless-rtc-react-whiteboard)
+    * 带有 rtc 业务实现的 demo，同时有线上已部署 demo。阅读对应文档，进行部署，即可快速查看集成效果。
 1. [white-react-demo](https://github.com/duty-os/white-react-demo)
     * 当遇到 bug 时，推荐使用该 demo 进行最小环境复现，迅速定位问题。
 1. [white-demo-web](https://github.com/duty-os/white-demo-web/tree/master/quickStart/2.0)
