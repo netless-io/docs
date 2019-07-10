@@ -14,14 +14,17 @@ title: 简要说明
 
 具体请看 [2.0.0正式版发布](/blog/2019/06/22/release-note)
 
-相关 repo：
+## 相关 repo
 
-1. [White-sdk-ios-release](https://github.com/duty-os/white-sdk-ios-release) —— Cocoapods 下载库，自带部分API 调用代码
+1. [White-sdk-ios-release](https://github.com/duty-os/white-sdk-ios-release) —— Cocoapods 下载库，example 文件夹中项目，自带部分 API 调用延时
 1. [netless-swift-whiteboard](https://github.com/netless-io/netless-swift-whiteboard) —— 附带部分效果演示的 demo
 
 ---
 
 ## Changelog
+### [2.3.2] - 2019-07-06
+#### Add
+- 支持阿里云跨域图片
 ### [2.3.0] - 2019-07-04
 #### Add
 - 增加场景预览截图 API
