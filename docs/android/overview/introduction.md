@@ -21,6 +21,9 @@ API 19 (Android 4.4) – Kitkat, released October 2013
 
 [最新版本列表——发版自动更新](https://jitpack.io/#duty-os/white-sdk-android)
 
+### [2.3.4] - 2019-07-12
+- 适配服务器端动态转换新 API
+
 ### [2.3.2] - 2019-07-09
 - 更新视角移动，视觉矩形移动 API参数类型
 - 优化动态 PPT
