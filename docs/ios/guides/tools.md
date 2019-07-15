@@ -86,3 +86,15 @@ memberState.currentApplianceName = AppliancePencil;
     NSLog(@"%@", [state jsonString]);
 }];
 ```
+
+<span id="disableDeviceInputs">
+## 禁止教具操作
+
+你可以通过如下方法屏蔽教具。
+
+```Objective-C
+// 禁止教具操作
+[room disableDeviceInputs:YES];
+// 恢复教具操作
+[room disableDeviceInputs:NO];
+```
