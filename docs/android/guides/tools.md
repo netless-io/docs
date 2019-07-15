@@ -90,6 +90,8 @@ room.getMemberState(new Promise<MemberState>() {
 <span id="disableDeviceInputs">
 ## 禁止教具操作
 
+>2.2.0 新增 API
+
 你可以通过如下方法屏蔽教具。
 
 ```java

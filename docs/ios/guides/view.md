@@ -76,6 +76,8 @@ typedef NS_ENUM(NSInteger, WhiteViewMode) {
 <span id="disableCameraTransform">
 ## 禁止视角变化
 
+>2.2.0 新增 API
+
 开发者可以通过如下方法禁止用户手动调整视角（使用鼠标滚轮缩放、Touch 板手势移动，缩放、移动端双指操作移动）。
 
 ```Objective-C
