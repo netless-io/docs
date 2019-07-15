@@ -63,7 +63,7 @@ export type BroadcastState = {
 room.state.broadcastState
 ```
 
-## 视角中心同步<span id="refrehViewSize">
+## 视角中心同步<span id="refrehViewSize"/>
 
 同一个房间的不同用户各自的屏幕尺寸可能不一致，这将导致他们的白板都有各自不同的尺寸。实际上，房间的其他用户会将白板的中心对准主播的白板中心（注意主播和其他用户的屏幕尺寸不一定相同）。
 
