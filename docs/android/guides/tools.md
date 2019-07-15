@@ -86,3 +86,15 @@ room.getMemberState(new Promise<MemberState>() {
 });
 ```
 调色盘能影响铅笔、矩形、椭圆、文字工具的效果。
+
+<span id="disableDeviceInputs">
+## 禁止教具操作
+
+你可以通过如下方法屏蔽教具。
+
+```java
+// 禁止教具操作
+room.disableDeviceInputs(true);
+// 恢复教具操作
+room.disableDeviceInputs(false);
+```
