@@ -48,6 +48,10 @@ WhiteSdk whiteSdk = new WhiteSdk(whiteBroadView PlayActivity.this, interrupter);
 
 ## 只读
 
+>2.2.0 开始，该 API 拆分为：  
+禁止用户移动，缩放 API：`disableCameraTransform` (详情请参考 [视角操作-禁止视角变化](./view.md#disableCameraTransform))；  
+禁止用户输入 API：`disableDeviceInputs` (详情请参考 [教具使用-禁止教具操作](./tools.md#disableDeviceInputs) API。
+
 你可以通过 `room.disableOperations(true)` 来禁止用户操作白板。
 
 你可以通过 `room.disableOperations(false)` 来恢复用户操作白板的能力。

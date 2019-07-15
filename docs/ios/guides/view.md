@@ -73,6 +73,22 @@ typedef NS_ENUM(NSInteger, WhiteViewMode) {
 
 尺寸应该和白板在产品中的实际尺寸相同（一般而言就是浏览器页面或者应用屏幕的尺寸）。如果用户调整了窗口大小导致白板尺寸改变。应该重新调用该方法刷新尺寸。
 
+<span id="disableCameraTransform">
+## 禁止视角变化
+
+>2.2.0 新增 API
+
+开发者可以通过如下方法禁止用户手动调整视角（使用鼠标滚轮缩放、Touch 板手势移动，缩放、移动端双指操作移动）。
+
+```Objective-C
+// 禁止用户主动改变视野
+[room disableCameraTransform:YES];
+// 恢复用户视野变化权限
+[room disableCameraTransform:NO];
+```
+
+>你仍然通过程序调整视角；用户仍然可以进行笔画等输出操作。
+
 
 ## 相关文档
 
