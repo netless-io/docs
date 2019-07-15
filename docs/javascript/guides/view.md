@@ -130,6 +130,9 @@ room.moveCamerToContain({
 开发者可以通过如下方法禁止用户手动调整视角（使用鼠标滚轮缩放、Touch 板手势移动，缩放、移动端双指操作移动）。
 
 ```javascript
+// 禁止用户主动改变视野
+room.disableCameraTransform = true;
+// 恢复用户视野变化权限
 room.disableCameraTransform = false;
 ```
 

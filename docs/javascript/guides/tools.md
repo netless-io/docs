@@ -72,5 +72,8 @@ room.setMemberState({
 你可以通过如下方法屏蔽教具。
 
 ```javascript
+// 禁止教具操作
+room.disableDeviceInputs = true;
+// 恢复教具操作
 room.disableDeviceInputs = false;
 ```
