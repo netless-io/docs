@@ -34,7 +34,7 @@ title: 文档转网页（动态文档转换）
 
 ## 服务端 API
 
-静态文档转换功能由“发起转换任务”和“查询转换任务”两个 API 组成
+动态文档转换功能由“发起转换任务”和“查询转换任务”两个 API 组成
 
 ### 发起转换任务
 
@@ -52,7 +52,7 @@ title: 文档转网页（动态文档转换）
 字段 | 类型 | 描述 |
 --  | -- | -- |
 sourceUrl | stirng | 需要进行转换的文件的地址 |
-serviceType | string | 服务类型，静态文档转换固定为 "dynamic_conversion" |
+serviceType | string | 服务类型，动态文档转换固定为 "dynamic_conversion" |
 
 * body
 
