@@ -34,16 +34,16 @@ title: 文档转网页（动态文档转换）
 
 ## 服务端 API
 
-动态文档转换功能有`发起转换任务`、`查询转换任务进度`、`查询转换结果信息`三个网络请求接口。
+静态文档转换功能由“发起转换任务”和“查询转换任务”两个 API 组成
 
 ### 发起转换任务
 
 
-`POST /services/dynamic-conversion/tasks?token={{token}}`
+`POST /services/conversion/tasks?token={{token}}`
 
 或
 
-`POST /services/dynamic-conversion/tasks?roomToken={{roomToken}}`
+`POST /services/conversion/tasks?roomToken={{roomToken}}`
 
 >在服务端可以使用 sdk token。客户端封装类要求使用 roomToken，避免 sdk token 泄露。
 
@@ -52,13 +52,15 @@ title: 文档转网页（动态文档转换）
 字段 | 类型 | 描述 |
 --  | -- | -- |
 sourceUrl | stirng | 需要进行转换的文件的地址 |
+serviceType | string | 服务类型，静态文档转换固定为 "dynamic_conversion" |
 
 * body
 
 ```json
 {
     //请确保该文件可下载
-    "sourceUrl": "https://xxxx.xxx.xxx.com/xxxx.pptx"
+    "sourceUrl": "https://xxxx.xxx.xxx.com/xxxx.pptx",
+    "serviceType": "dynamic_conversion"
 }
 ```
 
@@ -80,11 +82,11 @@ task UUID 长度为 32 位，是转换任务的唯一标识。后续请求中需
 
 ### 查询转换任务进度
 
-`GET /services/dynamic-conversion/tasks/{{taskUUID}}/progress?token={{token}}`
+`GET /services/conversion/tasks/{{taskUUID}}/progress?serviceType=dynamic_conversion&token={{token}}`
 
 或
 
-`GET /services/dynamic-conversion/tasks/{{taskUUID}}/progress?roomToken={{roomToken}}`
+`GET /services/conversion/tasks/{{taskUUID}}/progress?serviceType=dynamic_conversion&roomToken={{roomToken}}`
 
 * response
 
@@ -98,7 +100,24 @@ task UUID 长度为 32 位，是转换任务的唯一标识。后续请求中需
             "totalPageSize": 3, // 文档总页数
             "convertedPageSize": 3, // 文档已转换完成页数
             "convertedPercentage": 100, // 文档转换进度百分比
-            "prefix": "https://xxxx.xxx.xxx.com/" // 文档转换结果前缀
+            "convertedFileList": [  // 文档转换结果列表
+                {
+                    "width": 960,
+                    "height": 720,
+                    "conversionFileUrl": "dynamicConvert/{{taskUUID}}/slide/slide1.xml"
+                },
+                {
+                    "width": 960,
+                    "height": 720,
+                    "conversionFileUrl": "dynamicConvert/{{taskUUID}}/slide/slide2.xml"
+                },
+                {
+                    "width": 960,
+                    "height": 720,
+                    "conversionFileUrl": "dynamicConvert/{{taskUUID}}/slide/slide3.xml"
+                }
+            ],
+            "prefix": "pptx://xxxx.xxx.xxx.com/" // 文档转换结果前缀
         }
     }
 }
@@ -109,28 +128,10 @@ task UUID 长度为 32 位，是转换任务的唯一标识。后续请求中需
 - Converting: 任务正在执行中
 - NotFound: 根据 taskUUID 未找到对应任务信息
 - Finished: 任务执行完成且正常
-- Fail: 任务执行失败，失败时，会有提示 reason。
+- Fail: 任务执行失败，失败时，会有提示 reason
 
 > 1. 用户使用返回结果中的 "prefix" 仅在转换结果为 "Finished" 时存在
-> 2. 转换任务需要用户轮询结果，时间间隔建议为 3 秒以上。
-
-### 获取转换结果
-
-`GET {{prefix}}/dynamicConvert/{{taskUUID}}/info.json`
-
-* response
-
-```JSON
-{
-    "height": 540,
-    "totalPageSize": 16,
-    "uuid": "e553f27814e84134854f6b855fd9a4fd",
-    "width": 960
-}
-```
-
-> 1. 接口地址上的 prefix 是查询任务进度接口在转换完成时返回的，prefix 前不需要再拼接其他前缀
-> 2. 该接口本质上是读取 json 文件内容，因此不需要使用 token，且返回格式不同
+> 2. 转换任务需要用户轮询结果，时间间隔建议为 3 秒以上
 
 ### 拼接 SDK 可用数据
 

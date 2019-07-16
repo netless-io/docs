@@ -37,11 +37,11 @@ title: 文档转图片（静态文档转换）
 
 ### 发起转换任务
 
-`POST /services/static-conversion/tasks?token={{token}}`
+`POST /services/conversion/tasks?token={{token}}`
 
 或
 
-`POST /services/static-conversion/tasks?roomToken={{roomToken}}`
+`POST /services/conversion/tasks?roomToken={{roomToken}}`
 
 >在服务端可以使用 sdk token。客户端封装类要求使用 roomToken，避免 sdk token 泄露。
 
@@ -50,6 +50,7 @@ title: 文档转图片（静态文档转换）
 字段 | 类型 | 描述 |
 --  | -- | -- |
 sourceUrl | stirng | 需要进行转换的文件的地址 |
+serviceType | string | 服务类型，静态文档转换固定为 "static_conversion" |
 
 > 在发起转换任务前请确保您已经在 console 上开启了“文档转图片”服务并配置 QPS 上限大于 0，否则该接口将会报"Service not enable"、"Task waiting line is full"等异常
 
@@ -57,7 +58,8 @@ sourceUrl | stirng | 需要进行转换的文件的地址 |
 
 ```json
 {
-    "sourceUrl": "https://xxxx.xxx.xxx.com/xxxx.pptx"
+    "sourceUrl": "https://xxxx.xxx.xxx.com/xxxx.pptx",
+    "serviceType": "static_conversion"
 }
 ```
 
@@ -77,11 +79,11 @@ task UUID 长度为 32 位，是转换任务的唯一标识
 
 ### 查询转换任务
 
-`GET /services/static-conversion/tasks/{{taskUUID}}/progress?token={{token}}`
+`GET /services/conversion/tasks/{{taskUUID}}/progress?serviceType=static_conversion&token={{token}}&serviceType=static_conversion`
 
 或
 
-`GET /services/static-conversion/tasks/{{taskUUID}}/progress?roomToken={{roomToken}}`
+`GET /services/conversion/tasks/{{taskUUID}}/progress?serviceType=static_conversion&roomToken={{roomToken}}`
 
 * response 例子
 
@@ -95,7 +97,7 @@ task UUID 长度为 32 位，是转换任务的唯一标识
             "totalPageSize": 3, // 文档总页数
             "convertedPageSize": 3, // 文档已转换完成页数
             "convertedPercentage": 100, // 文档转换进度百分比
-            "staticConversionFileList": [  // 文档转换结果列表
+            "convertedFileList": [  // 文档转换结果列表
                 {
                     "width": 1652,
                     "height": 2338,
@@ -118,9 +120,16 @@ task UUID 长度为 32 位，是转换任务的唯一标识
 }
 ```
 
+`convertStatus` 存在以下几种情况：
+- Waiting: 由于 QPS 到达上限等原因任务在等待中
+- Converting: 任务正在执行中
+- NotFound: 根据 taskUUID 未找到对应任务信息
+- Finished: 任务执行完成且正常
+- Fail: 任务执行失败，失败时，会有提示 reason
+
 > 1. 静态转换任务将会返回每一页的宽高，该宽高单位是 px，但由于数字可能会过大导致在白板中渲染时超出视野，用户可以仅仅使用比例，自定义合适的宽度或高度
 > 2. 用户使用返回结果中的 "prefix" 仅在转换结果为 "Finished" 时有效
-> 3. 转换任务需要用户轮询结果，时间间隔建议为 2 秒
+> 3. 转换任务需要用户轮询结果，时间间隔建议为 3 秒以上
 
 用户在发起转换任务后可以使用 taskUUID 查询任务的转换进度。转换任务有如下状态：
 - Waiting: 由于 QPS 到达上限等原因任务在等待中
