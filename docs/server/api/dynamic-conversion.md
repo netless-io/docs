@@ -150,9 +150,9 @@ task UUID 长度为 32 位，是转换任务的唯一标识。后续请求中需
 // info 为转换结果返回的 response
 const count = info.totalPageSize;
 const scenes: {name: string, ppt: PptDescription}[] = [];
-
-for (let i = 0; i < count; ++ i) {
-    const url = `${prefix}/${taskId}/slide/slide${i + 1}.xml`;
+const ppts = info.convertedFileList;
+for (let i = 0; i < ppts; ++ i) {
+    const url = `${prefix}${ppts[i].conversionFileUrl}`;
     slideURLs[i] = url;
     scenes[i] = {
         // 请使用字符串
@@ -166,13 +166,13 @@ for (let i = 0; i < count; ++ i) {
 ```Objective-C
 // response 为转换结果返回的 response
 NSInteger count = [response[@"totalPageSize"] integerValue];
-
+NSArray *ppts = response[@"convertedFileList"];
 NSMutableArray<WhiteScene *> *scenes = [NSMutableArray arrayWithCapacity:count];
 
-for (int i = 0; i < count; i++) {
-    NSString *url = [NSString stringWithFormat:@"%@/%@/slide/slide%d.xml", prefixUrl, taskId, i + 1];
+for (int i = 0; i < ppts; i++) {
+    NSDictionary *dict = ppts[i];
     WhitePptPage *pptPage = [[WhitePptPage alloc] init];
-    pptPage.src = url;
+    pptPage.src = [NSString stringWithFormat:@"%@%@", prefixUrl ? : @"", dict[@"conversionFileUrl"]];
     pptPage.width = [response[@"width"] doubleValue];
     pptPage.height = [response[@"height"] doubleValue];
     WhiteScene *scene = [[WhiteScene alloc] initWithName:[NSString stringWithFormat:@"%d", i+1] ppt:pptPage];
@@ -184,10 +184,13 @@ for (int i = 0; i < count; i++) {
 ```Java
 // json 即为查询结果 API 返回的 json
 Integer count = json.get("totalPageSize").getAsInt();
+JsonArray ppts = json.get("convertedFileList").getAsJsonArray();
 Scene[] scenes = new Scene[count];
-for (int i = 0; i < count; i++) {
+
+for (int i = 0; i < ppts.size(); i++) {
     PptPage pptPage = new PptPage(String.valueOf(i+1), json.get("width").getAsDouble(), json.get("height").getAsDouble());
-    pptPage.setSrc(prefix + "/" + taskId + "/slide/slide" + (i+1) + ".xml");
+    JsonObject object = array.get(i).getAsJsonObject();
+    pptPage.setSrc(prefix + object.getAsJsonObject("conversionFileUrl").getAsString());
     sliderURLs[i] = pptPage.getSrc();
     scenes[i] = new Scene(String.valueOf(i+1), pptPage);
 }
