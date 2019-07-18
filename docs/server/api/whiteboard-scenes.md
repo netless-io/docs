@@ -57,7 +57,7 @@ ppt (可选) | ``` {width: number, height: number, src: string} ```| ppt 的宽�
 
 场景可以进行切换，体现在 PPT 上可以实现翻页的效果。
 
-`POST /rooms/{{uuid}}/scenepath?roomToken={{roomtoken}}`
+`PUT /rooms/{{uuid}}/scenepath?roomToken={{roomtoken}}`
 
 * body 参数
 
