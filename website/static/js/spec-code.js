@@ -12,20 +12,20 @@ function changeTabActive(platform, className) {
     const list = document.getElementsByClassName(className);
     [].forEach.call(list, element => {
         if (element.textContent.toLowerCase().indexOf(platform) != -1) {
-            element.className = `${className} active`;
+            element.classList.add("active");
         } else {
-            element.className = `${className}`;
+            element.classList.remove("active");
         }
     });
 }
 
-function changePanActive(className, i, total=3) {
+function changePanActive(className, order, total=3) {
     const list = document.getElementsByClassName(className);
     [].forEach.call(list, (element, index) => {
-        if (index % total == i) {
-            element.className = `${className} active`;
+        if (index % total == order) {
+            element.classList.add("active");
         } else {
-            element.className = `${className}`;
+            element.classList.remove("active");
         }
     });
 }
