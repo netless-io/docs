@@ -31,7 +31,7 @@ height | string | 封面高 |
 uuid | string | 白板唯一标识符 |
 scenePath（可选） | string | 需要读取封面的路径（默认当前页） |
 
-关于 scene path 的介绍可以参考:  [场景管理](https://developer.herewhite.com/#/zh-CN/v2/js-details/scene)
+关于 scene path 的介绍可以参考:  [场景管理](https://developer.herewhite.com/docs/advance/advance-scenes)
 
 **注意：该接口只能输入 room token**
 
