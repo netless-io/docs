@@ -33,7 +33,7 @@ allprojects {
 
 ```plain
 dependencies {
-    implementation 'com.github.duty-os:white-sdk-android:2.0.0'
+    implementation 'com.github.duty-os:white-sdk-android:2.4.0'
 }
 ```
 
