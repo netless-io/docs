@@ -16,7 +16,7 @@ sdk 可以运行在任意支持 es5 的现代浏览器中，兼容性支持可�
 
 sdk 无需任何额外支持，即可运行在 iPad，Surface，Wacom等手写板上。
 
-## 相关 demo
+## 相关 demo<span id='demo'>
 
 1. [react-whiteboard](https://github.com/netless-io/netless-react-whiteboard)
     * 有部分业务实现代码，同时有线上已部署 demo。阅读对应文档，进行部署，即可快速查看集成效果。
