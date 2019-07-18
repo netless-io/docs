@@ -1,8 +1,7 @@
 window.addEventListener('load', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const platform = urlParams.get('platform');
-    let i = ["ios", "web", "android"].indexOf(platform ? platform.toLowerCase() : "");
-    console.log(`spec-code`, platform, i);
+    let i = ["web", "ios", "android"].indexOf(platform ? platform.toLowerCase() : "");
     if (platform && i != -1) {
         changeTabActive(platform.toLowerCase(), "nav-link");
         changePanActive("tab-pane", i);
