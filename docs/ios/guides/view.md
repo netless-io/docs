@@ -73,6 +73,66 @@ typedef NS_ENUM(NSInteger, WhiteViewMode) {
 
 尺寸应该和白板在产品中的实际尺寸相同（一般而言就是浏览器页面或者应用屏幕的尺寸）。如果用户调整了窗口大小导致白板尺寸改变。应该重新调用该方法刷新尺寸。
 
+## 调整视角
+
+>2.2.0新增 API，2.2.2 增加动画选项；回放 replay 与 实时房间 room 都支持该 API
+
+```Objective-C
+@interface WhiteDisplayer
+// 调整视角中心
+- (void)moveCamera:(WhiteCameraConfig *)camera;
+// 调整视觉矩形
+- (void)moveCameraToContainer:(WhiteRectangleConfig *)rectange;
+@end
+```
+
+<span id="moveCamera">
+### 调整视角中心
+
+`moveCamera` API，可以用来调整视角，参数均为可选参数。SDK 会根据传入参数，调整视角中心与缩放比例。
+
+```Objective-C
+@interface WhiteCameraConfig : WhiteObject
+@property (nonatomic, strong, nullable) NSNumber *centerX;
+@property (nonatomic, strong, nullable) NSNumber *centerY;
+/** 缩放比例，原先 zoomScale 已弃用 */
+@property (nonatomic, strong, nullable) NSNumber *scale;
+/**
+ AnimationMode 默认为 AnimationModeContinuous，
+ 其他属性，均为可选值，需要使用 NSNumber
+ */
+@property (nonatomic, assign) AnimationMode animationMode;
+
+@end
+```
+
+<span id="moveCameraToContain">
+### 调整视觉矩形
+
+除了调整视角中心，SDK 还提供调整视觉矩形API。
+
+> 视觉矩形表示你的视角必须容纳的区域。当你设置好视觉矩形后，视角会自动调整到刚好可以完整展示视觉矩形所表示的范围。
+
+```Objective-C
+@interface WhiteRectangleConfig : WhiteObject
+
+- (instancetype)initWithInitialPosition:(CGFloat)width height:(CGFloat)height;
+/** 移动到初始位置，并根据宽高进行缩放 */
+- (instancetype)initWithInitialPosition:(CGFloat)width height:(CGFloat)height animation:(AnimationMode)mode;
+
+/** 白板内部坐标，以中心点为初始点，此处 originX: - width / 2，originY: -height /2 */
+- (instancetype)initWithOriginX:(CGFloat)originX originY:(CGFloat)originY width:(CGFloat)width height:(CGFloat)height;
+- (instancetype)initWithOriginX:(CGFloat)originX originY:(CGFloat)originY width:(CGFloat)width height:(CGFloat)height animation:(AnimationMode)mode;
+
+@property (nonatomic, assign) CGFloat originX;
+@property (nonatomic, assign) CGFloat originY;
+@property (nonatomic, assign) CGFloat width;
+@property (nonatomic, assign) CGFloat height;
+@property (nonatomic, assign) AnimationMode animationMode;
+
+@end
+```
+
 <span id="disableCameraTransform">
 ## 禁止视角变化
 
