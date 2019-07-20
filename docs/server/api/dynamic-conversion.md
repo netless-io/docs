@@ -15,7 +15,7 @@ title: 文档转网页（动态文档转换）
 
 1. 进入 [console](https://console.herewhite.com)，点击左侧列表中的 <svg viewBox="64 64 896 896" class="" data-icon="appstore" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false"><path d="M464 144H160c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16zm-52 268H212V212h200v200zm452-268H560c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16zm-52 268H612V212h200v200zM464 544H160c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V560c0-8.8-7.2-16-16-16zm-52 268H212V612h200v200zm452-268H560c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V560c0-8.8-7.2-16-16-16zm-52 268H612V612h200v200z"></path></svg> ，进入应用管理页面。
 
-1. 找到 `文档转图片` 进行开通，更新 QPS ，关闭操作。
+2. 找到 `文档转图片` 进行开通，更新 QPS ，结束操作。
 
 <details>
 <summary>**点击展开：console 中操作示意图**</summary>
@@ -34,16 +34,16 @@ title: 文档转网页（动态文档转换）
 
 ## 服务端 API
 
-动态文档转换功能有`发起转换任务`、`查询转换任务进度`、`查询转换结果信息`三个网络请求接口。
+动态文档转换功能由“发起转换任务”和“查询转换任务”两个 API 组成
 
 ### 发起转换任务
 
 
-`POST /services/dynamic-conversion/tasks?token={{token}}`
+`POST /services/conversion/tasks?token={{token}}`
 
 或
 
-`POST /services/dynamic-conversion/tasks?roomToken={{roomToken}}`
+`POST /services/conversion/tasks?roomToken={{roomToken}}`
 
 >在服务端可以使用 sdk token。客户端封装类要求使用 roomToken，避免 sdk token 泄露。
 
@@ -52,13 +52,15 @@ title: 文档转网页（动态文档转换）
 字段 | 类型 | 描述 |
 --  | -- | -- |
 sourceUrl | stirng | 需要进行转换的文件的地址 |
+serviceType | string | 服务类型，动态文档转换固定为 "dynamic_conversion" |
 
 * body
 
 ```json
 {
     //请确保该文件可下载
-    "sourceUrl": "https://xxxx.xxx.xxx.com/xxxx.pptx"
+    "sourceUrl": "https://xxxx.xxx.xxx.com/xxxx.pptx",
+    "serviceType": "dynamic_conversion"
 }
 ```
 
@@ -80,11 +82,11 @@ task UUID 长度为 32 位，是转换任务的唯一标识。后续请求中需
 
 ### 查询转换任务进度
 
-`GET /services/dynamic-conversion/tasks/{{taskUUID}}/progress?token={{token}}`
+`GET /services/conversion/tasks/{{taskUUID}}/progress?serviceType=dynamic_conversion&token={{token}}`
 
 或
 
-`GET /services/dynamic-conversion/tasks/{{taskUUID}}/progress?roomToken={{roomToken}}`
+`GET /services/conversion/tasks/{{taskUUID}}/progress?serviceType=dynamic_conversion&roomToken={{roomToken}}`
 
 * response
 
@@ -98,39 +100,39 @@ task UUID 长度为 32 位，是转换任务的唯一标识。后续请求中需
             "totalPageSize": 3, // 文档总页数
             "convertedPageSize": 3, // 文档已转换完成页数
             "convertedPercentage": 100, // 文档转换进度百分比
-            "prefix": "https://xxxx.xxx.xxx.com/" // 文档转换结果前缀
+            "convertedFileList": [  // 文档转换结果列表
+                {
+                    "width": 960,
+                    "height": 720,
+                    "conversionFileUrl": "dynamicConvert/{{taskUUID}}/slide/slide1.xml"
+                },
+                {
+                    "width": 960,
+                    "height": 720,
+                    "conversionFileUrl": "dynamicConvert/{{taskUUID}}/slide/slide2.xml"
+                },
+                {
+                    "width": 960,
+                    "height": 720,
+                    "conversionFileUrl": "dynamicConvert/{{taskUUID}}/slide/slide3.xml"
+                }
+            ],
+            "prefix": "pptx://xxxx.xxx.xxx.com/" // 文档转换结果前缀
         }
     }
 }
 ```
+
+> 1. 动态转换任务将会返回每一页的宽高，该宽高单位是 px
+> 2. 用户使用返回结果中的 "prefix" 仅在转换结果为 "Finished" 时存在
+> 3. 转换任务需要用户轮询结果，时间间隔建议为 3 秒以上
 
 `convertStatus` 存在以下几种情况：
 - Waiting: 由于 QPS 到达上限等原因任务在等待中
 - Converting: 任务正在执行中
 - NotFound: 根据 taskUUID 未找到对应任务信息
 - Finished: 任务执行完成且正常
-- Fail: 任务执行失败，失败时，会有提示 reason。
-
-> 1. 用户使用返回结果中的 "prefix" 仅在转换结果为 "Finished" 时存在
-> 2. 转换任务需要用户轮询结果，时间间隔建议为 3 秒以上。
-
-### 获取转换结果
-
-`GET {{prefix}}/dynamicConvert/{{taskUUID}}/info.json`
-
-* response
-
-```JSON
-{
-    "height": 540,
-    "totalPageSize": 16,
-    "uuid": "e553f27814e84134854f6b855fd9a4fd",
-    "width": 960
-}
-```
-
-> 1. 接口地址上的 prefix 是查询任务进度接口在转换完成时返回的，prefix 前不需要再拼接其他前缀
-> 2. 该接口本质上是读取 json 文件内容，因此不需要使用 token，且返回格式不同
+- Fail: 任务执行失败，失败时，会有提示 reason
 
 ### 拼接 SDK 可用数据
 
@@ -148,9 +150,9 @@ task UUID 长度为 32 位，是转换任务的唯一标识。后续请求中需
 // info 为转换结果返回的 response
 const count = info.totalPageSize;
 const scenes: {name: string, ppt: PptDescription}[] = [];
-
-for (let i = 0; i < count; ++ i) {
-    const url = `${prefix}/${taskId}/slide/slide${i + 1}.xml`;
+const ppts = info.convertedFileList;
+for (let i = 0; i < ppts; ++ i) {
+    const url = `${prefix}${ppts[i].conversionFileUrl}`;
     slideURLs[i] = url;
     scenes[i] = {
         // 请使用字符串
@@ -164,13 +166,13 @@ for (let i = 0; i < count; ++ i) {
 ```Objective-C
 // response 为转换结果返回的 response
 NSInteger count = [response[@"totalPageSize"] integerValue];
-
+NSArray *ppts = response[@"convertedFileList"];
 NSMutableArray<WhiteScene *> *scenes = [NSMutableArray arrayWithCapacity:count];
 
-for (int i = 0; i < count; i++) {
-    NSString *url = [NSString stringWithFormat:@"%@/%@/slide/slide%d.xml", prefixUrl, taskId, i + 1];
+for (int i = 0; i < ppts; i++) {
+    NSDictionary *dict = ppts[i];
     WhitePptPage *pptPage = [[WhitePptPage alloc] init];
-    pptPage.src = url;
+    pptPage.src = [NSString stringWithFormat:@"%@%@", prefixUrl ? : @"", dict[@"conversionFileUrl"]];
     pptPage.width = [response[@"width"] doubleValue];
     pptPage.height = [response[@"height"] doubleValue];
     WhiteScene *scene = [[WhiteScene alloc] initWithName:[NSString stringWithFormat:@"%d", i+1] ppt:pptPage];
@@ -182,10 +184,13 @@ for (int i = 0; i < count; i++) {
 ```Java
 // json 即为查询结果 API 返回的 json
 Integer count = json.get("totalPageSize").getAsInt();
+JsonArray ppts = json.get("convertedFileList").getAsJsonArray();
 Scene[] scenes = new Scene[count];
-for (int i = 0; i < count; i++) {
+
+for (int i = 0; i < ppts.size(); i++) {
     PptPage pptPage = new PptPage(String.valueOf(i+1), json.get("width").getAsDouble(), json.get("height").getAsDouble());
-    pptPage.setSrc(prefix + "/" + taskId + "/slide/slide" + (i+1) + ".xml");
+    JsonObject object = array.get(i).getAsJsonObject();
+    pptPage.setSrc(prefix + object.getAsJsonObject("conversionFileUrl").getAsString());
     sliderURLs[i] = pptPage.getSrc();
     scenes[i] = new Scene(String.valueOf(i+1), pptPage);
 }

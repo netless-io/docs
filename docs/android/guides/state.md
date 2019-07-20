@@ -9,47 +9,22 @@ title: 状态管理
 
 ```java
 //目前 globalState 为空，不再有当前 state 内容。
-room.getGlobalState(new Promise<GlobalState>() {
-    @Override
-    public void then(GlobalState globalState) {}
-    @Override
-    public void catchEx(Exception e) {}
-});
+GlobalState globalState = room.getGlobalState();
+
 //获取房间 memberState 状态：教具
-room.getMemberState(new Promise<MemberState>() {
-    @Override
-    public void then(MemberState memberState) {}
-    @Override
-    public void catchEx(Exception e) {}
-});
+MemberState memberState = room.getMemberState();
+
 //获取用户当前视角状态
-room.getBroadcastState(new Promise<BroadcastState>() {
-    @Override
-    public void then(BroadcastState broadcastState) {}
-    @Override
-    public void catchEx(Exception t) {}
-});
+BroadcastState broadcastState = room.getBroadcastState();
+
 //获取房间成员信息
-room.getRoomMembers(new Promise<RoomMember[]>() {
-    @Override
-    public void then(RoomMembers RoomMembers[]) {}
-    @Override
-    public void catchEx(Exception t) {}
-});
+RoomMember[] roomMembers = room.getRoomMembers();
+
 //获取房间 SceneState 页面信息，具体见 SceneState 类
-room.getSceneState(new Promise<SceneState>) {
-    @Override
-    public void then(SceneState state) {}
-    @Override
-    public void catchEx(Exception t) {}
-}
+SceneState sceneState = room.getSceneState();
+
 //获取房间 Scene，所有页面信息
-room.getScene(new Promise<SceneState>) {
-       @Override
-    public void then(SceneState state) {}
-    @Override
-    public void catchEx(Exception t) {} 
-}
+Scene scenes = room.getScenes();
 ```
 
 ## 2. Player 状态
@@ -60,13 +35,13 @@ room.getScene(new Promise<SceneState>) {
  * 目前：初始状态为 WhitePlayerPhaseWaitingFirstFrame
  * 当 WhitePlayerPhaseWaitingFirstFrame 时，调用 getPlayerStateWithResult 返回值可能为空。
 */
-public void getPhase(final Promise<PlayerPhase> promise) {
+public PlayerPhase getPhase();
 
 /**
  * 当 phase 状态为 WhitePlayerPhaseWaitingFirstFrame
  * 回调得到的数据是空的
  */
-public void getPlayerState(final Promise<PlayerState> promise) {
+public PlayerState getPlayerState()
 
 /** 
  * 获取播放器信息（当前时长，总时长，开始 UTC 时间戳）

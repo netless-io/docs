@@ -36,17 +36,7 @@ room.setMemberState(memberState);
 可以通过如下代码获取当前房间的教具名称。
 
 ```java
-room.getMemberState(new Promise<MemberState>() {
-    @Override
-    public void then(MemberState memberState) {
-        memberState.getCurrentApplianceName();
-    }
-
-    @Override
-    public void catchEx(Exception t) {
-
-    }
-});
+room.getMemberState().getCurrentApplianceName();
 ```
 
 ### 教具列表
@@ -73,16 +63,20 @@ room.setMemberState(memberState);
 
 也可以根据如下代码获取当前调色盘的颜色。
 ```java
-room.getMemberState(new Promise<MemberState>() {
-    @Override
-    public void then(MemberState memberState) {
-        memberState.getStrokeColor();
-    }
-
-    @Override
-    public void catchEx(Exception t) {
-
-    }
-});
+room.getMemberState().getStrokeColor();
 ```
 调色盘能影响铅笔、矩形、椭圆、文字工具的效果。
+
+<span id="disableDeviceInputs">
+## 禁止教具操作
+
+>2.2.0 新增 API
+
+你可以通过如下方法屏蔽教具。
+
+```java
+// 禁止教具操作
+room.disableDeviceInputs(true);
+// 恢复教具操作
+room.disableDeviceInputs(false);
+```

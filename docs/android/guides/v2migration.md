@@ -40,10 +40,10 @@ v2.0移除了部分 API，您需要通过下面的文档，使用新 API 实现�
 
 ```Java
 //返回当前场景目录下，所有的场景，ppt属性可能为空。
-public void getScenes(final Promise<Scene[]> promise)
+public Scene[] getScenes();
 
 //获取的 WhiteSceneState 中，有当前场景目录，该场景目录下所有的场景列表，当前场景在场景列表中的索引。
-public void getSceneState(final Promise<SceneState> promise)
+public SceneState getSceneState();
 ```
 
 目前，您需要自行管理场景目录。如果您没有多个场景列表（多维数组）的需求。我建议您使用固定的场景目录（例如"\"）。

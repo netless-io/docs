@@ -5,14 +5,14 @@ title: 2.0迁移指南
 
 ## 新增功能：
 
-1. 云端录制：创建房间时，选择可回放房间，SDK 服务器会在云端自动录制
-1. 回放功能：提供回放API
-1. 白板页面管理功能
+1. 云端录制：创建房间时，选择可回放房间，SDK 服务器会在云端自动录制。[回放功能-房间介绍](/blog/2019/05/03/replay#房间模式)
+1. 新增回放功能：提供回放API
+1. 新增白板页面管理功能
 
->v1.0与v2.0房间不互通；但是 SDK 所使用的 Token 不需要更新。  
+>v1.0与v2.0房间不互通。SDK Token 不需要更新。  
 v2.0移除了部分 API，您需要通过下面的文档，使用新 API 实现。
 
-*我们不会关闭 v1.0 的服务，但我们依然推荐你迁移到 v2.0。*
+*我们不会关闭 v1.0 的服务，但我们依然推荐你迁移到 v2.0。不建议任何新用户，使用 1.0 的版本 sdk*
 
 ## 新增概念:场景
 
@@ -152,8 +152,13 @@ room.removePage(index); // 运行时错误
 
 ```javascript
 var index = 0;
-room.putScenes('/', [{}], index);
+// ppt 为可选参数，一旦添加 ppt 参数，内部字段必须填写完整
+// name 为可选参数，如果不选，则会自动生成随机字符串
+// inde 为可选参数
+// 具体可以参看[场景管理]文档
+room.putScenes('/', [{ppt : {src: 'https://example.com/1.png', width: 1024, height: 768}, name: '1'}], index);
 
+// 移除刚刚添加的场景
 var toRemoveScene = room.state.sceneState.scenes[index];
 room.removeScene('/' + toRemoveScene.name);
 ```

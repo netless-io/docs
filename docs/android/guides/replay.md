@@ -134,7 +134,7 @@ public void setObserverMode(PlayerObserverMode mode)
 * 获取房间状态
 * 目前：初始状态为 WhitePlayerPhaseWaitingFirstFrame
 */
-public void getPhase(final Promise<PlayerPhase> promise)
+public PlayerPhase getPhase()
 
 //监听自定义事件
 public void addMagixEventListener(String eventName, EventListener eventListener)
@@ -145,9 +145,9 @@ public void removeMagixEventListener(String eventName)
 * 当 phase 状态为 WhitePlayerPhaseWaitingFirstFrame
 * 回调得到的数据是空的
 */
-public void getPlayerState(final Promise<PlayerState> promise)
+public PlayerState getPlayerState()
 /** 获取播放器信息（当前时长，总时长，开始 UTC 时间戳）单位：毫秒 */
-public void getPlayerTimeInfo(final Promise<PlayerTimeInfo> promise)
+public PlayerTimeInfo getPlayerTimeInfo()
 ```
 
 ### PlayerPhase
@@ -179,7 +179,7 @@ public enum  PlayerObserverMode {
 ### PlayerEventListener
 
 回放房间状态发生改变，会调用在创建 Player 时，传入的 `PlayerEventListener` ，有默认空实现：`AbstractPlayerEventListener` 。
- 
+
 ```Java
 public interface PlayerEventListener {
     /**

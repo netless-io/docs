@@ -67,10 +67,16 @@ room.setMemberState({
 })
 ```
 
-## 禁止教具操作<span id="disableDeviceInputs">
+<span id="disableDeviceInputs">
+## 禁止教具操作
+
+>2.2.0 新增 API
 
 你可以通过如下方法屏蔽教具。
 
 ```javascript
+// 禁止教具操作
+room.disableDeviceInputs = true;
+// 恢复教具操作
 room.disableDeviceInputs = false;
 ```

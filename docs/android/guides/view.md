@@ -50,7 +50,7 @@ public class MemberInformation {
 
 * 例子：设置当前用户为主播视角
 
-```
+```java
 // 主播模式
 // 房间内其他人的视角模式会被自动修改成 follower，并且强制观看你的视角。
 // 如果房间内存在另一个主播，该主播的视角模式也会被强制改成 follower。
@@ -71,14 +71,7 @@ room.setViewMode(ViewMode.follower);
 ### 获取当前视角状态
 
 ```Java
-room.getBroadcastState(new Promise<BroadcastState>() {
-    @Override
-    public void then(BroadcastState broadcastState) {
-        showToast(broadcastState.getMode());
-    }
-    @Override
-    public void catchEx(Exception t) {}
-});
+room.getBroadcastState();
 ```
 
 其获取的内容结构，如下图所示
@@ -92,6 +85,167 @@ public class BroadcastState {
 }
 ```
 
+## 调整视角
+
+>2.2.0新增 API，2.3.2 增加动画选项；回放 replay 与 实时房间 room 都支持该 API
+
+```Java
+public class Displayer {
+    // 调整视角中心
+    public void moveCamera(CameraConfig camera);
+    // 调整视觉矩形
+    public void moveCameraToContainer(RectangleConfig rectange);
+}
+```
+
+<span id="moveCamera">
+### 调整视角中心
+
+`moveCamera` API，可以用来调整视角，参数均为可选参数。SDK 会根据传入参数，调整视角中心与缩放比例。
+
+```Java
+// 视角中心移动参数
+public class CameraConfig extends WhiteObject {
+
+    public AnimationMode getAnimationMode() {
+        return animationMode;
+    }
+    // 默认连续动画，可以设置为瞬间切换
+    public void setAnimationMode(AnimationMode animationMode) {
+        this.animationMode = animationMode;
+    }
+
+    private AnimationMode animationMode;
+
+    public Double getCenterX() {
+        return centerX;
+    }
+    
+    //可选参数，如果不填，则不会发生变化
+    public void setCenterX(Double centerX) {
+        this.centerX = centerX;
+    }
+
+    public Double getCenterY() {
+        return centerY;
+    }
+
+    //可选参数，如果不填，则不会发生变化
+    public void setCenterY(Double centerY) {
+        this.centerY = centerY;
+    }
+
+    public Double getScale() {
+        return scale;
+    }
+
+    //可选参数，如果不填，则不会发生变化，替代 zoomScale
+    public void setScale(Double scale) {
+        this.scale = scale;
+    }
+
+    private Double centerX;
+    private Double centerY;
+    private Double scale;
+}
+```
+
+<span id="moveCameraToContain">
+### 调整视觉矩形
+
+除了调整视角中心，SDK 还提供调整视觉矩形API。
+
+> 视觉矩形表示你的视角必须容纳的区域。当你设置好视觉矩形后，视角会自动调整到刚好可以完整展示视觉矩形所表示的范围。
+
+```Java
+public class RectangleConfig extends WhiteObject {
+    private Double originX;
+    private Double originY;
+    private Double width;
+    private Double height;
+
+    public RectangleConfig(Double width, Double height, AnimationMode mode) {
+        this(width, height);
+        this.animationMode = mode;
+    }
+
+    // 中心点为初始位置
+    public RectangleConfig(Double width, Double height) {
+        this.width = width;
+        this.height = height;
+        this.originX = - width / 2.0d;
+        this.originY = - height / 2.0d;
+    }
+
+    public RectangleConfig(Double originX, Double originY, Double width, Double height) {
+        this.originX = originX;
+        this.originY = originY;
+        this.width = width;
+        this.height = height;
+    }
+
+    public RectangleConfig(Double originX, Double originY, Double width, Double height, AnimationMode mode) {
+        this(originX, originY, width, height);
+        this.animationMode = mode;
+    }
+
+    public Double getOriginX() {
+        return originX;
+    }
+
+    public void setOriginX(Double originX) {
+        this.originX = originX;
+    }
+
+    public Double getOriginY() {
+        return originY;
+    }
+
+    public void setOriginY(Double originY) {
+        this.originY = originY;
+    }
+
+    public Double getWidth() {
+        return width;
+    }
+
+    public void setWidth(Double width) {
+        this.width = width;
+    }
+
+    public Double getHeight() {
+        return height;
+    }
+
+    public void setHeight(Double height) {
+        this.height = height;
+    }
+
+    public AnimationMode getAnimationMode() {
+        return animationMode;
+    }
+
+    public void setAnimationMode(AnimationMode animationMode) {
+        this.animationMode = animationMode;
+    }
+
+    private AnimationMode animationMode;
+}
+```
+
+<span id="disableCameraTransform">
+## 禁止视角变化
+
+>2.2.0 新增 API
+
+开发者可以通过如下方法禁止用户手动调整视角（使用鼠标滚轮缩放、Touch 板手势移动，缩放、移动端双指操作移动）。
+
+```Java
+// 禁止用户主动改变视野
+room.disableCameraTransform(true);
+// 恢复用户视野变化权限
+room.disableCameraTransform(false);
+```
 
 ## 相关文档
 

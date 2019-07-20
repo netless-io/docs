@@ -14,14 +14,25 @@ title: 简要说明
 
 具体请看 [2.0.0正式版发布](/blog/2019/06/22/release-note)
 
-相关 repo：
+## 相关 repo
 
-1. [White-sdk-ios-release](https://github.com/duty-os/white-sdk-ios-release) —— Cocoapods 下载库，自带部分API 调用代码
-1. [netless-swift-whiteboard](https://github.com/netless-io/netless-swift-whiteboard) —— 附带部分效果演示的 demo
+1. [White-sdk-ios-release](https://github.com/duty-os/white-sdk-ios-release)
+    * SDK 的 Cocoapods 下载库，其中 example 文件夹中项目，自带部分 API 调用演示
+1. [whiteCombinePlayer]https://github.com/netless-io/whitecombineplayer
+    * 集合 AVPlayer 与 WhiteSDK 中 replay 回放同步的开源库，可以参考该部分代码，在客户端集成视频与 replayer 回放操作
+1. [netless-swift-whiteboard](https://github.com/netless-io/netless-swift-whiteboard)
+    * 演示用 demo
 
 ---
 
 ## Changelog
+### [2.3.4] - 2019-07-17
+- 适配服务器端动态 PPT，动态 ppt 客户请升级
+### [2.3.3] - 2019-07-12
+- 适配服务器端动态转换新 API
+### [2.3.2] - 2019-07-06
+#### Add
+- 支持阿里云跨域图片
 ### [2.3.0] - 2019-07-04
 #### Add
 - 增加场景预览截图 API
