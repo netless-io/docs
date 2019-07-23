@@ -45,13 +45,13 @@ var roomUUID = "..."; // 希望回放房间的 uuid，必须是可回放模式�
 var roomToken = ".."; // room Token，获取方式原来一致
 var beginTimestamp = ...; // 回放的开始片段的事件，整数，Unix 时间戳（毫秒）
 var duration = ...; // 回放片段持续时长（毫秒）
-var audioUrl = "https://example.com/media.m3u8"; // 由白板接管的媒体文件(可选)，如果需要显示视频，需要提前做一些操作
+var mediaURL = "https://example.com/media.m3u8"; // 由白板接管的媒体文件(可选)，如果需要显示视频，需要提前做一些操作
 
 whiteWebSdk.replayRoom({
     room: roomUUID,
     roomToken: roomToken,
     beginTimestamp: beginTimestamp,
-    audioUrl: audioUrl,
+    mediaURL: mediaURL,
     duration: duration,
 }).then(function(player) {
     // 获取到 player 实例
