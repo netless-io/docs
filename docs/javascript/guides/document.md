@@ -14,8 +14,8 @@ SDK 将于 SDK 服务器的交互封装成了 `pptConverter` 类，开发者无�
 一个有 24 页的 pptx 文件，将在白板上创建 24 个场景。关于场景概念，详情请见 [场景管理](docs/advance/advance-scenes)。
 
 ```javascript
-//之前初始化的 sdk 实例
-pptConveter = sdk.pptConverter("roomToken");
+//之前初始化的 sdk 实例，roomToken 创建房间时，具体房间的 roomToken，此处作为鉴权使用。
+pptConverter = sdk.pptConverter("任一房间的 roomToken，此处作为鉴权使用");
 pptConverter.convert({
   url: yourPPTDocumentURL,
   kind: "dynamic",
