@@ -40,7 +40,7 @@ fetch(url, requestInit).then(function(response) {
     return response.json();
 }).then(function(json) {
     // Step2: 加入房间
-    return jionRoom(json);
+    return initAndJoinRoom(json);
 }).then(function(room) {
     // Step3: 加入成功后想白板绑定到指定的 dom 中
     bind(room);
@@ -49,7 +49,7 @@ fetch(url, requestInit).then(function(response) {
 });
 
 // 加入房间
-function jionRoom (json) {
+function initAndJoinRoom (json) {
     // 初始化 SDK，初始化 SDK 的参数，仅对本地用户有效，默认可以不传
     var whiteWebSdk = new WhiteWebSdk({
         // 用户手动进行缩放操作时的上下限，默认 为 0.1~10。
@@ -100,7 +100,7 @@ fetch(url, requestInit).then(function(response) {
     return response.json();
 }).then(function(json) {
     // Step2: 加入房间
-    return jionRoom(json);
+    return initAndJoinRoom(json);
 }).then(function(room) {
     // Step3: 加入成功后想白板绑定到指定的 dom 中
     bind(room);
@@ -109,7 +109,7 @@ fetch(url, requestInit).then(function(response) {
 });
 
 // 加入房间
-function jionRoom (json) {
+function initAndJoinRoom (json) {
     // 初始化 SDK，并且调用其成员方法 joinRoom
     var whiteWebSdk = new WhiteWebSdk();
     return whiteWebSdk.joinRoom({
