@@ -15,7 +15,7 @@ SDK 将于 SDK 服务器的交互封装成了 `pptConverter` 类，开发者无�
 
 ```javascript
 //之前初始化的 sdk 实例
-pptConveter = sdk.pptConverter("roomToken");
+pptConverter = sdk.pptConverter("roomToken");
 pptConverter.convert({
   url: yourPPTDocumentURL,
   kind: "dynamic",
