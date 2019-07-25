@@ -3,13 +3,37 @@ id: ios-state
 title: 状态管理
 ---
 
-API 可能存在修改可能性，文档可能有一定滞后性。可以同时在 SDK 相关头文件中查看代码注释。
-
 ## 状态获取 API
-### 1. 房间状态
+
+> 2.4.0 版本新增 API：同步获取(实时房间/回放房间)状态 API
+
+### 1. 实时房间状态（WhiteRoom）
 
 ```Objective-C
-@interface WhiteRoom : NSObject
+
+/** 状态获取，同步 API，使用 .property 进行读取 */
+@interface WhiteRoom : WhiteDisplayer
+/** 全局状态 */
+@property (nonatomic, strong, readonly) WhiteGlobalState *globalState;
+/** 教具信息 */
+@property (nonatomic, strong, readonly) WhiteReadonlyMemberState *memberState;
+/** 白板在线成员信息 */
+@property (nonatomic, strong, readonly) NSArray<WhiteRoomMember *> *roomMembers;
+/** 视角状态信息，用户当前场景状态，主播信息 */
+@property (nonatomic, strong, readonly) WhiteBroadcastState *broadcastState;
+/** 缩放比例 */
+@property (nonatomic, assign, readonly) CGFloat scale;
+@property (nonatomic, strong, readonly) WhiteRoomState *state;
+/** 场景状态 */
+@property (nonatomic, strong, readonly) WhiteSceneState *sceneState;
+/** 连接状态 */
+@property (nonatomic, assign, readonly) WhiteRoomPhase phase;
+
+@end
+
+#pragma mark - 异步 API
+/** 该部分 API，均为异步获取。可以使用同步 property 直接获取新数据 */
+@interface WhiteRoom (Asynchronous)
 
 /** 获取当前房间 GlobalState */
 - (void)getGlobalStateWithResult:(void (^) (WhiteGlobalState *state))result;
@@ -17,31 +41,36 @@ API 可能存在修改可能性，文档可能有一定滞后性。可以同时�
 - (void)getMemberStateWithResult:(void (^) (WhiteMemberState *state))result;
 /** 获取当前房间 WhiteRoomMember：房间成员信息 */
 - (void)getRoomMembersWithResult:(void (^) (NSArray<WhiteRoomMember *> *roomMembers))result;
-/** 获取当前缩放比例 */
-- (void)getZoomScaleWithResult:(void (^) (CGFloat scale))result;
 /** 获取当前视角状态 */
 - (void)getBroadcastStateWithResult:(void (^) (WhiteBroadcastState *state))result;
+/** 获取当前房间连接状态 */
+- (void)getRoomPhaseWithResult:(void (^) (WhiteRoomPhase phase))result;
+/** 获取当前缩放比例 */
+- (void)getZoomScaleWithResult:(void (^) (CGFloat scale))result;
 /** 获取当前房间状态，包含 globalState，教具，房间成员信息，缩放，SceneState，用户视角状态 */
 - (void)getRoomStateWithResult:(void (^) (WhiteRoomState *state))result;
 
-
-/**
- 获取所有 ppt 图片，回调内容为所有 ppt 图片的地址。
- @param result 如果当前页面，没有插入过 PPT，则该页面会返回一个空字符串
- */
-- (void)getPptImagesWithResult:(void (^) (NSArray<NSString *> *pptPages))result DEPRECATED_MSG_ATTRIBUTE("使用 getScenesWithResult:");
-
 @end
+
 ```
 
-### 2. Player 状态
+### 2. 回放房间状态（WhitePlayer）
 
 ```Objective-C
-@interface WhitePlayer : NSObject
+@interface WhitePlayer : WhiteDisplayer
+
+@property (nonatomic, assign, readonly) WhitePlayerPhase phase;
+/** 当 phase 处于 WhitePlayerPhaseWaitingFirstFrame 时，房间处于为开始状态，state 为空 */
+@property (nonatomic, strong, readonly) WhitePlayerState *state;
+@property (nonatomic, strong, readonly) WhitePlayerTimeInfo *timeInfo;
+
+@end
+
+/** 异步 API */
+@interface WhitePlayer (Asynchronous)
 
 /**
  目前：初始状态为 WhitePlayerPhaseWaitingFirstFrame
-
  当 WhitePlayerPhaseWaitingFirstFrame 时，调用 getPlayerStateWithResult 返回值可能为空。
  */
 - (void)getPhaseWithResult:(void (^)(WhitePlayerPhase phase))result;
@@ -55,19 +84,20 @@ API 可能存在修改可能性，文档可能有一定滞后性。可以同时�
 /** 获取播放器信息（当前时长，总市场，开始 UTC 时间戳） */
 - (void)getPlayerTimeInfoWithResult:(void (^)(WhitePlayerTimeInfo *info))result;
 
-
 @end
 ```
 
-## 状态回调 API
+## 状态变化回调 API
 
-当白板状态发生变化时，sdk 会回调创建时传入的 delegate 实例。
+当房间发生状态变化，`sdk`会回调在创建时传入的`delegate`实例。
 
-v2版本将事件回调拆分成了三种。v1版本中的图片替换功能，由于在 Room 以及 Player 中，都会被调用，所以剥离到了通用回调中。
+v2版本将事件回调拆分成了以下三种。其中v1版本中的图片替换功能，由于在实时房间与回放房间中，都需要调用，所以移动至通用回调中。
 
-### 1. 通用回调
+>同步 API 实际上就是通过监听状态变化回调，更新状态并进行缓存。在回调时，再通过状态获取的同步 API 查看状态时，状态值，已经发生改变。
 
-在创建 WhiteSDK 时，直接传入实现了对应协议的实例，后续有需要时，就会回调。
+### 1. 通用回调（图片，错误）
+
+在创建`WhiteSDK`时，直接传入实现`WhiteCommonCallbackDelegate`协议的实例即可。
 
 ```Objective-C
 @interface WhiteSDK : NSObject
@@ -76,51 +106,43 @@ v2版本将事件回调拆分成了三种。v1版本中的图片替换功能，�
 ```
 
 ```Objective-C
-
 @protocol WhiteCommonCallbackDelegate <NSObject>
 
 @optional
-
 /**
  当sdk出现未捕获的全局错误时，会在此处对抛出 NSError 对象
  */
 - (void)throwError:(NSError *)error;
 
 /*
- 启用改功能，需要在初始化 SDK 时，在 WhiteSDKConfig 设置 enableInterrupterAPI 为 YES; 初始化后，无法更改。
- 之后，在调用插入图片API/插入scene 时，会回调该 API，允许拦截修改最后传入的图片地址。
- 在回放中，也会持续调用。
+ 启用该功能，需要在初始化 SDK 时，在 WhiteSDKConfig 设置 enableInterrupterAPI 为 YES; 初始化后，无法更改。
+ 在插入图片API/插入scene（包含 ppt 参数）时，会回调该 API，允许修改最终图片地址。
  */
 - (NSString *)urlInterrupter:(NSString *)url;
 
 @end
-
 ```
 
 #### 修改通用回调
 
-可以通过 WhiteSDK 下述方法进行修改
-
 ```Objective-C
 @interface WhiteSDK : NSObject
-
 /** 为空，则移除原来的 CommonCallbacks */
 - (void)setCommonCallbackDelegate:(nullable id<WhiteCommonCallbackDelegate>)callbackDelegate;
-
 @end
 ```
 
-### 2. 房间状态回调
+### 2. 实时房间回调（WhiteRoom）
 
-在加入房间时，使用 
-
-`- (void)joinRoomWithRoomUuid:(NSString *)roomUuid roomToken:(NSString *)roomToken callbacks:(nullable id<WhiteRoomCallbackDelegate>)callbacks completionHandler:(void (^) (BOOL success, WhiteRoom * _Nullable room, NSError * _Nullable error))completionHandler;
-` API，传入实现 WhiteRoomCallbackDelegate 的实例类。
-
-*传入 nil 时，不会修改当 roomCallback 回调，也不会移除之前设置的实例*
+在加入房间时，使用以下 API，传入实现`WhiteRoomCallbackDelegate`协议的实例。当实时房间状态发生变化时，`sdk`会自动回调该实例中的对应方法。
 
 ```Objective-C
+- (void)joinRoomWithRoomUuid:(NSString *)roomUuid roomToken:(NSString *)roomToken callbacks:(nullable id<WhiteRoomCallbackDelegate>)callbacks completionHandler:(void (^) (BOOL success, WhiteRoom * _Nullable room, NSError * _Nullable error))completionHandler;
+```
 
+> `callbacks`参数传入 nil 时，不会修改`roomCallback`回调，也不会移除之前设置的回调。手动重连时，因此可以不传入`callbacks`。
+
+```Objective-C
 //WhiteRoomCallbacks.h 文件
 @protocol WhiteRoomCallbackDelegate <NSObject>
 
@@ -157,14 +179,12 @@ v2版本将事件回调拆分成了三种。v1版本中的图片替换功能，�
 @end
 ```
 
-### 3. Player 状态回调
+### 3. 回放房间回调（WhitePlayer）
 
-v2版本中，我们增加了2.0版本的回调状态，以便得知回放时，房间的状态变化。
-在创建 Player 时，一起传入即可。
+与实时房间相似，回放房间在创建时，传入实现`WhitePlayerEventDelegate`协议的实例。当回放房间发生状态时，`sdk`会自动回调该实例的对应方法。
 
 ```Objective-C
 @interface WhiteSDK : NSObject
-
 - (void)createReplayerWithConfig:(WhitePlayerConfig *)config callbacks:(nullable id<WhitePlayerEventDelegate>)eventCallbacks completionHandler:(void (^) (BOOL success, WhitePlayer * _Nullable player, NSError * _Nullable error))completionHandler;
 @end
 ```
@@ -192,8 +212,6 @@ v2版本中，我们增加了2.0版本的回调状态，以便得知回放时，
 - (void)errorWhenAppendFrame:(NSError *)error;
 /** 渲染时，出错 */
 - (void)errorWhenRender:(NSError *)error;
-/** 用户头像信息变化 */
-- (void)cursorViewsUpdate:(WhiteUpdateCursor *)updateCursor;
 
 @end
 
