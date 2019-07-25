@@ -116,6 +116,20 @@ info.uuid = @"WhiteImageInformation";
 
 目前不支持使用代码进行移动。
 
+## 背景色
+
+>2.4.0 新增 API
+
+白板新增`backgroudColor`属性，支持修改白板背景色，该颜色为本地修改，不会被同步给其他用户。
+
+```Objective-C
+@interface WhiteDisplayer: NSObject
+/**
+ 会被转换成十六进制色值，目前不支持透明度设置，只会传递透明度。该背景为用户本地修改值，不会被同步。
+ */
+@property (nonatomic, strong) UIColor *backgroundColor;
+@end
+```
 ## 用户信息透传
 
 >2.1.0 新增 API
