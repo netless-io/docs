@@ -64,6 +64,19 @@ WhiteSdk whiteSdk = new WhiteSdk(whiteBroadView PlayActivity.this, interrupter);
 room.zoomChange(10);
 ```
 
+## 背景色
+
+>2.4.0 新增 API
+
+白板新增`backgroudColor`属性，支持修改白板背景色，该颜色为本地修改，不会被同步给其他用户。
+
+```java
+room.setBackgroundColor(Color.Red);
+room.getBackgroundColor();
+replayer.setBackgroundColor(Color.Red);
+replayer.getBackgroundColor();
+```
+
 ## 用户信息透传
 
 >2.0.0 正式版新增 API
