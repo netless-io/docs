@@ -146,13 +146,3 @@ roomuuid | string | 白板唯一标识符 |
 --  | -- | -- |
 ban | boolean | true为禁用；false为恢复 |
 uuid | string | 白板唯一标识符 |
-
-### 删除白板
-
-`POST /room/close?token={{token}}`
-
-* body参数
-
-字段 | 类型 | 描述 |
---  | -- | -- |
-uuid | string | 白板唯一标识符 |
