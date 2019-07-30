@@ -140,6 +140,8 @@ roomuuid | string | 白板唯一标识符 |
 
 `POST /banRoom?token={{token}}`
 
+使用该 API后，会将所有用户从房间中踢出，并无法在客户端 sdk 中执行加入房间操作。被禁用的白板，可以进行回放操作。
+
 * body 参数
 
 字段 | 类型 | 描述 |
