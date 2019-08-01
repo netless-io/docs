@@ -21,6 +21,8 @@ API 19 (Android 4.4) – Kitkat, released October 2013
 
 [最新版本列表——发版自动更新](https://jitpack.io/#duty-os/white-sdk-android)
 
+### [2.4.3] - 2019-08-01
+- 修复视角锁定 API
 ### [2.4.2] - 2019-08-01
 - 增加错误日志上传功能
 - 提供关闭日志上传功能接口（默认打开）
