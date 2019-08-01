@@ -140,3 +140,11 @@ public Integer getTimeDelay()
  */
 public void cleanScene(boolean retainPpt)
 ```
+
+## 日志上传功能
+
+>2.4.1 新增API
+
+2.4.1 开始，sdk 会收集 sdk 中的debug 日志，主要涉及 API 调用时的输出。
+
+在使用`WhiteSdkConfiguration`初始化 SDK 时，配置 `WhiteSdkConfiguration` 中 `LoggerOptions` 选项，调用`LoggerOptions`的`setDisableReportLog`方法，设置为 true 后，再初始化 WhiteSDK 即可关闭上传内容。
