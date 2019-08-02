@@ -21,6 +21,8 @@ API 19 (Android 4.4) – Kitkat, released October 2013
 
 [最新版本列表——发版自动更新](https://jitpack.io/#duty-os/white-sdk-android)
 
+### [2.4.4] - 2019-08-02
+- 优化重连逻辑
 ### [2.4.3] - 2019-08-01
 - 修复视角锁定 API
 ### [2.4.2] - 2019-08-01
