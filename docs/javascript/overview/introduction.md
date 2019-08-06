@@ -6,6 +6,17 @@ sidebar_label: 简要
 
 白板 sdk 使用 `Typescript` 编写。在部分文档中，会直接解释对应类的 `.d.ts` 中的 API。
 
+## 语法提示支持<span class="anchor" id="declare">
+
+使用 ts 开发时，在项目`tsconfig.json`中添加以下配置：
+```json
+"compilerOptions": {
+    "paths": {
+        "*" : ["node_modules/white-web-sdk/types/*"]
+    }
+}
+```
+
 ## 运行环境<span class="anchor" id="env">
 
 * 软件
