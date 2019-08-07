@@ -46,7 +46,7 @@ WhiteSdk whiteSdk = new WhiteSdk(whiteBroadView PlayActivity.this, interrupter);
 
 >该 API 会在渲染时，被频繁调用。如果没有需求，就不需要使用该方法。  
 
-## 只读
+## 只读<span class="anchor" id="disableOperations">
 
 >2.2.0 开始，该 API 拆分为：  
 禁止用户移动，缩放 API：`disableCameraTransform` (详情请参考 [视角操作-禁止视角变化](./view.md#disableCameraTransform))；  
