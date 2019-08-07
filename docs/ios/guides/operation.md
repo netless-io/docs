@@ -78,7 +78,7 @@ info.uuid = @"WhiteImageInformation";
 
 或者在想要使用时，调用 `whiteSDK` 的 `setCommonCallbackDelegate:` 方法，设置。
 
-## 只读
+## 只读<span class="anchor" id="disableOperations">
 
 >2.2.0 开始，该 API 拆分为：  
 禁止用户移动，缩放 API：`disableCameraTransform` (详情请参考 [视角操作-禁止视角变化](./view.md#disableCameraTransform))；  

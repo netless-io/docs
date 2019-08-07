@@ -67,8 +67,7 @@ room.getMemberState().getStrokeColor();
 ```
 调色盘能影响铅笔、矩形、椭圆、文字工具的效果。
 
-<span id="disableDeviceInputs">
-## 禁止教具操作
+## 禁止教具操作<span class="anchor" id="disableDeviceInputs">
 
 >2.2.0 新增 API
 

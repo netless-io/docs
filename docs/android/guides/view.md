@@ -233,8 +233,7 @@ public class RectangleConfig extends WhiteObject {
 }
 ```
 
-<span id="disableCameraTransform">
-## 禁止视角变化
+## 禁止视角变化<span class="anchro" id="disableCameraTransform">
 
 >2.2.0 新增 API
 
