@@ -1,14 +1,15 @@
 ---
 id: js-introduction
-title: 介绍
-sidebar_label: 简要
+title: SDK
+sidebar_label: 
 ---
 
 白板 sdk 使用 `Typescript` 编写。在部分文档中，会直接解释对应类的 `.d.ts` 中的 API。
 
-## 语法提示支持<span class="anchor" id="declare">
+## ts语法提示<span class="anchor" id="declare">
 
-使用 ts 开发时，在项目`tsconfig.json`中添加以下配置：
+使用 Typescript 开发时，在项目`tsconfig.json`中添加以下配置，即可获得语法提示。
+
 ```json
 "compilerOptions": {
     "paths": {
@@ -27,7 +28,7 @@ sdk 可以运行在任意支持 es5 的现代浏览器中，兼容性支持可�
 
 sdk 无需任何额外支持，即可运行在 iPad，Surface，Wacom等手写板上。
 
-## 相关 demo<span class="anchor" id="demo">
+## 开源代码<span class="anchor" id="demo">
 
 1. [react-whiteboard](https://github.com/netless-io/netless-react-whiteboard)
     * 有部分业务实现代码，同时有线上已部署 demo。阅读对应文档，进行部署，即可快速查看集成效果。
@@ -42,7 +43,7 @@ sdk 无需任何额外支持，即可运行在 iPad，Surface，Wacom等手写�
 反馈问题时，如果能带上在以上任意的 demo 中复现的代码，能够更快的解决定位问题。
 
 
-## sdk<span class="anchor" id="sdk">
+## SDK地址<span class="anchor" id="sdk">
 
 1. [white-web-sdk](https://www.npmjs.com/package/white-web-sdk)
     * 非 React 框架开发
@@ -51,14 +52,14 @@ sdk 无需任何额外支持，即可运行在 iPad，Surface，Wacom等手写�
 
 `white-web-sdk` 与 `white-react-sdk` 版本一致，每次同时发版。
 
-## 版本更新记录<span class="anchor" id="history">
+## 版本历史<span class="anchor" id="history">
 
-## 2.2.11 - 2019-08-06
+### 2.2.11 - 2019-08-06
 
 > - 修复了缺陷：房间有主播时，新进房间的用户的白板看不到任何东西
 > - 修复了白板排版的缺陷
 
-## 2.2.10 - 2019-08-02
+### 2.2.10 - 2019-08-02
 
 > - 优化了重连的逻辑
 
