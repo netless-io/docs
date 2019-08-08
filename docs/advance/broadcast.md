@@ -100,7 +100,7 @@ room.setViewMode(ViewMode.Broadcaster);
 [视角操作-禁止视角变化:disableCameraTransform](/docs/ios/guides/js-view#disableCameraTransform)
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-调用 `禁止操作`API 时机：
+#### 调用 `禁止操作`API 时机：
 
 1. 在观众端用户进入时主动设置（主播已存在）。
 1. 当有用户成为主播，其他用户自动切换为`跟随`模式。
