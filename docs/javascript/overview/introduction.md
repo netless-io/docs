@@ -1,7 +1,7 @@
 ---
 id: js-introduction
 title: SDK
-sidebar_label: 
+sidebar_label:
 ---
 
 白板 sdk 使用 `Typescript` 编写。在部分文档中，会直接解释对应类的 `.d.ts` 中的 API。
@@ -53,6 +53,10 @@ sdk 无需任何额外支持，即可运行在 iPad，Surface，Wacom等手写�
 `white-web-sdk` 与 `white-react-sdk` 版本一致，每次同时发版。
 
 ## 版本历史<span class="anchor" id="history">
+
+### 2.2.12 - 2019-08-15
+
+> - 修复了动态 PPT 的若干缺陷
 
 ### 2.2.11 - 2019-08-06
 
