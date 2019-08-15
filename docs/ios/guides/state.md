@@ -13,6 +13,8 @@ title: 状态管理
 
 /** 状态获取，同步 API，使用 .property 进行读取 */
 @interface WhiteRoom : WhiteDisplayer
+
+#pragma mark - 同步 API
 /** 全局状态 */
 @property (nonatomic, strong, readonly) WhiteGlobalState *globalState;
 /** 教具信息 */
@@ -216,3 +218,30 @@ v2版本将事件回调拆分成了以下三种。其中v1版本中的图片替�
 @end
 
 ```
+
+## 自定义 globalState 支持
+
+> 2.4.6 新增
+
+实时房间状态中的 `globalState` 属性，为所有客户公共可读写状态。回放房间状态 `globalState` 为只读属性，修改不生效。
+
+iOS 端自定义`globalState`可以通过使用 `WhiteDisplayerState`的类方法`setCustomGlobalStateClass:`设置。
+
+自定义 `globalState` 类型必须为`WhiteGlobalState`子类。
+
+```Objective-C
+@interface WhiteDisplayerState : WhiteObject<YYModel>
+
+/**
+ 配置自定义全局状态类
+
+ @param clazz 自定义全局状态类，必须是 WhiteGlobalState 子类，否则会清空该配置。
+ @return 全局自定义类配置成功与否；返回 YES 则成功配置子类；返回 NO 则恢复为 WhiteGlobalState 类。
+ */
++ (BOOL)setCustomGlobalStateClass:(Class)clazz;
+@end
+```
+
+传入开发者自定义的`WhiteGlobalState`子类后，`WhiteRoomState`，`WhitePlayerState`在反序列化`globalState`时，都会将该内容自动反序列化为传入的子类。
+
+>设置好自定义`globalState`后，不需要额外操作。只需要在使用原有 API 时，进行对应类型强制转换即可。
