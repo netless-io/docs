@@ -1,5 +1,5 @@
 ---
-id: advance-broadcast
+id: blog-broadcast
 title: 主播与观众
 ---
 

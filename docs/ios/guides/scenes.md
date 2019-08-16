@@ -91,4 +91,4 @@ WhiteScene 管理了一个白板页面，其中包含了 name，并且接管了�
 
 ## API 介绍
 
-请查看 [进阶文档-场景管理](/docs/advance/advance-scenes?platform=ios)
+请查看 [进阶文档-场景管理](/docs/blog/advance-scenes?platform=ios)

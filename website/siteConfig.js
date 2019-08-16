@@ -42,12 +42,11 @@ const siteConfig = {
     {doc: 'android/overview/android-introduction', label: 'Android'},
     {doc: 'ios/overview/ios-introduction', label: 'iOS'},
     {doc: 'server/overview/server-introduction', label: 'Server'},
-    {doc: 'advance/advance-overview', label: '业务实现'},
+    {doc: 'blog/blog-glossary', label: '博客'},
     {
         href: 'https://github.com/netless-io',
         label: 'GitHub',
     },
-    {blog: true, label: '博客'},
   ],
   algolia: {
       apiKey: 'c438dda9f510a0e984c1e0582e03fa62',
