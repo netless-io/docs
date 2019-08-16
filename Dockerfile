@@ -1,5 +1,10 @@
-FROM openresty/openresty:centos
-COPY ./website/build/netless /usr/local/openresty/nginx/build
-COPY ./nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
+FROM node:8.11.4
+
+WORKDIR /app/website
+
 EXPOSE 3000 35729
-CMD ["openresty"]
+COPY ./docs /app/docs
+COPY ./website /app/website
+RUN yarn install
+
+RUN NODE_ENV=production yarn start
