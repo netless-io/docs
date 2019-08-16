@@ -23,7 +23,7 @@ RoomMember[] roomMembers = room.getRoomMembers();
 //获取房间 SceneState 页面信息，具体见 SceneState 类
 SceneState sceneState = room.getSceneState();
 
-//获取房间 Scene，所有页面信息
+//获取房间当前场景目录下的所有 Scene 页面信息
 Scene scenes = room.getScenes();
 ```
 
@@ -128,3 +128,39 @@ public interface PlayerEventListener {
     void onCatchErrorWhenRender(SDKError error);
 }
 ```
+
+## 自定义 GlobalState<span class="anchor" id="globalstate">
+
+> 2.4.7 新增 API
+
+实时房间状态中的`globalState`属性，为所有客户公共可读写状态；回放房间状态 `globalState` 为只读属性，修改不会生效。
+如果说，自定义事件是同步自定义行为，那么`globalState`就是用来同步自定义状态的。
+
+>2.0 版本一直设置自定义`globalState`状态。`setGlobalState:`API，传入自定义`globalState`子类即可将自定义内容传递给房间中其他用户。
+
+开发者可以调用 `DisplayerState`中的`+(BOOL)setCustomGlobalStateClass:`类方法，全局设置自定义`globalState`属性。
+
+```Java
+public class WhiteDisplayerState extends WhiteObject {
+    /**
+     * 设置自定义全局变量类型，设置后，所有 GlobalState 都会转换为该类的实例。
+     *
+     * @param <T> 类型约束
+     * @param classOfT 自定义 GlobalState Class
+     * @since 2.4.7
+     * example 
+     */
+    public static <T extends GlobalState> void setCustomGlobalStateClass(Class<T> classOfT);
+}
+```
+
+示例代码：
+
+```Java
+/** 设置自定义全局状态，在后续回调中 GlobalState 直接进行类型转换即可 */
+WhiteDisplayerState.setCustomGlobalStateClass(MyGlobalState.class);
+```
+
+传入开发者自定义的`GlobalState`子类后，`RoomState`，`PlayerState`在反序列化`globalState`时，都会将该内容自动反序列化为该子类。
+
+>设置好自定义`globalState`后，不需要额外操作。只需要在使用原有 API 时，进行对应类型强制转换即可。

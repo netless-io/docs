@@ -219,15 +219,16 @@ v2版本将事件回调拆分成了以下三种。其中v1版本中的图片替�
 
 ```
 
-## 自定义 globalState 支持
+## 自定义 GlobalState<span class="anchor" id="globalstate">
 
-> 2.4.6 新增
+> 2.4.6 新增 API
 
-实时房间状态中的 `globalState` 属性，为所有客户公共可读写状态。回放房间状态 `globalState` 为只读属性，修改不生效。
+实时房间状态中的`globalState`属性，为所有客户公共可读写状态；回放房间状态 `globalState` 为只读属性，修改不会生效。
+如果说，自定义事件是同步自定义行为，那么`globalState`就是用来同步自定义状态的。
 
-iOS 端自定义`globalState`可以通过使用 `WhiteDisplayerState`的类方法`setCustomGlobalStateClass:`设置。
+>2.0 版本一直设置自定义`globalState`状态。`setGlobalState:`API，传入自定义`globalState`子类即可将自定义内容传递给房间中其他用户。
 
-自定义 `globalState` 类型必须为`WhiteGlobalState`子类。
+开发者可以调用 `WhiteDisplayerState`中的`+(BOOL)setCustomGlobalStateClass:`类方法，全局设置自定义`globalState`属性。
 
 ```Objective-C
 @interface WhiteDisplayerState : WhiteObject<YYModel>
@@ -242,6 +243,6 @@ iOS 端自定义`globalState`可以通过使用 `WhiteDisplayerState`的类方�
 @end
 ```
 
-传入开发者自定义的`WhiteGlobalState`子类后，`WhiteRoomState`，`WhitePlayerState`在反序列化`globalState`时，都会将该内容自动反序列化为传入的子类。
+传入开发者自定义的`WhiteGlobalState`子类后，`WhiteRoomState`，`WhitePlayerState`在反序列化`globalState`时，都会将该内容自动反序列化为该子类。
 
 >设置好自定义`globalState`后，不需要额外操作。只需要在使用原有 API 时，进行对应类型强制转换即可。
