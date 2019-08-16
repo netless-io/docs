@@ -7,4 +7,4 @@ COPY ./docs /app/docs
 COPY ./website /app/website
 RUN yarn install
 
-CMD ["yarn", "build"]
+RUN NODE_ENV=production yarn start
