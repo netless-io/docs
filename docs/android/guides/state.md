@@ -138,7 +138,7 @@ public interface PlayerEventListener {
 
 >2.0 版本一直设置自定义`globalState`状态。`setGlobalState:`API，传入自定义`globalState`子类即可将自定义内容传递给房间中其他用户。
 
-开发者可以调用 `DisplayerState`中的`+(BOOL)setCustomGlobalStateClass:`类方法，全局设置自定义`globalState`属性。
+开发者可以调用 `WhiteDisplayerState`中的`setCustomGlobalStateClass`类方法，全局设置自定义`globalState`属性。
 
 ```Java
 public class WhiteDisplayerState extends WhiteObject {

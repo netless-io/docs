@@ -24,7 +24,7 @@ API 19 (Android 4.4) – Kitkat, released October 2013
 ## [2.4.8] - 2019-08-16
 - 支持自定义全局状态
 - 房间成员列表（RoomMember）增加用户信息，用户教具状态内容
-- 视角状态(BroadcastState)，增加主播用户信息；修正无主播时，主播id 为 0 的问题
+- 视角状态（BroadcastState），增加主播用户信息；修正无主播时，主播id 为 0 的问题
 - 修正 Scene 类中，`component` 字段类型错误
 - 修正白板类名，并提供向前兼容
 - 移除部分无效类与字段
