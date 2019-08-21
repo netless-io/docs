@@ -82,7 +82,8 @@
       "blog/blog-broadcast",
       "blog/blog-ppt",
       "blog/blog-add-driver",
-      "blog/debug-center"
+      "blog/debug-center",
+      "blog/blog-begin-netless"
     ]
   },
   "server": {
