@@ -63,8 +63,7 @@ export type BroadcastState = {
 room.state.broadcastState
 ```
 
-<span id="refrehViewSize">
-## 视角中心同步
+## 视角中心同步<span class="anchor" id="refrehViewSize">
 
 同一个房间的不同用户各自的屏幕尺寸可能不一致，这将导致他们的白板都有各自不同的尺寸。实际上，房间的其他用户会将白板的中心对准主播的白板中心（注意主播和其他用户的屏幕尺寸不一定相同）。
 
@@ -76,8 +75,7 @@ room.refrehViewSize();
 
 尺寸应该和白板在产品中的实际尺寸相同（一般而言就是浏览器页面或者应用屏幕的尺寸）。如果用户调整了窗口大小导致白板尺寸改变。应该重新调用该方法刷新尺寸。
 
-<span id="moveCamera">
-## 调整视角
+## 调整视角<span class="anchor" id="moveCamera">
 
 >2.2.0新增 API，2.2.2 增加动画选项；回放 replay 与 实时房间 room 都支持该 API
 
@@ -94,8 +92,7 @@ room.moveCamera({
 })
 ```
 
-<span id="moveCameraToContain">
-## 调整视觉矩形
+## 调整视觉矩形<span class="anchor" id="moveCameraToContain">
 
 >2.2.0新增 API，2.2.2 增加动画选项；回放 replay 与 实时房间 room 都支持该 API
 
@@ -128,8 +125,7 @@ room.moveCamerToContain({
 })
 ```
 
-<span id="disableCameraTransform">
-## 禁止视角变化
+## 禁止视角变化<span class="anchor" id="disableCameraTransform">
 
 >2.2.0 新增 API
 

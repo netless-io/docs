@@ -87,8 +87,7 @@ memberState.currentApplianceName = AppliancePencil;
 }];
 ```
 
-<span id="disableDeviceInputs">
-## 禁止教具操作
+## 禁止教具操作<span class="anchor" id="disableDeviceInputs">
 
 >2.2.0 新增 API
 

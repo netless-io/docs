@@ -15,7 +15,7 @@ title: 文档转网页（动态文档转换）
 
 1. 进入 [console](https://console.herewhite.com)，点击左侧列表中的 <svg viewBox="64 64 896 896" class="" data-icon="appstore" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false"><path d="M464 144H160c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16zm-52 268H212V212h200v200zm452-268H560c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16zm-52 268H612V212h200v200zM464 544H160c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V560c0-8.8-7.2-16-16-16zm-52 268H212V612h200v200zm452-268H560c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V560c0-8.8-7.2-16-16-16zm-52 268H612V612h200v200z"></path></svg> ，进入应用管理页面。
 
-1. 找到 `文档转图片` 进行开通，更新 QPS ，关闭操作。
+2. 找到 `文档转图片` 进行开通，更新 QPS ，结束操作。
 
 <details>
 <summary>**点击展开：console 中操作示意图**</summary>
@@ -34,7 +34,7 @@ title: 文档转网页（动态文档转换）
 
 ## 服务端 API
 
-静态文档转换功能由“发起转换任务”和“查询转换任务”两个 API 组成
+动态文档转换功能由“发起转换任务”和“查询转换任务”两个 API 组成
 
 ### 发起转换任务
 
@@ -52,7 +52,7 @@ title: 文档转网页（动态文档转换）
 字段 | 类型 | 描述 |
 --  | -- | -- |
 sourceUrl | stirng | 需要进行转换的文件的地址 |
-serviceType | string | 服务类型，静态文档转换固定为 "dynamic_conversion" |
+serviceType | string | 服务类型，动态文档转换固定为 "dynamic_conversion" |
 
 * body
 

@@ -50,7 +50,7 @@ public class MemberInformation {
 
 * 例子：设置当前用户为主播视角
 
-```
+```java
 // 主播模式
 // 房间内其他人的视角模式会被自动修改成 follower，并且强制观看你的视角。
 // 如果房间内存在另一个主播，该主播的视角模式也会被强制改成 follower。
@@ -71,14 +71,7 @@ room.setViewMode(ViewMode.follower);
 ### 获取当前视角状态
 
 ```Java
-room.getBroadcastState(new Promise<BroadcastState>() {
-    @Override
-    public void then(BroadcastState broadcastState) {
-        showToast(broadcastState.getMode());
-    }
-    @Override
-    public void catchEx(Exception t) {}
-});
+room.getBroadcastState();
 ```
 
 其获取的内容结构，如下图所示
@@ -240,8 +233,7 @@ public class RectangleConfig extends WhiteObject {
 }
 ```
 
-<span id="disableCameraTransform">
-## 禁止视角变化
+## 禁止视角变化<span class="anchro" id="disableCameraTransform">
 
 >2.2.0 新增 API
 

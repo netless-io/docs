@@ -34,7 +34,7 @@ room.completeImageUpload(uuid, imageUrl)
  移动 | 无法移动，所以不需要位置信息 | 可以移动，所以插入时，需要提供图片大小以及位置信息
  与白板页面关系 | 插入 ppt 的同时，白板就新建了一个页面，这个页面的背景就是 PPT 图片 | 是当前白板页面的一部分，同一个页面可以加入多张图片
 
-## 只读
+## 只读<span class="anchor" id="disableOperations">
 
 >2.2.0 开始，该 API 拆分为：  
 禁止用户移动，缩放 API：`disableCameraTransform` (详情请参考 [视角操作-禁止视角变化](./view.md#disableCameraTransform))；  

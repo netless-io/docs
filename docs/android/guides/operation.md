@@ -21,7 +21,7 @@ public void completeImageUpload(String uuid, String url);
 
 区别| 插入PPT | 插入图片
 ---------|----------|---------
- 调用后结果 | 会自动新建多个白板页面，但是仍然保留在当前页（所以无明显区别），需要通过翻页API进行切换 | 产生一个占位界面，插入真是图片，需要调用 `completeImageUploadWithUuid:src` ,传入占位界面的 uuid，以及图片的网络地址 |
+ 调用后结果 | 会自动新建多个白板页面，但是仍然保留在当前页（所以无明显区别），需要通过翻页API进行切换 | 产生一个占位界面，插入真是图片，需要调用 `completeImageUploadWithUuid:src:` ,传入占位界面的 uuid，以及图片的网络地址 |
  移动 | 无法移动，所以不需要位置信息 | 可以移动，所以插入时，需要提供图片大小以及位置信息
  与白板页面关系 | 插入 ppt 的同时，白板就新建了一个页面，这个页面的背景就是 PPT 图片 | 是当前白板页面的一部分，同一个页面可以加入多张图片
 
@@ -46,7 +46,7 @@ WhiteSdk whiteSdk = new WhiteSdk(whiteBroadView PlayActivity.this, interrupter);
 
 >该 API 会在渲染时，被频繁调用。如果没有需求，就不需要使用该方法。  
 
-## 只读
+## 只读<span class="anchor" id="disableOperations">
 
 >2.2.0 开始，该 API 拆分为：  
 禁止用户移动，缩放 API：`disableCameraTransform` (详情请参考 [视角操作-禁止视角变化](./view.md#disableCameraTransform))；  
@@ -62,6 +62,19 @@ WhiteSdk whiteSdk = new WhiteSdk(whiteBroadView PlayActivity.this, interrupter);
 
 ```java
 room.zoomChange(10);
+```
+
+## 背景色
+
+>2.4.0 新增 API
+
+白板新增`backgroudColor`属性，支持修改白板背景色，该颜色为本地修改，不会被同步给其他用户。
+
+```java
+room.setBackgroundColor(Color.Red);
+room.getBackgroundColor();
+replayer.setBackgroundColor(Color.Red);
+replayer.getBackgroundColor();
 ```
 
 ## 用户信息透传
@@ -127,3 +140,11 @@ public Integer getTimeDelay()
  */
 public void cleanScene(boolean retainPpt)
 ```
+
+## 日志上传功能
+
+>2.4.2 新增API
+
+2.4.2 开始，sdk 会收集 sdk 中的debug 日志，主要涉及 API 调用时的输出。
+
+在使用`WhiteSdkConfiguration`初始化 SDK 时，配置 `WhiteSdkConfiguration` 中 `LoggerOptions` 选项，调用`LoggerOptions`的`setDisableReportLog`方法，设置为 true 后，再初始化 WhiteSDK 即可关闭上传内容。

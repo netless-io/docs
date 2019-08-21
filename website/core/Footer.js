@@ -44,7 +44,7 @@ class Footer extends React.Component {
             <a target="_blank" href="https://netless.link/">
               官网网站
             </a>
-            <a target="_blank" href="https://demo-agora-partner.herewhite.com">
+            <a target="_blank" href="https://demo-rtc.herewhite.com/#/">
               Demo 体验
             </a>
             <a target="_blank" href="https://github.com/netless-io">

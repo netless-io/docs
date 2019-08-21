@@ -16,12 +16,31 @@ title: 简要说明
 
 ## 相关 repo
 
-1. [White-sdk-ios-release](https://github.com/duty-os/white-sdk-ios-release) —— Cocoapods 下载库，example 文件夹中项目，自带部分 API 调用延时
-1. [netless-swift-whiteboard](https://github.com/netless-io/netless-swift-whiteboard) —— 附带部分效果演示的 demo
+1. [White-sdk-ios-release](https://github.com/duty-os/white-sdk-ios-release)
+    * SDK 的 Cocoapods 下载库，其中 example 文件夹中项目，自带部分 API 调用演示
+1. [WhiteCombinePlayer](https://github.com/netless-io/whitecombineplayer)
+    * 集合 AVPlayer 与 WhiteSDK 中 replay 回放同步的开源库，可以参考该部分代码，在客户端集成视频与 replayer 回放操作
+1. [netless-swift-whiteboard](https://github.com/netless-io/netless-swift-whiteboard)
+    * 演示用 demo
 
 ---
 
 ## Changelog
+
+## [2.4.6] - 2019-08-06
+- 修复部分情况下，用户加入白板，无法立刻看到主播端画面的问题
+### [2.4.4] - 2019-08-02
+- 优化重连逻辑
+### [2.4.1] - 2019-07-31
+- 修复文字教具再次编辑时，无法弹出完整键盘的问题
+- 增加错误日志上传功能
+- 提供关闭日志上传功能接口（默认打开）
+- 优化断线重连功能
+### [2.4.0] - 2019-07-25
+- 增加同步获取实时房间，回放房间状态 API
+- 获取在线成员时，可以同时获取各个用户的教具状态，以及透传的用户信息
+- 支持同步自定义全局状态
+- 支持在本地修改白板背景色（不会同步到其他远端）
 ### [2.3.4] - 2019-07-17
 - 适配服务器端动态 PPT，动态 ppt 客户请升级
 ### [2.3.3] - 2019-07-12

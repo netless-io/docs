@@ -78,7 +78,7 @@ info.uuid = @"WhiteImageInformation";
 
 或者在想要使用时，调用 `whiteSDK` 的 `setCommonCallbackDelegate:` 方法，设置。
 
-## 只读
+## 只读<span class="anchor" id="disableOperations">
 
 >2.2.0 开始，该 API 拆分为：  
 禁止用户移动，缩放 API：`disableCameraTransform` (详情请参考 [视角操作-禁止视角变化](./view.md#disableCameraTransform))；  
@@ -116,6 +116,20 @@ info.uuid = @"WhiteImageInformation";
 
 目前不支持使用代码进行移动。
 
+## 背景色
+
+>2.4.0 新增 API
+
+白板新增`backgroudColor`属性，支持修改白板背景色，该颜色为本地修改，不会被同步给其他用户。
+
+```Objective-C
+@interface WhiteDisplayer: NSObject
+/**
+ 会被转换成十六进制色值，目前不支持透明度设置，只会传递透明度。该背景为用户本地修改值，不会被同步。
+ */
+@property (nonatomic, strong) UIColor *backgroundColor;
+@end
+```
 ## 用户信息透传
 
 >2.1.0 新增 API
@@ -210,3 +224,11 @@ sdk，会将该信息透传给所有客户端。（注意，该属性需要满�
 - (void)cleanScene:(BOOL)retainPPT;
 @end
 ```
+
+## 日志上传功能
+
+>2.4.1 新增API
+
+2.4.1 开始，sdk 会收集 sdk 中的debug 日志，主要涉及 API 调用时的输出。
+
+在使用`WhiteSdkConfiguration`初始化 SDK 时，设置`WhiteSdkConfiguration`的`loggerOptions`属性，传入一个有`disableReportLog`的字典，在其中定义打开关闭。YES 为关闭日志上传，NO 为打开日志上传（默认）。

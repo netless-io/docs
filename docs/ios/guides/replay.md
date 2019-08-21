@@ -74,6 +74,10 @@ playerConfig.audioUrl = @"https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/
 
 >以上代码，可以在 [White-SDK-iOS](https://github.com/duty-os/white-sdk-ios-release) Example 中的 WhitePlayerViewController 中查看。
 
+### 视频回放
+
+可以在 demo 中查看 [视频集成](../overview/introduction.md#相关-repo) WhiteCombinePlayer 中的实现，或直接集成使用。
+
 ## 详细类与 API
 
 ### WhitePlayerConfig

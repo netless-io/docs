@@ -1,6 +1,6 @@
 ---
 id: js-document
-title: 文档操作
+title: 课件转换与播放
 ---
 
 阅读本文前，请先阅读 server 端文档: [文档转图片](/docs/server/api/server-static-conversion)、[文档转网页](/docs/server/api/server-dynamic-conversion)，确保已经在 [console](https://console.herewhite.com) 开通对应服务。
@@ -14,6 +14,8 @@ SDK 将于 SDK 服务器的交互封装成了 `pptConverter` 类，开发者无�
 一个有 24 页的 pptx 文件，将在白板上创建 24 个场景。关于场景概念，详情请见 [场景管理](docs/advance/advance-scenes)。
 
 ```javascript
+//之前初始化的 sdk 实例，roomToken 创建房间时，具体房间的 roomToken，此处作为鉴权使用。
+pptConverter = sdk.pptConverter("任一房间的 roomToken，此处作为鉴权使用");
 pptConverter.convert({
   url: yourPPTDocumentURL,
   kind: "dynamic",
@@ -31,7 +33,7 @@ pptConverter.convert({
 var pptName = "dynamic";
 
 // 将 ppt 对应的场景插入白板
-room.putScene("/" + pptName, scenes);
+room.putScenes("/" + pptName, scenes);
 
 // 切换当前场景到 ppt 的第一页，这样才能显示出来
 room.setScenePath("/" + pptName + "/" + scenes[0].name);

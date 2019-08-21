@@ -12,37 +12,6 @@ class Index extends React.Component {
         const {config: siteConfig} = this.props;
         return (
             <div className="home-page-box">
-                <div className="home-page-box-banner">
-                    <div className="home-page-box-banner-image-box">
-                        <img className="home-page-box-banner-image" src={`${siteConfig.baseUrl}img/globe.svg`}/>
-                    </div>
-                    <div className="home-page-box-banner-btn">
-                        <a href="https://netless.link/" target="_blank">
-                            <div className="home-page-box-banner-cell">
-                                <div className="home-page-box-banner-cell-box">
-                                    <img style={{width: 104, marginBottom: 12}} src={`${siteConfig.baseUrl}img/landing.svg`}/>
-                                </div>
-                                <div className="home-page-box-banner-cell-title">官方网站</div>
-                            </div>
-                        </a>
-                        <a href="https://console.herewhite.com/" target="_blank">
-                            <div className="home-page-box-banner-cell">
-                                <div className="home-page-box-banner-cell-box">
-                                    <img style={{width: 108, marginBottom: 12}} src={`${siteConfig.baseUrl}img/console.svg`}/>
-                                </div>
-                                <div className="home-page-box-banner-cell-title">管理控制台</div>
-                            </div>
-                        </a>
-                        <a href="https://demo.herewhite.com/#/zh-CN/" target="_blank">
-                            <div className="home-page-box-banner-cell">
-                                <div className="home-page-box-banner-cell-box">
-                                    <img style={{width: 106, marginBottom: 12}} src={`${siteConfig.baseUrl}img/demo.svg`}/>
-                                </div>
-                                <div className="home-page-box-banner-cell-title">Demo 体验</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
                 <div className="home-page-box-mid">
                     <div className="home-page-cell">
                         <div className="home-page-cell-title">JavaScript</div>
@@ -138,6 +107,37 @@ class Index extends React.Component {
                         </a>
                         <a href={`${siteConfig.baseUrl}blog/2019/05/01/introduction`}>
                             <div className="home-page-cell-inner">白板介绍</div>
+                        </a>
+                    </div>
+                </div>
+                <div className="home-page-box-banner">
+                    {/*<div className="home-page-box-banner-image-box">*/}
+                        {/*<img className="home-page-box-banner-image" src={`${siteConfig.baseUrl}img/globe.svg`}/>*/}
+                    {/*</div>*/}
+                    <div className="home-page-box-banner-btn">
+                        <a href="https://netless.link/" target="_blank">
+                            <div className="home-page-box-banner-cell">
+                                <div className="home-page-box-banner-cell-box">
+                                    <img style={{width: 104, marginBottom: 12}} src={`${siteConfig.baseUrl}img/landing.svg`}/>
+                                </div>
+                                <div className="home-page-box-banner-cell-title">官方网站</div>
+                            </div>
+                        </a>
+                        <a href="https://console.herewhite.com/" target="_blank">
+                            <div className="home-page-box-banner-cell">
+                                <div className="home-page-box-banner-cell-box">
+                                    <img style={{width: 108, marginBottom: 12}} src={`${siteConfig.baseUrl}img/console.svg`}/>
+                                </div>
+                                <div className="home-page-box-banner-cell-title">管理控制台</div>
+                            </div>
+                        </a>
+                        <a href="https://demo.herewhite.com/#/zh-CN/" target="_blank">
+                            <div className="home-page-box-banner-cell">
+                                <div className="home-page-box-banner-cell-box">
+                                    <img style={{width: 106, marginBottom: 12}} src={`${siteConfig.baseUrl}img/demo.svg`}/>
+                                </div>
+                                <div className="home-page-box-banner-cell-title">Demo 体验</div>
+                            </div>
                         </a>
                     </div>
                 </div>
