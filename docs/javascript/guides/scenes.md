@@ -25,4 +25,4 @@ scenePreview(scenePath: string, div: HTMLElement, width: number, height: number)
 
 ## 进阶文档
 
-请查看 [进阶文档-场景管理](/docs/advance/advance-scenes?platform=web)
+请查看 [进阶文档-场景管理](/docs/blog/blog-scenes?platform=web)

@@ -1,5 +1,6 @@
 ---
-title: 在线debug
+id: debug-center
+title: 在线 debug
 ---
 
 ## 介绍
