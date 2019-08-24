@@ -1,7 +1,6 @@
 ---
 id: js-releaseNote
 title: 版本历史
-sidebar_label:
 ---
 
 ## 版本历史<span class="anchor" id="history">

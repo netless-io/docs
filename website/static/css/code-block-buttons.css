@@ -2,7 +2,7 @@
 pre {
     position: relative;
   }
-  
+
   pre .btnIcon {
     position: absolute;
     top: 4px;
@@ -15,26 +15,26 @@ pre {
     height: 30px;
     transition: all .25s ease-out;
   }
-  
+
   pre .btnIcon:hover {
     text-decoration: none;
   }
-  
+
   .btnIcon__body {
     align-items: center;
     display: flex;
-    color: black;
+    color: white;
   }
-  
+
   .btnIcon svg {
     fill: currentColor;
     margin-right: .4em;
   }
-  
+
   .btnIcon__label {
     font-size: 11px;
   }
-  
+
   .btnClipboard {
     right: 10px;
   }

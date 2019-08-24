@@ -53,7 +53,9 @@
   "JavaScript": {
     "产品概述": [
       "javascript/overview/js-introduction",
-      "javascript/overview/js-releaseNote"
+      "javascript/overview/js-releaseNote",
+      "javascript/overview/js-open-source",
+      "javascript/overview/js-sdk-get"
     ],
     "快速开始": [
       "javascript/quick-start/js-declare",
