@@ -22,8 +22,8 @@ const users = [
 
 const siteConfig = {
   title: 'Netless', // Title for your website.
-  tagline: 'A website for testing',
-  url: 'https://your-docusaurus-quick-start-site.com', // Your website URL
+  tagline: 'Netless Developer Document',
+  url: 'https://developer.netless.link', // Your website URL
   baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
@@ -41,6 +41,7 @@ const siteConfig = {
     {doc: 'javascript/overview/js-introduction', label: 'JavaScript'},
     {doc: 'android/overview/android-introduction', label: 'Android'},
     {doc: 'ios/overview/ios-introduction', label: 'iOS'},
+    {doc: 'mini/overview/mini-introduction', label: '小程序' },
     {doc: 'server/overview/server-introduction', label: 'Server'},
     {doc: 'blog/blog-glossary', label: '博客'},
     {

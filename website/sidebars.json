@@ -88,6 +88,27 @@
       "blog/blog-begin-netless"
     ]
   },
+  "Mini": {
+    "产品概述": [
+      "mini/overview/mini-introduction"
+    ],
+    "快速开始": [
+      "mini/quick-start/mini-declare",
+      "mini/quick-start/mini-web",
+      "mini/quick-start/mini-webview",
+      "mini/quick-start/mini-with-rtc"
+    ],
+    "常用功能": [
+      "mini/guides/mini-document",
+      "mini/guides/mini-state",
+      "mini/guides/mini-tools",
+      "mini/guides/mini-view",
+      "mini/guides/mini-operation",
+      "mini/guides/mini-events",
+      "mini/guides/mini-scenes",
+      "mini/guides/mini-replay"
+    ]
+  },
   "server": {
     "产品概述": [
       "server/overview/server-introduction",

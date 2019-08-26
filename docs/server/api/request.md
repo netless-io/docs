@@ -5,12 +5,6 @@ title: 请求规范
 
 ## API 请求域名
 
-* 1.0 版本 host
-```plain
-https://cloudcapiv3.herewhite.com
-```
-
-* 2.0 版本 host
 ```plain
 https://cloudcapiv4.herewhite.com
 ```
