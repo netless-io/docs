@@ -10,7 +10,11 @@ sidebar_label: 简要说明
 
 ![mini-finally](/screenshot/mini-finally.png)
 
-<!-- ## 相关 repo -->
+## 相关 repo
+
+1. [netless-mini-whiteboard](https://github.com/netless-io/netless-mini-whiteboard)
+    * 微信小程序集成 Demo
+
 
 
 ## Changelog
