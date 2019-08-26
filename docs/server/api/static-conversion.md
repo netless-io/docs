@@ -180,7 +180,7 @@ export type Ppt = {
     readonly scenes: ReadonlyArray<SceneDefinition>;
 };
 
-// room 对象是在加入房间的时候参数，具体参见[场景管理](/docs/advance/scenes.md)文档
+blog
 room.putScenes(`/${filename}`, res.scenes);
 room.setScenePath(`/${filename}/${res.scenes[0].name}`);
 ```

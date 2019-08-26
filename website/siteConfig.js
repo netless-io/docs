@@ -43,12 +43,11 @@ const siteConfig = {
     {doc: 'ios/overview/ios-introduction', label: 'iOS'},
     {doc: 'mini/overview/mini-introduction', label: '小程序' },
     {doc: 'server/overview/server-introduction', label: 'Server'},
-    {doc: 'advance/advance-overview', label: '业务实现'},
+    {doc: 'blog/blog-glossary', label: '博客'},
     {
         href: 'https://github.com/netless-io',
         label: 'GitHub',
     },
-    {blog: true, label: '博客'},
   ],
   algolia: {
       apiKey: 'c438dda9f510a0e984c1e0582e03fa62',
@@ -83,12 +82,12 @@ const siteConfig = {
     ]
   },
   */
-
+  // usePrism: ["json"],
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
   copyright: `Copyright © ${new Date().getFullYear()} Netless`,
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: 'default',
+    theme: 'vs2015',
   },
 
   // Add custom scripts here that would be placed in <script> tags.

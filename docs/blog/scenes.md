@@ -1,5 +1,5 @@
 ---
-id: advance-scenes
+id: blog-scenes
 title: 场景管理(ppt)
 ---
 

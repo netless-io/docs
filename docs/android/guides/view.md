@@ -248,4 +248,4 @@ room.disableCameraTransform(false);
 
 ## 相关文档
 
-[主播一对多业务实现](/docs/advance/advance-broadcast?platform=Android)
+[主播一对多业务实现](/docs/blog/advance-broadcast?platform=Android)

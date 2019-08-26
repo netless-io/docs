@@ -84,8 +84,8 @@ class Index extends React.Component {
                         <div className="home-page-cell-icon">
                             <img src={`${siteConfig.baseUrl}img/features.svg`}/>
                         </div>
-                        <a href={`${siteConfig.baseUrl}docs/advance/advance-overview`}>
-                            <div className="home-page-cell-inner">概览</div>
+                        <a href={`${siteConfig.baseUrl}docs/advance/advance-glossary`}>
+                            <div className="home-page-cell-inner">专业名词说明</div>
                         </a>
                         <a href={`${siteConfig.baseUrl}docs/advance/advance-scenes`}>
                             <div className="home-page-cell-inner">场景管理</div>

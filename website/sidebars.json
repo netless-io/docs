@@ -52,7 +52,10 @@
   },
   "JavaScript": {
     "产品概述": [
-      "javascript/overview/js-introduction"
+      "javascript/overview/js-introduction",
+      "javascript/overview/js-releaseNote",
+      "javascript/overview/js-open-source",
+      "javascript/overview/js-sdk-get"
     ],
     "快速开始": [
       "javascript/quick-start/js-declare",
@@ -74,12 +77,15 @@
       "javascript/guides/js-v2migration"
     ]
   },
-  "advance": {
-    "常见业务": [
-      "advance/advance-overview",
-      "advance/advance-scenes",
-      "advance/advance-broadcast",
-      "advance/advance-ppt"
+  "blog": {
+    "博客": [
+      "blog/blog-glossary",
+      "blog/blog-scenes",
+      "blog/blog-broadcast",
+      "blog/blog-ppt",
+      "blog/blog-add-driver",
+      "blog/debug-center",
+      "blog/blog-begin-netless"
     ]
   },
   "Mini": {
@@ -103,7 +109,7 @@
       "mini/guides/mini-replay"
     ]
   },
-  "Server": {
+  "server": {
     "产品概述": [
       "server/overview/server-introduction",
       "server/overview/server-release"
