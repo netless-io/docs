@@ -79,36 +79,6 @@ class Index extends React.Component {
                             <div className="home-page-cell-inner">服务端 API</div>
                         </a>
                     </div>
-                    <div className="home-page-cell">
-                        <div className="home-page-cell-title">高级功能</div>
-                        <div className="home-page-cell-icon">
-                            <img src={`${siteConfig.baseUrl}img/features.svg`}/>
-                        </div>
-                        <a href={`${siteConfig.baseUrl}docs/advance/advance-glossary`}>
-                            <div className="home-page-cell-inner">专业名词说明</div>
-                        </a>
-                        <a href={`${siteConfig.baseUrl}docs/advance/advance-scenes`}>
-                            <div className="home-page-cell-inner">场景管理</div>
-                        </a>
-                        <a href={`${siteConfig.baseUrl}docs/advance/advance-broadcast`}>
-                            <div className="home-page-cell-inner">主播与观众</div>
-                        </a>
-                    </div>
-                    <div className="home-page-cell">
-                        <div className="home-page-cell-title">博客</div>
-                        <div className="home-page-cell-icon">
-                            <img src={`${siteConfig.baseUrl}img/blog.svg`}/>
-                        </div>
-                        <a href={`${siteConfig.baseUrl}blog/2019/05/03/replay`}>
-                            <div className="home-page-cell-inner">回放功能</div>
-                        </a>
-                        <a href={`${siteConfig.baseUrl}blog/2019/05/02/first-step`}>
-                            <div className="home-page-cell-inner">接入准备</div>
-                        </a>
-                        <a href={`${siteConfig.baseUrl}blog/2019/05/01/introduction`}>
-                            <div className="home-page-cell-inner">白板介绍</div>
-                        </a>
-                    </div>
                 </div>
                 <div className="home-page-box-banner">
                     {/*<div className="home-page-box-banner-image-box">*/}
