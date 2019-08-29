@@ -24,9 +24,9 @@ title: 集成准备
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.2.13
+        <link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.2.14
 .css">
-        <script src="https://sdk.herewhite.com/white-web-sdk/2.2.13
+        <script src="https://sdk.herewhite.com/white-web-sdk/2.2.14
 .js"></script>
         <script src="index.js"></script>
     </head>
@@ -39,10 +39,10 @@ title: 集成准备
 
 ```shell
 # yarn 安装方式
-yarn add white-web-sdk@^2.2.13
+yarn add white-web-sdk@^2.2.14
 
 # 或者使用 npm 安装方式
-npm install white-web-sdk@^2.2.13
+npm install white-web-sdk@^2.2.14
  --save
 
 # 不使用动态 ppt 的客户，可以暂时停留在 beta7 版本
