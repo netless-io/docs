@@ -20,7 +20,10 @@ API 19 (Android 4.4) – Kitkat, released October 2013
 ## SDK 版本列表
 
 [最新版本列表——发版自动更新](https://jitpack.io/#duty-os/white-sdk-android)
-
+## [2.4.11] - 2019-08-30
+- 优化 Android 4.4 显示
+- 优化截图效果
+- room 中 ObserverId，表示当前用户在白板内部的 id
 ## [2.4.10] - 2019-08-25
 - 兼容 Android 4.4
 - 修复回放时，图片替换 API 失效问题
