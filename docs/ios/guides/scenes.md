@@ -282,7 +282,3 @@ WhiteScene 管理了一个白板页面，其中包含了 name，并且接管了�
 ```
 
 该类描述了当前场景目录的状态。
-
-## API 介绍
-
-请查看 [进阶文档-场景管理](/docs/blog/blog-scenes?platform=ios)

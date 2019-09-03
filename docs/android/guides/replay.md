@@ -4,7 +4,7 @@ title: 回放
 ---
 
 >创建房间时，需要设置为可回放房间。由于回放房间会占用更多资源，需要开发者主动设置。  
-具体请在 [服务器文档](../../server/api/request.md) 中查看 创建白板 API。
+具体请在 [服务器文档](/docs/server/api/server-whiteboard-base) 中查看 创建白板 API。
 
 ## 快速开始
 

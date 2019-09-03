@@ -12,7 +12,7 @@ title: 简要说明
 历史版本兼容性：  
 <span style="color:red">iOS 2.1.0 之前的版本与 iOS 2.1.0 及其以后的版本，连接的是不同服务器，无法互连。SDK API 保持兼容。</span>
 
-具体请看 [2.0.0正式版发布](/blog/2019/06/22/release-note)
+具体请看 [2.0.0正式版发布](/docs/ios/guides/ios-v2migration)
 
 ## 相关 repo
 
