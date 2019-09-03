@@ -84,4 +84,4 @@ sidebar_label: 简要说明
 但是不能与低版本sdk 进行互联。可与 Android 2.0.0 正式版，以及 iOS 2.1.0 版本进行互联。
 
 >2019.06.24 前接入的客户，在升级至该版本时，请联系 SDK 团队，确认服务器指向版本。
->更多内容，请查看 [2.0.0正式版发布](/blog/2019/06/22/release-note)
+>更多内容，请查看 [2.0.0正式版发布](/docs/javascript/guides/js-v2migration)

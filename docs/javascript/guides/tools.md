@@ -3,7 +3,7 @@ id: js-tools
 title: 教具使用
 ---
 
-本教程中的 `room` 都是白板房间实例。具体可以参考 [quick-start](/docs/js/quick-start/js-declare) 中，加入房间的相关实现。
+本教程中的 `room` 都是白板房间实例。具体可以参考 [quick-start](/docs/javascript/quick-start/js-create-room) 中，加入房间的相关实现。
 
 ## 教具
 

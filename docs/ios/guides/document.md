@@ -11,7 +11,7 @@ SDK 将于 SDK 服务器的交互封装成了 `WhiteConverter` 类，开发者�
 
 对于 pptx 文档而言，每一页都将与白板的一个场景对应。
 
-一个有 24 页的 pptx 文件，将在白板上创建 24 个场景。关于场景概念，详情请见 [场景管理](docs/advance/advance-scenes)。
+一个有 24 页的 pptx 文件，将在白板上创建 24 个场景。关于场景概念，详情请见 [场景管理](/docs/ios/guides/ios-scenes)。
 
 ```Objective-C
 WhiteConverter *converter = [[WhiteConverter alloc] initWithRoomToken:self.roomToken];

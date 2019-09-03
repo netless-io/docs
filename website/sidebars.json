@@ -82,7 +82,6 @@
     "博客": [
       "blog/blog-glossary",
       "blog/blog-broadcast",
-      "blog/blog-ppt",
       "blog/blog-add-driver",
       "blog/debug-center",
       "blog/blog-begin-netless"
@@ -111,8 +110,7 @@
   },
   "server": {
     "产品概述": [
-      "server/overview/server-introduction",
-      "server/overview/server-release"
+      "server/overview/server-introduction"
     ],
     "服务端 API": [
       "server/api/server-request",

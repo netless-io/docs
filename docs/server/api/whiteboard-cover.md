@@ -6,11 +6,11 @@ title: 获取封面
 获取封面是将白板场景转换为图片的服务。
 白板场景在转换为图片后可以用于实现缩略图、房间封面等功能。
 
-关于场景的相关介绍可以参考:  [场景管理](https://developer.herewhite.com/docs/advance/advance-scenes)
+关于场景的相关介绍可以参考:  [场景管理](/docs/javascript/guides/js-scenes)
 
 ## 准备工作
 
-### 1. 根据 [配置云存储](/blog/2019/06/18/add-driver) 文章，在 [console](https://console.herewhite.com) 中配置云存储
+### 1. 根据 [配置云存储](/docs/blog/blog-add-driver) 文章，在 [console](https://console.herewhite.com) 中配置云存储
 
 ### 2. 在管理控制台上开启获取封面服务
 

@@ -11,7 +11,7 @@ SDK 将于 SDK 服务器的交互封装成了 `Converter` 类，开发者无需�
 
 对于 pptx 文档而言，每一页都将与白板的一个场景对应。
 
-一个有 24 页的 pptx 文件，将在白板上创建 24 个场景。关于场景概念，详情请见 [场景管理](docs/advance/advance-scenes)。
+一个有 24 页的 pptx 文件，将在白板上创建 24 个场景。关于场景概念，详情请见 [场景管理](/docs/android/guides/android-scenes)。
 
 ```Java
 Converter c = new Converter(this.roomToken);
