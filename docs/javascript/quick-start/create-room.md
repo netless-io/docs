@@ -52,10 +52,6 @@ fetch(url, requestInit).then(function(response) {
 function initAndJoinRoom (json) {
     // 初始化 SDK，初始化 SDK 的参数，仅对本地用户有效，默认可以不传
     var whiteWebSdk = new WhiteWebSdk({
-        // 用户手动进行缩放操作时的上下限，默认 为 0.1~10。
-        // 缩放 API 不受影响
-        zoomMaxScale: 3, 
-        zoomMinScale: 0.3,
         // 图片替换 API，可以在插入图片和创建新场景背景图时，替换传入的 url。
         // 如果没有需要，请不要传入，可以减少前端资源开销
         // 使用该 API 后，服务器截屏时，会使用原始图片地址
@@ -67,7 +63,7 @@ function initAndJoinRoom (json) {
         roomToken: json.msg.roomToken,
     });
 }
-    
+
 // 将白板绑定在一个元素上
 function bind (room) {
     room.bindHtmlElement(document.getElementById('whiteboard'));
@@ -117,7 +113,7 @@ function initAndJoinRoom (json) {
         roomToken: json.msg.roomToken,
     });
 }
-    
+
 // 将白板绑定在一个元素上
 function bind (room) {
     room.bindHtmlElement(document.getElementById('whiteboard'));

@@ -140,6 +140,123 @@ room.disableCameraTransform = false;
 
 >你仍然通过程序调整视角；用户仍然可以进行笔画等输出操作。
 
+## 视角限制
+
+> 2.2.0 新增 API
+
+开发者可以通过如下方式限制视角的范围。
+
+```javascript
+room.setCameraBound({
+    centerX: 120, // 限制范围（矩形）的中间点的 x 坐标
+    centerY: 320, // 限制范围（矩形）的中间点的 y 坐标
+    width: 200, // 限制范围（矩形）的宽
+    height: 300, // 限制范围（矩形）的高
+});
+```
+
+以上代码会将视角限制在一个以 (x: 120, y: 320) 坐标为中点的，宽为 200，高为 300 的矩形范围之内。
+
+如果你希望取消视角范围限制，可以执行如下代码。
+
+```javascript
+room.setCameraBound({
+    centerX: 0,
+    centerY: 0,
+    width: Infinity,
+    height: Infinity,
+});
+```
+
+你也可以在加入房间之前，提前设置初始视角范围限制。
+
+```javascript
+whiteWebSdk.joinRoom({
+    uuid: roomUUID,
+    roomToken: roomToken,
+    cameraBound: {
+      centerX: 120,
+      centerY: 320,
+      width: 200,
+      height: 300,
+    },
+});
+```
+
+不但 ``room`` 可以设置视角范围限制，``player`` 也可以。
+
+```javascript
+player.setCameraBound({
+    centerX: 120,
+    centerY: 320,
+    width: 200,
+    height: 300,
+});
+```
+
+**注意**：为房间设置或初始化视角范围仅仅对自己生效，不会影响房间的其他用户。
+
+以下是视角范围限制相关的全部参数：
+
+```typescript
+export type CameraBound = {
+
+    // 越出边界时手势的阻力（范围 0.0 ~ 1.0）
+    // 使用多指触碰改变视角时，如果越出边界。该值越大，感受到的阻力越大。
+    // 当取 0.0 时，完全感受不到阻力。
+    // 当取 1.0 时，完全无法用手势将视角移除边界一分一毫。
+    // 取中间值，则感受介乎两者之间。
+    readonly damping?: number;
+
+    // 限制范围（矩形）的中间点的 x 坐标
+    readonly centerX?: number;
+
+    // 限制范围（矩形）的中间点的 y 坐标
+    readonly centerY?: number;
+
+    // 限制范围（矩形）的宽。
+    // 如果取 Infinity，则表示不加限制。
+    readonly width?: number;
+
+    // 限制范围（矩形）的高。
+    // 如果取 Infinity，则表示不加限制。
+    readonly height?: number;
+
+    // 对视角推拉的限制。视角放大的极限。
+    readonly maxContentMode?: ContentMode;
+
+    // 对视角推拉的限制。视角缩小的极限。
+    readonly minContentMode?: ContentMode;
+};
+```
+
+其中，``ContentMode`` 可以取如下值。
+
+```typescript
+
+// 将视角放大到 1.2 倍时的状态。
+contentModeScale(1.2);
+
+// Fill 模式：将边界放大到直到视角的长边对其边界的短边。
+//           此时的视角保证了画面内所见之物都在边界之内。
+//           而边界之内的事物不一定在画面之中。
+contentModeAspectFill()
+
+// Fit 模式：将边界放大到直到视角的短边对其边界的长边。
+//          此时的视角保证了边界之内的事物一定在画面之中。
+//          但画面中所见之物不一定在边界之内。
+contentModeAspectFit()
+
+// 在 Fill 模式下，继续将画面放大 1.2 倍。
+contentModeAspectFillScale(1.2)
+
+// 在 Fit 模式下，继续将画面放大 1.2 倍。
+contentModeAspectFitScale(1.2)
+
+// 在 Fit 模式下，在侧边填充 200 像素的空隙。
+contentModeAspectFitSpace(200)
+```
+
 ## 相关文档
 
 [主播一对多业务实现](/docs/blog/blog-broadcast)
