@@ -18,6 +18,7 @@ var whiteWebSdk = new WhiteWebSdk({
         // 这里与
         uuid: json.msg.room.uuid,
         roomToken: json.msg.roomToken,
+        disableBezier: false, // 可选，禁止铅笔笔迹以贝塞尔曲线的形式展示，默认为 false
     });
 ```
 
