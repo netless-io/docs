@@ -20,6 +20,11 @@ API 19 (Android 4.4) – Kitkat, released October 2013
 ## SDK 版本列表
 
 [最新版本列表——发版自动更新](https://jitpack.io/#duty-os/white-sdk-android)
+## [2.4.13] - 2019-09-09
+- 恢复图片替换 API
+- 切换场景 API，提供成功失败回调
+- 移除异步 API Deprecate 警告
+- 设置场景路径 API，增加成功失败回调
 ## [2.4.11] - 2019-08-30
 - 优化 Android 4.4 显示
 - 优化截图效果
