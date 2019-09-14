@@ -66,16 +66,7 @@ room.zoomChange(10);
 
 ## 背景色
 
->2.4.0 新增 API
-
-白板新增`backgroudColor`属性，支持修改白板背景色，该颜色为本地修改，不会被同步给其他用户。
-
-```java
-room.setBackgroundColor(Color.Red);
-room.getBackgroundColor();
-replayer.setBackgroundColor(Color.Red);
-replayer.getBackgroundColor();
-```
+白板本身底色为透明，如需设置背景色，只需要对 WhiteboardView 设置 backgroundColor 即可。
 
 ## 用户信息透传
 
