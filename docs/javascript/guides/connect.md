@@ -12,7 +12,7 @@ var whiteWebSdk = new WhiteWebSdk({
         // 使用该 API 后，服务器截屏时，会使用原始图片地址
         urlInterrupter: url => url, // 可选
         preloadDynamicPPT: false, // 可选,是否预先加载动态 PPT 中的图片，会显著提升用户体验，降低翻页的图片加载时长
-        deviceType: "Touch", // 可选, Touch or Desktop , 默认会根据运行环境进行推断
+        deviceType: "touch", // 可选, touch or desktop , 默认会根据运行环境进行推断
     });
     return whiteWebSdk.joinRoom({
         // 这里与
