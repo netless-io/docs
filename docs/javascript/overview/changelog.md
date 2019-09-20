@@ -1,5 +1,5 @@
 ---
-id: js-releaseNote
+id: js-changelog
 title: 版本历史
 ---
 
