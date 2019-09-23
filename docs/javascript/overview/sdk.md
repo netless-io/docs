@@ -1,5 +1,5 @@
 ---
-id: js-sdk-get
+id: js-sdk
 title: SDK 获取
 ---
 

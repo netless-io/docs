@@ -1,7 +1,9 @@
 {
   "Android": {
     "产品概述": [
-      "android/overview/android-introduction"
+      "android/overview/android-introduction",
+      "android/overview/android-open-source",
+      "android/overview/android-changelog"
     ],
     "快速开始": [
       "android/quick-start/android-declare",
@@ -26,7 +28,9 @@
   },
   "iOS": {
     "产品概述": [
-      "ios/overview/ios-introduction"
+      "ios/overview/ios-introduction",
+      "ios/overview/ios-open-source",
+      "ios/overview/ios-changelog"
     ],
     "快速开始": [
       "ios/quick-start/ios-declare",
@@ -53,9 +57,9 @@
   "JavaScript": {
     "产品概述": [
       "javascript/overview/js-introduction",
-      "javascript/overview/js-releaseNote",
       "javascript/overview/js-open-source",
-      "javascript/overview/js-sdk-get"
+      "javascript/overview/js-sdk",
+      "javascript/overview/js-changelog"
     ],
     "快速开始": [
       "javascript/quick-start/js-declare",
