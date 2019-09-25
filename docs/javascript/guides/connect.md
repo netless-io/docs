@@ -22,6 +22,9 @@ var whiteWebSdk = new WhiteWebSdk({
     });
 ```
 
+
+
 - preloadDynamicPPT: 可选, 默认是 false。是否预先加载动态 PPT 中的图片，会显著提升用户体验，降低翻页的图片加载时长
 - urlInterrupter: 图片替换 API，可以在插入图片和创建新场景背景图时，替换传入的 url
 - deviceType: 可选, Touch or Desktop , 默认会根据运行环境进行推断
+- handToolKey: 可选, 设置后，用户按住对应按键的同时，按住鼠标，即可移动整个白板。key 为 KeyboardEvent 中的 key 属性。推荐传入空格键(" ")。
