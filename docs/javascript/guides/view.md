@@ -117,7 +117,7 @@ room.moveCameraToContain({
 ```javascript
 let width = 960;
 let heigh = 480;
-room.moveCamerToContain({
+room.moveCameraToContain({
   originX: - width / 2,
   originY: - height / 2,
   width: width,
