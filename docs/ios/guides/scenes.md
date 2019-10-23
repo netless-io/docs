@@ -84,8 +84,7 @@ title: 场景和文档管理
 
 ### 获取当前场景信息
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--iOS/Objective-C-->
+
 ```Objective-C
 @interface WhiteRoom : NSObject
 /** 获取当前场景状态 */
@@ -95,7 +94,7 @@ title: 场景和文档管理
 - (void)getScenesWithResult:(void (^) (NSArray<WhiteScene *> *scenes))result;
 @end
 ```
-<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 通过以上 API，获取当前场景信息内容，具体内容结构，可以在各 SDK 中查看结构。
 
@@ -107,8 +106,7 @@ title: 场景和文档管理
 
 如果要修改当前场景，移动到另外一个场景，则只需要调用以下 API，传入`场景路径`即可。
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--iOS/Objective-C-->
+
 ```Objective-C
 @interface WhiteRoom : NSObject
 - (void)setScenePath:(NSString *)path;
@@ -117,7 +115,7 @@ title: 场景和文档管理
 //example code
 [room setScenePath:@"/Phy/ppt1"]
 ```
-<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 >当切换 API 没有反应，或者回调中报错，有可能是以下情况：
 >1. 路径不合法。请阅读之前的章节，确保输入了`场景路径`符合规范（以 `/`开头）。
@@ -126,8 +124,7 @@ title: 场景和文档管理
 
 ### 插入新场景
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--iOS/Objective-C-->
+
 ```Objective-C
 @interface WhiteRoom : NSObject
 
@@ -142,7 +139,7 @@ title: 场景和文档管理
 @end
 ```
 
-<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 插入场景 API，接受三个参数:
 
@@ -158,8 +155,7 @@ title: 场景和文档管理
 
 类似于 Linux，macOS 的 mv 命令。
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--iOS/Objective-C-->
+
 ```Objective-C
 @interface WhiteRoom : NSObject
 /**
@@ -172,14 +168,13 @@ title: 场景和文档管理
 @end
 ```
 
-<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 
 ### 删除场景
 
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--iOS/Objective-C-->
+
 ```Objective-C
 @interface WhiteRoom : NSObject
 
@@ -189,7 +184,7 @@ title: 场景和文档管理
 - (void)removeScenes:(NSString *)dirOrPath;
 ```
 
-<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 
 可以给该参数传入 `"/"`，来清空白板房间内所有场景。
