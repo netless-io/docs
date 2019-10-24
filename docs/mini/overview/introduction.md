@@ -67,8 +67,8 @@ sidebar_label: 简要说明
 ```shell
 https://cloudcapiv4.herewhite.com
 https://sdkreport.herewhite.com
-https://scdncloudharestoragev3.herewhite.com
-wss://scdncloudharev3.herewhite.com
+https://expresscloudharestoragev2.herewhite.com
+wss://minihare.herewhite.com
 ```
 5. 编辑 pages/index/index.json
 
