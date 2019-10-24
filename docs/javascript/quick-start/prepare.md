@@ -24,9 +24,9 @@ title: 集成准备
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.3.6
+        <link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.3.9
 .css">
-        <script src="https://sdk.herewhite.com/white-web-sdk/2.3.6
+        <script src="https://sdk.herewhite.com/white-web-sdk/2.3.9
 .js"></script>
         <script src="index.js"></script>
     </head>
@@ -39,10 +39,10 @@ title: 集成准备
 
 ```shell
 # yarn 安装方式
-yarn add white-web-sdk@^2.3.6
+yarn add white-web-sdk@^2.3.9
 
 # 或者使用 npm 安装方式
-npm install white-web-sdk@^2.3.6
+npm install white-web-sdk@^2.3.9
  --save
 
 ```

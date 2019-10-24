@@ -85,8 +85,7 @@ title: 场景和文档管理
 
 ### 获取当前场景信息
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--Web/Typescript-->
+
 ```Typescript
 let scenceState = room.state.sceneState;
 
@@ -108,7 +107,7 @@ let scenceState = room.state.sceneState;
 }
 */
 ```
-<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 通过以上 API，获取当前场景信息内容，具体内容结构，可以在各 SDK 中查看结构。
 
@@ -120,15 +119,14 @@ let scenceState = room.state.sceneState;
 
 如果要修改当前场景，移动到另外一个场景，则只需要调用以下 API，传入`场景路径`即可。
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--Web/Typescript-->
+
 ```js
 // 其中，room 是你通过 whiteWebSdk.joinRoom(...) 获取的房间对象
 // 该方法的参数为你想切换到的场景路径
 room.setScenePath("/phy/ppt1");
 
 ```
-<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 >当切换 API 没有反应，或者回调中报错，有可能是以下情况：
 >1. 路径不合法。请阅读之前的章节，确保输入了`场景路径`符合规范（以 `/`开头）。
@@ -137,12 +135,13 @@ room.setScenePath("/phy/ppt1");
 
 ### 插入新场景
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--Web/Typescript-->
+
 ```js
-room.putScenes("/Phy", [{name: "ppt4"}], 0);
+// 第一个是文件目录
+// 第二个是场景数组，一个场景中，包含 name （不填会自动生成随机名称）和 ppt（可选，一旦填入 ppt，则三个字段都需要存在）
+room.putScenes("/Phy", [{name: "ppt4", ppt: {src: "https://exmaple.com/example.png", width: 1024, height: 768}}], 0);
 ```
-<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 插入场景 API，接受三个参数:
 
@@ -158,8 +157,7 @@ room.putScenes("/Phy", [{name: "ppt4"}], 0);
 
 类似于 Linux，macOS 的 mv 命令。
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--Web/Typescript-->
+
 ```js
 /**
  移动/重命名页面
@@ -169,14 +167,13 @@ room.putScenes("/Phy", [{name: "ppt4"}], 0);
  */
 room.moveScene("/math/geometry", "/graphics/geometry");
 ```
-<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 
 ### 删除场景
 
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--Web/Typescript-->
+
 ```js
 /**
  @param dirOrPath 场景路径，或者是场景目录。如果传入的是场景路径，则移除场景路径。如果传入的是场景目录，则移除场景目录下的所有场景。
@@ -184,7 +181,7 @@ room.moveScene("/math/geometry", "/graphics/geometry");
 room.removeScenes("/Phy/ppt4")
 room.removeScenes("/Eng");
 ```
-<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 
 可以给该参数传入 `"/"`，来清空白板房间内所有场景。
