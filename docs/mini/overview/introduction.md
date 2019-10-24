@@ -6,11 +6,11 @@ sidebar_label: 简要说明
 
 ## 介绍
 
-小程序使用微信开发的 mina 框架，采用双进程的方式开发，业务逻辑在 JS 引擎，渲染部分采用 Webview 部分采用原生组件。白板小程序 SDK 以标准小程序自定义组件的形式提供，目前处在公测阶段，获取 SDK 请联系技术支持：13651940170 （微信同号）
+小程序使用微信开发的 mina 框架，采用双进程的方式开发，业务逻辑在 JS 引擎，渲染部分采用 WebView 部分采用原生组件。白板小程序 SDK 以标准小程序自定义组件的形式提供，目前处在公测阶段，获取 SDK 请联系技术支持：13651940170 （微信同号）
 
 ## 运行环境
 
-- 请使用基础库 2.8.3 
+- 请使用小程序基础库 2.8.3 
 
 ## 白板开发
 
@@ -64,7 +64,7 @@ sidebar_label: 简要说明
 
 4. 添加如下域名到微信的应用 url 白名单 [开发设置](https://mp.weixin.qq.com/wxamp/devprofile/get_profile?token=622315407&lang=zh_CN)
 
-```
+```shell
 https://cloudcapiv4.herewhite.com
 https://sdkreport.herewhite.com
 https://scdncloudharestoragev3.herewhite.com
