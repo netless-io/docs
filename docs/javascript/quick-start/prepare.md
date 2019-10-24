@@ -45,7 +45,11 @@ yarn add white-web-sdk@^2.3.9
 npm install white-web-sdk@^2.3.9
  --save
 
-# 不使用动态 ppt 的客户，可以暂时停留在 beta7 版本
+```
+在项目中添加如下代码引入
+```javascript
+import 'white-web-sdk/style/index.css'
+import {WhiteWebSdk} from 'white-web-sdk';
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
