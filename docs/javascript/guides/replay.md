@@ -60,30 +60,6 @@ whiteWebSdk.replayRoom({
 })
 ```
 
-### 视频支持
-
-sdk 支持在回放时传入音视频地址。此时 sdk 会主动接管音视频播放，负责处理音视频与房间回放的播放状态同步。当白板回放与音视频，任意一个进入缓冲，状态时，sdk 会自动停止另一个的播放，等待缓冲完毕，并且同时触发 player 的状态回调。
-
-音频只需要直接传入音频地址即可。显示视频，需要在初始化 `player` 前，做一部分准备工作。
-
-#### 1. 创建占位div/video 标签
-
-占位标签 id 为 `white-sdk-video-js`
-
-#### 2. 使用 videojs 初始化
-
-使用 video.js 将占位标签，创建 videojs.player
-
-初始化代码参考
-
-```javascript
-// videojs 为 web-sdk 依赖，使用 yarn/npm 管理工具时，会自动安装；如果是使用cdn 引用，videojs 已经打包在其中，可以直接使用
-var playerOptions = {controls: false, preload: "auto"};
-videojs(placeholderVideoDiv, playerOptions);
-```
-
-详细内容，可以在 [介绍文档-相关demo](/docs/javascript/overview/js-introduction#相关-demo) 中的 rtc-react-whiteboard 项目中进行查看，实现代码在 `src/components/whiteboard/VideoPlaceholder.tsx` 文件中。
-
 ### white-react-sdk
 如果你直接使用 `white-react-sdk` 来开发，可以使用如下方式进行绑定操作
 
@@ -95,6 +71,46 @@ class App extends React.Component {
         return <PlayerWhiteboard player={player}/>;
     }
 }
+```
+
+### 视频支持
+
+sdk 支持在回放时传入音视频地址。此时 sdk 会主动接管音视频播放，负责处理音视频与房间回放的播放状态同步。当白板回放与音视频，任意一个进入缓冲，状态时，sdk 会自动停止另一个的播放，等待缓冲完毕，并且同时触发 player 的状态回调。
+
+音频只需要直接传入音频地址即可。
+视频，需要在初始化 `player` 前，做一部分准备工作。
+
+#### 1. 创建占位 video 标签
+
+占位 video 标签 id 为 `white-sdk-video-js`
+
+>2.2.13 以前的版本，请在 video 标签中，添加 `video-js` css 名称。
+
+```html
+<!-- 根据业务，设置布局方式 -->
+<video id="white-sdk-video-js" class="video-js"></video>
+```
+
+#### 2. 引用 videojs css
+
+* 在 <head> 标签中引用 sdk 
+
+2.3.0 及其以前的版本，需要手动引用 videojs 的 css，
+
+```html
+<head>
+<link rel="stylesheet" href="https://vjs.zencdn.net/7.6.0/video-js.css">
+</head>
+```
+
+* 使用 npm 等包管理工具
+
+目前 video-js 为 sdk 的 Dependency 依赖，会自动安装。
+
+只需要在对应页面调用手动 import 即可。
+
+```js
+import "video.js/dist/video-js.css";
 ```
 
 ## 回放时，状态

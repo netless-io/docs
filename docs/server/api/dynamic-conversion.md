@@ -9,7 +9,7 @@ title: 文档转网页（动态文档转换）
 
 ## 准备工作
 
-### 1. 根据 [配置云存储](/blog/2019/06/18/add-driver) 文章，在 [console](https://console.herewhite.com) 中配置云存储
+### 1. 根据 [配置云存储](/docs/blog/blog-add-driver) 文章，在 [console](https://console.herewhite.com) 中配置云存储
 
 ### 2. 在管理控制台上开启动态文档服务
 
@@ -352,5 +352,5 @@ room.pptPreviousStep(); // 上一页（上一步）
 ## 效果展示
 
 <video style="width: 100%" loop="loop" autoplay="autoplay" id="video">
-  <source id="mp4" src="http://ogbaxzius.bkt.clouddn.com/pptx_demo.mp4">
+  <source id="mp4" src="https://white-sdk.oss-cn-beijing.aliyuncs.com/video/netless_pptx.mp4">
 </video>

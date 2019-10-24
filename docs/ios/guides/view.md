@@ -151,4 +151,4 @@ typedef NS_ENUM(NSInteger, WhiteViewMode) {
 
 ## 相关文档
 
-[主播一对多业务实现](/docs/blog/advance-broadcast?platform=ios)
+[主播一对多业务实现](/docs/blog/blog-broadcast)

@@ -11,7 +11,7 @@ title: 集成准备
 
 ## 1. 获取 sdkToken
 
-阅读 [接入准备](/blog/2019/05/02/first-step)，注册账号，获取 sdk token。
+阅读 [接入准备](/docs/blog/blog-begin-netless/)，注册账号，获取 sdk token。
 
 ## 2. 添加 SDK 到项目中
 
@@ -24,9 +24,9 @@ title: 集成准备
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.2.13
+        <link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.3.6
 .css">
-        <script src="https://sdk.herewhite.com/white-web-sdk/2.2.13
+        <script src="https://sdk.herewhite.com/white-web-sdk/2.3.6
 .js"></script>
         <script src="index.js"></script>
     </head>
@@ -39,10 +39,10 @@ title: 集成准备
 
 ```shell
 # yarn 安装方式
-yarn add white-web-sdk@^2.2.13
+yarn add white-web-sdk@^2.3.6
 
 # 或者使用 npm 安装方式
-npm install white-web-sdk@^2.2.13
+npm install white-web-sdk@^2.3.6
  --save
 
 ```

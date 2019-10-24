@@ -5,7 +5,7 @@ title: 场景管理 API
 
 ## 插入新的场景
 
-场景是个相对抽象的概念，可以是一页 PPT 也可以是一页空白白板，具体可以参考 [场景管理](https://developer.herewhite.com/docs/advance/advance-scenes)
+场景是个相对抽象的概念，可以是一页 PPT 也可以是一页空白白板，具体可以参考 [场景管理](/docs/javascript/guides/js-scenes)
 
 `POST /rooms/{{uuid}}/scenes?roomToken={{roomtoken}}`
 

@@ -254,6 +254,3 @@ public class SceneState {
 
 该类描述了当前场景目录的状态。
 
-## API 介绍
-
-请查看 [进阶文档-场景管理](/docs/blog/blog-scenes?platform=android)
