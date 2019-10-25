@@ -62,13 +62,13 @@ sidebar_label: 简要说明
 + └── white-mini-sdk
 ```
 
-4. 添加如下域名到微信的应用 url 白名单 [开发设置](https://mp.weixin.qq.com/wxamp/devprofile/get_profile?token=622315407&lang=zh_CN)
+4. 添加如下域名到微信的应用 url 白名单，位置在 [微信开发平台](https://mp.weixin.qq.com/) 的【开发】->【开发设置】->【服务器域名】
 
 ```shell
 https://cloudcapiv4.herewhite.com
 https://sdkreport.herewhite.com
-https://scdncloudharestoragev3.herewhite.com
-wss://scdncloudharev3.herewhite.com
+https://expresscloudharestoragev2.herewhite.com
+wss://minihare.herewhite.com
 ```
 5. 编辑 pages/index/index.json
 
@@ -296,7 +296,7 @@ Q. 白板笔画偏移
 
 A1. 删除 `app.wxss` 中的样式防止冲突
 
-A2. 请不要使用小程序基础库 2.9.0 ，该版本有严重 bug
+A2. 请不要使用小程序基础库 2.9.0 ，该版本有严重 bug，微信的新版本基础库会更新修复这个 bug
 
 
 
