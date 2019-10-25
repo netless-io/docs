@@ -62,7 +62,7 @@ sidebar_label: 简要说明
 + └── white-mini-sdk
 ```
 
-4. 添加如下域名到微信的应用 url 白名单 [开发设置](https://mp.weixin.qq.com/wxamp/devprofile/get_profile?token=622315407&lang=zh_CN)
+4. 添加如下域名到微信的应用 url 白名单，位置在【开发】->【开发设置】->【服务器域名】
 
 ```shell
 https://cloudcapiv4.herewhite.com
