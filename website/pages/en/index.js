@@ -68,6 +68,21 @@ class Index extends React.Component {
                         </a>
                     </div>
                     <div className="home-page-cell">
+                        <div className="home-page-cell-title">小程序</div>
+                        <div className="home-page-cell-icon">
+                            <img src={`${siteConfig.baseUrl}img/wechat.svg`} />
+                        </div>
+                        <a href={`${siteConfig.baseUrl}docs/mini/overview/mini-introduction`}>
+                            <div className="home-page-cell-inner">产品概述</div>
+                        </a>
+                        <a href={`${siteConfig.baseUrl}docs/mini/quick-start/mini-declare`}>
+                            <div className="home-page-cell-inner">快速开始</div>
+                        </a>
+                        <a href={`${siteConfig.baseUrl}docs/mini/guides/mini-state`}>
+                            <div className="home-page-cell-inner">常用功能</div>
+                        </a>
+                    </div>
+                    <div className="home-page-cell">
                         <div className="home-page-cell-title">Server</div>
                         <div className="home-page-cell-icon">
                             <img src={`${siteConfig.baseUrl}img/server.svg`}/>
