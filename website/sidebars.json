@@ -96,10 +96,7 @@
       "mini/overview/mini-introduction"
     ],
     "快速开始": [
-      "mini/quick-start/mini-declare",
-      "mini/quick-start/mini-web",
-      "mini/quick-start/mini-webview",
-      "mini/quick-start/mini-with-rtc"
+      "mini/quick-start/mini-declare"
     ],
     "常用功能": [
       "mini/guides/mini-document",
