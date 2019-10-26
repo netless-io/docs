@@ -15,6 +15,11 @@ title: 使用须知
 
 ## Cocoapods 使用
 
+### 使用镜像站加速
+
+由于网络原因，GitHub cocoapods 仓库网络可能存在延迟，此类用户，推荐使用[ 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/CocoaPods/)。
+具体使用请看该站使用帮助。
+
 ### 安装失败
 
 提示`[!] Unable to find a pod with name, author, summary, or descriptionmatching`等提示。
