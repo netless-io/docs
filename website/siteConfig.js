@@ -44,7 +44,6 @@ const siteConfig = {
     {doc: 'mini/overview/mini-introduction', label: '小程序' },
     {doc: 'server/overview/server-introduction', label: 'Server'},
     {doc: 'blog/blog-glossary', label: '博客'},
-      {languages: true},
     {
         href: 'https://github.com/netless-io',
         label: 'GitHub',
