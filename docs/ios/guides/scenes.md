@@ -1,6 +1,6 @@
 ---
 id: ios-scenes
-title: 场景和文档管理
+title: 页面（场景）管理
 ---
 ## 新增概念
 
