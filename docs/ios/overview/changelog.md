@@ -2,6 +2,10 @@
 id: ios-changelog
 title: 版本历史
 ---
+### [2.4.15] - 2019-11-04
+- 橡皮擦教具，增加禁止擦除图片选项（初始化房间参数配置）
+- 修复 SDK 初始化时，部分传入参数不生效的问题
+- 提取 Player 与 Room 共有方法，迁移进 Displayer 作为父类实例方法（refreshViewSize, convertToPointInWorld, addMagixEventListener, addHighFrequencyEventListener, removeMagixEventListener）
 ### [2.4.14] - 2019-10-29
 - 回放增加 refreshViewSize API
 - 修复了回放时首帧存在快进的问题
