@@ -15,10 +15,10 @@ var whiteWebSdk = new WhiteWebSdk({
         deviceType: "touch", // 可选, touch or desktop , 默认会根据运行环境进行推断
     });
     return whiteWebSdk.joinRoom({
-        // 这里与
         uuid: json.msg.room.uuid,
         roomToken: json.msg.roomToken,
         disableBezier: false, // 可选，禁止铅笔笔迹以贝塞尔曲线的形式展示，默认为 false
+        disableEraseImage: false, // 可选，禁止橡皮擦出图片，默认为 false
     });
 ```
 
