@@ -1,6 +1,6 @@
 ---
 id: js-replay
-title: 回放
+title: 回放功能
 ---
 
 请阅读[服务端文档-白板类型](/docs/server/api/server-whiteboard-base#%E5%88%9B%E5%BB%BA%E7%99%BD%E6%9D%BF)，确认在创建房间时，选择的是『`可回放房间`』类型。

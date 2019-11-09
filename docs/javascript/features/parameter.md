@@ -1,5 +1,5 @@
 ---
-id: js-connect
+id: js-parameter
 title: 初始化
 ---
 
