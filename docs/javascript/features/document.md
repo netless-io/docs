@@ -1,6 +1,6 @@
 ---
 id: js-document
-title: 文档转换与播放
+title: 文档转换
 ---
 
 阅读本文前，请先阅读 server 端文档: [文档转图片](/docs/server/api/server-static-conversion)、[文档转网页](/docs/server/api/server-dynamic-conversion)，确保已经在 [console](https://console.herewhite.com) 开通对应服务。
