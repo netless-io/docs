@@ -55,31 +55,33 @@
     ]
   },
   "JavaScript": {
-    "产品概述": [
-      "javascript/overview/js-introduction",
-      "javascript/overview/js-open-source",
-      "javascript/overview/js-sdk",
-      "javascript/overview/js-changelog"
+    "文档目录": [
+      "javascript/overview/js-outline"
+    ],
+    "安装指南": [
+      "javascript/guide/js-sdk",
+      "javascript/guide/js-changelog",
+      "javascript/guide/js-open-source",
+      "javascript/guide/js-debug",
+      "javascript/guide/js-v2migration"
     ],
     "快速开始": [
-      "javascript/quick-start/js-declare",
-      "javascript/quick-start/js-prepare",
-      "javascript/quick-start/js-create-room",
-      "javascript/quick-start/js-leave-room"
+      "javascript/quick-start/js-precondition",
+      "javascript/quick-start/js-token",
+      "javascript/quick-start/js-init-sdk",
+      "javascript/quick-start/js-room",
+      "javascript/quick-start/js-player"
     ],
-    "常用功能": [
-      "javascript/guides/js-connect",
-      "javascript/guides/js-document",
-      "javascript/guides/js-state",
-      "javascript/guides/js-tools",
-      "javascript/guides/js-view",
-      "javascript/guides/js-operation",
-      "javascript/guides/js-events",
-      "javascript/guides/js-scenes",
-      "javascript/guides/js-replay"
-    ],
-    "升级指南": [
-      "javascript/guides/js-v2migration"
+    "高级功能": [
+      "javascript/features/js-parameter",
+      "javascript/features/js-document",
+      "javascript/features/js-state",
+      "javascript/features/js-tools",
+      "javascript/features/js-view",
+      "javascript/features/js-operation",
+      "javascript/features/js-events",
+      "javascript/features/js-scenes",
+      "javascript/features/js-replay"
     ]
   },
   "blog": {

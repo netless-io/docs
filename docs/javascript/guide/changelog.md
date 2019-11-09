@@ -3,8 +3,6 @@ id: js-changelog
 title: 版本历史
 ---
 
-## 版本历史<span class="anchor" id="history">
-
 ### 2.3.12 - 2019-11-02
 
 > - 优化了动态 PPT 的加载过程，优化的渲染性能
