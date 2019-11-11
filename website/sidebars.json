@@ -72,8 +72,12 @@
       "javascript/quick-start/js-room",
       "javascript/quick-start/js-player"
     ],
+    "初始化参数": [
+      "javascript/parameters/js-sdk-parameter",
+      "javascript/parameters/js-room-parameter",
+      "javascript/parameters/js-player-parameter"
+    ],
     "高级功能": [
-      "javascript/features/js-parameter",
       "javascript/features/js-document",
       "javascript/features/js-state",
       "javascript/features/js-tools",
