@@ -33,6 +33,10 @@
     justify-content: space-between;
 }
 
+code {
+    white-space : pre-wrap !important;
+}
+
 .home-page-box-banner-cell {
     width: 200px;
     height: 188px;
