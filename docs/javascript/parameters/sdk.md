@@ -65,7 +65,7 @@ export type WhiteWebSdkConfiguration = {
 ```js
 类型结构：`{key: url}`
 
-动态 ppt 需要的自定义字体映射，key 为动态 ppt 所用的字典，值为字典所在网络地址。
+动态 ppt 需要的自定义字体映射，`key`为动态 ppt 所用的字体名称，`url`为字典所在网络地址。
 ```
 
 ### **handToolKey**: 抓手工具快捷键
