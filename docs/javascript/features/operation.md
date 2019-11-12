@@ -7,32 +7,7 @@ title: 白板操作
 
 ## 插入图片
 
-sdk 支持向当前白板页面中插入图片，首先调用 `方法1` ，传递 uuid，以及图片位置（大小，中心位置）信息。uuid 是一个任意字符串，保证在每次调用时，使用不同值即可。
-然后通过服务器，或者本地上传至云存储仓库中，获取到要插入图片信息的网络地址，在调用 `方法2`, 传入图片网络地址。
 
-```JavaScript
-// 方法1 插入图片占位信息
-// 通过 uuid 来保证，completeImageUpload 更新的是同一张图片地址
-room.insertImage({
-    uuid: uuid, 
-    //图片中心在白板内部坐标的
-    centerX: x, 
-    centerY: y, 
-    //图片在白板中显示的大小
-    width: imageFile.width, 
-    height: imageFile.height
-});
-// 方法2 传入图片占位 uuid，以及图片网络地址。
-room.completeImageUpload(uuid, imageUrl)
-```
-
-### 插入PPT 与插入图片 的区别
-
-区别| 插入PPT | 插入图片
----------|----------|---------
- 调用后结果 | 会自动新建多个白板页面，但是仍然保留在当前页（所以无明显区别），需要通过翻页API进行切换 | 产生一个占位界面，插入真是图片，需要调用 `completeImageUpload` 方法，传入占位界面的 uuid，以及图片的网络地址 |
- 移动 | 无法移动，所以不需要位置信息 | 可以移动，所以插入时，需要提供图片大小以及位置信息
- 与白板页面关系 | 插入 ppt 的同时，白板就新建了一个页面，这个页面的背景就是 PPT 图片 | 是当前白板页面的一部分，同一个页面可以加入多张图片
 
 ## 只读<span class="anchor" id="disableOperations">
 
