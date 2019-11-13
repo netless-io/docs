@@ -3,21 +3,26 @@ id: js-events
 title: 自定义事件
 ---
 
-## 发送自定义事件
+白板支持开发者在房间中，利用`sdk`提供的`自定义事件`接口与当前房间其他客户端进行广播。接收方需要提前注册自定义事件名称。所有自定义事件信息，都会在回放中一一复原。开发者在回放时，注册对应自定义事件监听，同样可以接收到当时的信息。
 
->回放`replay`不支持发送自定义事件
+>1. 自定义事件，作为一个行为，在白板中不会产生`副作用`。  
+>2. 监听自定义事件，只能接收到监听之后的自定义事件消息。所以，后期加入房间的用户，无法接收到注册前的信息；回放时，如果跳过自定义事件信息的发送时间，也无法接收。
+>3. 如果要保留影响结果，建议阅读[状态管理-自定义GlobalState](./state.md#globalstate)了解如何添加自定义状态。
+
+## 发送自定义事件
 
 开发者可以使用`room`的`dispatchMagixEvent`向房间所有客户端发送消息。
 
 ### TypeScript 方法签名
 
 ```typescript
+///room.d.ts
 /**
  * 发送自定义事件
- * @param event 自定义事件名称，其他客户端注册对该字段的事件监听，才能收到回调
+ * @param name 自定义事件名称，其他客户端注册对该字段的事件监听，才能收到回调
  * @param payload 发送内容，可以为任何可以被 JSON 序列化的数据。
  */
-public dispatchMagixEvent(event: string, payload: any): void;
+public dispatchMagixEvent(name: string, payload: any): void;
 ```
 
 ### 注意点
@@ -72,6 +77,8 @@ export type Event = {
 * 高频自定义事件监听
 
 ```typescript
+///Displayer.d.ts
+//Room 与 Player 通用
 /**
  * 高频自定义事件监听
  * @param name 自定义事件名称
@@ -128,6 +135,8 @@ room.addMagixEventListener("SendGift", onRecevieGifts);
 ### TypeScript 方法签名
 
 ```typescript
+///Displayer.d.ts
+//Room 与 Player 通用
 /**
  * 注销自定义监听，包括高频自定义事件
  * @param name 自定义事件名称
