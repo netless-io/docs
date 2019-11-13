@@ -58,6 +58,13 @@ const appliance = room.state.memberState.currentApplianceName;
 //...其他教具细节
 ```
 
+### 橡皮擦擦除图片配置
+
+橡皮擦可以额外配置，是否能够擦除图片：
+
+1. 在初始化时，根据[初始化参数-房间参数](../parameters/room.md#disableeraseimage)中的`disableEraseImage`字段配置:`是否可以擦除图片（默认可以）`
+1. 设置 `room.disableEraseImage` 属性。
+
 ## 图片（网络地址）
 
 `sdk`支持向当前白板页面中插入网络图片（如需本地图片，请自行处理上传，获得网络图片逻辑）。
@@ -111,8 +118,11 @@ room.completeImageUpload(uuid, imageUrl)
 
 ## 抓手工具
 
-请阅读[初始化参数-房间参数](../parameters/room.md#disableeraseimage)中的`disableEraseImage`字段配置。
-当抓手工具被激活时，会回调[初始化参数-房间参数](../parameters/room.md#disableeraseimage)中`callbacks`的`onHandToolActive`回调。
+### 快捷键设置
+请阅读[初始化参数-SDK参数](../parameters/sdk.md#handToolKey)中的`handToolKey`字段说明。
+
+### 激活/关闭回调
+当抓手工具被激活时，会回调[初始化参数-房间参数](../parameters/room.md#disableeraseimage)中`callbacks`的`onHandToolActive` 方法。
 
 ## 禁用教具<span class="anchor" id="disableDeviceInputs">
 
