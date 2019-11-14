@@ -3,197 +3,238 @@ id: js-scenes
 title: 页面（场景）管理
 ---
 
-## 新增概念
+一个白板房间内，可以存在多个页面，就像`ppt`一样，可以在不同页面绘制不同内容，并进行切换。
+>sdk 内部使用`场景(scene)`进行作为定义，开发者以`页面`进行理解即可。
 
-### 场景 (scene)
+## 页面
 
-为了增强白板的页面管理功能，我们引入一个新概念：**场景**。
-`场景`，就是我们一直在使用的白板的一个页面。
+### TypeScript 定义
 
-一个`场景`，主要包含 `场景名`，`PPT（背景图）` 两部分。
+一个白板页面，有`name`,`ppt`两个属性。其中，`ppt`可以为空，`name`如果在初始化时为空，sdk 会自动创建一个名称。
 
-### 场景路径 (scenePath) = 场景目录 + 场景名 
+```typescript
+//白板页面结构
+export type SceneDefinition = {
+    //页面名称，如果未定义，sdk 会自动取名
+    readonly name?: string;
+    //背景图（ppt）结构
+    readonly ppt?: PptDescription;
+};
 
-当管理多个场景时，我们想要获取到特定的场景，此时就需要 **`场景路径`** 。每一个`场景路径` 指向一个特定的场景。
+//背景图结构
+export type PptDescription = {
+    //图片网络地址
+    readonly src: string;
+    //宽高，在白板内部坐标系中长度，背景图中点永远位于白板内部坐标中点
+    readonly width: number;
+    readonly height: number;
+};
+```
 
->类比 PC 文件和文件夹的概念。  
-场景->文件  
-场景目录->文件夹路径
-场景路径->文件绝对地址  
+```javascript
+//创建一个白板页面
+const scene = {name: "example", ppt: {src: "https://www.example.com/1.png", width: 1080, height: 720}};
+```
 
+## 页面新增概念
 
->类比课件管理概念。  
-场景-> PPT 文档的某一页名称 
-场景目录-> 某个 PPT 文档的位置
-场景路径-> PPT 文档的某一页的绝对位置
+### 目录——分组管理页面
 
-如下是一组合法的`场景路径`。
+为了方便管理和操作多个页面，`sdk`支持将`页面`放入在不同`目录`下（类似window/macOS 等桌面操作系统的文件管理系统）。
+通过将白板进行分组，可以更有效的管理大量白板。
 
-```shell
+* 如下为多个页面存在的形式：
+
+```bash
+# 初始化房间时，就存在的默认页面。默认在根目录，名称为"init"
 /init
+# 在 Eng 目录下的页面
 /Eng/ppt1
 /Eng/ppt2
 /Eng/ppt3
+# 在 Phy 目录下的页面
 /Phy/ppt1
 /Phy/ppt2
 /Phy/ppt3
 ```
 
-**`场景路径`以 `/` 符分割层级，且一定以 `/` 开始。最右边的层级就是场景的名字。**
+### 路径——指定特定白板
 
+当存在多个目录，多个白板时，我们就需要用`页面路径`来描述该页面。  
+`页面路径`(scenePath)也可以称为`场景路径`。
 
-也可以用以下表示文件结构的形式，来表示这一组场景。
+>`页面路径`=`页面目录`+`页面名称`。  
+`页面路径`以"/"分割层级，以"/"开头。最末端的层级，即为`页面名称`。
 
-```shell
-|____init（场景）
-|____Eng（场景目录）
-| |____ppt1（场景）
-| |____ppt3（场景）
-| |____ppt2（场景）
-|____Phy（场景目录）
-| |____ppt1（场景）
-| |____ppt3（场景）
-| |____ppt2（场景）
+* 以下即为目录小节中的`页面路径`
+
+```bash
+# 在根目录下的各页面路径
+"/init"
+# 在 Eng 目录下的各页面路径
+"/Eng/ppt1"
+"/Eng/ppt2"
+"/Eng/ppt3"
+# 在 Phy 目录下的各页面路径
+"/Phy/ppt1"
+"/Phy/ppt2"
+"/Phy/ppt3"
 ```
 
-### 场景目录
+> **页面路径具有唯一性**:  
+同一个`页面路径`，会指向同一个`页面`。新建页面时，如果组合出来的`页面路径`已经存在；则新页面，会覆盖旧页面。
 
-在同一一个`场景目录`下可以有多个多个`场景`；
+### 页面与路径注意点
 
-- /Phy
-- /Eng
+>**目录与路径不能相同**:  
+当白板房间存在一个路径为`/Eng/ppt1`的页面时，说明此时已经存在一个"/Eng"的目录；因此无法把一个`/Eng`的页面，直接插在根目录中，因为此时组成的`页面路径`也是`/Eng`，而白板中已经存在了一个`/Eng`的目录，两者冲突，无法成功插入。
 
-则 `/Phy` 这个 `场景目录` 下有以下三个`场景`。
+### SceneState 结构 —— 当前目录信息
 
-- /Phy/ppt1
-- /Phy/ppt2
-- /Phy/ppt3
+```typescript
+/// Displayer.d.ts
+// room player 通用
 
-> 场景路径指的向唯一性:
-类似文件的概念每一个场景路径，指向一个唯一的一个场景。
-使用移动，复制，插入场景 API 时，如果传入的路径已经存在一个特定的场景，该场景会被新的场景所覆盖。
+// 白板当前目录信息
+export type SceneState = {
+    //同级目录下的所有页面
+    readonly scenes: ReadonlyArray<Scene>;
+    //当前页面的完整路径
+    readonly scenePath: string;
+    //当前页面处于同级目录下页面数组的索引位置
+    readonly index: number;
+};
 
->场景目录与场景路径不能相同:
-当白板房间存在一个场景路径为`/Eng/ppt1`的场景时，则不可能存在/接受一个名为`/Eng`的场景。因为`场景路径`由`场景目录`与`场景名`组成。
-如果发生该情况，则会插入失败。
-
----
+//页面信息
+export type Scene = {
+    //页面名称，一定存在，如果创建时没有传，sdk 会自动生成一个随机字符串
+    name: string;
+    //背景页+笔画数
+    componentsCount: number;
+    //背景页设置
+    ppt?: PptDescription;
+};
+```
 
 ## API
 
-本文档涉及的 API，都是白板 `Room` (iOS：`WhiteRoom`) 的方法。也可以在sdk 对应文件中进行查看。
+### 获取当前 目录/页面 信息
 
-### 获取当前场景信息
+当前目录信息`sceneState`，存储在`room`以及`player`的`state`。
 
+* 示例代码
 
-```Typescript
+```typescript
+// room player 通用
+
 let scenceState = room.state.sceneState;
+// or let scenceState = player.state.sceneState;
 
 /* scenceState 的数据结构
 {
-    //当前场景的场景路径
     scenePath: "/Phy/ppt1",
-    //场景组，（同一场景目录下的所有场景）
     scenes: [{
         name: "ppt1",
         //（ppt 为可选值，此处都没有 ppt 属性）
     }, {
         name: "ppt2",
+        ppt : {
+            src: "https://www.example.com/1.png",
+            width: 1024,
+            height: 768
+        }
     }, {
         name: "ppt3",
     }],
-    //当前场景，在场景组列表里面的索引位置
     index: 0,
 }
 */
 ```
 
+### 切换页面
 
-通过以上 API，获取当前场景信息内容，具体内容结构，可以在各 SDK 中查看结构。
+`当前页面`为白板房间内，所有用户当前可以操作的`白板`页面。（开发者可以使用`预览`API，让用户观看其他页面，但是无法操作）。
 
-### 设置当前场景
-
-当前场景代表白板房间内，所有人看到的页面。
-
-创建一个白板房间时，会有一个名为 `init` 的默认`场景`。他的`场景目录`则是 `/`，他的`场景路径` 则是 `/init`。
-
-如果要修改当前场景，移动到另外一个场景，则只需要调用以下 API，传入`场景路径`即可。
-
+白板房间初始化完成后，会创建一个默认页面，该页面在根目录`"/"`下，名称为：`"init"`。
 
 ```js
-// 其中，room 是你通过 whiteWebSdk.joinRoom(...) 获取的房间对象
-// 该方法的参数为你想切换到的场景路径
-room.setScenePath("/phy/ppt1");
+/// room.d.ts
 
+// 传入页面路径，请注意，不能为页面目录
+room.setScenePath("/phy/ppt1");
 ```
 
+#### 注意点
 
 >当切换 API 没有反应，或者回调中报错，有可能是以下情况：
->1. 路径不合法。请阅读之前的章节，确保输入了`场景路径`符合规范（以 `/`开头）。
->2. 路径对应的`场景`不存在。
->3. 路径对应的是`场景目录`。注意`场景目录`和场景是不一样的。
+>1. 路径不合法。请阅读`页面管理`小节，确认`页面路径`符合规范（以`/`开头，结尾为`页面名称`）。
+>2. 路径对应的`页面`不存在。
+>3. 路径对应的是`页面目录`，而非`页面`。
 
-### 插入新场景
+### 插入页面（一个或多个）
 
+```typescript
+/// room.d.ts
 
-```js
-// 第一个是文件目录
-// 第二个是场景数组，一个场景中，包含 name （不填会自动生成随机名称）和 ppt（可选，一旦填入 ppt，则三个字段都需要存在）
-room.putScenes("/Phy", [{name: "ppt4", ppt: {src: "https://exmaple.com/example.png", width: 1024, height: 768}}], 0);
-```
-
-
-插入场景 API，接受三个参数:
-
-* dir: `场景目录`，场景想要插入的对应目录位置。
-* scenes: 为需要新建的场景列表。
-* index: 可选且从 0 开始,表示 scenes 中第一个场景加入的位置；场景举例：当前`场景目录`中已经有 20 页 PPT 文档，想在第 3 页后加入一个空白页则 index 设置为 3。
-
->传入的`场景目录` (dir) 不能是已存在场景的 `场景路径`。（你不能向文件中插入文件）
-
->当新插入的场景，`场景路径`（dir + 场景名）与旧场景的`场景路径`相同时，新`场景`会覆盖旧`场景`。（新文件会覆盖旧文件）
-
-### 重名、移动场景
-
-类似于 Linux，macOS 的 mv 命令。
-
-
-```js
 /**
- 移动/重命名页面
-
- @param source 想要移动的页面的场景路径
- @param target 目标路径。如果是场景目录，则将 source 移入；否则，移动的同时重命名。
+ * 插入页面数组
+ * @param dir 页面目录；传入的路径，没有对应的页面，就会自动新建页面（如果是多个/分割的多级目录，则每一级目录对应的路径，都不能存在对应的页面）。比如 "/ppt/eng"，会先创建 ppt 目录，然后再在 ppt 目录中创建 eng 目录；需要确定 "/ppt" "/ppt/eng" 没有对应的页面。
+ * @param scenes 创建的白板页面数组
+ * @param index 可选，数组 path 的插入索引位置。undefined 时，则插入该 dir 目录原有 scenes 的后面。
  */
-room.moveScene("/math/geometry", "/graphics/geometry");
+putScenes(dir: string, scenes: ReadonlyArray<SceneDefinition>, index?: number): void;
+```
+
+#### 注意点
+
+>1. `dir`参数，不能与现有页面的`路径`重叠。（类比与：无法向`文件`中插入`文件`）  
+>2. 当`dir`+ 插入的`scenes`中的`name`，拼接出来的`路径`，与已有的页面`路径`一致时，由于`路径`具有唯一性，新`页面`会覆盖旧`页面`（新文件会覆盖旧文件）。
+
+### 重名、移动页面
+
+```typescript
+/// room.d.ts
+
+/**
+ * 移动/重命名页面
+ *
+ * @param source 想要移动的页面的页面 路径
+ * @param target 目标路径或者目录。如果是目录，将页面移入该目录中，否则就是移动+重命名效果。
+ */
+moveScene(source: string, target: string): void;
 ```
 
 
+### 删除页面
 
-### 删除场景
+```typescript
+/// room.d.ts
+/**
+ * 删除页面
+ * @param dirOrPath 路径/目录。如果路径，对应页面。如果是目录，则移除该目录下所有页面，以及子目录。
+ */
+removeScenes(dirOrPath: string): void;
+```
 
-
+* 示例代码
 
 ```js
-/**
- @param dirOrPath 场景路径，或者是场景目录。如果传入的是场景路径，则移除场景路径。如果传入的是场景目录，则移除场景目录下的所有场景。
- */
-room.removeScenes("/Phy/ppt4")
-room.removeScenes("/Eng");
+// 删除房间内所有页面
+room.removeScenes("/")
 ```
 
+>房间内必然存在至少一个页面，当删除所有页面后，sdk 会自动在根目录`"/"`下创建一个名为`"init"`的页面，并切换过去。
 
-
-可以给该参数传入 `"/"`，来清空白板房间内所有场景。
-
->白板房间会至少存在一个场景。
-因此，当你删光白板房间里的最后一个场景时，会立即自动生成一个名为 init，场景路径为"/init"的空白场景。
-
-## 场景预览功能
+### 页面预览
 
 ```Typescript
+///Display.d.ts
+// room player 通用
+
 /**
- * @param  {string} scenePath 想要获取预览内容的场景的场景路径
+ * 预览功能
+ * 
+ * @param  {string} scenePath 想要获取预览内容的页面（场景）的页面（场景）路径
  * @param  {HTMLElement} div 想要展示预览内容的 div
  * @param  {number} width div 宽度
  * @param  {number} height div 高度
@@ -202,7 +243,8 @@ room.removeScenes("/Eng");
 scenePreview(scenePath: string, div: HTMLElement, width: number, height: number): void;
 ```
 
-`Room` `Player` 都支持该 API，开发者可以在实时白板和回放中调用此功能。
+>预览 API 看到的是当前用户切换到对应页面时，所看到的内容。即保留了当前用户缩放，移动的位置。
 
->渲染的内容，调用时，场景的内容，不会实时更新。
-预览的位置为用户切换到对应场景时，所见场景。不同用户，所处位置不同，看到的内容也会有存在差异。
+### 页面截图
+
+本地截图，存在一定缺陷，推荐使用 [服务器 API —— 封面截图](/server/api/server-whiteboard-cover)。
