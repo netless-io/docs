@@ -5,7 +5,7 @@ title: 房间信息
 
 ## 安全须知
 
->本小节所进行的操作，应在开发者业务服务器中执行。请求可以在 [白板基础 API](../server/whiteboard-base.md) 中查看。
+>本小节所进行的操作，应在开发者业务服务器中执行。请求可以在 [白板基础 API](server/api/whiteboard-base.md) 中查看。
 
 创建房间/获取房间，需要使用`sdkToken`，与`SDK`后端服务器，进行交互。
 `sdkToken`，是`SDK`后端服务器，与开发者后端业务服务器通讯的凭证。掌握了`sdkToken`，`SDK`后端服务器就会认为，这是开发者进行的操作。主要涉及到开发者对应资源的计费以及权限管理。
@@ -14,7 +14,7 @@ title: 房间信息
 
 ## 创建新房间，同时获取 RoomToken
 
->该网络请求为 server 端 创建房间API，更多内容可以查看[白板基础 API](server/api/whiteboard-base.md)
+>该网络请求为 server 端 创建房间API，更多内容可以查看[白板基础 API](server/api/whiteboard-base.md#创建房间)
 
 ```javascript
 var sdkToken = "阅读[前提条件]，获取 token";

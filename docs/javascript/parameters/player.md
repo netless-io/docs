@@ -3,7 +3,7 @@ id: js-player
 title: 回放参数
 ---
 
-## API
+## 初始化 API
 
 ### TypeScript 方法签名
 

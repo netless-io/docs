@@ -7,8 +7,8 @@ title: 文档转换
 
 sdk 服务器提供两种方式将大部分文档转换成白板可用的资源：
 
-1. [文档转图片:word,pdf,ppt,pptx——静态转换](/docs/server/api/server-static-conversion)
-1. [文档转网页:pptx——动态转换](/docs/server/api/server-dynamic-conversion)
+1. [文档转图片:word,pdf,ppt,pptx——静态转换](server/api/static-conversion.md)
+1. [文档转网页:pptx——动态转换](server/api/dynamic-conversion.md)
 
 >请确保在[console](https://console.herewhite.com) 开启对应转换服务。
 

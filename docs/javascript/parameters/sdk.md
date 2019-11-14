@@ -3,7 +3,7 @@ id: js-sdk
 title: SDK参数
 ---
 
-## 初始化API
+## 初始化 API
 
 ### TypeScript 方法签名
 

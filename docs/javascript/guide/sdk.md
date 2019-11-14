@@ -1,6 +1,6 @@
 ---
 id: js-sdk
-title: SDK 获取
+title: SDK集成
 ---
 
 ## SDK项目

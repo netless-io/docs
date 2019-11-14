@@ -5,7 +5,7 @@ title: 回放功能
 
 ## 前提条件
 
->1. 确定向服务器请求创建房间时，房间类型是「`可回放房间`」，详情请查看[服务端文档-白板类型](/docs/server/api/server-whiteboard-base#%E5%88%9B%E5%BB%BA%E7%99%BD%E6%9D%BF)。  
+>1. 确定向服务器请求创建房间时，房间类型是「`可回放房间`」，详情请查看[服务端文档-白板类型](server/api/whiteboard-base.md#%E5%88%9B%E5%BB%BA%E7%99%BD%E6%9D%BF)。  
 >2. 阅读[初始化参数-回放参数](../parameters/player.md)了解初始化回放时，所需要的参数。
 >3. 本节中`player`为`sdk`调用`replayRoom`API 后，成功返回的`player`对象。
 

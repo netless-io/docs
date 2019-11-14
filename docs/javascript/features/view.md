@@ -251,7 +251,7 @@ room.disableCameraTransform = true;
 room.disableCameraTransform = false;
 ```
 
-## 视野范围限制
+## 限制视野范围
 
 > 2.3.0 新增 API
 

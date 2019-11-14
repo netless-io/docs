@@ -55,7 +55,7 @@
     ]
   },
   "JavaScript": {
-    "文档目录": [
+    "文档结构": [
       "javascript/overview/js-outline"
     ],
     "安装指南": [
@@ -76,7 +76,7 @@
       "javascript/parameters/js-room",
       "javascript/parameters/js-player"
     ],
-    "高级功能": [
+    "功能介绍": [
       "javascript/features/js-tools",
       "javascript/features/js-state",
       "javascript/features/js-view",
