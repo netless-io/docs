@@ -1,5 +1,5 @@
 ---
-id: js-sdk-parameter
+id: js-sdk
 title: SDK参数
 ---
 

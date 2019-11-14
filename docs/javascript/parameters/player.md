@@ -1,5 +1,5 @@
 ---
-id: js-player-parameter
+id: js-player
 title: 回放参数
 ---
 

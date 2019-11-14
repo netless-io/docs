@@ -1,5 +1,5 @@
 ---
-id: js-room-parameter
+id: js-room
 title: 房间参数
 ---
 
