@@ -155,21 +155,61 @@ let scenceState = room.state.sceneState;
 
 `当前页面`为白板房间内，所有用户当前可以操作的`白板`页面。（开发者可以使用`预览`API，让用户观看其他页面，但是无法操作）。
 
-白板房间初始化完成后，会创建一个默认页面，该页面在根目录`"/"`下，名称为：`"init"`。
+白板房间初始化完成后，会创建一个页面，并将其设置为当前页，该页面在根目录`"/"`下，名称为：`"init"`。
+
+* TypeScript 签名
+
+```typescript
+/// room.d.ts
+/**
+ * 切换当前页面
+ * @param scenePath 想要显示页面的完整页面路径，不能是 页面目录
+ */
+public setScenePath(scenePath: string): void;
+```
+
+* 示例代码
 
 ```js
-/// room.d.ts
-
-// 传入页面路径，请注意，不能为页面目录
-room.setScenePath("/phy/ppt1");
+//切换至特定页面
+room.setScenePath("/Eng/ppt1");
 ```
 
 #### 注意点
 
->当切换 API 没有反应，或者回调中报错，有可能是以下情况：
+* `setScenePath`没有反应，或者回调中报错，有可能是以下情况：
+
 >1. 路径不合法。请阅读`页面管理`小节，确认`页面路径`符合规范（以`/`开头，结尾为`页面名称`）。
 >2. 路径对应的`页面`不存在。
 >3. 路径对应的是`页面目录`，而非`页面`。
+
+### 翻页（同目录）
+
+* TypeScript 签名
+
+```typescript
+/// room.d.ts
+/**
+ * 翻页 API（必须与当前页面同一个目录）
+ * @param index 想要显示页面在 sceneState.scenes 中的索引
+ */
+public setSceneIndex(index: number): void;
+```
+
+#### 示例代码
+
+```js
+//在当前页面中，进行翻页。
+room.setSceneIndex(0);
+// 数组越界时，会 throw error
+room.setSceneIndex(room.state.sceneState.index - 1);
+room.setSceneIndex(room.state.sceneState.index + 1);
+```
+
+#### 注意点
+
+* `setSceneIndex`报错：
+>传入了字符串，或者传入的数字索引，小于或大于等于`room.state.sceneState`长度。
 
 ### 插入页面（一个或多个）
 
@@ -203,7 +243,6 @@ putScenes(dir: string, scenes: ReadonlyArray<SceneDefinition>, index?: number): 
  */
 moveScene(source: string, target: string): void;
 ```
-
 
 ### 删除页面
 
