@@ -88,32 +88,6 @@ title: 文档大纲
 1. 禁用教具操作
     * 初始化参数可选
 
-### [状态管理（回调通知，主动改变）](../features/state.md)
-1. 实时房间
-    1. 房间状态`RoomState`结构
-        * roomMembers 房间人数
-        * globalState 房间全局状态变化
-        * memberState 教具（颜色，粗细，类型）
-        * broadcaster 主播/观众信息
-        * zoomScale 缩放状态
-        * sceneState 白板当前页面信息
-    1. 主动修改房间状态
-        1. 教具（memberState）
-        1. GlobalState 使用
-            * 自定义
-            * 注意点：
-                1. globalState 大小
-                1. 更新/使用策略
-        1. 视角状态
-        1. 白板页面
-    1. 监听房间状态`RoomState`
-        * 配置
-1. 回放房间
-    1. player 属性结构
-        * playerState（对应实时房间中的`roomState`信息）
-        * 播放信息（总时长，开始时间戳，播放状态）
-        * 监听回放状态`PlayerState`
-
 ### [视角操作](../features/view.md)
 1. 白板内部坐标系
     * 坐标转换 API
@@ -136,18 +110,6 @@ title: 文档大纲
 1. 限制视野范围
     1. 限制视角范围(初始化参数可选)
 
-### [白板操作](../features/operation.md)
-1. 只读：
-    1. 禁止教具操作
-    1. 禁止视角移动/缩放
-1. 缩放
-    1. 禁用缩放（link 视角限制）
-    1. 用户主动缩放
-    1. API操作（link 调整视角）
-1. 主动延时
-1. 清屏（link 至页面）
-    1. 保留与不保留背景（PPT）
-
 ### [页面（场景）操作 API](../features/scenes.md)
 1. 页面
     * 定义
@@ -165,6 +127,31 @@ title: 文档大纲
 1. 删除页面
 1. 页面预览
 1. 页面截图
+
+### [状态监听](../features/state.md)
+1. 房间状态
+    1. 概念定义
+    1. 类型结构
+        1. DisplayerState 及相关结构
+        1. roomState
+        1. playerState
+1. 获取状态
+1. 监听状态变化
+    1. 实时房间
+    1. 回放房间
+
+### [白板操作](../features/operation.md)
+1. 只读：
+    1. 禁止教具操作
+    1. 禁止视角移动/缩放
+1. 自定义 GlobalState
+1. 缩放
+    1. 禁用缩放
+    1. 用户主动缩放
+    1. API操作
+1. 主动延时
+1. 清屏（link 至页面）
+    1. 保留与不保留背景（PPT）
 
 ### [自定义事件](../features/events.md)
 1. 发送自定义事件（仅限实时房间）

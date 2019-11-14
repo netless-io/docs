@@ -78,10 +78,10 @@
     ],
     "功能介绍": [
       "javascript/features/js-tools",
-      "javascript/features/js-state",
       "javascript/features/js-view",
-      "javascript/features/js-operation",
       "javascript/features/js-scenes",
+      "javascript/features/js-state",
+      "javascript/features/js-operation",
       "javascript/features/js-events",
       "javascript/features/js-document",
       "javascript/features/js-replay"

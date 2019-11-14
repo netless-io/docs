@@ -3,6 +3,10 @@ id: js-room
 title: 房间参数
 ---
 
+`room`与`player`实际上，都是内部`displayer`的子类。`TypeScript`签名中，以`///Displayer.d.ts`开头的方法签名，`room`和`player`均可使用。
+
+我们将用户实时使用，并对外同步的房间，称为 **实时房间**（`对应类为 room`）；
+
 ## 初始化 API
 
 ### TypeScript 方法签名
