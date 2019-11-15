@@ -62,8 +62,7 @@
       "javascript/guide/js-sdk",
       "javascript/guide/js-changelog",
       "javascript/guide/js-open-source",
-      "javascript/guide/js-debug",
-      "javascript/guide/js-v2migration"
+      "javascript/guide/js-debug"
     ],
     "快速开始": [
       "javascript/quick-start/js-precondition",
@@ -85,6 +84,9 @@
       "javascript/features/js-events",
       "javascript/features/js-document",
       "javascript/features/js-replay"
+    ],
+    "升级指南": [
+      "javascript/guide/js-v2migration"
     ]
   },
   "blog": {
