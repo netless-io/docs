@@ -10,7 +10,7 @@ title: 前提条件
 
 ## 1. 获取 sdkToken
 
-阅读 [接入准备](/docs/blog/blog-begin-netless/)，注册账号，获取 sdk token。
+阅读 [接入准备](blog/begin-netless.md)，注册账号，获取 sdk token。
 
 ## 2. 添加 SDK 到项目中
 
@@ -35,3 +35,8 @@ title: 前提条件
 
 ## 整体流程示意图
 ![quick_start_flow](https://ohuuyffq2.qnssl.com/quick_start_flow.png)
+
+## 推荐阅读
+
+1. [实时房间](./room.md)
+1. [回放房间](./player.md)

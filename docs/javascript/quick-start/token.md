@@ -1,6 +1,6 @@
 ---
 id: js-token
-title: 房间信息
+title: 房间鉴权
 ---
 
 ## 安全须知

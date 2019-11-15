@@ -237,9 +237,16 @@ export enum RoomPhase {
 抓手工具激活/取消回调
 ```
 
-### TODO:**onPPTLoadProgress**
+### **onPPTLoadProgress**
 
->即将推出
 ```js
 动态 ppt 加载事件进度
 ```
+
+## 推荐阅读
+
+1. [教具操作](../features/tools.md)
+1. [视角操作](../features/view.md)
+1. [页面管理](../features/scenes.md)
+1. [状态监听](../features/state.md)
+1. [白板操作](../features/operation.md)

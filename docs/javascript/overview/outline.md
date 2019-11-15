@@ -37,8 +37,10 @@ title: 文档大纲
 
 ### [前置条件](../quick-start/precondition.md)
 1. 注册账号，获取`sdkToken`
-### [创建/获取房间信息](../quick-start/token.md)
+### [房间鉴权](../quick-start/token.md)
 >生产环境中，应当在服务器端调用
+1. 创建房间
+1. 获取房间信息
 ### [实时房间](../quick-start/room.md)
 1. 初始化
 1. 退出

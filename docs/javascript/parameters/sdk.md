@@ -128,3 +128,8 @@ export type WhiteWebSdkConfiguration = {
 开发者仍然可以使用代码进行缩小。
 
 >2.3.0 支持更高级 API，在初始化`room`，以及`player`时配置。
+
+## 推荐阅读
+
+1. [房间参数](./room.md)
+1. [回放参数](./player.md)

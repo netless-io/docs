@@ -142,3 +142,8 @@ export enum PlayerPhase {
 ```js
 时间进度回调
 ```
+
+## 推荐阅读
+
+1. [状态监听](../features/state.md)
+1. [自定义事件-监听、注销](../features/events.md)

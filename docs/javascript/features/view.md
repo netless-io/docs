@@ -371,4 +371,4 @@ player.setCameraBound({
 
 ## 相关文档
 
-[主播一对多业务实现](/docs/blog/blog-broadcast)
+[主播一对多业务实现](blog/broadcast.md)
