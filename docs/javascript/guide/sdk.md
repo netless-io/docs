@@ -20,7 +20,7 @@ title: SDK集成
 <!--使用 js sdk 开发-->
 添加依赖：
 ```shell
-# yarn 
+# yarn
 yarn add white-web-sdk
 # npm
 npm install white-web-sdk --save
@@ -52,8 +52,8 @@ import {Room, RoomPhase, RoomWhiteboard, WhiteWebSdk} from "white-react-sdk";
 ###  2. script 标签集成
 
 ```html
-<link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.3.12.css">
-<script src="https://sdk.herewhite.com/white-web-sdk/2.3.12.js"></script>
+<link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.3.15.css">
+<script src="https://sdk.herewhite.com/white-web-sdk/2.3.15.js"></script>
 <script>
     //全局变量 WhiteWebSdk
     let sdk = new WhiteWebSdk();
