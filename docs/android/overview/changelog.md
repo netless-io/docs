@@ -4,6 +4,10 @@ title: 版本历史
 ---
 
 >[最新版本列表——发版自动更新](https://jitpack.io/#duty-os/white-sdk-android)
+### [2.4.21] - 2019-10-24
+- 修复 Android 4.4 支持问题
+### [2.4.20] - 2019-11-19
+- 修复 Android 部分文字阶段问题
 ### [2.4.19] - 2019-11-13
 - 修复 disableCameraTransform 导致的绘制问题
 ### [2.4.18] - 2019-11-05
