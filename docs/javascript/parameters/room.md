@@ -115,7 +115,23 @@ export type CursorDescription = {
 
 >该参数配合`userPayload`可以显示用户鼠标所在位置。
 
-你可以使用如下代码自定义鼠标光标
+你可以使用如下代码自定义鼠标光标。
+
+```css
+.cursor-box {
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+  background-color: white;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+```
 
 ```javascript
 var roomMembers = [];
@@ -127,13 +143,10 @@ var cursorAdapter = {
     for (var i = 0; i < roomMembers.length; i ++) {
       var roomMember = roomMembers[i];
       if (roomMember.memberId === cursor.memberId) {
-        var nicknameElement = document.createElement("div");
-        var iconURLElement = document.createElement("img");
-        // 其中 nickname、iconURL 应该由用户自定义到 payload 中
-        nicknameElement.innerHTML = roomMember.payload.nickname;
-        iconURLElement.setAttribute("src", roomMember.payload.iconURL);
-        cursor.divElement.append(nicknameElement);
-        cursor.divElement.append(iconURLElement);
+        // 其中 iconURL、color 应该由用户自定义到 payload 中
+        var payload = roomMember.payload;
+        var cursorElement = createCursorElement(payload.iconURL, payload.color);
+        cursor.divElement.append(cursorElement);
         break;
       }
     }
@@ -142,6 +155,16 @@ var cursorAdapter = {
     // 清理工作
   },
 };
+
+function createCursorElement(iconURL, color) {
+  var containerElement = document.createElement("div");
+  var iconURLElement = document.createElement("img");
+  containerElement.append(iconURLElement);
+  containerElement.setAttribute("style", "border-color: " + color + ";");
+  containerElement.setAttribute("class", "cursor-box");
+  iconURLElement.setAttribute("src", iconURL);
+}
+
 whiteWebSdk.joinRoom({
   uuid: "...",
   roomToken: "...",
