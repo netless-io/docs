@@ -77,7 +77,7 @@ export type JoinRoomParams = {
 SDK 会将其作为用户的信息，完整传递，不作处理。
 ```
 
-### cursorAdapter: 头像显示
+### cursorAdapter: 鼠标光标显示
 
 ```typescript
 //处理用户信息(`userPayload`)与用户头像div之间的映射关系。   
@@ -114,6 +114,51 @@ export type CursorDescription = {
 ```
 
 >该参数配合`userPayload`可以显示用户鼠标所在位置。
+
+你可以使用如下代码自定义鼠标光标
+
+```javascript
+var roomMembers = [];
+var cursorAdapter = {
+  createCursor: function(memberId) {
+    	 return {x: 16, y: 16, width: 32, height: 32};
+  },
+  onAddedCursor: function(cursor) {
+    for (var i = 0; i < roomMembers.length; i ++) {
+      var roomMember = roomMembers[i];
+      if (roomMember.memberId === cursor.memberId) {
+        var nicknameElement = document.createElement("div");
+        var iconURLElement = document.createElement("img");
+        // 其中 nickname、iconURL 应该由用户自定义到 payload 中
+        nicknameElement.innerHTML = roomMember.payload.nickname;
+        iconURLElement.setAttribute("src", roomMember.payload.iconURL);
+        cursor.divElement.append(nicknameElement);
+        cursor.divElement.append(iconURLElement);
+        break;
+      }
+    }
+  },
+  onRemovedCursor: function(cursor) {
+    // 清理工作
+  },
+};
+whiteWebSdk.joinRoom({
+  uuid: "...",
+  roomToken: "...",
+  cursorAdapter: cursorAdapter,
+  userPayload: {
+    // userPayload 可以根据业务自行自定义
+    nickname: "your-nick-name",
+    iconURL: "https://your-domain.com/your-path-to-icon.png",
+  },
+}, {
+  onRoomStateChanged: function(modifyState) {
+    if (modifyState.roomMembers) {
+      roomMembers = modifyState.roomMembers;
+    }
+  }
+});
+```
 
 ### cameraBound
 
