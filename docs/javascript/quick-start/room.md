@@ -63,11 +63,12 @@ window.addEventListener("resize", refreshViewSize);
 [codepen源码](https://codepen.io/leavesster/pen/PooaawL)  
 [codepen展示页](https://cdpn.io/leavesster/debug/PooaawL/XBrGRqZGNeKM)
 
-## 推荐阅读
+## 推荐
 
-* 阅读[状态监听](../features/state.md)，监听房间状态变化，进行对应处理。
-* 阅读[教具操作](../features/tools.md)，以切换使用`画笔`、`矩形`、`圆形`，插入`图片`。
-* 阅读 [视角操作](../features/view.md)，以控制用户可见范围，缩放，移动行为。
-* 阅读[白板操作](../features/operation.md)，以控制用户操作权限
-* 阅读[自定义事件](../features/events.md)，增强白板功能，实现全局通知的业务需求。
-* 阅读[页面操作](../features/scenes.md)，实现多页白板，切换需求。
+* [初始化参数-房间参数](../parameters/room.md)：房间初始化时，可以进行的相关配置。
+* [状态监听](../features/state.md)：监听房间状态（成员加入退出，房间页面等）变化。
+* [教具操作](../features/tools.md)：使用`画笔`、`矩形`、`圆形`，插入`图片`。
+* [视角操作](../features/view.md)：控制用户可见范围，缩放，移动行为。
+* [白板操作](../features/operation.md)：控制用户权限。
+* [自定义事件](../features/events.md)：增强白板功能，实现全局通知的业务需求。
+* [页面操作](../features/scenes.md)：实现多页白板，切换需求。

@@ -18,17 +18,17 @@ class Index extends React.Component {
                         <div className="home-page-cell-icon">
                             <img src={`${siteConfig.baseUrl}img/javascript.svg`}/>
                         </div>
-                        <a href={`${siteConfig.baseUrl}docs/javascript/overview/js-introduction`}>
-                            <div className="home-page-cell-inner">产品概述</div>
+                        <a href={`${siteConfig.baseUrl}docs/javascript/overview/js-outline`}>
+                            <div className="home-page-cell-inner">文档大纲</div>
                         </a>
-                        <a href={`${siteConfig.baseUrl}docs/javascript/quick-start/js-declare`}>
+                        <a href={`${siteConfig.baseUrl}docs/javascript/guide/js-sdk`}>
+                            <div className="home-page-cell-inner">安装指南</div>
+                        </a>
+                        <a href={`${siteConfig.baseUrl}docs/javascript/quick-start/js-precondition`}>
                             <div className="home-page-cell-inner">快速开始</div>
                         </a>
-                        <a href={`${siteConfig.baseUrl}docs/javascript/guides/js-state`}>
-                            <div className="home-page-cell-inner">常用功能</div>
-                        </a>
-                        <a href={`${siteConfig.baseUrl}docs/javascript/guides/js-v2migration`}>
-                            <div className="home-page-cell-inner">升级指南</div>
+                        <a href={`${siteConfig.baseUrl}docs/javascript/features/js-tools`}>
+                            <div className="home-page-cell-inner">功能介绍</div>
                         </a>
                     </div>
                     <div className="home-page-cell">
