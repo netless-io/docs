@@ -71,9 +71,10 @@ window.addEventListener("resize", resize);
 
 ## 相关文档
 
-* 阅读[状态监听](../features/state.md)，以处理回放时，房间状态(房间人数，页面状态，全局状态)等变化
-* 阅读[回放功能](../features/replay.md)，了解更多功能：
+* [初始化-回放参数](../parameters/player.md)：回放时，必须以及可以配置的参数。
+* [状态监听](../features/state.md)：监听回放时，房间状态(房间人数，页面状态，全局状态等)变化。
+* [回放功能](../features/replay.md)，了解更多功能：
     1. 如何支持带音视频回放
     1. 回放控制：播放，暂停，快进，释放资源
-* 阅读[自定义事件](../features/events.md)，复现实时房间中，根据开发者特有业务，使用的自定义事件重现。
-* 阅读[白板操作](../features/operation.md)，管理回放时，用户交互逻辑(移动，缩放白板)
+* [自定义事件](../features/events.md)：监听回放时，实时房间中开发者根据特有业务，使用的自定义事件。
+* [白板操作](../features/operation.md)：管理回放时，用户交互逻辑(移动，缩放白板)。
