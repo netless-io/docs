@@ -72,8 +72,7 @@ type ReplayRoomParams = {
 ```typescript
 type PlayerCallbacks = {
     readonly onHandToolActive?: (active: boolean) => void;
-    //TODO:后续推出
-    //readonly onPPTLoadProgress?: (uuid: string, progress: number) => void;
+    readonly onPPTLoadProgress?: (uuid: string, progress: number) => void;
     readonly onPhaseChanged?: (phase: PlayerPhase) => void;
     readonly onLoadFirstFrame?: () => void;
     readonly onPlayerStateChanged?: (modifyState: Partial<PlayerState>) => void;
@@ -88,12 +87,18 @@ type PlayerCallbacks = {
 抓手工具激活/取消回调
 ```
 
-### TODO:**onPPTLoadProgress**
+### **onPPTLoadProgress**
 
->即将推出
-```js
-动态 ppt 加载事件进度
+* TypeScript 签名
+```typescript
+(uuid: string, progress: number) => void;
 ```
+
+```js
+ppt 预加载缓存回调，uuid 为 ppt 转换时的 taskId，progress 为 0~1 之间的两位小数。
+```
+
+>只有在初始化 SDK 时，`preloadDynamicPPT`，设置为 true 时，该回调才有用。
 
 ### **onPhaseChanged**
 

@@ -19,12 +19,16 @@ constructor(params: WhiteWebSdkConfiguration = {})
 var whiteWebSdk = new WhiteWebSdk({
     preloadDynamicPPT: false, // 可选,是否预先加载动态 PPT 中的图片，会显著提升用户体验，降低翻页的图片加载时长
     deviceType: "touch", // 可选, touch or desktop , 默认会根据运行环境进行推断
+    // ...更多可选参数配置
 });
 ```
 
 ## 参数：
 
+### TypeScript 签名
+
 ```Typescript
+// WhiteWebSdk.d.ts
 export type WhiteWebSdkConfiguration = {
     readonly deviceType?: DeviceType;
     readonly screenType?: ScreenType;
@@ -39,19 +43,34 @@ export type WhiteWebSdkConfiguration = {
 };
 ```
 
->所有参数均为可选，部分已有默认值。
+>所有参数均为可选，部分已有默认值。加粗为常用配置项目
 
 ### **urlInterrupter**: 图片替换
 
+* TypeScript 签名
+
+```typescript
+urlInterrupter?: (url: string) => string;
+```
+
 ```js
-类型：url => url；
-传入一个 string，返回一个 string。  
+传入一个插入图片/ppt 时的原始地址，返回一个任意修改后的地址
 ```
 
 >在插入图片和创建新场景背景图时，sdk 会调用该 API，此时可以修改最终显示的url。  
 >如果没有需要，请不要传入该参数。目前在绘制时，会频繁调用该 API。
 
 ### **deviceType**: 设备类型
+
+* TypeScript 签名
+
+```typescript
+export enum DeviceType {
+    Desktop = "desktop",
+    Touch = "touch",
+    Surface = "surface",
+}
+```
 
 ```js
 值：`desktop`|`touch`|`surface`。
@@ -80,8 +99,10 @@ export type WhiteWebSdkConfiguration = {
 
 ```js
 默认`false`，类型：`boolean`
-是否预先加载动态 PPT 中的图片，会显著提升用户体验，降低翻页的图片加载时长。
+是否预先加载动态 PPT 中的图片，选择 true，会在第一页时，就加载所有图片，从而保证翻页时，能够立即显示图片。
 ```
+
+>预加载进度回调，可以在初始化 room player 时，进行配置。可以查看[房间参数](./room.md)与[回放参数](./player.md)中 onPPTLoadProgress 配置。
 
 ### loggerOptions: 日志上报配置
 
@@ -99,7 +120,7 @@ export type WhiteWebSdkConfiguration = {
 ```
 
 允许修改的值:
-```js
+```Typescript
 {
     disableReportLog?: boolean,
     reportLevelMask?: "debug" | "info" | "warn" | "error",
