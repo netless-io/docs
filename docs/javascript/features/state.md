@@ -61,6 +61,7 @@ type SceneState
 type RoomState = {
     // 可以通过 API 修改该属性
     readonly globalState: GlobalState;
+    // 见 GlobalState 定义
     readonly roomMembers: ReadonlyArray<RoomMember>;
     // 可以通过 [页面（场景）管理] 中的API 修改
     readonly sceneState: SceneState;
