@@ -13,7 +13,7 @@ title: 房间参数
 
 ```typescript
 //WhiteWebSdk.d.ts
-joinRoom(params: JoinRoomParams, callbacks: RoomCallbacks = {}): Promise<Room>
+public joinRoom(params: JoinRoomParams, callbacks: RoomCallbacks = {}): Promise<Room>
 ```
 
 ### 示例代码
@@ -41,6 +41,8 @@ whiteWebSdk.joinRoom({
 ```
 
 ## JoinRoomParams 参数说明：
+
+### TypeScript 签名
 
 ```typescript
 export type JoinRoomParams = {
@@ -219,6 +221,8 @@ whiteWebSdk.joinRoom({
 
 ## RoomCallbacks 参数说明
 
+### TypeScript 签名
+
 ```typescript
 export type RoomCallbacks = {
     readonly onPhaseChanged?: (phase: RoomPhase) => void;
@@ -229,12 +233,11 @@ export type RoomCallbacks = {
     readonly onKeyDown?: (event: KeyboardEvent) => void;
     readonly onKeyUp?: (event: KeyboardEvent) => void;
     readonly onHandToolActive?: (active: boolean) => void;
-    //TODO:后续推出
-    //readonly onPPTLoadProgress?: (uuid: string, progress: number) => void;
+    readonly onPPTLoadProgress?: (uuid: string, progress: number) => void;
 };
 ```
 
->`callbacks`本身为可选参数，其中所有方法也是可选。
+>`callbacks`本身为可选参数，其所有回调方法，也是可选。只有出现对应事件时，才会回调对应的方法。
 
 >右侧目录中加粗字段，为推荐实现。
 
@@ -267,7 +270,7 @@ export enum RoomPhase {
 该回调返回的`RoomState`只包含发生变化的房间状态字段。
 ```
 
->请阅读[状态管理]文档，了解更多关于房间状态管理实现。
+>请阅读[状态监听](../features/state.md)文档，了解更多内容。
 
 ### onDisconnectWithError
 
@@ -284,7 +287,8 @@ export enum RoomPhase {
 ### willInterceptKeyboardEvent
 
 ```js
-是否拦截键盘输入事件，返回`true`表示拦截键盘输入事件。
+鼠标事件回调。
+是否拦截键盘输入事件，返回`true`表示拦截键盘输入事件，sdk 将不做处理。
 ```
 
 ### onKeyDown
@@ -307,9 +311,16 @@ export enum RoomPhase {
 
 ### **onPPTLoadProgress**
 
-```js
-动态 ppt 加载事件进度
+* TypeScript 签名
+```typescript
+(uuid: string, progress: number) => void;
 ```
+
+```js
+ppt 预加载缓存回调，uuid 为 ppt 转换时的 taskId，progress 为 0~1 之间的两位小数。
+```
+
+>只有在初始化 SDK 时，`preloadDynamicPPT`，设置为 true 时，该回调才有用。
 
 ## 推荐阅读
 
