@@ -37,7 +37,7 @@ title: 前提条件
 ```<div id="whiteboard" style="width: 100%; height: 100vh;"></div>``` 元素以便我们挂载白板
 
 ## 整体流程示意图
-![quick_start_flow](https://ohuuyffq2.qnssl.com/quick_start_flow.png)
+![quick_start_flow](/img/quick_start_flow.png)
 
 ## 推荐阅读
 

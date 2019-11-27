@@ -237,4 +237,4 @@ c.startConvertTask("文档地址", Converter.ConvertType.Static, new ConverterCa
 
 ## 调用示意图
 
-![static_conversion_frame@2x](https://ohuuyffq2.qnssl.com/static_conversion_frame@2x.png)
+![static_conversion_frame@2x](/img/static_conversion_frame@2x.png)
