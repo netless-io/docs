@@ -12,6 +12,8 @@ window.addEventListener('load', function() {
         const localPlatform = localStorage.getItem("platform");
         if (localPlatform) {
             updateCodeTab(localPlatform, platformList.indexOf(localPlatform));
+        } else {
+            platformPath = ["javascript", "ios", "android"];
         }
     }
 });

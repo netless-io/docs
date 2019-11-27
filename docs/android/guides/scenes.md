@@ -1,6 +1,6 @@
 ---
 id: android-scenes
-title: 场景和文档管理
+title: 页面（场景）管理
 ---
 ## 新增概念
 
@@ -84,8 +84,7 @@ title: 场景和文档管理
 
 ### 获取当前场景信息
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--Android/Java-->
+
 ```Java
 //Room.Java
 /** 获取当前场景状态 */
@@ -93,7 +92,7 @@ public void getSceneState(final Promise<SceneState> promise)
 /** 获取当前场景目录，所有场景信息 */
 public void getScenes(final Promise<Scene[]> promise) 
 ```
-<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 通过以上 API，获取当前场景信息内容，具体内容结构，可以在各 SDK 中查看结构。
 
@@ -105,8 +104,7 @@ public void getScenes(final Promise<Scene[]> promise)
 
 如果要修改当前场景，移动到另外一个场景，则只需要调用以下 API，传入`场景路径`即可。
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--Android/Java-->
+
 ```Java
 //Room.Java
 public void setScenePath(String path)
@@ -115,7 +113,7 @@ public void setScenePath(String path)
 room.setScenePath:"/Phy/ppt1";
 ```
 
-<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 >当切换 API 没有反应，或者回调中报错，有可能是以下情况：
 >1. 路径不合法。请阅读之前的章节，确保输入了`场景路径`符合规范（以 `/`开头）。
@@ -124,8 +122,7 @@ room.setScenePath:"/Phy/ppt1";
 
 ### 插入新场景
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--Android/Java-->
+
 ```Java
 //Room.java
 /**
@@ -138,7 +135,7 @@ room.setScenePath:"/Phy/ppt1";
 public void putScenes(String dir, Scene[] scenes, int index)
 ```
 
-<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 插入场景 API，接受三个参数:
 
@@ -154,8 +151,7 @@ public void putScenes(String dir, Scene[] scenes, int index)
 
 类似于 Linux，macOS 的 mv 命令。
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--Android/Java-->
+
 ```Java
 //Room.Java
 /**
@@ -167,14 +163,13 @@ public void putScenes(String dir, Scene[] scenes, int index)
 public void moveScene(String source, String target)
 ```
 
-<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 
 ### 删除场景
 
 
-<!--DOCUSAURUS_CODE_TABS-->
-<!--Android/Java-->
+
 ```Java
 // Room.java
 /**
@@ -183,7 +178,7 @@ public void moveScene(String source, String target)
 public void removeScenes(String dirOrPath)
 ```
 
-<!--END_DOCUSAURUS_CODE_TABS-->
+
 
 
 可以给该参数传入 `"/"`，来清空白板房间内所有场景。

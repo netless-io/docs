@@ -38,7 +38,7 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'javascript/overview/js-introduction', label: 'JavaScript'},
+    {doc: 'javascript/overview/js-outline', label: 'JavaScript'},
     {doc: 'android/overview/android-introduction', label: 'Android'},
     {doc: 'ios/overview/ios-introduction', label: 'iOS'},
     {doc: 'mini/overview/mini-introduction', label: '小程序' },
@@ -93,7 +93,7 @@ const siteConfig = {
   // Add custom scripts here that would be placed in <script> tags.
   scripts: [
     'https://www.googletagmanager.com/gtag/js?id=UA-143392347-1',
-    'https://buttons.github.io/buttons.js',
+    '/js/buttons.js',
     'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js',
     '/js/code-block-buttons.js',
     "/js/analytic.js",

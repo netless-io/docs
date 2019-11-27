@@ -352,5 +352,5 @@ room.pptPreviousStep(); // 上一页（上一步）
 ## 效果展示
 
 <video style="width: 100%" loop="loop" autoplay="autoplay" id="video">
-  <source id="mp4" src="http://ogbaxzius.bkt.clouddn.com/pptx_demo.mp4">
+  <source id="mp4" src="https://white-sdk.oss-cn-beijing.aliyuncs.com/video/netless_pptx.mp4">
 </video>

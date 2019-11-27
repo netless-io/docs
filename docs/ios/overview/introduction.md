@@ -1,144 +1,66 @@
 ---
 id: ios-introduction
-title: 简要说明
+title: 使用须知
 ---
 
-依赖库： YYModel，DSBridge-iOS。
+## 介绍
 
-导入方式：支持 cocoapods 与 直接导入两种支持方式。
+依赖库：YYModel，DSBridge-iOS。
+
+导入方式：支持`Cocoapods`（推荐）与直接导入。
 
 支持版本：iOS 9+
 
-历史版本兼容性：  
-<span style="color:red">iOS 2.1.0 之前的版本与 iOS 2.1.0 及其以后的版本，连接的是不同服务器，无法互连。SDK API 保持兼容。</span>
+兼容性：<span style="color:red">iOS 2.1.0 之前的版本与 iOS 2.1.0 及其以后的版本，连接的是不同服务器，无法互连。SDK API 保持兼容。</span>具体请看 [2.0.0正式版发布](/docs/ios/guides/ios-v2migration)
 
-具体请看 [2.0.0正式版发布](/docs/ios/guides/ios-v2migration)
+## Cocoapods 使用
 
-## 相关 repo
+### 使用镜像站加速
 
-1. [White-sdk-ios-release](https://github.com/duty-os/white-sdk-ios-release)
-    * SDK 的 Cocoapods 下载库，其中 example 文件夹中项目，自带部分 API 调用演示
-1. [WhiteCombinePlayer](https://github.com/netless-io/whitecombineplayer)
-    * 集合 AVPlayer 与 WhiteSDK 中 replay 回放同步的开源库，可以参考该部分代码，在客户端集成视频与 replayer 回放操作
-1. [netless-swift-whiteboard](https://github.com/netless-io/netless-swift-whiteboard)
-    * 演示用 demo
+由于网络原因，GitHub cocoapods 仓库网络可能存在延迟，此类用户，推荐使用[ 清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/CocoaPods/)。
+具体使用请看该站使用帮助。
 
----
+### 安装失败
 
-## Changelog
+提示`[!] Unable to find a pod with name, author, summary, or descriptionmatching`等提示。
 
-### [2.4.8] - 2019-08-30
-- 优化截图效果
-### [2.4.7] - 2019-08-24
-- 修复回放时，图片替换 API 失效问题
-- 修复带音视频回放时，PlayerPhase 状态变化回调不及时问题
-- 优化带音视频回放效果，支持重复初始化
-- 优化回放同步获取状态 API
-- 修正主播状态信息类型，无主播时，对应信息为空
-- 修复主动断连时，无回调问题
-- 修正断连回调时，出现两次断连回调
-- 修复处于最大缩放比例时，双指移动异常的问题
-- 更新代码注释，添加更多 nullable 注释，优化对 swift 支持
-- demo 添加部分新 API 调用示例
-### [2.4.6] - 2019-08-06
-- 修复部分情况下，用户加入白板，无法立刻看到主播端画面的问题
-### [2.4.4] - 2019-08-02
-- 优化重连逻辑
-### [2.4.1] - 2019-07-31
-- 修复文字教具再次编辑时，无法弹出完整键盘的问题
-- 增加错误日志上传功能
-- 提供关闭日志上传功能接口（默认打开）
-- 优化断线重连功能
-### [2.4.0] - 2019-07-25
-- 增加同步获取实时房间，回放房间状态 API
-- 获取在线成员时，可以同时获取各个用户的教具状态，以及透传的用户信息
-- 支持同步自定义全局状态
-- 支持在本地修改白板背景色（不会同步到其他远端）
-### [2.3.4] - 2019-07-17
-- 适配服务器端动态 PPT，动态 ppt 客户请升级
-### [2.3.3] - 2019-07-12
-- 适配服务器端动态转换新 API
-### [2.3.2] - 2019-07-06
-#### Add
-- 支持阿里云跨域图片
-### [2.3.0] - 2019-07-04
-#### Add
-- 增加场景预览截图 API
-- 增加场景封面截图 API
-- 增加使用 index 切换场景 API
+由于`Cocoapods`安装是根据本地库进行查询。如果安装时，查询不到对应版本，可以执行以下命令更新
 
-### [2.2.2] - 2019-07-02
-#### Fix
-- 修复 swift 环境下调用时，回放命令失效的问题
-### [2.2.0] - 2019-07-01
-#### Add
-- 增加文档转换 API，初始化时，支持自定义动态PPT 中字体链接
-- 增加动态PPT 控制 API
-- 增加视角控制 API
+```shell
+# 更新 cocoapods repo 内容
+pod repo update
+# 重新安装
+pod install
+```
 
-### [2.1.3] - 2019-06-24
-#### Fix
-- 恢复只读 API（后续将拆分为两个 API）
+### 查看使用版本
 
-### [2.1.2] - 2019-06-24
-#### Fix
-- 兼容旧版本的静态 ppt 回放
+`podfile`中存的是版本约束，并非最终使用的版本。具体版本需要在`Podfile.lock`文件中查看。
 
-### [2.1.0] - 2019-06-22
-#### <span style="color:red">兼容性变化</span>
-与之前版本 API 兼容，但是无法与低版本互连，进入同一房间。
-可以与 Android 2.0.0 正式版，web 2.0.0 正式版互连，无法与 Android 2.0.0-beta 以及 web 2.0.0-beta 开头的版本互连。
+```text
+# 2.4.12 即为所使用的版本
+- White-SDK-iOS (2.4.12):
+    - dsBridge (~> 3.0.2)
+    - YYModel (~> 1.0.4)
+```
 
-可以回放 2.0.0 开始的房间，但是无法进入 2.1.0 之前的房间。
+### 更新 sdk 版本
 
->2019.06.24 前接入的客户，在升级至该版本时，请联系 SDK 团队，确认服务器指向版本。  
->更多内容，请查看 [2.0.0正式版发布](/blog/2019/06/22/release-note)
-#### Fix
-- 修复文字书写位置，被软键盘覆盖的情况下，键盘消失后，白板整体偏移问题。
-- 增加显示版本功能
+由于`Cocoapods`使用了`Podfile.lock`锁定版本号，所以，一旦安装过 sdk（存在符合`Podfile`的`lock` 文件），`pod install`将不再变更版本。
 
-### [2.0.5] - 2019-06-16
-#### Fix
-- 用户头像没有正确缩放
-- 文字教具，键盘无法弹出问题。（开发者目前需要手动管理键盘后，WhiteboardView 中的抖动问题）
+先执行以下命令：
 
-### [2.0.4] - 2019-06-03
-#### Add
-- 回放增加自定义事件支持
-#### Fix
-- 修复 2.0.3-ppt 多人进入房间出现报错
+```shell
+# 查看本地 cocoapods spec repo，是否有最新版本
+pod search White-SDK-iOS
+# 如果没有最新版本，更新spec repo
+pod repo update
+```
 
-### [2.0.3-ppt] - 2019-06-01
-- 支持与 web 端，带动态 ppt 版本连接
-- 修复 2.0.0-ppt 中 pencil 的抖动问题
-- 修复 2.0.0-ppt 中 replay 支持
-- 恢复默认用户头像支持
+通过以下任一方式更新 sdk：
+1. 可以通过执行`pod update White-SDK-iOS`进行单独更新。
+1. 删除`Podfile.lock`文件中 sdk 相关内容，重新执行`pod install`
 
-### [2.0.0-ppt] - 2019-05-19
-#### Add
-- 支持与 web 端，带动态 ppt 版本连接
+### 参考资料
 
-### [2.0.3] - 2019-04-12
-#### Add
-- 提供自定义实现用户头像回调参数
-- 提供延时 API
-
-### [2.0.2] - 2019-04-03
-#### Add
-- 增加用户信息传入接口
-- 增加显示用户头像功能
-- 增加白板外部坐标转为白板内部坐标
-
-### [2.0.1] - 2019-03-13
-#### Add
-- 提供清屏 API（封装 API，并非新 API），提供测试代码
-- 修复 Player 的 seek 问题
-
-### [2.0.0] - 2019-03-10
-#### 兼容性变化
-大版本更新，与过去版本API存在部分不兼容。无法与 1.0 版本进行互联。
-#### Add
-- 增加回放 API，并提供回放 API 示例
-- 增加测试用例代码，大部分 API 可以参考测试用例
-#### Change
-- 修改 PPT 翻页 API，并修改示例代码
+[pod update](https://guides.cocoapods.org/using/pod-install-vs-update.html)
