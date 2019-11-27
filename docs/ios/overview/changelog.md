@@ -2,6 +2,8 @@
 id: ios-changelog
 title: 版本历史
 ---
+## [2.4.18] - 2019-11-27
+- 兼容 iOS 9
 ## [2.4.17] - 2019-11-18
 - 兼容 32 位 CPU（iPhone 5s 之前设备）
 - 修复 disableCameraTransform 时，导致的绘制问题
