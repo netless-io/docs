@@ -33,6 +33,9 @@ title: 前提条件
 </html>
 ```
 
+> react 项目的集成 sdk 方式请参考 [SDK集成](../guide/sdk.md)。并在项目中 index.html 的 ```<body>``` 内添加一个 
+```<div id="whiteboard" style="width: 100%; height: 100vh;"></div>``` 元素以便我们挂载白板
+
 ## 整体流程示意图
 ![quick_start_flow](https://ohuuyffq2.qnssl.com/quick_start_flow.png)
 
