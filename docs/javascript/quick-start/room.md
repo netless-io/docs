@@ -5,6 +5,8 @@ title: 实时房间
 
 ## 初始化
 
+> 这里的 json 是在 [获取 roomToken](./js-token#获取特定房间-roomtoken) 步骤中获取的 json 对象
+
 ```js
 // 更多初始化 sdk 参数，请查看[初始化参数]文档
 var whiteWebSdk = new WhiteWebSdk();

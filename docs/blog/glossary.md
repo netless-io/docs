@@ -13,7 +13,7 @@ title: 专业名词说明
     
    - 如果还未注册企业账户：进入<a target="_blank" href="https://console.herewhite.com">管理控制台</a> 注册账号。
    - 如果已经注册企业账户：
-   ![sdkTokenGet](https://ohuuyffq2.qnssl.com/sdkTokenGet.jpg)
+   ![sdkTokenGet](/img/sdkTokenGet.jpg)
 
 3、使用注意点
     

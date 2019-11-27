@@ -25,7 +25,10 @@ var requestInit = {
         "content-type": "application/json",
     },
     body: JSON.stringify({
+        name: "房间名称",
         limit: 100, // 房间人数限制
+        mode: "persistent",  // 普通房间，无法回放
+        // mode: "historied"， // 可回放房间
     }),
 };
 
