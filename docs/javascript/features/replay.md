@@ -124,3 +124,8 @@ player.setObserverMode("directory");
 ```javascript
 player.stop();
 ```
+
+## 相关文档
+
+阅读[初始化参数-回放参数](../parameters/player.md)，查看初始化相关参数。
+阅读[快速开始-回放房间](../quick-start/replay.md)，快速回放一个已经有录制内容的房间。
