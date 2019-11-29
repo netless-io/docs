@@ -77,3 +77,11 @@ let delay = room.timeDelay;
 let retainPpt = true;
 room.cleanCurrentScene(retainPpt);
 ```
+
+## 主动断连
+
+```js
+///room.d.ts
+await room.disconnect();
+//... 成功断连
+```
