@@ -60,8 +60,7 @@ pod init
 platform :ios, '9.0'
 
 target 'Your App' do
-    # 2.1.0 与 2.0 之前的房间无法互联，详情请看版本历史
-    pod 'White-SDK-iOS'
+    pod 'Whiteboard'
 end
 ```
 
@@ -81,7 +80,7 @@ pod install
 
 ### 方式二：手动添加（不建议）
 
-1. 下载 [cocoapods发布的版本](https://github.com/duty-os/white-sdk-ios-release)。
+1. 下载 [cocoapods发布的版本](https://github.com/netless-io/whiteboard-ios)。
     * 根据需要安装的对应版本，切换到不同分支。（建议选择最新的 tag，而不是最新的 commit，以保证可运行性）
-1. 解压，并进入 White-SDK-iOS 文件夹。将 WhiteSDK.bundle，libWhiteSDK.a，Headers 文件夹，拖拽入项目中。
-1. 打开 Build Phases 页签，展开 Link Binary with Libraries 项并添加如下库。点击 + 图标开始添加 `WebKit.framework`
+1. 进入`Example`文件夹，执行`pod install`，然后 build 项目，在 Pod Project 下，找到 `Products` 文件夹，复制`Whiteboard.framework` 文件，复制到对应文件中。 
+1. 在要集成的项目中，选择 `Build Phases` 标签，找到 `Link Binary with Libraries` 项，点击 + 图标开始添加 `WebKit.framework`。

@@ -15,4 +15,4 @@ title: 概述
 
 ## Demo
 
-demo 地址： [White-sdk-ios-release](https://github.com/duty-os/white-sdk-ios-release) 中获取。
+demo 地址： [Whiteboard](https://github.com/netless-io/Whiteboard-ios) 中获取。
