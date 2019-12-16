@@ -20,7 +20,7 @@ title: 使用须知
 由于网络原因，GitHub cocoapods 仓库网络可能存在延迟，此类用户，推荐使用[清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/CocoaPods/)。
 具体使用请看该站使用帮助。
 
-### 安装失败
+### 疑难问题
 
 提示`[!] Unable to find a pod with name, author, summary, or descriptionmatching`等提示。
 
@@ -38,8 +38,8 @@ pod install
 `podfile`中存的是版本约束，并非最终使用的版本。具体版本需要在`Podfile.lock`文件中查看。
 
 ```text
-# 2.4.12 即为所使用的版本
-- White-SDK-iOS (2.4.12):
+# 2.5.0 即为所使用的版本
+- Whiteboard (2.5.0):
     - dsBridge (~> 3.0.2)
     - YYModel (~> 1.0.4)
 ```
@@ -52,13 +52,13 @@ pod install
 
 ```shell
 # 查看本地 cocoapods spec repo，是否有最新版本
-pod search White-SDK-iOS
+pod search Whiteboard
 # 如果没有最新版本，更新spec repo
 pod repo update
 ```
 
 通过以下任一方式更新 sdk：
-1. 可以通过执行`pod update White-SDK-iOS`进行单独更新。
+1. 可以通过执行`pod update Whiteboard`进行单独更新。
 1. 删除`Podfile.lock`文件中 sdk 相关内容，重新执行`pod install`
 
 ### 参考资料
