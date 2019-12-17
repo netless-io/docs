@@ -41,7 +41,6 @@ const siteConfig = {
     {doc: 'javascript/overview/js-outline', label: 'JavaScript'},
     {doc: 'android/overview/android-introduction', label: 'Android'},
     {doc: 'ios/overview/ios-introduction', label: 'iOS'},
-    {doc: 'mini/overview/mini-introduction', label: '小程序' },
     {doc: 'server/overview/server-introduction', label: 'Server'},
     {doc: 'blog/blog-glossary', label: '博客'},
     {
