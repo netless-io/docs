@@ -3,6 +3,11 @@ id: js-changelog
 title: 版本历史
 ---
 
+## 2.3.18 - 2019-12-20
+
+> - 支持 mobile端 ppt点击动画
+> - 增加等比例缩放ppt至满屏API (scalePptToFit)
+
 ## 2.3.17 - 2019-12-07
 
 > - 动态 ppt 支持超链接跳转
