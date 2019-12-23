@@ -76,7 +76,15 @@ playerConfig.audioUrl = @"https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/
 
 ### 视频回放
 
-可以在 demo 中查看 [视频集成](../overview/introduction.md#相关-repo) WhiteCombinePlayer 中的实现，或直接集成使用。
+>2.5.0 (开源版本 SDK)开始，新增`WhiteCombinePlayer`类，支持白板+视频的回放方式。
+
+* 实现步骤：
+
+1. 初始化`WhiteCombinePlayer`。
+2. 在`WhitePlayer`的`- (void)phaseChanged:(WhitePlayerPhase)phase` 回调中，主动更新 `WhiteCombinePlayer`的`whitePlayer`状态。
+3. 初始化`WhiteVideoView`，并调用`- (void)setAVPlayer:(AVPlayer *)player`方法，传入`CombinePlayer`的`nativePlayer`。
+
+>可以在[开源版本 SDK](../overview/ios-open-source)的 example 中查看示例代码。
 
 ## 详细类与 API
 
@@ -97,16 +105,15 @@ playerConfig.audioUrl = @"https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/
 @property (nonatomic, strong, nullable) NSNumber *beginTimestamp;
 /** 传入持续时间（秒），当播放到对应位置时，就不会再播放。如果不设置，则从开始时间，一直播放到房间结束。 */
 @property (nonatomic, strong, nullable) NSNumber *duration;
-/** m3u8地址，暂不支持视频。设置后，会与白板同步播放 */
+/** 音频地址。
+ 传入视频，也只会播放音频部分。设置后，sdk 会负责与白板同步播放 。
+ 如需播放音频，请使用 WhiteNativePlayer 模块中的 WhiteCombinePlayer。
+ */
 @property (nonatomic, strong, nullable) NSString *audioUrl;
 @end
 ```
 
 >目前：持续时间只有在传入了开始 UTC 时间戳的时候，才生效。
-
->音频地址，暂不支持视频。Player 会自动与音频播放做同步，保证同时播放，当一方缓冲时，会一起暂停。
-
-### WhitePlayer
 
 回放类，可以将该类看做一个视频播放器。有类似播放器的播放，暂停等功能，并且可以通过 get API，获取一些 Player 的当前状态。  
 
