@@ -40,8 +40,8 @@ title: 获取封面
 
 字段 | 类型 | 描述 |
 --  | -- | -- |
-width | string | 封面宽 |
-height | string | 封面高 |
+width | number | 封面宽(px) |
+height | number | 封面高(px) |
 uuid | string | 白板唯一标识符 |
 scenePath（可选） | string | 需要读取封面的场景路径（如果不传则返回当前场景的封面图片） |
 
@@ -51,8 +51,8 @@ scenePath（可选） | string | 需要读取封面的场景路径（如果不�
 
 ```json
 {
-  "width": "240px",
-  "height": "180px",
+  "width": 240,
+  "height": 180,
   "scenePath": "/init",
   "uuid": "xxxxxx4e96db4e6cb1ce492157xxxxxx"
 }
@@ -82,8 +82,8 @@ scenePath（可选） | string | 需要读取封面的场景路径（如果不�
 
 字段 | 类型 | 描述 |
 --  | -- | -- |
-width | string | 封面宽 |
-height | string | 封面高 |
+width | number | 封面宽(px) |
+height | number | 封面高(px) |
 uuid | string | 白板唯一标识符 |
 page （可选）| number | 返回值进行分页号（默认为 1 ）|
 size（可选） | number | 返回列表每一页返回的场景截图数量（默认为5，最大为10）|
@@ -93,8 +93,8 @@ scenePath | string | 场景组路径 |
 
 ```json
 {
-    "width": "400px",
-    "height": "400px",
+    "width": 400,
+    "height": 400,
     "uuid": "xxxxxx4e96db4e6cb1ce492157xxxxxx",
     "scenePath": "/",
     "page":1,
