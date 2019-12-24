@@ -4,6 +4,10 @@ title: 版本历史
 ---
 
 >[最新版本列表——发版自动更新](https://jitpack.io/#duty-os/white-sdk-android)
+### [2.4.23] - 2019-12-23
+- 增加 CombinePlayer 模块，提供 `PlayerSyncManager` 同步客户端音视频播放器与白板回放播放状态。
+    * 具体使用，见回放文档。
+    * 具体见[Android-Demo](./android-open-source)提供的 NativeMediaPlayer 类。
 ### [2.4.22] - 2019-12-20
 - 优化重连逻辑
 - 支持动态 ppt 点击动画

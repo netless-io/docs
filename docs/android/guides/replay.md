@@ -86,6 +86,16 @@ whiteSdk.createPlayer(playerConfiguration, new AbstractPlayerEventListener() {
 
 * 以上代码，可以在 [white-demo-android](https://github.com/duty-os/white-demo-android) Demo 中的 PlayActivity 中查看。
 
+## 视频支持
+
+2.4.23 开始，sdk 提供`PlayerSyncManager`类，支持同步白板与视频播放器的状态。
+
+* 开发者需要做的：
+
+1. 在`whitePlayer`的`onPhaseChanged(PlayerPhase phase)`回调中，将`whitePlayer`的状态通过`playerSyncManager`的`updateWhitePlayerPhase`方法传递给`playerSyncManager`。
+1. 在视频播放器中，实现`nativePlayer`接口。并且在视频播放器，进入缓冲，结束缓冲时，及时调用`playerSyncManager`的`updateNativePhase`，根据视频播放器的状态，传入合适的`NativePlayerPhase`。
+1. 使用`PlayerSyncManager`的`play`,`pause`方法。
+
 ## 相关类与 API
 
 ### PlayerConfiguration
