@@ -52,8 +52,8 @@ import {Room, RoomPhase, RoomWhiteboard, WhiteWebSdk} from "white-react-sdk";
 ###  2. script 标签集成
 
 ```html
-<link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.3.19.css">
-<script src="https://sdk.herewhite.com/white-web-sdk/2.3.19.js"></script>
+<link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.5.1.css">
+<script src="https://sdk.herewhite.com/white-web-sdk/2.5.1.js"></script>
 <script>
     //全局变量 WhiteWebSdk
     let sdk = new WhiteWebSdk();
