@@ -9,7 +9,19 @@ title: 版本历史
 开源版本，版本在旧版本数字基础上迭代增加。
 
 >迁移：将`import <White-SDK-iOS/WhiteSDK.h>` 更改为 `import <Whiteboard/Whiteboard.h>` 即可。
-
+## [2.5.5] - 2019-12-31
+- 优化音视频插件
+- 提供多路由选项（WhiteSdkConfiguration routeBackup 属性）
+## [2.5.4] - 2019-12-26
+- 优化`CombinePlayer`
+- 优化音视频插件
+## [2.5.3] - 2019-12-25
+- 提供显示视频，音频插件的功能（内测功能）
+## [2.5.2] - 2019-12-20
+- 支持动态 ppt 点击动画
+- 新增铺满 ppt API （Displayer scalePptToFit)  
+## [2.5.1] - 2019-12-16
+- 修复新版本`refreshViewSize`失效的问题
 ### [2.5.0] - 2019-12-14
 - 增加`NativeReplayer`模块，支持在回放白板内容的同时，同步使用系统`AVPlayer`播放视频。
 - Native 端调用代码开源
