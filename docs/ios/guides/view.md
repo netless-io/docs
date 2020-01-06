@@ -1,6 +1,6 @@
 ---
 id: ios-view
-title: 视角同步
+title: 视角操作
 ---
 
 本文中的 API，都可以在 `WhiteRoom` 类中查看。本文示例代码中的 `room` 即为 `whiteRoom` 的实例。
