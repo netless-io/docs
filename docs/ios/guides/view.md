@@ -133,6 +133,20 @@ typedef NS_ENUM(NSInteger, WhiteViewMode) {
 @end
 ```
 
+## ppt 铺满当前屏幕
+
+> [Whiteboard](https://github.com/netless-io/Whiteboard-iOS) 开源版本 2.5.1 新增 API
+
+```Objective-C
+/**
+ 将 ppt 等比例铺满屏幕（参考 UIViewContentModeScaleAspectFit ）。
+ 该操作为一次性操作，不会持续锁定。
+ 如果当前页没有 ppt，则不会进行缩放。
+ @param mode 动画参数，连续动画，或者瞬间切换
+ */
+- (void)scalePptToFit:(WhiteAnimationMode)mode;
+```
+
 ## 禁止视角变化<span class="anchro" id="disableCameraTransform">
 
 >2.2.0 新增 API
