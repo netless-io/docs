@@ -233,6 +233,31 @@ public class RectangleConfig extends WhiteObject {
 }
 ```
 
+## ppt 铺满当前屏幕
+
+>2.4.22
+
+```Java
+// displayer.java
+// room player 通用
+
+/**
+* 以连续动画的形式，等比例缩放ppt，保证ppt所有内容都在容器内。
+* @since 2.4.22
+*/
+public void scalePptToFit() {
+    bridge.callHandler("displayer.scalePptToFit", new Object[]{});
+}
+
+/**
+* 等比例缩放ppt，保证ppt所有内容都在容器内。
+* @param mode 缩放时，动画行为
+* @since 2.4.28
+*/
+public void scalePptToFit(AnimationMode mode) {
+
+```
+
 ## 禁止视角变化<span class="anchro" id="disableCameraTransform">
 
 >2.2.0 新增 API
