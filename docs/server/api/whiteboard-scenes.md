@@ -7,7 +7,13 @@ title: 场景管理 API
 
 场景是个相对抽象的概念，可以是一页 PPT 也可以是一页空白白板，具体可以参考 [场景管理](/docs/javascript/guides/js-scenes)
 
-`POST /rooms/{{uuid}}/scenes?roomToken={{roomtoken}}`
+`POST /rooms/{{uuid}}/scenes`
+
+* header参数
+
+字段 | 类型 | 描述 |
+--  | -- | -- |
+roomToken | string | {{roomtoken}}|
 
 * body 参数
 
@@ -57,7 +63,13 @@ ppt (可选) | ``` {width: number, height: number, src: string} ```| ppt 的宽�
 
 场景可以进行切换，体现在 PPT 上可以实现翻页的效果。
 
-`PUT /rooms/{{uuid}}/scenepath?roomToken={{roomtoken}}`
+`PUT /rooms/{{uuid}}/scenepath`
+
+* header参数
+
+字段 | 类型 | 描述 |
+--  | -- | -- |
+roomToken | string | {{roomtoken}}|
 
 * body 参数
 

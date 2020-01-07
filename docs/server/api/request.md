@@ -17,6 +17,10 @@ https://cloudcapiv4.herewhite.com
 
 sdk 服务器，通过 URL 参数中的 token 进行用户验证。
 
+* {{roomtoken}} 参数
+
+用户在调用 [获取白板 roomtoken](/docs/server/api/server-whiteboard-base#获取特定白板-room-token) 后得到的参数，用于调用部分房间 api
+
 ## 请求格式
 
 对于 POST 和 PUT 请求，请求的主体必须是 JSON 格式，而且 HTTP header 的 Content-Type 需要设置为 `application/json`
