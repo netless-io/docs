@@ -1,6 +1,6 @@
 ---
 id: server-whiteboard-cover
-title: 获取封面
+title: 获取封面 API
 ---
 
 获取封面是将白板场景转换为图片的服务。
@@ -34,7 +34,13 @@ title: 获取封面
 
 ## 特定场景封面
 
-`POST /handle/rooms/single-snapshot?roomToken={{roomtoken}}`
+`POST /handle/rooms/single-snapshot`
+
+* header参数
+
+字段 | 类型 | 描述 |
+--  | -- | -- |
+roomToken | string | {{roomtoken}}|
 
 * body 参数
 
@@ -76,7 +82,13 @@ scenePath（可选） | string | 需要读取封面的场景路径（如果不�
 
 ## 范围内封面
 
-`POST /handle/rooms/snapshots?roomToken={{roomtoken}}`
+`POST /handle/rooms/snapshots`
+
+* header参数
+
+字段 | 类型 | 描述 |
+--  | -- | -- |
+roomToken | string | {{roomtoken}}|
 
 * body 参数
 

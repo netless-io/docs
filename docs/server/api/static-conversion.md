@@ -37,13 +37,15 @@ title: 文档转图片（静态文档转换）
 
 ### 发起转换任务
 
-`POST /services/conversion/tasks?token={{token}}`
-
-或
-
-`POST /services/conversion/tasks?roomToken={{roomToken}}`
+`POST /services/conversion/tasks`
 
 >在服务端可以使用 sdk token。客户端封装类要求使用 roomToken，避免 sdk token 泄露。
+
+* header参数
+
+字段 | 类型 | 描述 |
+--  | -- | -- |
+roomToken 或 token | string | {{roomtoken}} 或 {{token}}|
 
 * body参数
 
@@ -79,11 +81,13 @@ task UUID 长度为 32 位，是转换任务的唯一标识
 
 ### 查询转换任务
 
-`GET /services/conversion/tasks/{{taskUUID}}/progress?serviceType=static_conversion&token={{token}}`
+`GET /services/conversion/tasks/{{taskUUID}}/progress?serviceType=static_conversion`
 
-或
+* header参数
 
-`GET /services/conversion/tasks/{{taskUUID}}/progress?serviceType=static_conversion&roomToken={{roomToken}}`
+字段 | 类型 | 描述 |
+--  | -- | -- |
+roomToken 或 token | string | {{roomtoken}} 或 {{token}}|
 
 * response 例子
 

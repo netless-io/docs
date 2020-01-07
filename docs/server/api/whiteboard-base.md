@@ -7,7 +7,13 @@ title: 白板基础 API
 
 ### 创建白板
 
-`POST /room?token={{token}}`
+`POST /room`
+
+* header参数
+
+字段 | 类型 | 描述 |
+--  | -- | -- |
+token | string | {{token}}|
 
 * body参数
 
@@ -64,7 +70,13 @@ mode | string | **v2版本参数**；房间类型：`persistent`,`historied` |
 
 ### 获取特定白板 room Token
 
-`POST /room/join?uuid={{uuid}}&token={{token}}`
+`POST /room/join?uuid={{uuid}}`
+
+* header参数
+
+字段 | 类型 | 描述 |
+--  | -- | -- |
+token | string | {{token}}|
 
 * query 参数
 
@@ -78,7 +90,13 @@ uuid | string | 白板唯一标识符 |
 
 ### 获取白板列表
 
-`GET /room?offset={{offset}}&limit={{limit}}&token={{token}}`
+`GET /room?offset={{offset}}&limit={{limit}}`
+
+* header参数
+
+字段 | 类型 | 描述 |
+--  | -- | -- |
+token | string | {{token}}|
 
 * query 参数
 
@@ -90,7 +108,13 @@ limit | number | 每次获取白板的个数 |
 
 ### 获取特定白板详细信息
 
-`GET /room/id?uuid={{uuid}}&token={{token}}`
+`GET /room/id?uuid={{uuid}}`
+
+* header参数
+
+字段 | 类型 | 描述 |
+--  | -- | -- |
+token | string | {{token}}|
 
 * query 参数
 
@@ -125,7 +149,13 @@ uuid | string | 白板唯一标识符 |
 
 ### 获取特定白板页数
 
-`GET /room/scenes/count?roomuuid={{uuid}}&token={{token}}	`
+`GET /room/scenes/count?roomuuid={{uuid}}`
+
+* header参数
+
+字段 | 类型 | 描述 |
+--  | -- | -- |
+token | string | {{token}}|
 
 * query 参数
 
@@ -137,9 +167,15 @@ roomuuid | string | 白板唯一标识符 |
 
 ### 禁用和恢复白板
 
-`POST /banRoom?token={{token}}`
+`POST /banRoom`
 
 使用该 API后，会将所有用户从房间中踢出，并无法在客户端 sdk 中执行加入房间操作。被禁用的白板，可以进行回放操作。
+
+* header参数
+
+字段 | 类型 | 描述 |
+--  | -- | -- |
+token | string | {{token}}|
 
 * body 参数
 
