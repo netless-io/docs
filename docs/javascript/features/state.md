@@ -67,9 +67,9 @@ type RoomState = {
     readonly sceneState: SceneState;
     // 可以通过 [教具使用] 中的 API 修改
     readonly memberState: MemberState;
-    // 可以通过 [视角同步] 中的 API 修改
+    // 可以通过 [视角操作] 中的 API 修改
     readonly broadcastState: Readonly<BroadcastState>;
-    // 可以通过 [视角同步] 中的 API 修改
+    // 可以通过 [视角操作] 中的 API 修改
     readonly zoomScale: number;
 };
 ```

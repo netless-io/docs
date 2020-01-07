@@ -167,6 +167,16 @@ room.moveCamera({
 })
 ```
 
+## 铺满 ppt
+
+```typescript
+/** 
+ * 等比例缩放ppt 内容，保证当前 ppt 完整的展现在当前白板中。
+ * 该API 为一次性，只有当前页面存在 ppt 时，才有效。
+ */
+public scalePptToFit(animationMode: AnimationMode = AnimationMode.Continuous): void;
+```
+
 ## 调整视野范围<span class="anchor" id="moveCameraToContain">
 
 >2.2.0新增 API，2.2.2 增加动画选项；回放 replay 与 实时房间 room 都支持该 API。
