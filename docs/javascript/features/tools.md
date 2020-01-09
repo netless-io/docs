@@ -44,7 +44,7 @@ type MemberState = {
 room.setMemberState({
     currentApplianceName: "pencil",
     strokeColor: [255, 0, 0],
-    storkeWidth: 4,
+    strokeWidth: 4,
     textSize: 14,
 });
 ```
