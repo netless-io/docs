@@ -84,7 +84,8 @@
       "javascript/features/js-events",
       "javascript/features/js-cursor",
       "javascript/features/js-document",
-      "javascript/features/js-replay"
+      "javascript/features/js-replay",
+      "javascript/features/js-plugin"
     ],
     "升级指南": [
       "javascript/guide/js-v2migration"
