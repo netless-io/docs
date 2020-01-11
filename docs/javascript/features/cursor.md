@@ -3,6 +3,12 @@ id: js-cursor
 title: 鼠标位置同步
 ---
 
+## 效果
+
+**在一个白板上操作时，可以同步鼠标位置到另一个白板上。效果如下：**
+
+![cursor](/img/cursor.gif)
+
 ## 安装 cursor-adapter 库
 
 ``` bash
