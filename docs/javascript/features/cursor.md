@@ -5,9 +5,11 @@ title: 鼠标位置同步
 
 ## 效果
 
-**在一个白板上操作时，可以同步鼠标位置到另一个白板上。效果如下：**
+> 在一个白板上操作时，可以同步鼠标位置到另一个白板上。效果如下：
 
-![cursor](/img/cursor.gif)
+<video style="width: 100%" loop="loop" autoplay="autoplay" id="video">
+  <source id="mp4" src="https://white-sdk.oss-cn-beijing.aliyuncs.com/video/video_board.mp4">
+</video>
 
 ## 安装 cursor-adapter 库
 
