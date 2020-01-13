@@ -1,98 +1,98 @@
 ---
 id: js-view
-title: 视角操作
+title: Perspective operation
 ---
 
-## 白板内部坐标系
+## Whiteboard internal coordinate system
 
-`sdk`白板为无限内容，以初始点中心为中心，向四个方向无限延伸，并允许用户通过鼠标滚轮、手势等方式移动，缩放白板。为了定义用户正在观看的内容位置，`sdk`引入了「`白板内部坐标系`」这个概念。
+`sdk` whiteboard is infinite content, with the center of the initial point as the center, extending infinitely in four directions, and allowing users to move and zoom the whiteboard by means of mouse wheel, gestures and other methods. In order to define the position of the content that the user is watching, `sdk` introduces the concept of` whiteboard internal coordinate system`.
 
->`白板内部坐标系`: **以白板初始化时，白板`div`中点为坐标原点，X 轴正方向向右，Y 轴正方向向下。**
+> `Whiteboard internal coordinate system`:  **When the whiteboard is initialized, the midpoint of the whiteboard` div` is the origin of the coordinates, the positive direction of the X axis is right, and the positive direction of the Y axis is downward.**
 
-### 坐标转换API
+### Coordinate Transformation API
 
-由于`白板内部坐标系`与传统左上角为坐标原点的做法不同（XY 轴一致），且经过用户缩放，移动后，难以得知当前位置。`sdk`提供以下 API ，该 API 接受一个以白板`div`左上角为坐标原点的坐标，返回该点在白板`内部坐标系`中的位置（该坐标受移动，缩放影响）。
+Because the `whiteboard internal coordinate system` is different from the traditional method of using the upper left corner as the coordinate origin (the XY axis is the same), and after the user zooms, it is difficult to know the current position after moving. `sdk` provides the following API, which accepts a coordinate with the upper left corner of the whiteboard` div` as the origin of the coordinates, and returns the position of the point in the whiteboard `internal coordinate system` (the coordinates are affected by movement and scaling).
 
 ```typescript
-///Displayer.d.ts
-//room player 通用
+// Displayer.d.ts
+// room player use for public
 
 public convertToPointInWorld(point: {x: number, y: number}): {x: number, y: number};
 ```
 
-## 主播模式
+## Anchor mode
 
-由于所有用户都可以通过移动缩放等方式，观看白板不同位置的内容，所以为了满足`所有用户`观看同一个位置的需求，`sdk`添加了`主播模式`这个功能。
+Since all users can view content in different positions of the whiteboard by means of mobile zoom, etc., in order to meet the needs of `all users` watching the same location,` sdk` has added the function of `anchor mode`.
 
-使用`room.setViewMode("broadcaster")`将房间内的某个用户设为`主播`后，其他用户会自动进入`观众模式`。`sdk`会通过`缩放`，`移动``观众模式`的用户（以下简称`观众`）的白板，来保证观众能看到`主播`用户（以下简称主播）呈现的完整内容。
+After using `room.setViewMode (" broadcaster ")` to set a user in the room as the anchor, other users will automatically enter the viewer mode. `sdk` will use` zoom` to `move the whiteboard of users in the“ audience mode ”(hereinafter referred to as` audience`) to ensure that the audience can see the complete content presented by the `anchor` user (hereinafter referred to as the anchor).
 
-### 观众内容多余主播的情况
->根据观众屏幕比例与主播的不同，会造成观众看到的内容可能比主播更多。
+### When the content of the audience is superfluous
+> Depending on the proportion of the viewer's screen and the anchor, the viewer may see more content than the anchor.
 
 ![perspective](/screenshot/perspective.jpeg)
 
-主播模式中，主播所看到的内容，会全部同步到观众端。但是由于观众端屏幕比例可能与主播端不一致。为了完全显示主播端的内容，会进行缩放调整。
-类似于电影播放时，为了保持原始画面比例并保留原始内容，在某些显示器上，会进行比例缩放，会出现黑边。
+In the anchor mode, all the content that the anchor sees will be synchronized to the audience. However, the screen ratio of the viewer may be inconsistent with that of the anchor. In order to fully display the content of the anchor, a zoom adjustment is performed.
+Similar to movie playback, in order to maintain the original picture proportion and retain the original content, on some monitors, scaling is performed and black borders appear.
 
-## 视角模式 —— 主播，观众，自由（默认）
+## Perspective mode-anchor, audience, free (default)
 
-前面提到可以通过`room.setViewMode("broadcaster")`将用户设置为主播。前面主要介绍了`主播`，其实`sdk`一共有三种视角模式，分别为`主播，观众，自由（默认）`
+As mentioned earlier, you can set the user as a host through `room.setViewMode (" broadcaster ")`. The main introduction is the `anchor`. In fact, there are three viewing modes for` sdk`, which are `anchor, audience, free (default)`.
 
-以下为`setViewMode`支持的参数：
+The following are the parameters supported by `setViewMode`:
 
 ```Typescript
 export declare enum ViewMode {
-    // 自由模式
-    // 用户可以自由放缩、移动视角。
-    // 即便房间里有主播，主播也无法影响用户的视角。
+    // Free mode
+    // Users can freely zoom and move the perspective.
+    // Even if there are anchors in the room, the anchor cannot influence the user's perspective.
     Freedom = "freedom",
-    // 追随/观众模式
-    // 用户将追随主播的视角。主播在看哪里，用户就会跟着看哪里。
-    // 在这种模式中，如果用户进行缩放、移动视角操作，将自动切回 freedom模式。
+    // Follow / Audience Mode
+    // The user will follow the anchor's perspective. Where the anchor is watching, the user follows.
+    // In this mode, if the user zooms or moves the camera, it will automatically switch back to freedom mode.
     Follower = "follower",
-    // 主播模式
-    // 房间内其他人的视角模式会被自动修改成 follower，并且强制观看该用户的视角。
-    // 如果房间内存在另一个主播，该主播的视角模式也会被强制改成 follower。
+    // Anchor mode
+    // The perspective mode of other people in the room is automatically modified to follower, and the user's perspective is forced to be viewed.
+    // If there is another anchor in the room, the anchor's perspective mode will also be forced to change to follower.
     Broadcaster = "broadcaster",
 };
 ```
 
->观众/跟随模式，进行任何操作，都会主动变更为`自由模式`，不再跟随主播。如果要保证禁止该行为，请通过[白板操作-禁止操作](./operation.md#disableOperations)API禁止用户所有操作。
+> Audience / following mode, any operation will actively change to `free mode`, no longer follow the anchor. If you want to ensure that this behavior is prohibited, please disable all user operations through the [Whiteboard Operation-Disable Operation] (./operation.md#disableOperations) API.
 
-### 示例代码
+### Sample code
 
 ```JavaScript
-//设置主播，其他用户自动切换为跟随模式（包括新用户）
+// Set anchor, other users will automatically switch to follow mode (including new users)
 room.setViewMode("broadcaster");
-//自由，在跟随模式下的用户，一旦有任何操作，就会自动切换为该模式
+// Free, users in follow mode will automatically switch to this mode once there is any operation
 room.setViewMode("freedom");
-//跟随模式
+// Follow mode
 room.setViewMode("follower");
 ```
 
 ```JavaScript
-//禁止用户操作，再切换为跟随者
+// Disable user operation, then switch to follower
 room.disableOpertation = true;
 room.setViewMode("follower");
 ```
 
-### 获取当前视角状态
+### Get the current view state
 
 ```Typescript
-// 该类型为房间状态属性之一，详情见[状态管理]文档
+// This type is one of the room status attributes. For details, see the [Status Management] document.
 export type BroadcastState = {
-    // 当前用户视角模式
-    // 1."freedom" 自由视角，视角不会跟随任何人
-    // 2."follower" 跟随视角，将跟随房间内的演讲者
-    // 2."broadcaster" 演讲者视角，房间内其他人的视角会跟随我
+    // Current user perspective mode
+    // 1. "freedom" perspective, the perspective will not follow anyone
+    // 2. "follower" follows the perspective and will follow the speaker in the room
+    // 3. "broadcaster" speaker perspective, the perspective of others in the room will follow me
     mode: ViewMode;
-    // 房间演讲者 ID。
-    // 如果当前房间没有演讲者，则为 undefined
+    // Room speaker ID.
+    // Undefined if there are no speakers in the current room
     broadcasterId?: number;
     broadcasterInformation?: {
-      // 主播用户的 memberId
+      // MemberId of the anchor user
       id: number,
-      // 主播用户加入房间时，附带的 payload
+      // When the anchor user joins the room, the attached payload
       payload?: any
     }
 };
@@ -100,63 +100,63 @@ export type BroadcastState = {
 
 ```javascript
 console.log(room.state.broadcastState);
-// 当前无主播时输出
+// Output when there is currently no anchor
 > {mode: "freedom", broadcasterId: undefined, broadcasterInformation: undefined}
 ```
 
-## 更新白板宽高 —— 更新 div 数据<span class="anchor" id="refrehViewSize">
+## Update whiteboard width and height-update div data<span class="anchor" id="refrehViewSize">
 
-不同用户的白板可能尺寸不同,在使用`bindHtmlElement`时，`room`与`player`会读取对应`div`的宽高，根据宽高，布局白板所需要展示的内容，并对准`坐标系原点`。
+The whiteboard of different users may have different sizes. When using `bindHtmlElement`,` room` and `player` will read the width and height of the corresponding` div`. According to the width and height, the content to be displayed on the whiteboard is laid out and aligned with `coordinates Department of origin`.
 ```typescript
 ///Displayer.d.ts
-//room player 通用
+//room player use for public
 public bindHtmlElement(element: HTMLDivElement | null): void;
 ```
 
-当白板`div`的宽高发生改变时，由于`room`与`player`没有的宽高数据不再正确匹配`div`，会造成很多意想不到的行为。此时需要调用：
+When the width and height of the whiteboard `div` are changed, since the width and height data of` room` and `player` no longer match the` div` correctly, many unexpected behaviors will be caused. Need to call:
 ```typescript
 ///Displayer.d.ts
 public refreshViewSize(): void;
 ```
 
->因此，开发者需要在`div`大小发生变化时，调用`room.refreshViewSize()`方法，更新白板宽高数据。  
->该情况一般发生在：
->1. 由于 window 发生改变，导致的白板`div`大小变化
->2. 由于业务需求，改变白板`div`大小
+> Therefore, the developer needs to call the `room.refreshViewSize ()` method when the `div` size changes to update the width and height data of the whiteboard.  
+> This situation generally occurs when:
+> 1. The size of the whiteboard `div` changes due to window changes
+> 2. Due to business needs, change the size of the whiteboard `div`
 
-## 调整视角中心 —— 坐标位置，缩放<span class="anchor" id="moveCamera">
+## Adjust perspective center-coordinate position, zoom<span class="anchor" id="moveCamera">
 
->2.2.0新增 API，2.2.2 增加动画选项；回放 replay 与 实时房间 room 都支持该 API
+> New API is added in 2.2.0, and animation options are added in 2.2.2; this API is supported by replay and real-time room
 
-SDK 提供 `moveCamera` API，来调整视角，参数均为可选参数。SDK 会根据传入参数，调整视角中心与缩放比例。
+The SDK provides the `moveCamera` API to adjust the viewing angle. The parameters are optional. The SDK adjusts the center of view and the zoom ratio based on the incoming parameters.
 
-### TypeScript 定义
+### TypeScript definition
 
 ```typescript
 /// Displayer.d.ts
-// room player 通用
-// 均为可选参数，只修改存在的字段
+// room player use for public
+// Are optional parameters, only modify existing fields
 public moveCamera(camera: Partial<Camera> & Readonly<{animationMode?: AnimationMode}>): void;
 
 export type Camera = {
-    // 白板 div 中心点相对于白板内部坐标系的x坐标
+    // The x coordinate of the center point of the whiteboard div relative to the internal coordinate system of the whiteboard
     readonly centerX: number;
-    // 白板 div 中心点相对于白板内部坐标系的y坐标
+    // The y coordinate of the center point of the whiteboard div relative to the internal coordinate system of the whiteboard
     readonly centerY: number;
-    // 缩放比例，默认为 1。>1 表示放大（可见范围缩小），<1 表示缩小（可见范围扩大）
+    // zoom ratio, default is 1. > 1 means zoom in (visible range reduced), <1 means zoom out (visible range expanded)
     readonly scale: number;
 };
 
-// 2.2.2 新增 API
+// 2.2.2 new API
 export enum AnimationMode {
-    // 连续动画（默认）
+    // Continuous animation (default)
     Continuous = "continuous",
-    // 瞬间完成
+    // Instantaneous
     Immediately = "immediately",
 }
 ```
 
-### 示例代码
+### Sample code
 
 ```javascript
 room.moveCamera({
@@ -167,21 +167,21 @@ room.moveCamera({
 })
 ```
 
-## 铺满 ppt
+## Spread ppt
 
 ```typescript
 /** 
- * 等比例缩放ppt 内容，保证当前 ppt 完整的展现在当前白板中。
- * 该API 为一次性，只有当前页面存在 ppt 时，才有效。
+ * Scale the ppt content proportionally to ensure that the current ppt is completely displayed in the current whiteboard.
+ * This API is one-time and is only valid if ppt exists on the current page.
  */
 public scalePptToFit(animationMode: AnimationMode = AnimationMode.Continuous): void;
 ```
 
-## 调整视野范围<span class="anchor" id="moveCameraToContain">
+## Adjust the field of view <span class = "anchor" id = "moveCameraToContain">
 
->2.2.0新增 API，2.2.2 增加动画选项；回放 replay 与 实时房间 room 都支持该 API。
+>New APIs are added in 2.2.0, and animation options are added in 2.2.2; this API is supported in both replay and real-time room.
 
-白板内部有一个`视觉矩形`(宽高+左上角坐标)的概念，用以表示用户白板必须容纳的区域。（可以简单理解为`视野`）。
+Inside the whiteboard there is a concept of “visual rectangle” (coordinates of the upper left corner of the width and height), which is used to represent the area that the user's whiteboard must accommodate. (Can be simply understood as `field of view`).
 
 ### TypeScript 定义
 
