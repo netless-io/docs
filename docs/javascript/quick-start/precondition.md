@@ -1,30 +1,30 @@
 ---
 id: js-precondition
-title: 前提条件
+title: Precondition
 ---
 
-本章节以纯`HTML`+`JavaScript`文本接入做介绍，并且使用`es6`语法，进行开发。
-实际开发中，`vue`与`react`经过配置后，可以转义成`es5`。
+This chapter uses pure `HTML` add ` JavaScript` text access as an introduction, and uses `es6` syntax for development.
+In actual development, `vue` and` react` can be escaped to `es5` after being configured.
 
-本文介绍在正式使用白板 SDK 前，需要做的准备。
+This article describes the preparations required before using the whiteboard SDK.
 
-## 1. 获取 sdkToken
+## 1. Get sdkToken
 
-阅读 [接入准备](blog/begin-netless.md)，注册账号，获取 sdk token。
+Read [preparation for access](blog/begin-netless.md)，register an account，get sdk token。
 
-## 2. 添加 SDK 到项目中
+## 2. Add SDK to the project
 
-创建 `index.html` ，在其中写入以下内容：
+Create `index.html` with the following content:
 
 ```HTML
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- 版本号根据最新版本更改即可 -->
+        <!-- The version number can be changed according to the latest version. -->
         <link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.5.3.css">
         <script src="https://sdk.herewhite.com/white-web-sdk/2.5.3.js"></script>
         <script>
-            //后续实现代码
+            // Subsequent implementation code
         </script>
     </head>
     <body>
@@ -33,13 +33,13 @@ title: 前提条件
 </html>
 ```
 
-> react 项目的集成 sdk 方式请参考 [SDK集成](../guide/sdk.md)。并在项目中 index.html 的 ```<body>``` 内添加一个
-```<div id="whiteboard" style="width: 100%; height: 100vh;"></div>``` 元素以便我们挂载白板
+> For the SDK integration of react project, please refer to [SDK integration](../guide/sdk.md). And add a `<body>` in index.html in the project
+```<div id="whiteboard" style="width: 100%; height: 100vh;"></div>``` Elements so we can mount the whiteboard.
 
-## 整体流程示意图
+## Schematic diagram of the overall process
 ![quick_start_flow](/img/quick_start_flow.png)
 
-## 推荐阅读
+## Recommended reading
 
-1. [实时房间](./room.md)
-1. [回放房间](./player.md)
+1. [Real-time room](./room.md)
+1. [Replay room](./player.md)
