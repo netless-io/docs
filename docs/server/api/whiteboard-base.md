@@ -5,7 +5,7 @@ title: 白板基础 API
 
 ## 主要 API
 
-### 创建白板
+### create whiteboard room
 
 `POST /room`
 
