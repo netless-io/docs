@@ -1,46 +1,46 @@
 ---
 id: js-tools
-title: 教具操作
+title: Tools
 ---
 
-本章`room`变量，都是白板房间实例。
+The `room` variables in this chapter are examples of whiteboard rooms.
 
-## 普通教具
+## Ordinary tools
 
-`room`的`state`中，存在`memberState`属性（可以阅读[状态管理](./state.md)查看更多`state`信息）。  
-普通教具都可以通过`memberState`进行描述。
+In the `state` of` room`, the `memberState` attribute exists (you can read [State Management](./state.md) for more` state` information).
+Common teaching aids can be described by `memberState`.
 
-### MemberState 结构
+### MemberState structure
 
 ```typescript
 type MemberState = {
-    // 当前教具名称
+    // Name of current teaching aid
     currentApplianceName: string;
-    // 当前教具颜色，为一个整数数组，分别代表 [R, G, B]，范围为 0-255的整数。
-    // 该值影响所有普通教具
+    // The current teaching aid color is an array of integers, which respectively represent [R, G, B] and an integer ranging from 0 to 255.
+    // This value affects all common teaching aids
     strokeColor: Color;
-    // 当前教具粗细，默认 4
+    // Current teaching aid thickness, default 4
     strokeWidth: number;
-    // 文字教具字体大小，默认 16px
+    // Text aid font size, default 16px
     textSize: number;
 };
 ```
 
-### 种类
+### Kind
 
-| 名称 | 字符串 | 描述 |
+| name | string | description |
 | --- | ------ | --- |
-| 选择 | `selector` | 选择，可以选择一个或多个图形，并将其移动，缩放，删除（del按键） |
-| 铅笔（默认） | `pencil` | 画出带颜色的轨迹 |
-| 矩形 | `rectangle` | 画出矩形或者正方形（shift按键）|
-| 椭圆 | `ellipse` | 画出椭圆或正圆（shift按键）|
-| 橡皮 | `eraser` | 删除轨迹 |
-| 文字 | `text` | 编辑、输入文字 |
+| Selector | `selector` | Select, you can select one or more graphics, and move, zoom, delete (del key) |
+| Pencil (default) | `pencil` | Draw colored tracks |
+| Rectangle | `rectangle` | Draw a rectangle or square (shift key)|
+| Ellipse | `ellipse` | Draw an ellipse or a perfect circle (shift key)|
+| Eraser | `eraser` | Delete track |
+| Text | `text` | Edit, enter text|
 
-### 调整教具（种类，颜色，粗细，大小）
+### Adjust teaching aids (kind, color, thickness, size)
 
 ```javascript
-// 修改教具，只需要传入想要修改的字段即可
+// Modify the teaching aids, just pass in the fields you want to modify
 room.setMemberState({
     currentApplianceName: "pencil",
     strokeColor: [255, 0, 0],
@@ -49,54 +49,54 @@ room.setMemberState({
 });
 ```
 
-### 教具信息查询
+### Inquiry about teaching aids
 
-可以通过以下方法访问`memberState`中内容。
+You can access the contents of `memberState` by the following methods.
 ```js
 const memberState = room.state.memberState;
 const appliance = room.state.memberState.currentApplianceName;
-//...其他教具细节
+//...Other teaching aid details
 ```
 
-### 橡皮擦擦除图片配置
+### Eraser erase picture configuration
 
-橡皮擦可以额外配置，是否能够擦除图片：
+Eraser can be configured additionally, whether it can erase pictures:
 
-1. 在初始化时，根据[初始化参数-房间参数](../parameters/room.md#disableeraseimage)中的`disableEraseImage`字段配置:`是否可以擦除图片（默认可以）`
-1. 设置 `room.disableEraseImage` 属性。
+1. During initialization, configure according to the `disableEraseImage` field in [Initialization Parameters-Room Parameters] (../ parameters / room.md # disableeraseimage):` Whether you can erase the picture (default can be) `
+2. Set the `room.disableEraseImage` property.
 
-## 图片（网络地址）
+## Picture (Internet address)
 
-`sdk`支持向当前白板页面中插入网络图片（如需本地图片，请自行处理上传，获得网络图片逻辑）。
+`sdk` supports inserting network pictures into the current whiteboard page (if you need local pictures, please handle the upload yourself to get the network picture logic).
 
-### Typescript 方法签名：
+### Typescript signature:
 
 ```typescript
 type ImageInformation = {
-    // 图片唯一识别符，通过该 uuid 来保证 completeImageUpload 更新了正确的 insertImage 地址
+    // The unique identifier of the image. This uuid is used to ensure that completeImageUpload updates the correct insertImage address.
     uuid: string;
-    // 图片中心在白板内部坐标系的坐标。中心远点为初始化白板时的中心
+    // The coordinates of the center of the picture in the internal coordinate system of the whiteboard. The center far point is the center when the whiteboard is initialized
     centerX: number;
     centerY: number;
-    // 想要显示的宽高，该宽高为白板未缩放前宽高
+    // The width and height you want to display, which is the width and height before the whiteboard is not scaled
     width: number;
     height: number;
 };
 
-//插入图片占位符
+// Insert picture placeholder
 public insertImage(imageInfo: ImageInformation): void;
-//图片url替换
+// Image url replacement
 public completeImageUpload(uuid: string, src: string): void;
 ```
 
-### 示例代码
+### Sample code
 
-1. 调用`insertImage`方法，确保`uuid`字符串唯一，配置图片位置（大小，中心位置）信息。
-然后通过服务器，或者本地上传至云存储仓库中，获取到要插入图片信息的网络地址，在调用 `方法2`, 传入图片网络地址。
+1. Call the `insertImage` method to ensure that the` uuid` string is unique and configure the image position (size, center position) information.
+Then through the server or local upload to the cloud storage warehouse, get the network address of the picture information to be inserted, and call method 2 to pass in the picture network address.
 
 ```JavaScript
-// 方法1 插入图片占位信息
-// 通过 uuid 来保证，completeImageUpload 更新的是同一张图片地址
+// Method 1 Insert picture placeholder information
+// Use uuid to ensure that completeImageUpload updates the same image address
 room.insertImage({
     uuid: uuid, 
     centerX: x, 
@@ -104,40 +104,40 @@ room.insertImage({
     width: imageFile.width, 
     height: imageFile.height
 });
-// 方法2 传入图片占位 uuid，以及图片网络地址。
+// Method 2 Pass in the picture placeholder uuid and the picture network address.
 room.completeImageUpload(uuid, imageUrl)
 ```
 
-### `图片教具`与`ppt背景图`区别
+### The difference between `picture teaching aid` and` ppt background map`
 
-区别| 插入背景图`putScenes` | 插入图片`insertImage`+`completeImageUpload`
+Difference| Insert background image `putScenes` | `insertImage` and `completeImageUpload`
 ---------|----------|---------
- 与页面关系 | 新建一个带背景图的空白页面 | 在当前页面插入了一张图片，根据绘制关系，决定前后 |
- 位置 | 居中 | 根据`insertImage`传入参数的位置信息，在白板内部系中布局 |
- 橡皮 | 不可涂改 | 默认可以涂改，可以通过修改`room`的`disableEraseImage`属性或在初始化时，配置`disableEraseImage`参数更改|
+ Relationship to the page | Create a blank page with a background image | An image is inserted in the current page, and the front and back are determined according to the drawing relationship |
+ Position | Center | Layout in the internal system of the whiteboard according to the position information of the `insertImage` input parameter|
+ eraser | Cannot be altered | It can be altered by default. It can be changed by modifying the `disableEraseImage` property of` room` or by configuring the `disableEraseImage` parameter during initialization. |
 
-## 抓手工具
+## Hand tool
 
-### 快捷键设置
-请阅读[初始化参数-SDK参数](../parameters/sdk.md#handToolKey)中的`handToolKey`字段说明。
+### Shortcut settings
+Please read the `handToolKey` field description in [Initialization Parameters-SDK Parameters](../parameters/sdk.md#handToolKey).
 
-### 激活/关闭回调
-当抓手工具被激活时，会回调[初始化参数-房间参数](../parameters/room.md#disableeraseimage)中`callbacks`的`onHandToolActive` 方法。
+### Activate / deactivate callback
+When the grabber tool is activated, the onHandToolActive method of callbacks in [Initialization Parameters-Room Parameters](../parameters/room.md#disableeraseimage) will be called back.
 
-## 禁用教具<span class="anchor" id="disableDeviceInputs">
+## Disable tool<span class="anchor" id="disableDeviceInputs">
 
->2.2.0 新增 API
+>2.2.0 Add API
 
-通过修改`room`的`disableDeviceInputs`属性或在初始化时，配置`disableDeviceInputs`参数。
+Modify the `disableDeviceInputs` property of` room` or configure the `disableDeviceInputs` parameter during initialization.
 
 ```javascript
-// 禁止教具操作
+// Prohibition of teaching aid operation
 room.disableDeviceInputs = true;
-// 恢复教具操作
+// Resume teaching aid operation
 room.disableDeviceInputs = false;
 
 sdk.joinRoom({uuid: "uuid", roomToken: "roomToken", disableDeviceInputs: true})
 .then(function(room) {
-    //room 操作
+    //room operate
 });
 ```
