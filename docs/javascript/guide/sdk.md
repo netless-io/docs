@@ -1,38 +1,39 @@
 ---
 id: js-sdk
-title: SDK集成
+title: SDK install
 ---
 
-## SDK项目
+## SDK
 
 1. [white-web-sdk](https://www.npmjs.com/package/white-web-sdk)
-    * 非 React 框架开发推荐使用
+    * Recommended for non-React framework development
 1. [white-react-sdk](https://www.npmjs.com/package/white-react-sdk)
-    * React 框架开发（依赖 white-web-sdk，无需重复安装）
+    * React framework development (depending on white-web-sdk, no need to repeat installation)
 
-`white-web-sdk`与`white-react-sdk`版本一致，每次同时发版。
+`white-web-sdk` is the same as` white-react-sdk` version, and it is published at the same time every time.
 
-## 集成方式
+## How to install
 
-### 1. 包管理工具集成
+### 1. Package management tool integration
 
 <!--DOCUSAURUS_CODE_TABS-->
-<!--使用 js sdk 开发-->
-添加依赖：
+<!--Develop with js sdk-->
+
+Add dependency:
 ```shell
 # yarn
 yarn add white-web-sdk
 # npm
 npm install white-web-sdk --save
 ```
-代码：
+Code：
 ```javascript
 import "white-web-sdk/style/index.css";
 import {WhiteWebSdk} from 'white-web-sdk';
 ```
 
-<!--使用 react-sdk开发-->
-添加依赖：
+<!--Developing with react-sdk-->
+Add dependency:
 ```shell
 # yarn
 yarn add white-react-sdk
@@ -40,7 +41,7 @@ yarn add white-react-sdk
 npm install white-react-sdk --save
 ```
 
-代码：
+Code：
 ```javascript
 import * as React from "react";
 import "white-web-sdk/style/index.css";
@@ -49,7 +50,7 @@ import {Room, RoomPhase, RoomWhiteboard, WhiteWebSdk} from "white-react-sdk";
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-###  2. script 标签集成
+###  2. script tag integration
 
 ```html
 <link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.5.3.css">
@@ -60,9 +61,9 @@ import {Room, RoomPhase, RoomWhiteboard, WhiteWebSdk} from "white-react-sdk";
 </script>
 ```
 
-## TypeScript 支持
+## TypeScript support
 
-使用`TypeScript`开发时，在项目`tsconfig.json`中添加以下配置，即可获得语法提示。
+When using `TypeScript`, add the following configuration to the project` tsconfig.json` to get syntax tips.
 
 ```json
 {
@@ -75,7 +76,9 @@ import {Room, RoomPhase, RoomWhiteboard, WhiteWebSdk} from "white-react-sdk";
 }
 ```
 
-## 推荐阅读
+## Recommended reading
 
-1. [开源项目](./open-source.md)
-1. [快速开始-前提条件](../quick-start/precondition.md)、[快速开始-鉴权](../quick-start/token.md)、[快速开始-sdk](./quick-start/sdk.md)
+1. [Open source](./open-source.md)
+2. [Quick Start-Prerequisites](../quick-start/precondition.md)
+3. [Quick Start-Authentication](../quick-start/token.md)
+4. [Quick start-sdk](./quick-start/sdk.md)
