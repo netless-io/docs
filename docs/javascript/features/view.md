@@ -187,10 +187,10 @@ Inside the whiteboard there is a concept of “visual rectangle” (coordinates 
 
 ```typescript
 /// Displayer.d.ts
-// room player 通用
+// room player use for public
 public moveCameraToContain(rectangle: Rectangle & Readonly<{animationMode?: AnimationMode}>): void;
 
-// 视觉矩形：均为白板内部坐标系数据
+// Visual rectangle: all data in the whiteboard's internal coordinate system
 export type Rectangle = {
     readonly width: number;
     readonly height: number;
@@ -198,21 +198,21 @@ export type Rectangle = {
     readonly originY: number;
 };
 
-// 2.2.2 新增 API
+// 2.2.2 new API
 export enum AnimationMode {
-    // 连续动画（默认）
+    // Continuous animation (default)
     Continuous = "continuous",
-    // 瞬间完成
+    // Instantaneous
     Immediately = "immediately",
 }
 ```
 
-### 示例代码
+### Sample code
 
-#### 1. ppt铺满
+#### 1. Spread ppt
 
 ```javascript
-// 在 room 中将 ppt 背景图铺满用户白板
+// Fill the user's whiteboard with the ppt background image in the room
 const width = room.state.sceneState.scenes[room.state.sceneState.index].ppt.width;
 const height = room.state.sceneState.scenes[room.state.sceneState.index].ppt.height;
 
@@ -221,14 +221,14 @@ room.moveCameraToContain({
   originY: - height / 2,
   width: width,
   height: height,
-  // 动画为可选参数
-  animationMode: "immediately" // 2.2.2 新增 API，continuous:连续动画（默认），immediately: 瞬间完成
+  // Animation is optional
+  animationMode: "immediately" // 2.2.2 Added API, continuous: continuous animation (default), immediate: complete instantly
 });
 ```
 
->如果 ppt 的宽高比例与白板`div`不一致，`sdk`会调整用户最终的`视觉矩形`，保证传入的范围，能够完整的被显示出来。该行为逻辑，与`主播`和`观众`的白板 div不一致时的处理逻辑类似。
+> If the width-to-height ratio of the ppt is inconsistent with the whiteboard `div`,` sdk` will adjust the user ’s final `visual rectangle` to ensure that the incoming range can be completely displayed. This behavior logic is similar to the processing logic when the anchors and the viewer's whiteboard divs are inconsistent.
 
-#### 2. 回到原点，并调整视觉矩形大小
+#### 2. Return to the origin and resize the visual rectangle
 
 ```javascript
 let width = 960;
@@ -241,93 +241,93 @@ room.moveCameraToContain({
 })
 ```
 
-## 锁定视角<span class="anchor" id="disableCameraTransform">
+## Lock perspective<span class="anchor" id="disableCameraTransform">
 
->2.2.0 新增 API
+> 2.2.0 New API
 
-该方法将禁止用户通过鼠标滚轮缩放、手势，抓手工具等行为，来主动修改视角。但是仍然可以使用教具。
-开发者仍然可以通过`moveCamera`,`moveCameraToContain`API 修改用户的位置。
+This method will prohibit users from actively modifying the viewing angle through mouse wheel zooming, gestures, grabbing tools and other actions. However, teaching aids can still be used.
+Developers can still modify the user's location via the `moveCamera`,` moveCameraToContain` API.
 
 ```typescript
 /// Displayer.d.ts
-// room player 通用
+// room player use for public
 disableCameraTransform: boolean;
 ```
 
 ```javascript
-// 锁定视角
+// Lock perspective
 room.disableCameraTransform = true;
-// 解锁视角
+// Unlock perspective
 room.disableCameraTransform = false;
 ```
 
-## 限制视野范围
+## Limited field of view
 
-> 2.3.0 新增 API
+> 2.3.0 New API
 
-视野范围限制由三部分组成：
+The field of view limitation consists of three parts:
 
-1. 坐标中心
-1. 宽高
-1. 最大最小限制
+1. Coordinate center
+2. Width Height
+3. Maximum minimum
 
-`sdk`首先保证把用户视野限定在以坐标中心+宽高形成的范围内，然后再通过最大最小限制来限制用户可以进行缩放的比例。
+`sdk` first ensures that the user's field of view is limited to the range formed by the width and height of the coordinate center, and then the maximum and minimum limits are used to limit the user's zoom ratio.
 
-### TypeScript 定义
+### TypeScript definition
 
 ```typescript
 /// Displayer.d.ts
-// room player 通用
+// room player use for public
 public setCameraBound(cameraBound: CameraBound): void;
 
-// 限制范围
+// Limit range
 export type CameraBound = {
-    // 当用户移出边界时，感受到的阻力（0.0 ~ 1.0）。
-    // 0 为无阻力，1.0 则无法移动出边界。(松手后，一定回到限制范围内)
-    // 默认 0.75。
+    // When the user moves out of the boundary, they feel the resistance (0.0 ~ 1.0).
+    // 0 is no resistance, 1.0 cannot move out of the boundary. (After letting go, be sure to return to the limit)
+    // Default 0.75
     readonly damping?: number;
 
-//限制视野范围
-    // 生成 限制范围计算用的 中点坐标（内部坐标），配合 width，height 组成限制范围
-    // 不传则为 0，0
+// Limited field of view
+    // Generate the midpoint coordinates (internal coordinates) for the calculation of the limit range, and use the width and height to form the limit range
+    // 0 if not passed
     readonly centerX?: number;
     readonly centerY?: number;
-    // 限制范围计算用的宽高，
-    // 如果取 Infinity（默认），则表示该方向不做限制。
+    // Limit the width and height of the range calculation。
+    // If Infinity is selected (default), it means that the direction is not restricted.
     readonly width?: number;
     readonly height?: number;
-//限制在该范围内的缩放
+    // Zoom limited to this range.
     readonly maxContentMode?: ContentMode;
-    // 根据上面坐标，宽高，计算最小视野范围的策略
+    // A strategy to calculate the minimum field of view based on the above coordinates, width and height
     readonly minContentMode?: ContentMode;
 };
 
-// ContentMode 可以取以下值：
+// ContentMode can take the following values:
 
-// 将视角放大到 1.2 倍时的状态。
+// The state when the viewing angle is enlarged to 1.2 times.
 export contentModeScale(1.2);
 
-// Fill 模式：将边界放大到直到视角的长边对其边界的短边。
-//           此时的视角保证了画面内所见之物都在边界之内。
-//           而边界之内的事物不一定在画面之中。
+// Fill mode: Enlarges the border to the long side of the perspective to the short side of its border.
+// The perspective at this time ensures that everything seen in the picture is within the boundary.
+// And the things within the boundaries are not necessarily in the picture.
 export contentModeAspectFill()
 
-// Fit 模式：将边界放大到直到视角的短边对其边界的长边。
-//          此时的视角保证了边界之内的事物一定在画面之中。
-//          但画面中所见之物不一定在边界之内。
+// Fit mode: Enlarges the border to the short side of the perspective to the long side of its border.
+// The perspective at this time ensures that things within the boundary must be in the picture.
+// But what is seen in the picture is not necessarily within the boundary.
 export contentModeAspectFit()
 
-// 在 Fill 模式下，继续将画面放大 1.2 倍。
+// In Fill mode, continue to enlarge the picture by 1.2 times.
 export contentModeAspectFillScale(1.2)
 
-// 在 Fit 模式下，继续将画面放大 1.2 倍。
+// In Fit mode, continue zooming in 1.2x.
 export contentModeAspectFitScale(1.2)
 
-// 在 Fit 模式下，在侧边填充 200 像素的空隙。
+// In Fit mode, fill the 200-pixel gap on the side.
 export contentModeAspectFitSpace(200)
 ```
 
-### 代码示例
+### Sample code
 
 ```javascript
 room.setCameraBound({
@@ -338,9 +338,9 @@ room.setCameraBound({
 });
 ```
 
-以上代码会将视角限制在一个以 (x: 120, y: 320) 坐标为中点的，宽为 200，高为 300 的矩形范围之内。
+The above code will limit the viewing angle to a rectangle with (x: 120, y: 320) coordinates as the midpoint, a width of 200 and a height of 300.
 
-如果你希望取消视角范围限制，可以执行如下代码。
+If you want to remove the limitation of the perspective range, you can execute the following code.
 
 ```javascript
 room.setCameraBound({
@@ -351,7 +351,7 @@ room.setCameraBound({
 });
 ```
 
-你也可以在加入房间之前，提前设置初始视角范围限制。
+You can also set an initial viewing range limit before joining the room.
 
 ```javascript
 whiteWebSdk.joinRoom({
@@ -366,7 +366,7 @@ whiteWebSdk.joinRoom({
 });
 ```
 
-不但 ``room`` 可以设置视角范围限制，``player`` 也可以。
+Not only `room` can set the viewing range limit, but also `player`.
 
 ```javascript
 player.setCameraBound({
@@ -377,8 +377,8 @@ player.setCameraBound({
 });
 ```
 
->为房间设置或初始化视角范围仅仅对自己生效，不会影响房间的其他用户。
+> Setting or initializing the viewing angle range for a room only takes effect on itself and does not affect other users of the room.
 
-## 相关文档
+## Related documents
 
-[主播一对多业务实现](blog/broadcast.md)
+[Anchor one-to-many service implementation](blog/broadcast.md)
