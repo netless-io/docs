@@ -1,14 +1,14 @@
 ---
 id: js-debug
-title: 快速调试
+title: Debug
 ---
 
-当房间出现异常时，可以通过[在线调试](blog/debug-center.md)提供的页面，输入对应`room uuid`以及`roomToken`在我们提供的demo中查看房间状态。
-实时房间和回放房间页面，会分别会将`room`与`player`实例暴露在全局变量中。
+When the room is abnormal, you can check the room status in the demo provided by entering the corresponding `room uuid` and` roomToken` through the page provided by [Online Debugging](blog/debug-center.md).
+The live room and playback room pages will expose the `room` and` player` instances to global variables, respectively.
 
->我们同样也基于该页面进行快速调试。
+> We also use this page for quick debugging.
 
-## 推荐阅读
+## Recommended reading
 
-1. [快速开始-实时房间](../quick-start/room.md)
-1. [快速开始-回放房间](../quick-start/player.md)
+1. [Quick Start-Live Room](../quick-start/room.md)
+1. [Quick Start-Playback Room](../quick-start/player.md)

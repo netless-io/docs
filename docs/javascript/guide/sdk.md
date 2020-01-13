@@ -56,7 +56,7 @@ import {Room, RoomPhase, RoomWhiteboard, WhiteWebSdk} from "white-react-sdk";
 <link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.5.3.css">
 <script src="https://sdk.herewhite.com/white-web-sdk/2.5.3.js"></script>
 <script>
-    //全局变量 WhiteWebSdk
+    //Global variables WhiteWebSdk
     let sdk = new WhiteWebSdk();
 </script>
 ```
