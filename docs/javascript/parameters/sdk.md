@@ -1,31 +1,31 @@
 ---
 id: js-sdk
-title: SDK参数
+title: SDK parameters
 ---
 
-## 初始化 API
+## Initialize the API
 
-### TypeScript 方法签名
+### TypeScript
 
 ```TypeScript
-//WhiteWebSdk.d.ts
+// WhiteWebSdk.d.ts
 constructor(params: WhiteWebSdkConfiguration = {})
 ```
 
-### 示例代码
+### Sample code
 
 ```javascript
-//初始化 SDK
+// Initialize the SDK
 var whiteWebSdk = new WhiteWebSdk({
-    preloadDynamicPPT: false, // 可选,是否预先加载动态 PPT 中的图片，会显著提升用户体验，降低翻页的图片加载时长
-    deviceType: "touch", // 可选, touch or desktop , 默认会根据运行环境进行推断
-    // ...更多可选参数配置
+    preloadDynamicPPT: false, // Optional, whether to pre-load pictures in dynamic PPT will significantly improve user experience and reduce page loading time
+    deviceType: "touch", // Optional, touch or desktop, inferred based on the operating environment by default
+    // ... More optional parameter configuration
 });
 ```
 
-## 参数：
+## Parameter
 
-### TypeScript 签名
+### TypeScript signature
 
 ```Typescript
 // WhiteWebSdk.d.ts
@@ -43,26 +43,26 @@ export type WhiteWebSdkConfiguration = {
 };
 ```
 
->所有参数均为可选，部分已有默认值。加粗为常用配置项目
+> All parameters are optional and some have default values. Bold for common configuration items
 
-### **urlInterrupter**: 图片替换
+### **urlInterrupter**: Picture replacement
 
-* TypeScript 签名
+* TypeScript signature
 
 ```typescript
 urlInterrupter?: (url: string) => string;
 ```
 
 ```js
-传入一个插入图片/ppt 时的原始地址，返回一个任意修改后的地址
+Pass in the original address when inserting a picture / ppt, and return an arbitrarily modified address
 ```
 
->在插入图片和创建新场景背景图时，sdk 会调用该 API，此时可以修改最终显示的url。  
->如果没有需要，请不要传入该参数。目前在绘制时，会频繁调用该 API。
+> When inserting an image and creating a new scene background image, SDK will call this API, and at this time, you can modify the final displayed URL.
+> If not required, do not pass in this parameter. This API is frequently called when drawing.
 
-### **deviceType**: 设备类型
+### **deviceType**: Equipment type
 
-* TypeScript 签名
+* TypeScript signature
 
 ```typescript
 export enum DeviceType {
@@ -73,53 +73,54 @@ export enum DeviceType {
 ```
 
 ```js
-值：`desktop`|`touch`|`surface`。
+value: `desktop`|`touch`|`surface`。
 
-默认会根据运行环境进行推断是`desktop`还是`touch`。  
-根据传入值，依次接受`mouse`事件，`touch`事件；传入`surface`时，则会同时接收`touch`,`mouse`事件。
+By default, it will infer whether it is `desktop` or` touch` according to the operating environment.
+According to the incoming value, the `mouse` event and the` touch` event are received in turn. When the `surface` is passed in, the` touch` and `mouse` events are received at the same time.
 ```
 
-### fonts: ppt 映射字体
+### fonts: ppt Map font
 
 ```js
-类型结构：`{key: url}`
+Type structure: `{key: url}`
 
-动态 ppt 需要的自定义字体映射，`key`为动态 ppt 所用的字体名称，`url`为字典所在网络地址。
+Custom font mapping required for dynamic ppt, `key` is the font name used by dynamic ppt, and` url` is the network address where the dictionary is located.
 ```
 
-### **handToolKey**: 抓手工具快捷键
+### **handToolKey**: Hand tool shortcuts
 
 ```js
-类型：`string`
-设置后，用户同时按住该快捷键与鼠标，即可移动整个白板。  
-可以输入`KeyboardEvent`键盘事件可以出发的`key`属性。推荐传入空格键(`" "`)
+Type: `string`
+After setting, the user can move the entire whiteboard by pressing the shortcut key and the mouse at the same time. 
+You can enter the `key` property that can be triggered by the` KeyboardEvent` keyboard event. It is recommended to pass in the space bar (`" "`)
 ```
 
-### preloadDynamicPPT: 动态 ppt 预加载
+### preloadDynamicPPT: Dynamic ppt preloading
 
 ```js
-默认`false`，类型：`boolean`
-是否预先加载动态 PPT 中的图片，选择 true，会在第一页时，就加载所有图片，从而保证翻页时，能够立即显示图片。
+Default `false`, type:` boolean`
+Whether to load the pictures in the dynamic PPT in advance. Selecting true will load all pictures on the first page, so that the pictures can be displayed immediately when the page is turned.
 ```
 
->预加载进度回调，可以在初始化 room player 时，进行配置。可以查看[房间参数](./room.md)与[回放参数](./player.md)中 onPPTLoadProgress 配置。
+> Preload progress callback, which can be configured when the room player is initialized. You can view the onPPTLoadProgress configuration in the [room parameters](./room.md) and [playback parameters](./player.md).
 
-### loggerOptions: 日志上报配置
+### loggerOptions: Log report configuration
 
-默认值：
+Defaults:
 
 ```js
 {
-    //是否禁用上传，默认上传
+    // Whether to disable upload, default upload
     disableReportLog: false,
-    //上传日志的等级，默认 info
+    // Upload log level, default info
     reportLevelMask: "info",
-    //打印日志的等级，默认 info
+    // Print log level, default info
     printLevelMask: "info";
 }
 ```
 
-允许修改的值:
+Allowed values:
+
 ```Typescript
 {
     disableReportLog?: boolean,
@@ -131,26 +132,26 @@ export enum DeviceType {
 ### onlyCallbackRemoteStateModify
 
 ```js
-默认`true`,类型：`boolean`，只对`room`有效。
-`room`本地修改的内容，是否在`onRoomStateChange`中回调。
-默认本地主动修改的状态，不会在`onRoomStateChange`回调中出现。
+Default `true`, type:` boolean`, only valid for `room`.
+Whether the locally modified content in `room` is called back in` onRoomStateChange`.
+The state that is actively modified by default will not appear in the `onRoomStateChange` callback.
 ```
 
-### zoomMaxScale:放大上限
+### zoomMaxScale: Zoom limit
 
-用户可以放到的最大比例，默认不限制。  
-开发者仍然可以使用代码进行放大。
+The maximum ratio that the user can put, the default is not limited.  
+Developers can still zoom in using code.
 
->2.3.0 支持更高级 API，在初始化`room`，以及`player`时配置。
+> 2.3.0 supports more advanced APIs, which are configured when `room` and` player` are initialized.
 
-### zoomMinScale:缩小下限
+### zoomMinScale: reduce the lower limit
 
-用户可以缩小的最小比例，默认不限制。  
-开发者仍然可以使用代码进行缩小。
+The minimum ratio that the user can reduce, the default is not limited.
+Developers can still use code to scale down.
 
->2.3.0 支持更高级 API，在初始化`room`，以及`player`时配置。
+> 2.3.0 supports more advanced APIs, which are configured when `room` and` player` are initialized.
 
-## 推荐阅读
+## Recommended reading
 
-1. [房间参数](./room.md)
-1. [回放参数](./player.md)
+1. [Room parameters](./room.md)
+1. [Playback parameters](./player.md)
