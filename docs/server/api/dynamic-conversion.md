@@ -3,65 +3,64 @@ id: server-dynamic-conversion
 title: Document to Web
 ---
 
-动态文档转换是指将 pptx 格式的文件，转换成网页的服务。
+Dynamic document conversion is a service that converts files in pptx format into web pages.
 
->相对于静态文档转换，动态文档转换，保留了 ppt 文件中的顺序动画，提供切换控制功能。
->动态`ppt`基于`Microsoft Office`规范，不能保证WPS文件能够正确解析。
+> Compared to static document conversion, dynamic document conversion retains the sequence animation in the ppt file and provides switching control functions.
+> The dynamic `ppt` is based on the` Microsoft Office` specification and cannot guarantee that WPS files can be parsed correctly.
 
-## 准备工作
+## Ready to work
 
-### 1. 根据 [配置云存储](/docs/blog/blog-add-driver) 文章，在 [console](https://console.herewhite.com) 中配置云存储
+### 1. According to the [Configure Cloud Storage](/docs/blog/blog-add-driver) article, configure Cloud Storage in [console](https://console.herewhite.com)
 
-### 2. 在管理控制台上开启动态文档服务
+### 2. Enable dynamic document service on the management console
 
-1. 进入 [console](https://console.herewhite.com)，点击左侧列表中的 <svg viewBox="64 64 896 896" class="" data-icon="appstore" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false"><path d="M464 144H160c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16zm-52 268H212V212h200v200zm452-268H560c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16zm-52 268H612V212h200v200zM464 544H160c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V560c0-8.8-7.2-16-16-16zm-52 268H212V612h200v200zm452-268H560c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V560c0-8.8-7.2-16-16-16zm-52 268H612V612h200v200z"></path></svg> ，进入应用管理页面。
+1. Enter [console](https://console.herewhite.com), click <svg viewBox="64 64 896 896" class="" data-icon="appstore" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false"><path d="M464 144H160c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16zm-52 268H212V212h200v200zm452-268H560c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16zm-52 268H612V212h200v200zM464 544H160c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V560c0-8.8-7.2-16-16-16zm-52 268H212V612h200v200zm452-268H560c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V560c0-8.8-7.2-16-16-16zm-52 268H612V612h200v200z"></path></svg> in the list on the left to enter the application management page.
 
-2. 找到 `文档转图片` 进行开通，更新 QPS ，结束操作。
+2. Find "File to Picture" to activate, update QPS, and end the operation.
 
 <details>
-<summary>**点击展开：console 中操作示意图**</summary>
+<summary>**Click to expand: operation diagram in console**</summary>
 
-* 动态文档转换初始状态
-![动态文档转换初始状态](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/dynamic0.png)
+* Dynamic Document Conversion Initial State
+![Dynamic Document Conversion Initial State](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/dynamic0.png)
 
-* 动态文档转换管理页面
-![动态文档转换管理页面](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/dynamic1.png)
+* Dynamic document conversion management page
+![Dynamic document conversion management page](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/dynamic1.png)
 
-* 关闭动态文档转换服务
-![关闭静态文档转换服务](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/dynamic2.png)
+* Turn off dynamic document conversion services
+![Turn off dynamic document conversion services](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/dynamic2.png)
 
 </details>
 
 
-## 服务端 API
+## Server API
 
-动态文档转换功能由“发起转换任务”和“查询转换任务”两个 API 组成
+The dynamic document conversion function consists of two APIs, "Initiate Conversion Task" and "Query Conversion Task"
 
-### 发起转换任务
-
+### Initiate a conversion task
 
 `POST /services/conversion/tasks`
 
->在服务端可以使用 sdk token。客户端封装类要求使用 roomToken，避免 sdk token 泄露。
+> You can use "sdk token" on the server. The client-side encapsulation class requires the use of "roomToken" to avoid "sdk token" leakage.
 
-* header参数
+* header parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
-roomToken 或 token | string | {{roomtoken}} 或 {{token}}|
+roomToken or token | string | {{roomtoken}} or {{token}}|
 
-* body参数
+* body parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
-sourceUrl | stirng | 需要进行转换的文件的地址 |
-serviceType | string | 服务类型，动态文档转换固定为 "dynamic_conversion" |
+sourceUrl | stirng | Address of the file to be converted |
+serviceType | string | Service type, dynamic document conversion fixed to "dynamic_conversion" |
 
 * body
 
 ```json
 {
-    //请确保该文件可下载
+    // Make sure the file is downloadable
     "sourceUrl": "https://xxxx.xxx.xxx.com/xxxx.pptx",
     "serviceType": "dynamic_conversion"
 }
@@ -69,7 +68,7 @@ serviceType | string | 服务类型，动态文档转换固定为 "dynamic_conve
 
 * response
 
-> 在发起转换任务前请确保您已经在 [console](https://console.herewhite.com) 上开启了`文档转网页`服务并配置 QPS 上限大于 0，否则该接口将会报 `Service not enable`、`Task waiting line is full`。
+> Before starting the conversion task, please make sure that you have enabled the "Document to Web Page" service on [console](https://console.herewhite.com)  and configured the QPS upper limit to be greater than 0, otherwise the interface will report "Service not enable", and "Task waiting line is full".
 
 ```JSON
 {
@@ -81,17 +80,17 @@ serviceType | string | 服务类型，动态文档转换固定为 "dynamic_conve
     }
 }
 ```
-task UUID 长度为 32 位，是转换任务的唯一标识。后续请求中需要以该 task 作为查询。
+The task UUID is 32 bits in length and is the unique identifier for the conversion task. This task needs to be used as a query in subsequent requests.
 
-### 查询转换任务进度
+### Query conversion task progress
 
 `GET /services/conversion/tasks/{{taskUUID}}/progress?serviceType=dynamic_conversion`
 
-* header参数
+* header parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
-roomToken 或 token | string | {{roomtoken}} 或 {{token}}|
+roomToken or token | string | {{roomtoken}} or {{token}}|
 
 * response
 
@@ -102,10 +101,10 @@ roomToken 或 token | string | {{roomtoken}} 或 {{token}}|
         "task": {
             "convertStatus": "Finished",
             "reason": "",
-            "totalPageSize": 3, // 文档总页数
-            "convertedPageSize": 3, // 文档已转换完成页数
-            "convertedPercentage": 100, // 文档转换进度百分比
-            "convertedFileList": [  // 文档转换结果列表
+            "totalPageSize": 3, // Total number of pages in the document
+            "convertedPageSize": 3, // Document Completed Pages
+            "convertedPercentage": 100, // Document conversion progress percentage
+            "convertedFileList": [  // Document conversion result list
                 {
                     "width": 960,
                     "height": 720,
@@ -122,17 +121,17 @@ roomToken 或 token | string | {{roomtoken}} 或 {{token}}|
                     "conversionFileUrl": "dynamicConvert/{{taskUUID}}/slide/slide3.xml"
                 }
             ],
-            "prefix": "pptx://xxxx.xxx.xxx.com/" // 文档转换结果前缀
+            "prefix": "pptx://xxxx.xxx.xxx.com/" // Document conversion result prefix
         }
     }
 }
 ```
 
-> 1. 动态转换任务将会返回每一页的宽高，该宽高单位是 px
-> 2. 用户使用返回结果中的 "prefix" 仅在转换结果为 "Finished" 时存在
-> 3. 转换任务需要用户轮询结果，时间间隔建议为 3 秒以上
+> 1. The dynamic conversion task will return the width and height of each page. The width and height unit is px.
+> 2. The user uses "prefix" in the returned result only if the conversion result is "Finished"
+> 3. The conversion task requires users to poll the results, and the interval is recommended to be more than 3 seconds
 
-`convertStatus` 存在以下几种情况：
+`convertStatus` The following situations exist:
 - Waiting: 由于 QPS 到达上限等原因任务在等待中
 - Converting: 任务正在执行中
 - NotFound: 根据 taskUUID 未找到对应任务信息
