@@ -1,57 +1,61 @@
 ---
 id: js-player
-title: 回放房间
+title: replay
 ---
 
-## 快速播放
+## Start Replay
+
+> Prerequisites for replay: When creating a room, you must declare mode to historied so that the room will perform cloud recording.
 
 ```js
-var roomUUID = "..."; // 必须项，回放房间的 uuid，该房间必须为可回放房间（参考 server 端创建房间 API）
-var roomToken = ".."; // 必须项，回放房间对应的 roomToken
-// 更多初始化 sdk 参数，请查看[初始化参数]文档
+var roomUUID = "..."; // required，The uuid of the replay room.
+var roomToken = ".."; // required，roomToken corresponding to playback room
+// For more initialization sdk parameters, please see the [initialization parameters] document
 var whiteWebSdk = new WhiteWebSdk();
-// 更多初始化 回放房间 参数，请查看[初始化参数]文档
+// For more initialization parameters of the playback room, please see the [Initialization Parameters] document.
 whiteWebSdk.replayRoom({
     room: roomUUID,
     roomToken: roomToken
 }).then(function(player) {
-    // 与 room 调用类似，在获取到 player 实例后，需要将 player 绑定到HTML 中的 div 中
+    // Similar to room call, after getting the player instance, you need to bind player to the div in HTML
     player.bindHtmlElement(document.getElementById('whiteboard'));
-    // 播放
+    // start play
     player.play();
 })
 ```
 
-## 结束回放
+## Stop Replay
 
 ```js
 player.stop();
 ```
 
-调用`stop`API后，`player`资源会被施放，无法再次播放。如需重新播放，需要重新使用`sdk`调用`replayRoom`方法，重新生成`player`实例。
+After calling the `stop` API, the` player` resource will be cast and cannot be played again. If you need to replay, you need to use the `sdk` to call the` replayRoom` method to regenerate the `player` instance.
 
-## 注意点
+## Note
 
-### 初始化异常处理
+### Initial exception handling
 
-初始化回放房间 API 返回一个 promise，其中可能会产生错误（房间鉴权信息错误，音视频解析出错）等情况。需要在异常中进行处理，并且此时，房间初始化失败，需要重新初始化。
+Initializing the playback room API returns a promise, which may produce errors (wrong room authentication information, audio and video parsing errors), and so on. It needs to be handled in the exception, and at this time, the room initialization fails and needs to be re-initialized.
 
-### 回放状态处理
+### Playback status processing
 
-回放需要从服务器端获取资源，当回放状态变更由`waitingFirstFrame`变更为`paused`才能播放。更多信息，请查看[回放功能]文档，了解
+Playback needs to obtain resources from the server. When the playback status changes from `waitingFirstFrame` to` paused`, it can be played. For more information, please see the [Playback Features] document for details
 
-### 带视频回放限制
+### With video playback limitation
 
-由于 Safari 有较为严格的隐私限制，带声音的音视频文件，无法通过代码播放。
-目前 Safari 以及 iOS 端的回放，需要`player`缓冲完毕后（查看[回放功能]文档，了解回放状态），再允许用户主动点击进行播放。
+Because Safari has strict privacy restrictions, audio and video files with sound cannot be played through code.
+At present, the playback of Safari and iOS needs to be buffered by `player` (check the [playback function] document to understand the playback status), and then allow users to actively click to play.
 
-### 白板大小变化
+### Whiteboard size changes
 
-当白板所绑定的`div`大小发生变化时，需要主动调用`room`的`refreshViewSize`方法。
-包括但不限于：
-1. 由于浏览器窗体`window`发生变化，导致`div`大小变化。
-1. 由于业务需要，主动调整页面布局，造成`div`大小发生变化。
-在以上情况后，开发者需手动执行`room.refreshViewSize()`方法。
+When the size of the `div` bound by the whiteboard changes, you need to actively call the` refreshViewSize` method of `room`.
+including but not limited to:
+
+1. The size of the `div` changes due to changes in the browser window` window`.
+2. Due to business needs, actively adjust the page layout, causing the size of the `div` to change.
+
+After the above situation, the developer needs to manually execute the `room.refreshViewSize ()` method.
 
 ```js
 function resize() {
@@ -59,22 +63,23 @@ function resize() {
 }
 
 window.addEventListener("resize", resize);
-//当 div 从 HTML DOM 中移除时，请调用 removeEventListener 移除监听
+
+// When the div is removed from the HTML DOM, call removeEventListener to remove the listener
 ```
 
-## 线上代码
+## Online code
 
-* 纯白板回放：
+* Pure whiteboard playback:
 
-[codepen源码](https://codepen.io/leavesster/pen/pooKVaM)  
-[codepen展示页](https://cdpn.io/leavesster/debug/pooKVaM/ZorBazKxbJJM)
+[codepen source code](https://codepen.io/leavesster/pen/pooKVaM)  
+[codepen display page](https://cdpn.io/leavesster/debug/pooKVaM/ZorBazKxbJJM)
 
-## 相关文档
+## Related documents
 
-* [初始化-回放参数](../parameters/player.md)：回放时，必须以及可以配置的参数。
-* [状态监听](../features/state.md)：监听回放时，房间状态(房间人数，页面状态，全局状态等)变化。
-* [回放功能](../features/replay.md)，了解更多功能：
-    1. 如何支持带音视频回放
-    1. 回放控制：播放，暂停，快进，释放资源
-* [自定义事件](../features/events.md)：监听回放时，实时房间中开发者根据特有业务，使用的自定义事件。
-* [白板操作](../features/operation.md)：管理回放时，用户交互逻辑(移动，缩放白板)。
+* [Initialization-playback parameters](../parameters/player.md)：During playback, the parameters must be and can be configured.
+* [Status monitoring](../features/state.md)：When monitoring replay, the room status (number of rooms, page status, global status, etc.) changes.
+* [Replay](../features/replay.md)，Learn more：
+    1. How to support audio and video playback
+    2. Playback control: play, pause, fast forward, release resources
+* [Custom event](../features/events.md)：When monitoring the replay, the custom events used by developers in the real-time room according to their unique business.
+* [Whiteboard operation](../features/operation.md)：User interaction logic (move, zoom whiteboard) when managing playback.
