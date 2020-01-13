@@ -32,7 +32,7 @@ room.disconnect().then(function() {
 > After leaving the room, the `room` instance can no longer be used.
 > If you re-enter the room, please call `joinRoom` of` sdk` to prevent regenerating the `room` instance.
 
-## be careful
+## Note
 
 ### Exception handling
 

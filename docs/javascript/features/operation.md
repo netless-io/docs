@@ -59,7 +59,7 @@ let delay = room.timeDelay;
 
 Use the `room.timeDelay` method to quickly set the whiteboard delay. You can artificially add a delay to the whiteboard to delay playback.
 
-* be careful
+* Note
 
 > 1. The parameter unit is millisecond.
 > 2. This method works only for local clients.

@@ -1,86 +1,86 @@
 ---
 id: js-state
-title: 状态监听
+title: Status listen
 ---
 
-## 房间状态
+## Room status
 
-定义：一个房间，可以包括很多信息，例如`房间成员`，`用户教具`，`当前页面信息`，`页面缩放信息`，`主播信息`等。`sdk`将这些信息统称为`房间状态`。
+Definition: A room can include a lot of information, such as `room members`,` user teaching aids`, `current page information`,` page zoom information`, `anchor information`, etc. `sdk` refers to this information as` room status`.
 
-房间状态，存储在`room`的`state`，以及`player`的`state`属性中。
+Room state is stored in the `state` of` room` and the `state` property of` player`.
   
->`房间状态`，存在一个`DisplayerState`基础结构和两个`RoomState`,`PlayerState`扩展结构，分别对应`room`,`player`的`state`属性结构。
+> `Room state`, there is a` DisplayerState` basic structure and two `RoomState`,` PlayerState` extended structures, which correspond to the `state` property structure of` room` and `player` respectively.
 
-## TypeScript 定义
+## TypeScript definition
 
-### DisplayerState 及其相关定义
+### DisplayerState and related definitions
 
 ```typescript
 ///Displayer.d.ts
 
-//均为只读属性
+//All read-only
 export type DisplayerState = {
-    // 全局状态，所有人可读
+    // global state, readable by everyone
     readonly globalState: GlobalState;
-    // 房间成员列表
+    // List of room members
     readonly roomMembers: ReadonlyArray<RoomMember>;
-    // 当前目录信息
+    // Current directory information
     readonly sceneState: SceneState;
 };
 ```
 
-* 相关类定义
+* Related class definitions
 ```typescript
 ///Displayer.d.ts
 
-//基础 Object，sdk 会有部分私有字段
+// Basic Object, SDK will have some private fields
 export type GlobalState = {};
 
-// 用户信息
+// User Info
 export type RoomMember = {
-    //白板用户 id，从 0 递增
+    // Whiteboard user id, increasing from 0
     readonly memberId: number;
-    //用户的教具状态
+    // User's teaching aid status
     readonly memberState: MemberState;
-    //用户信息，在初始化时传入的用户自定义信息，参考[初始化参数-房间参数]文档
+    // User information, user-defined information passed in during initialization, refer to [Initialization Parameters-Room Parameters] document
     readonly payload: any;
 };
 
-// 参考[教具操作]文档
+// Refer to [Teaching aid operation] document
 type MemberState
 
-// 参考[页面（场景）管理]文档
+// Refer to [Page (Scene) Management] document
 type SceneState
 ```
 
-### RoomState 定义
+### RoomState definition
 
 ```Typescript
 ///Room.d.ts
 
 type RoomState = {
-    // 可以通过 API 修改该属性
+    // This property can be modified through the API
     readonly globalState: GlobalState;
-    // 见 GlobalState 定义
+    // See GlobalState definition
     readonly roomMembers: ReadonlyArray<RoomMember>;
-    // 可以通过 [页面（场景）管理] 中的API 修改
+    // Can be modified through the API in [Page (Scene) Management]
     readonly sceneState: SceneState;
-    // 可以通过 [教具使用] 中的 API 修改
+    // Can be modified via API in [Use of Teaching Aids]
     readonly memberState: MemberState;
-    // 可以通过 [视角操作] 中的 API 修改
+    // Can be modified through the API in [Viewpoint Operations]
     readonly broadcastState: Readonly<BroadcastState>;
-    // 可以通过 [视角操作] 中的 API 修改
+    // Can be modified through the API in [Viewpoint Operations]
     readonly zoomScale: number;
 };
 ```
 
-### PlayerState 定义
+### PlayerState definition
 
 ```Typescript
-///Player.d.ts
+// Player.d.ts
 
 export type PlayerState = {
-    // 该属性可以通过[回放功能] 中的 API 修改
+    // This property can be modified through the API in [Playback Function]
     readonly observerMode: ObserverMode;
     readonly globalState: GlobalState;
     readonly roomMembers: ReadonlyArray<RoomMember>;
@@ -88,37 +88,37 @@ export type PlayerState = {
 };
 ```
 
-## 状态获取
+## Get global status
 
 ```Typescript
-// 获取全局状态
+// Get global status
 var globalState = room.state.globalState;
-// 获取当前用户教具状态
+// Get current user teaching aid status
 var memberState = room.state.memberState;
-// 获取场景状态
+// Get scene status
 var sceneState = room.state.sceneState;
-// 主播用户信息
+// Anchor user information
 var broadcastState = room.state.broadcastState;
 
-// player 类似
+// player similar
 ```
 
-## 状态监听
-### 实时房间状态(RoomState)
+## Status monitoring
+### Real-time room state (RoomState)
 
-当房间状态（用户加入退出，白板页面（场景），用户教具变化，主播，全局状态）发生改变时，sdk 会主动回调在`joinRoom`时，`callbacks`参数中的`onRoomStateChanged`方法。
+When the room status (user joins and exits, whiteboard page (scene), user teaching aid changes, anchor, global state) changes, SDK will actively call back the `onRoomStateChanged` method in` callbacks` parameter when `joinRoom`.
 
->更多回调参数使用，请阅读[初始化参数-房间参数](../parameters/room.md#roomcallbacks)。
+> For more callback parameters, please read [Initialization Parameters -> Room Parameters](../parameters/room.md#roomcallbacks)。
 
 ```Typescript
-//... 初始化 whiteWebSdk，获取房间鉴权信息
+// ... Initialize whiteWebSdk and get room authentication information
 whiteWebSdk.joinRoom({uuid: uuid, roomToken: roomToken}, {
-    // 状态变化回调时，modifyRoomState 只会包含发生了改变的 roomState 字段。
-    // 对应字段里的内容，都会完整传递
+    // When the state changes callback, modifyRoomState will only include the roomState field that has changed.
+    // The content in the corresponding field will be completely transmitted
     onRoomStateChanged: function(modifyRoomState) {
-        // 只有发生改变的字段，才存在
+        // Only the changed fields exist
         if (modifyRoomState.globalState) {
-            // 完整的 globalState 
+            // Complete globalState 
             var newGlobalState = modifyRoomState.globalState;
         }
         if (modifyRoomState.memberState) {
@@ -131,7 +131,7 @@ whiteWebSdk.joinRoom({uuid: uuid, roomToken: roomToken}, {
             var broadcastState = modifyRoomState.broadcastState;
         }
     },
-    // 白板连接状态改变, 具体状态如下:
+    // The connection status of the whiteboard has changed, as follows:
     onPhaseChanged: function(phase) {
         // "connecting",
         // "connected",
@@ -139,36 +139,36 @@ whiteWebSdk.joinRoom({uuid: uuid, roomToken: roomToken}, {
         // "disconnecting",
         // "disconnected",
     },
-    // ...其他回调
+    // ... other callbacks
 }).then(function(room) {
-    // room 房间操作
+    // room operation
 })
 ```
 
-### 回放房间状态(PlayerState)
+### Playback Room State (PlayerState)
 
-与`Room`相似，在使用`sdk`的`replayRoom`方法创建`Player`实例时，`callbacks`参数中也存在类似`onRoomStateChanged`方法的`onPlayerStateChanged`。
-当回放过程中，`playerState`发生变化，`sdk`都会主动回调传入的该方法。
+Similar to `Room`, when using the` replayRoom` method of `sdk` to create a` Player` instance, `onPlayerStateChanged` similar to the` onRoomStateChanged` method also exists in the `callbacks` parameter.
+When the playerState changes during playback, the SDK will actively call back the method passed in.
 
 ```js
-//... 初始化 whiteWebSdk，获取房间鉴权信息
+// ... initialize whiteWebSdk and get room authentication information
 whiteWebSdk.replayRoom({
     room: roomUUID,
     roomToken: roomToken
 }, {
     onPlayerStateChanged: function(modifyState) {
-        // 与 roomState 类似
+        // similar to roomState
     },
     onPlayerStateChanged: function(scheduleTime) {
-        // 时间进度回调，毫秒，scheduleTime 为 number
+        // Time progress callback, milliseconds, scheduleTime is number
     },
     onPhaseChanged：function(phase) {
-        // 参考[初始化参数-回放参数]文档中 onPhaseChanged 内容
+        // Refer to the content of onPhaseChanged in the [initialization parameter-playback parameter] document
     }
-    // ...其他回调
+    // ... other callbacks
 }).then(function (player){
-    //player 操作
+    //player operate
 })
 ```
 
->更多回调参数使用，请阅读[初始化参数-回放参数](../parameters/player.md#playercallbacks)
+> For more callback parameters, please read [Initialization Parameters -> Playback Parameters](../parameters/player.md#playercallbacks)
