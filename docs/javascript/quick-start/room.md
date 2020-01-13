@@ -1,27 +1,27 @@
 ---
 id: js-room
-title: 实时房间
+title: Real-time room
 ---
 
-## 初始化
+## initialization
 
-> 这里的 json 是在 [获取 roomToken](./js-token#获取特定房间-roomtoken) 步骤中获取的 json 对象
+> Here the json is in [get roomToken](./js-token#获取特定房间-roomtoken) json object obtained in step
 
 ```js
-// 更多初始化 sdk 参数，请查看[初始化参数]文档
+// For more initialization sdk parameters, please see the [initialization parameters] document
 var whiteWebSdk = new WhiteWebSdk();
-// 更多初始化 房间 参数，请查看[初始化参数]文档
+// For more initialization room parameters, please see the [Initialization Parameters] document
 whiteWebSdk.joinRoom({
     uuid: json.msg.room.uuid,
     roomToken: json.msg.roomToken
 }).then(function(room) {
-    //将 room 实例绑定在全局变量中。后续所有 API 实例，都会直接调用 room
+    // Bind the room instance to a global variable. All subsequent API instances will directly call room
     window.room = room;
     room.bindHtmlElement(document.getElementById("whiteboard"));
 })
 ```
 
-## 退出房间
+## Exit the room
 
 ```js
 room.disconnect().then(function() {
@@ -29,19 +29,19 @@ room.disconnect().then(function() {
 });
 ```
 
->离开房间后，`room`实例，无法再使用。
->如果重新进入房间，请调用`sdk`的`joinRoom`防范，重新生成`room`实例。
+> After leaving the room, the `room` instance can no longer be used.
+> If you re-enter the room, please call `joinRoom` of` sdk` to prevent regenerating the `room` instance.
 
-## 注意点
+## be careful
 
-### 异常处理
+### Exception handling
 
-开发者需要手动处理以下几种情况：
+Developers need to handle the following situations manually:
 
-1. 白板加入失败：
-    * 多为白板鉴权，或者网络连接问题。此时可以弹窗告知用户。如果是 401 报错，请检查房间 roomToken 是否正确。
-2. 白板中途断连
-    * 白板自带一部分断连逻辑，当网络中断时，白板会尝试进行重连，如果白板内部重连失败，则
+1. Whiteboard failed to join:
+    * Mostly for whiteboard authentication or network connection issues. At this time, you can pop up the window to inform the user. If it is a 401 error, please check whether the room roomToken is correct.
+2. Whiteboard disconnected halfway
+    * 白板自带一部分断连逻辑，当网络中断时，白板会尝试进行重连，如果白板内部重连失败，则提示失败。
 
 ### 白板大小变化
 
