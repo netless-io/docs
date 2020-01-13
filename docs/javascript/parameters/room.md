@@ -1,29 +1,29 @@
 ---
 id: js-room
-title: 房间参数
+title: Room parameters
 ---
 
-`room`与`player`实际上，都是内部`displayer`的子类。`TypeScript`签名中，以`///Displayer.d.ts`开头的方法签名，`room`和`player`均可使用。
+`room` and` player` are actually subclasses of the internal `displayer`. In the `TypeScript` signature, the method signatures starting with` /// Displayer.d.ts` can be used in both `room` and` player`.
 
-我们将用户实时使用，并对外同步的房间，称为 **实时房间**（`对应类为 room`）；
+We call the room that users use in real time and synchronize with the outside, called **real-time room** (`corresponding class is room`)
 
-## 初始化 API
+## Initialize the API
 
-### TypeScript 方法签名
+### TypeScript signature
 
 ```typescript
 //WhiteWebSdk.d.ts
 public joinRoom(params: JoinRoomParams, callbacks: RoomCallbacks = {}): Promise<Room>
 ```
 
-### 示例代码
+### Sample code
 
 ```js
 whiteWebSdk.joinRoom({
     uuid: json.msg.room.uuid,
     roomToken: json.msg.roomToken,
 }, 
-// callback 本身为可选参数，可不传。
+// callback itself is an optional parameter and may not be passed.
 {
     onRoomStateChanged: modifyState => {
         console.log(modifyState);
@@ -32,17 +32,17 @@ whiteWebSdk.joinRoom({
         console.log(phase);
     }
 ).then(function(room) {
-    //实时房间实例
+    // Real-time room example
     window.room = room;
 }).catch(function(err) {
-    //初始化房间失败
+    // Initializing the room failed
     console.log(e);
 })
 ```
 
-## JoinRoomParams 参数说明：
+## JoinRoomParams parameter Description:
 
-### TypeScript 签名
+### TypeScript signature
 
 ```typescript
 export type JoinRoomParams = {
@@ -58,39 +58,39 @@ export type JoinRoomParams = {
 };
 ```
 
->除`uuid`,`roomToken`外，其他均为可选参数。右侧目录中加粗字段，为常用设置。
+> Except for `uuid` and` roomToken`, all other parameters are optional. Bold fields in the directory on the right are commonly used settings.
 
-### **uuid**(必须): string
-
-```js
-房间表示，同一个房间的人，可以进行互动。
-```
-
-### **roomToken**(必须): string
+### **uuid**(require): string
 
 ```js
-房间鉴权信息。
+The room indicates that people in the same room can interact.
 ```
 
-### **userPayload**: 用户信息
+### **roomToken**(require): string
+
+```js
+Room authentication information.
+```
+
+### **userPayload**: User Info
 
 ```
-可以为任意内容，会在 room.state.roomMembers 中体现。
-SDK 会将其作为用户的信息，完整传递，不作处理。
+It can be anything and it will be reflected in room.state.roomMembers.
+The SDK will pass it as the user's information completely without processing.
 ```
 
-### cursorAdapter: 鼠标光标显示
+### cursorAdapter: Mouse cursor display
 
 ```typescript
-//处理用户信息(`userPayload`)与用户头像div之间的映射关系。   
-//需要实现该接口
+// Handle the mapping between user information (`userPayload`) and user avatar div.  
+// Need to implement this interface
 export interface CursorAdapter {
     createCursor(memberId: number): CursorDescription & {readonly reactNode?: any};
     onAddedCursor?(cursor: Cursor): void;
     onRemovedCursor?(cursor: Cursor): void;
 }
 
-//头像
+// Cursor-Avatar
 export interface Cursor {
     readonly divElement: HTMLDivElement;
     readonly memberId: number;
@@ -106,7 +106,7 @@ export interface Cursor {
     setCursorDescription(description: Partial<CursorDescription>): void;
 }
 
-//头像描述
+// Cursor-Avatar description
 export type CursorDescription = {
     readonly x: number;
     readonly y: number;
@@ -115,9 +115,9 @@ export type CursorDescription = {
 };
 ```
 
->该参数配合`userPayload`可以显示用户鼠标所在位置。
+> This parameter combined with `userPayload` can display the user's mouse position.
 
-你可以使用如下代码自定义鼠标光标。
+You can use the following code to customize the mouse cursor.
 
 ```css
 .cursor-box {
@@ -145,7 +145,7 @@ var cursorAdapter = {
     for (var i = 0; i < roomMembers.length; i ++) {
       var roomMember = roomMembers[i];
       if (roomMember.memberId === cursor.memberId) {
-        // 其中 iconURL、color 应该由用户自定义到 payload 中
+        // The iconURL and color should be customized by the user into the payload
         var payload = roomMember.payload;
         var cursorElement = createCursorElement(payload.iconURL, payload.color);
         cursor.divElement.append(cursorElement);
@@ -154,7 +154,7 @@ var cursorAdapter = {
     }
   },
   onRemovedCursor: function(cursor) {
-    // 清理工作
+    // Clean up
   },
 };
 
@@ -172,7 +172,7 @@ whiteWebSdk.joinRoom({
   roomToken: "...",
   cursorAdapter: cursorAdapter,
   userPayload: {
-    // userPayload 可以根据业务自行自定义
+    // userPayload can be customized according to the business
     nickname: "your-nick-name",
     iconURL: "https://your-domain.com/your-path-to-icon.png",
   },
@@ -188,40 +188,40 @@ whiteWebSdk.joinRoom({
 ### cameraBound
 
 ```js
-缩放范围限制，可以同时限制最大最小缩放比例，以及移动等范围，并且与白板页面中背景图相关联。
+Limitation of the zoom range, which can simultaneously limit the maximum and minimum zoom ratios, as well as range of movement, and is associated with the background image on the whiteboard page.
 ```
 
-### disableBezier: 贝塞尔优化开关
+### disableBezier: Bezier Optimized Switch
 
 ```js
-默认`false`，类型:`boolean`；默认打开贝塞尔优化。
+Default `false`, type:` boolean`; Bezier optimization is turned on by default.
 ```
 
-### **disableDeviceInputs**(默认`false`): 禁用教具
+### **disableDeviceInputs**(default`false`): Disable teaching aids
 
 ```js
-默认`false`，类型:`boolean`；默认启用教具。  
-可以通过`room.disableDeviceInputs`进行获取，修改。
+Default `false`, type:` boolean`; teaching aids are enabled by default.
+It can be obtained and modified through `room.disableDeviceInputs`.
 ```
 
-### **disableOperations**: 禁止操作
+### **disableOperations**: Prohibited operation
 
 ```js
-默认`false`，类型:`boolean`；默认允许操作。
-禁止用户所有操作，包括教具操作，以及手势缩放，移动。
-可以通过`room.disableOperations`进行获取，修改。
+Default `false`, type:` boolean`; operation is allowed by default.
+All user operations are prohibited, including operation of teaching aids, as well as gesture zooming and moving.
+It can be obtained and modified through `room.disableOperations`.
 ```
 
-### **disableEraseImage**: 禁止擦除图片
+### **disableEraseImage**: Prohibit erasing pictures
 
 ```js
-是否禁止橡皮擦删除所有图片。默认`false`，即允许橡皮擦删除图片（无法擦除背景图）。  
-可以通过`room.disableEraseImage`进行获取，修改。
+Whether to prohibit the eraser from deleting all pictures. The default `false`, which allows the eraser to delete the picture (the background picture cannot be erased).
+It can be obtained and modified through `room.disableEraseImage`.
 ```
 
-## RoomCallbacks 参数说明
+## RoomCallbacks Parameter Description
 
-### TypeScript 签名
+### TypeScript signature
 
 ```typescript
 export type RoomCallbacks = {
@@ -237,95 +237,95 @@ export type RoomCallbacks = {
 };
 ```
 
->`callbacks`本身为可选参数，其所有回调方法，也是可选。只有出现对应事件时，才会回调对应的方法。
+> `callbacks` itself is an optional parameter, and all its callback methods are also optional. The corresponding method will be called back only when the corresponding event occurs.
 
->右侧目录中加粗字段，为推荐实现。
+> Bold fields in the right directory are recommended implementations.
 
 ### **onPhaseChanged**
 
 ```typescript
 
 export enum RoomPhase {
-    //正在连接
+    // Connecting
     Connecting = "connecting",
-    //已连接服务器
+    // Connected server
     Connected = "connected",
-    //正在重连
+    // Reconnecting
     Reconnecting = "reconnecting",
-    //正在断开连接
+    // Disconnecting
     Disconnecting = "disconnecting",
-    //连接中断
+    // Disconnected
     Disconnected = "disconnected",
 }
 
-房间连接状态发生改变时，sdk 会回调该 API。具体状态为以上字符串。
+When the room connection status changes, SDK will call back the API. The specific status is the above string.
 
-仅当房间处于`connected`状态时，房间接受用户教具操作。为了用户体验，推荐对连接中状态进行处理。
+Only when the room is in the `connected` state, the room accepts user teaching aid operations. For user experience, it is recommended to handle the status of the connection.
 ```
 
 ### **onRoomStateChanged**
 
 ```js
-房间状态发生改变时，会回调该 API。
-该回调返回的`RoomState`只包含发生变化的房间状态字段。
+This API is called back when the room status changes.
+The `RoomState` returned by this callback contains only the room state fields that have changed.
 ```
 
->请阅读[状态监听](../features/state.md)文档，了解更多内容。
+> Please read the [status monitoring](../features/state.md) documentation to learn more.
 
 ### onDisconnectWithError
 
 ```js
-由于错误，导致中断连接
+Disconnection due to error
 ```
 
 ### onKickedWithReason
 
 ```js
-被服务器主动踢房间
+Active kicked by the server
 ```
 
 ### willInterceptKeyboardEvent
 
 ```js
-鼠标事件回调。
-是否拦截键盘输入事件，返回`true`表示拦截键盘输入事件，sdk 将不做处理。
+Mouse event callback.
+Whether to intercept keyboard input events. Returns `true` to intercept keyboard input events. SDK will not process them.
 ```
 
 ### onKeyDown
 
 ```js
-键盘按下事件回调
+Keyboard press event callback
 ```
 
 ### onKeyUp
 
 ```js
-键盘抬起事件回调
+Keyboard up event callback
 ```
 
 ### **onHandToolActive**
 
 ```js
-抓手工具激活/取消回调
+Hand tool activation / deactivation callback
 ```
 
 ### **onPPTLoadProgress**
 
-* TypeScript 签名
+* TypeScript signature
 ```typescript
 (uuid: string, progress: number) => void;
 ```
 
 ```js
-ppt 预加载缓存回调，uuid 为 ppt 转换时的 taskId，progress 为 0~1 之间的两位小数。
+ppt preload cache callback, uuid is taskId during ppt conversion, and progress is two decimal places between 0 and 1.
 ```
 
->只有在初始化 SDK 时，`preloadDynamicPPT`，设置为 true 时，该回调才有用。
+> This callback is only useful when the SDK is initialized with `preloadDynamicPPT` set to true
 
-## 推荐阅读
+## Recommended reading
 
-1. [教具操作](../features/tools.md)
-1. [视角操作](../features/view.md)
-1. [页面管理](../features/scenes.md)
-1. [状态监听](../features/state.md)
-1. [白板操作](../features/operation.md)
+1. [Teaching aid operation](../features/tools.md)
+1. [Perspective operation](../features/view.md)
+1. [Page management](../features/scenes.md)
+1. [Status monitoring](../features/state.md)
+1. [Whiteboard operation](../features/operation.md)
