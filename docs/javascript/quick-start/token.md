@@ -5,19 +5,19 @@ title: Room authentication
 
 ## Safety instructions
 
-> 本小节所进行的操作，应在开发者业务服务器中执行。请求可以在 [白板基础 API](server/api/whiteboard-base.md) 中查看。
+> The operations performed in this section should be performed in the developer business server. The request can be found at [Whiteboard basic API](server/api/whiteboard-base.md).
 
-创建房间/获取房间，需要使用`sdkToken`，与`SDK`后端服务器，进行交互。
-`sdkToken`，是`SDK`后端服务器，与开发者后端业务服务器通讯的凭证。掌握了`sdkToken`，`SDK`后端服务器就会认为，这是开发者进行的操作。主要涉及到开发者对应资源的计费以及权限管理。
+To create a room / get a room, you need to use `sdkToken` to interact with the` SDK` backend server.
+`sdkToken` is a credential for the` SDK` back-end server to communicate with the developer's back-end business server. After mastering `sdkToken`, the` SDK` backend server will think that this is an operation performed by the developer. It mainly involves developers' billing and rights management for corresponding resources.
 
-本章节里为了演示方便，将`创建房间`/`获取特定房间roomToken`的操作写在了前端。实际业务中，为了防止有人反编译客户端代码，或者抓包，获取`SDKToken`，请勿在任何客户端暴露`sdkToken`。
+In this chapter, for the convenience of demonstration, the operation of `creating a room` /` getting a specific roomroomToken` is written on the front end. In actual business, in order to prevent someone from decompiling client code or capturing packages and obtaining `SDKToken`, please do not expose` sdkToken` on any client.
 
-## 创建新房间，同时获取 RoomToken
+## Create new room and get roomToken
 
->该网络请求为 server 端 创建房间API，更多内容可以查看[白板基础 API](server/api/whiteboard-base.md#创建房间)
+> This network request creates a room API for the server, more details can be viewed[Whiteboard basic API](server/api/whiteboard-base.md#create-whiteboard-room)
 
 ```javascript
-var sdkToken = "阅读[前提条件]，获取 token";
+var sdkToken = "Read [Prerequisites] to get token";
 var url = 'https://cloudcapiv4.herewhite.com/room?token=' + sdkToken;
 var requestInit = {
     method: 'POST',
@@ -26,13 +26,13 @@ var requestInit = {
     },
     body: JSON.stringify({
         name: "房间名称",
-        limit: 100, // 房间人数限制
-        mode: "persistent",  // 普通房间，无法回放
-        // mode: "historied"， // 可回放房间
+        limit: 100, // Limit on the number of rooms
+        mode: "persistent",  // Normal room, unable to play back
+        // mode: "historied"， // Playback room
     }),
 };
 
-// 请求创建房间，并获取 sdk 后端服务器 response
+// Request to create a room and get sdk backend server response
 fetch(url, requestInit).then(function(response) {
     return response.json();
 }).then(function(json) {
@@ -42,14 +42,14 @@ fetch(url, requestInit).then(function(response) {
 });
 ```
 
-## 获取特定房间 RoomToken
+## Get RoomToken for a specific room
 
->该网络请求为 server 端 获取特定白板roomToken API，更多内容可以查看[白板基础 API](server/api/whiteboard-base.md)
+> This network request is for the server to obtain a specific whiteboard roomToken API, more details can be viewed [Whiteboard basic API](server/api/whiteboard-base.md)
 
 ```javascript
-var sdkToken = "阅读[前提条件]]文档，获取 token";
-var uuid = "从业务服务器或者 url 地址中读取";
-// 注意加入房间的 path 为 `room/join` 而创建房间的为 `room`
+var sdkToken = "Read the [Prerequisites] document to get the token";
+var uuid = "Read from the business server or URL";
+// Note that the path to the room is room / join and the room is created as room
 var url = `https://cloudcapiv4.herewhite.com/room/join?token=${sdkToken}&uuid=${uuid}`;
 var requestInit = {
     method: 'POST',
