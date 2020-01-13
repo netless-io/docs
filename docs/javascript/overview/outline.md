@@ -158,7 +158,7 @@ Just click on the third-level directory to jump to the corresponding document.
 
 ### [Custom event](../features/events.md)
 1. Send custom events (live room only)
-    * be careful
+    * Note
 2. Listen for custom events
     1. Ordinary frequency
     2. High frequency event

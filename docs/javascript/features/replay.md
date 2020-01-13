@@ -1,16 +1,17 @@
 ---
 id: js-replay
-title: 回放功能
+title: Replay
 ---
 
-## 前提条件
+## Prerequisite
 
->1. 确定向服务器请求创建房间时，房间类型是「`可回放房间`」，详情请查看[服务端文档-白板类型](server/api/whiteboard-base.md#%E5%88%9B%E5%BB%BA%E7%99%BD%E6%9D%BF)。  
->2. 阅读[初始化参数-回放参数](../parameters/player.md)了解初始化回放时，所需要的参数。
->3. 本节中`player`为`sdk`调用`replayRoom`API 后，成功返回的`player`对象。
+// TODO
+> 1. Make sure that when requesting the server to create a room, the room type is `Playable Room`. For details, please see [Server-side Document -> Whiteboard Type](server/api/whiteboard-base.md#%E5%88%9B%E5%BB%BA%E7%99%BD%E6%9D%BF)。  
+> 2. Read [Initialization Parameters -> Playback Parameters](../parameters/player.md) to understand the parameters required when initializing playback.
+> 3. In this section, `player` is the` player` object that was successfully returned after `sdk` called` replayRoom` API.
 
 ### white-react-sdk
-`white-react-sdk`，可以使用如下方式进行绑定操作：
+`white-react-sdk`, you can use the following methods for binding operations:
 
 ```javascript
 import React from "react";
@@ -22,33 +23,33 @@ class App extends React.Component {
 }
 ```
 
-## 音视频支持
+## Audio and video support
 
-`sdk`支持在回放时传入音视频地址，具体请查看[初始化参数-回放参数](../parameters/player.md)。`sdk`会主动接管音视频播放，负责处理音视频与`sdk``player`的播放状态同步问题。  
-当白板回放与音视频，任意一个进入`缓冲`状态时，`sdk`会自动停止另一个的播放，等待另一方缓冲完毕，并且同时触发`player`的缓冲状态回调。
+`sdk` supports the input of audio and video addresses during playback. For details, please refer to [Initialization Parameters -> Playback Parameters](../parameters/player.md). `sdk` will actively take over the playback of audio and video, and is responsible for handling the synchronization status of audio and video with` sdk 'player.
+When any one of the whiteboard playback and audio and video enters the `buffer` state,` sdk` will automatically stop the playback of the other, wait for the other party to finish buffering, and trigger the buffer state callback of `player` at the same time.
 
-### 音频
+### Audio
 
-音频，只需要根据[初始化参数-回放参数](../parameters/player.md)，配置正确的音频地址。
+For audio, you only need to configure the correct audio address according to [Initialization Parameters -> Playback Parameters](../parameters/player.md).
 
-### 视频
+### Video
 
-#### 1. 创建 video 标签
+#### 1. Create a video tag
 
-创建需要显示的`video`标签，并将`id`设置为`white-sdk-video-js`。（开发者可以根据业务需要，自行配置该标签的布局）。
+Create a `video` tag to display and set the` id` to `white-sdk-video-js`. (Developers can configure the layout of the label themselves according to business needs.)
 
->2.2.13 以前的版本，请在`video`标签中，添加`css`名`video-js`
+> Before 2.2.13, please add the `css` name` video-js` in the `video` tag
 
 ```html
-<!-- 根据业务需求，自行设置布局方式 -->
+<!-- According to business needs, set the layout method by yourself -->
 <video id="white-sdk-video-js" class="video-js"></video>
 ```
 
-#### 2. 引用 videojs css
+#### 2. Quote videojs css
 
-* 在 <head> 标签中引用 sdk 
+* Reference sdk in the <head> tag
 
-2.3.0 及其以前的版本，需要手动引用 videojs 的 css，
+2.3.0 and previous versions need to manually reference the css of videojs
 
 ```html
 <head>
@@ -56,76 +57,76 @@ class App extends React.Component {
 </head>
 ```
 
-* 使用 npm 等包管理工具
+* Use package management tools like npm
 
-目前`video-js`为`sdk`的`dependency`依赖，会自动安装。只需要在对应页面调用手动 import 即可。
+Currently `video-js` is a` dependency` dependency of `sdk` and will be installed automatically. Just call manual import on the corresponding page.
 
 ```js
 import "video.js/dist/video-js.css";
 ```
 
-### 局限性——Safari 限制
+### Limitations-Safari limitations
 
-由于`iOS`（包括`iOS`微信浏览器以及浏览器`App`）以及`macOS``Safari`的隐私限制——无法通过代码播放音视频（标记`muted`的视频，可以），而`sdk`需要同步`白板回放`与音视频播放，会通过代码进行暂停与播放，所以会造成在`iOS`以及`macOS`的`Safari`上无法正常播放。
+Due to the privacy restrictions of `iOS` (including` iOS` WeChat browser and browser `App`) and` macOS Safari`-audio and video cannot be played through code (videos marked with `muted` are OK), and` sdk` needs to synchronize `whiteboard playback` with audio and video playback. It will be paused and played by code, so it will cause normal playback on` iOS` and `macOS` Safari.
 
-* 解决办法
+* Solution
 
-在初始化后，主动调用`player.seekToScheduleTime(0)`触发音视频，以及白板的缓冲，从而保证开发播放时
+After initialization, call `player.seekToScheduleTime (0)` to touch the video and the buffer of the whiteboard, so as to ensure the development of playback
 
-## 回放时状态监听
+## Status monitoring during playback
 
->具体请参考[状态管理文档](./state.md)与[初始化参数-回放参数](../parameters/player.md)
+> For details, please refer to [Status Management Document](./state.md) and [Initialization Parameters -> Playback Parameters](../parameters/player.md)
 
-## 主动操作API
+## Proactive API
 
-### 播放
+### Play
 
 ```javascript
 player.play();
 ```
 
-### 快进
+### Seek
 
-你可以通过如下方法快进到特定时间点。``scheduleTime`` 是一个`>=0`的整数（毫秒），它不应该超过回放片段的总时间。
+You can fast forward to a specific point in time as follows. `` scheduleTime`` is an integer (milliseconds) with `>=0`, it should not exceed the total time of the playback segment.
 
 ```javascript
 player.seekToScheduleTime(scheduleTime);
 ```
 
-### 暂停
+### Stop
 
 ```javascript
 player.pause();
 ```
 
-### 观察模式
+### Observation mode
 
-#### TypeScript 签名
+#### TypeScript signature
 
 ```Typescript
 //player.d.ts
 export enum ObserverMode {
-    // 跟随当前主播视角，如果当前没有主播，则跟随最早加入房间的用户
+    // Follow the current anchor angle, if there is no current anchor, follow the oldest user who joined the room
     Directory = "directory",
-    // 自由模式
+    // Free mode
     Freedom = "freedom",
 }
 ```
 
 ```javascript
-// 和实时房间相同，一旦用户进行主动移动，就会变成 freedom 模式
+// Same as a real-time room, once the user actively moves, it will become "freedom" mode
 player.setObserverMode("directory");
 ```
 
-### 终止——施放资源
+### Termination-release resources
 
-使用该 API 后， `player` 不再可用，如果需要播放，请重新生成新的实例
+After using this API, `player` is no longer available, if you need to play, please regenerate a new instance
 
 ```javascript
 player.stop();
 ```
 
-## 相关文档
+## Related documents
 
-阅读[初始化参数-回放参数](../parameters/player.md)，查看初始化相关参数。
-阅读[快速开始-回放房间](../quick-start/replay.md)，快速回放一个已经有录制内容的房间。
+Read[Initialization parameters -> playback parameters](../parameters/player.md), to view initialization related parameters.
+Read[Quick Start -> Playback Room](../quick-start/replay.md), quick playback of a room that already has recordings

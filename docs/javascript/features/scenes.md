@@ -1,141 +1,141 @@
 ---
 id: js-scenes
-title: 页面（场景）管理
+title: Page (scene) management
 ---
 
-一个白板房间内，可以存在多个页面，就像`ppt`一样，可以在不同页面绘制不同内容，并进行切换。
->sdk 内部使用`场景(scene)`进行作为定义，开发者以`页面`进行理解即可。
+There can be multiple pages in a whiteboard room. Just like `ppt`, you can draw different content on different pages and switch between them.
+> sdk uses `scene` for definition, developers can understand it with` page`
 
-## 页面
+## Page
 
-### TypeScript 定义
+### TypeScript definition
 
-一个白板页面，有`name`,`ppt`两个属性。其中，`ppt`可以为空，`name`如果在初始化时为空，sdk 会自动创建一个名称。
+A whiteboard page with `name` and` ppt` attributes. Among them, `ppt` can be empty, if` name` is empty during initialization, SDK will automatically create a name.
 
 ```typescript
-//白板页面结构
+// Whiteboard page structure
 export type SceneDefinition = {
-    //页面名称，如果未定义，sdk 会自动取名
+    // Page name, if not defined, sdk will automatically name it
     readonly name?: string;
-    //背景图（ppt）结构
+    // Background image (ppt) structure
     readonly ppt?: PptDescription;
 };
 
-//背景图结构
+// Background image structure
 export type PptDescription = {
-    //图片网络地址
+    // Picture web address
     readonly src: string;
-    //宽高，在白板内部坐标系中长度，背景图中点永远位于白板内部坐标中点
+    // Width and height, the length in the internal coordinate system of the whiteboard, the point in the background image is always at the midpoint of the internal coordinates of the whiteboard
     readonly width: number;
     readonly height: number;
 };
 ```
 
 ```javascript
-//创建一个白板页面
+// Create a whiteboard page
 const scene = {name: "example", ppt: {src: "https://www.example.com/1.png", width: 1080, height: 720}};
 ```
 
-## 页面新增概念
+## New concepts in pages
 
-### 目录——分组管理页面
+### Directory-Group Management Page
 
-为了方便管理和操作多个页面，`sdk`支持将`页面`放入在不同`目录`下（类似window/macOS 等桌面操作系统的文件管理系统）。
-通过将白板进行分组，可以更有效的管理大量白板。
+In order to facilitate the management and operation of multiple pages, `sdk` supports putting` pages` in different `directories` (similar to file management systems of desktop operating systems such as window / macOS).
+By grouping whiteboards, you can more effectively manage a large number of whiteboards.
 
-* 如下为多个页面存在的形式：
+* The following is the form in which multiple pages exist:
 
 ```bash
-# 初始化房间时，就存在的默认页面。默认在根目录，名称为"init"
+# The default page exists when the room is initialized. Defaults to the root directory, named "init"
 /init
-# 在 Eng 目录下的页面
+# Pages in the Eng directory
 /Eng/ppt1
 /Eng/ppt2
 /Eng/ppt3
-# 在 Phy 目录下的页面
+# Pages in the Phy directory
 /Phy/ppt1
 /Phy/ppt2
 /Phy/ppt3
 ```
 
-### 路径——指定特定白板
+### Path-specify a specific whiteboard
 
-当存在多个目录，多个白板时，我们就需要用`页面路径`来描述该页面。  
-`页面路径`(scenePath)也可以称为`场景路径`。
+When there are multiple directories and multiple whiteboards, we need to use `page path` to describe the page.
+`Page path` (scenePath) can also be called` scene path`.
 
->`页面路径`=`页面目录`+`页面名称`。  
-`页面路径`以"/"分割层级，以"/"开头。最末端的层级，即为`页面名称`。
+>`Page path` = `Page directory` + `Page name`。  
+`Page path` starts with "/" and starts with "/". The last level is `Page name`。
 
-* 以下即为目录小节中的`页面路径`
+* The following is the page path in the directory section
 
 ```bash
-# 在根目录下的各页面路径
+# Path to each page in the root directory
 "/init"
-# 在 Eng 目录下的各页面路径
+# Paths to pages in the Eng directory
 "/Eng/ppt1"
 "/Eng/ppt2"
 "/Eng/ppt3"
-# 在 Phy 目录下的各页面路径
+# Path to each page in the Phy directory
 "/Phy/ppt1"
 "/Phy/ppt2"
 "/Phy/ppt3"
 ```
 
-> **页面路径具有唯一性**:  
-同一个`页面路径`，会指向同一个`页面`。新建页面时，如果组合出来的`页面路径`已经存在；则新页面，会覆盖旧页面。
+> **Page path is unique**:  
+The same `page path` will point to the same` page`. When creating a new page, if the combined `Page Path` already exists; the new page will overwrite the old page.
 
-### 页面与路径注意点
+### Page and path note
 
->**目录与路径不能相同**:  
-当白板房间存在一个路径为`/Eng/ppt1`的页面时，说明此时已经存在一个"/Eng"的目录；因此无法把一个`/Eng`的页面，直接插在根目录中，因为此时组成的`页面路径`也是`/Eng`，而白板中已经存在了一个`/Eng`的目录，两者冲突，无法成功插入。
+>**Directory and path cannot be the same**:  
+When there is a page with the path `/ Eng / ppt1` in the whiteboard room, it means that a directory of“ / Eng ”already exists at this time; therefore, a page of` / Eng` cannot be inserted directly into the root directory because this The `Page Path` formed at that time is also` / Eng`, and a `/ Eng` directory already exists in the whiteboard. The two conflict and cannot be successfully inserted.
 
-### SceneState 结构 —— 当前目录信息
+### SceneState structure-current directory information
 
 ```typescript
 /// Displayer.d.ts
-// room player 通用
+// room player for public use
 
-// 白板当前目录信息
+// Whiteboard current directory information
 export type SceneState = {
-    //同级目录下的所有页面
+    // All pages in the same directory
     readonly scenes: ReadonlyArray<Scene>;
-    //当前页面的完整路径
+    // The full path of the current page
     readonly scenePath: string;
-    //当前页面处于同级目录下页面数组的索引位置
+    // The current page is at the index position of the page array in the same directory
     readonly index: number;
 };
 
-//页面信息
+// Page information
 export type Scene = {
-    //页面名称，一定存在，如果创建时没有传，sdk 会自动生成一个随机字符串
+    // The page name must exist. If it is not passed during creation, SDK will automatically generate a random string.
     name: string;
-    //背景页+笔画数
+    // Background page + Number of strokes
     componentsCount: number;
-    //背景页设置
+    // Background page settings
     ppt?: PptDescription;
 };
 ```
 
 ## API
 
-### 获取当前 目录/页面 信息
+### Get current directory / page information
 
-当前目录信息`sceneState`，存储在`room`以及`player`的`state`。
+The current directory information `sceneState` is stored in` room` and `state` of` player`.
 
-* 示例代码
+* Sample code
 
 ```typescript
-// room player 通用
+// room player pblic for use
 
 let scenceState = room.state.sceneState;
 // or let scenceState = player.state.sceneState;
 
-/* scenceState 的数据结构
+/* scenceState data structure
 {
     scenePath: "/Phy/ppt1",
     scenes: [{
         name: "ppt1",
-        //（ppt 为可选值，此处都没有 ppt 属性）
+        //(Ppt is optional, there is no ppt attribute here)
     }, {
         name: "ppt2",
         ppt : {
@@ -151,139 +151,139 @@ let scenceState = room.state.sceneState;
 */
 ```
 
-### 切换页面
+### Switch pages
 
-`当前页面`为白板房间内，所有用户当前可以操作的`白板`页面。（开发者可以使用`预览`API，让用户观看其他页面，但是无法操作）。
+`Current page` is the` Whiteboard` page that all users can currently operate in the whiteboard room. (Developers can use the `Preview` API to let users view other pages, but they cannot do so).
 
-白板房间初始化完成后，会创建一个页面，并将其设置为当前页，该页面在根目录`"/"`下，名称为：`"init"`。
+After the initialization of the whiteboard room is complete, a page will be created and set as the current page. The page is under the root directory "" / "`, and its name is: "" init "`.
 
-* TypeScript 签名
+* TypeScript signature
 
 ```typescript
 /// room.d.ts
 /**
- * 切换当前页面
- * @param scenePath 想要显示页面的完整页面路径，不能是 页面目录
+ * Switch the current page
+ * @param scenePath The full page path of the page you want to display, not the page directory想要显示页面的完整页面路径，不能是 页面目录
  */
 public setScenePath(scenePath: string): void;
 ```
 
-* 示例代码
+* Sample code
 
 ```js
-//切换至特定页面
+// Switch to a specific page
 room.setScenePath("/Eng/ppt1");
 ```
 
-#### 注意点
+#### Note
 
-* `setScenePath`没有反应，或者回调中报错，有可能是以下情况：
+* `setScenePath` is not responding, or an error is reported in the callback. It may be the following:
 
->1. 路径不合法。请阅读`页面管理`小节，确认`页面路径`符合规范（以`/`开头，结尾为`页面名称`）。
->2. 路径对应的`页面`不存在。
->3. 路径对应的是`页面目录`，而非`页面`。
+> 1. The path is illegal. Please read the `Page Management` section and confirm that the` Page Path` complies with the specification (begins with `/` and ends with `Page Name`).
+> 2. The `Page` corresponding to the path does not exist.
+> 3. The path corresponds to `Page Directory`, not` Page`.
 
-### 翻页（同目录）
+### Page turning (same directory)
 
-* TypeScript 签名
+* TypeScript signature
 
 ```typescript
 /// room.d.ts
 /**
- * 翻页 API（必须与当前页面同一个目录）
- * @param index 想要显示页面在 sceneState.scenes 中的索引
+ * Page turning API (must be in the same directory as the current page)
+ * @param index Want to display the index of the page in sceneState.scenes
  */
 public setSceneIndex(index: number): void;
 ```
 
-#### 示例代码
+#### Sample code
 
 ```js
-//在当前页面中，进行翻页。
+// In the current page, turn the page.
 room.setSceneIndex(0);
-// 数组越界时，会 throw error
+// When the array is out of bounds, it throws an error
 room.setSceneIndex(room.state.sceneState.index - 1);
 room.setSceneIndex(room.state.sceneState.index + 1);
 ```
 
-#### 注意点
+#### Note
 
-* `setSceneIndex`报错：
->传入了字符串，或者传入的数字索引，小于或大于等于`room.state.sceneState`长度。
+* `setSceneIndex` error：
+> The string or numeric index passed in is less than or equal to the length of `room.state.sceneState`.
 
-### 插入页面（一个或多个）
+### Insert page (one or more)
 
 ```typescript
 /// room.d.ts
 
 /**
- * 插入页面数组
- * @param dir 页面目录；传入的路径，没有对应的页面，就会自动新建页面（如果是多个/分割的多级目录，则每一级目录对应的路径，都不能存在对应的页面）。比如 "/ppt/eng"，会先创建 ppt 目录，然后再在 ppt 目录中创建 eng 目录；需要确定 "/ppt" "/ppt/eng" 没有对应的页面。
- * @param scenes 创建的白板页面数组
- * @param index 可选，数组 path 的插入索引位置。undefined 时，则插入该 dir 目录原有 scenes 的后面。
+ * Insert page array
+ * @param dir Page directory; the incoming path, if there is no corresponding page, a new page will be automatically created (if it is a multiple / divided multi-level directory, there must be no corresponding page in the path corresponding to each level of directory). For example, "/ ppt / eng" will create the ppt directory first, and then create the eng directory in the ppt directory; you need to make sure that there is no corresponding page for "/ ppt" "/ ppt / eng".
+ * @param scenes Array of whiteboard pages created
+ * @param index Optional, the insertion index position of the array path. When undefined, it is inserted after the original scenes in the dir directory.
  */
 putScenes(dir: string, scenes: ReadonlyArray<SceneDefinition>, index?: number): void;
 ```
 
-#### 注意点
+#### Note
 
->1. `dir`参数，不能与现有页面的`路径`重叠。（类比与：无法向`文件`中插入`文件`）  
->2. 当`dir`+ 插入的`scenes`中的`name`，拼接出来的`路径`，与已有的页面`路径`一致时，由于`路径`具有唯一性，新`页面`会覆盖旧`页面`（新文件会覆盖旧文件）。
+>1. The `dir` parameter cannot overlap the` path` of an existing page. (Analogous with: Cannot insert `file` into` file`)
+>2. When the `name` in the` scenes` inserted by `dir` and the` path` spliced ​​out are consistent with the existing `path` of the page, because the` path` is unique, the new `page` will cover the old` `(New files overwrite old files).
 
-### 重名、移动页面
+### Duplicate name, mobile page
 
 ```typescript
 /// room.d.ts
 
 /**
- * 移动/重命名页面
+ * Move / rename page
  *
- * @param source 想要移动的页面的页面 路径
- * @param target 目标路径或者目录。如果是目录，将页面移入该目录中，否则就是移动+重命名效果。
+ * @param source Page path of the page you want to move
+ * @param target Destination path or directory. If it is a directory, move the page into the directory, otherwise it is a rename effect.
  */
 moveScene(source: string, target: string): void;
 ```
 
-### 删除页面
+### Delete page
 
 ```typescript
 /// room.d.ts
 /**
- * 删除页面
- * @param dirOrPath 路径/目录。如果路径，对应页面。如果是目录，则移除该目录下所有页面，以及子目录。
+ * Delete page
+ * @param dirOrPath Path / directory. If path, corresponding page. If it is a directory, remove all pages and subdirectories under the directory.
  */
 removeScenes(dirOrPath: string): void;
 ```
 
-* 示例代码
+* Sample code
 
 ```js
-// 删除房间内所有页面
+// Delete all pages in the room
 room.removeScenes("/")
 ```
 
->房间内必然存在至少一个页面，当删除所有页面后，sdk 会自动在根目录`"/"`下创建一个名为`"init"`的页面，并切换过去。
+> There must be at least one page in the room. When all pages are deleted, SDK will automatically create a page named `init` in the root directory` / `and switch over.
 
-### 页面预览
+### Page preview
 
 ```Typescript
 ///Display.d.ts
-// room player 通用
+// room player use for public
 
 /**
- * 预览功能
+ * Preview function
  * 
- * @param  {string} scenePath 想要获取预览内容的页面（场景）的页面（场景）路径
- * @param  {HTMLElement} div 想要展示预览内容的 div
- * @param  {number} width div 宽度
- * @param  {number} height div 高度
+ * @param  {string} scenePath Page (scene) path of the page (scene) where you want to get preview content
+ * @param  {HTMLElement} div The div that wants to display preview content
+ * @param  {number} width div width
+ * @param  {number} height div height
  * @returns void
  */
 scenePreview(scenePath: string, div: HTMLElement, width: number, height: number): void;
 ```
 
->预览 API 看到的是当前用户切换到对应页面时，所看到的内容。即保留了当前用户缩放，移动的位置。
+> What the preview API sees is what the current user sees when switching to the corresponding page. That is, the current user zoom and move positions are retained.
 
-### 页面截图
+### Page screenshot
 
-本地截图，存在一定缺陷，推荐使用 [服务器 API —— 封面截图](server/api/whiteboard-cover.md)。
+Local screenshot, there are certain defects, it is recommended to use [Server API -> cover screenshot](server/api/whiteboard-cover.md)。
