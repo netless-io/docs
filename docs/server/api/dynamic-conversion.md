@@ -132,26 +132,26 @@ roomToken or token | string | {{roomtoken}} or {{token}}|
 > 3. The conversion task requires users to poll the results, and the interval is recommended to be more than 3 seconds
 
 `convertStatus` The following situations exist:
-- Waiting: 由于 QPS 到达上限等原因任务在等待中
-- Converting: 任务正在执行中
-- NotFound: 根据 taskUUID 未找到对应任务信息
-- Finished: 任务执行完成且正常
-- Fail: 任务执行失败，失败时，会有提示 reason
+- Waiting: The task is waiting due to QPS reaching the upper limit, etc.
+- Converting: Task in progress
+- NotFound: No corresponding task information was found according to taskUUID
+- Finished: Task execution completed and normal
+- Fail: The task execution fails. When it fails, there will be a prompt reason
 
-### 拼接 SDK 可用数据
+### Available SDK data
 
-获取转换结果后，需要自行进行拼接转换为 sdk 可用的场景数据（scenes）。
+After obtaining the conversion results, you need to perform splicing and conversion to the scene data available to the SDK.
 
-该部分可以交由客户端自行拼接，或者在服务器端拼好，以 JSON 格式发送给客户端。
+This part can be spliced ​​by the client or assembled on the server and sent to the client in JSON format.
 
-#### 1. 交由客户端自行拼接
+#### 1. Leave it to the client for splicing
 
-将转换结果的 `json`，`taskId`，还有 `prefix` 转给客户端，进行拼接。（推荐方式，因为客户端仍然需要转换成 sdk 支持的 scene 类进行传入）
+The `json`,` taskId`, and `prefix` of the conversion result are transferred to the client for splicing. (Recommended, because the client still needs to be converted to the scene class supported by SDK for passing in)
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Web/Typescript-->
 ```javascript
-// info 为转换结果返回的 response
+// info The response returned for the conversion result
 const count = info.totalPageSize;
 const scenes: {name: string, ppt: PptDescription}[] = [];
 const ppts = info.convertedFileList;
@@ -159,16 +159,16 @@ for (let i = 0; i < ppts; ++ i) {
     const url = `${prefix}${ppts[i].conversionFileUrl}`;
     slideURLs[i] = url;
     scenes[i] = {
-        // 请使用字符串
+        // Please use strings
         name: `${i + 1}`,
         ppt: {src: url, width: info.width, height: info.height},
     };
 }
-// scenes 即为白板支持的数据格式
+// "scenes" is the data format supported by the whiteboard
 ```
 <!--iOS/Objective-C-->
 ```Objective-C
-// response 为转换结果返回的 response
+// response return value for the conversion result
 NSInteger count = [response[@"totalPageSize"] integerValue];
 NSArray *ppts = response[@"convertedFileList"];
 NSMutableArray<WhiteScene *> *scenes = [NSMutableArray arrayWithCapacity:count];
@@ -182,11 +182,12 @@ for (int i = 0; i < ppts; i++) {
     WhiteScene *scene = [[WhiteScene alloc] initWithName:[NSString stringWithFormat:@"%d", i+1] ppt:pptPage];
     [scenes addObject:scene];
 }
-// scenes 数组，即为白板支持的数据格式。iOS 端接收到 JSON 后，可以主动转换为WhiteScenes
+// scenes 数组，即为白板支持的数据格式。iOS 端接收到 JSON 后，可以主动转换为 WhiteScenes
+// "scenes" array, which is the data format supported by the whiteboard. After receiving the JSON on the iOS side, it can be actively converted to "WhiteScenes"
 ```
 <!--Android/Java-->
 ```Java
-// json 即为查询结果 API 返回的 json
+// json is the json returned by the query results API
 Integer count = json.get("totalPageSize").getAsInt();
 JsonArray ppts = json.get("convertedFileList").getAsJsonArray();
 Scene[] scenes = new Scene[count];
@@ -198,66 +199,66 @@ for (int i = 0; i < ppts.size(); i++) {
     sliderURLs[i] = pptPage.getSrc();
     scenes[i] = new Scene(String.valueOf(i+1), pptPage);
 }
-// scenes 数组，即为白板支持的数据格式。Android 端接收到 JSON 后，需要主动转换
+// "scenes" array, which is the data format supported by the whiteboard. After receiving JSON on Android, you need to actively convert
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-#### 2. 转换成 JSON 发给客户端
+#### 2. Convert to JSON and send to client
 
 ```JSON
 scenes: [
     {
-        //name 为字符串即可
+        // name can be a string
         "name" : "1",
-        // height，width 为 info 中返回的宽高
+        // height, width is the width and height returned in info
         "height" : {info.heigh},
         "width" : {info.width},
-        //数字索引值+1，第一页即为 slide1.xml,第二页为 slide2.xml
+        // The numerical index value is 1, the first page is slide1.xml, and the second page is slide2.xml
         "src" : {prefix}/{taskId}/slide/slide1.xml
     },
     {
-        //name 为字符串即可
+        // name can be a string
         "name" : "2",
-        // height，width 为 info 中返回的宽高
+        // height, width is the width and height returned in info
         "height" : ${info.heigh},
         "width" : ${info.width},
-        //数字索引值+1，第一页即为 slide1.xml,第二页为 slide2.xml
+        // The numerical index value is 1, the first page is slide1.xml, and the second page is slide2.xml
         "src" : {prefix}/{taskId}/slide/slide2.xml
     }
 ]
 ```
 
-## SDK 封装类使用
+## SDK package class use
 
-### 使用转换 API
+### Using the conversion API
 
->iOS Android 2.2.0 新增 API
+>iOS Android 2.2.0 new API
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Web/Typescript-->
 ```js
 import {WhiteWebSdk} from "white-web-sdk";
 const whiteWebSdk = new WhiteWebSdk();
-// 服务端鉴权用
-const pptConverter = whiteWebSdk.pptConverter("输入 roomToken");
+// server authentication
+const pptConverter = whiteWebSdk.pptConverter("input roomToken");
 
 
-// 1、调用 pptConverter 的成员方法 convert 开始转码
-// 2、convert 的参数类型参考 PptConvertParams
+// 1. Call the member method convert of pptConverter to start transcoding
+// 2. Convert parameter type reference PptConvertParams
 type PptConvertParams = {
-    readonly url: string; //静态文档的网络地址，请确保可以下载
-    readonly kind: PptKind; //文档转换类型，静态为 PptKind.static(typescript) 或者 "static" (javascript)
+    readonly url: string; // Network address of the static file, please make sure it can be downloaded
+    readonly kind: PptKind; // Document conversion type, static is PptKind.static (typescript) or "static" (javascript)
     readonly onProgressUpdated?: (progress: number) => void;
-    readonly checkProgressInterval?: number;  // 轮询间隔时间
-    readonly checkProgressTimeout?: number; // 超时时间
+    readonly checkProgressInterval?: number;  // polling interval
+    readonly checkProgressTimeout?: number; // overtime time
 };
 
-// 请求转码，获得每一个页面的数据
+// Request transcoding to get data for each page
 res = await pptConverter.convert({
-    // ppt 在云存储中地址，注意需要在控制台配置
+    // ppt address in cloud storage, note that it needs to be configured in the console
     url: pptURL,
     kind: "dynamic", 
-    // 转换进度监听
+    // conversion progress monitoring
     onProgressUpdated: progress => {
         if (onProgress) {
             onProgress(PPTProgressPhase.Converting, progress);
@@ -265,16 +266,16 @@ res = await pptConverter.convert({
     },
 });
 
-// convert 返回的数据结构
+// data structure returned by convert
 export type Ppt = {
-    // 服务器端，转换任务的 uuid
+    // server side, uuid of conversion task
     readonly uuid: string;
     readonly kind: PptKind;
     readonly width: number;
     readonly height: number;
-    // 预览页面地址
+    // Preview page address
     readonly slideURLs: ReadonlyArray<string>;
-    // ppt场景数据格式，使用该属性，即可直接插入新的场景页面
+    // ppt scene data format, using this property, you can directly insert a new scene page
     readonly scenes: ReadonlyArray<SceneDefinition>;
 };
 
@@ -286,18 +287,18 @@ room.setScenePath(`/${filename}/${res.scenes[0].name}`);
 
 ```Objective-C
 #import <WhiteSDK.h>
-// 详情请见 sdk WhiteConverter.h WhiteConversionInfo.h
+// See details sdk WhiteConverter.h WhiteConversionInfo.h
 @implementation RoomCommandListController
 - (void)convertStatic {
   WhiteConverter *converter = [[WhiteConverter alloc] initWithRoomToken:self.roomToken];
-  [converter startConvertTask:@"文档地址" type:ConvertTypeDynamic progress:^(CGFloat progress, WhiteConversionInfo * _Nullable info) {
+  [converter startConvertTask:@"Document url" type:ConvertTypeDynamic progress:^(CGFloat progress, WhiteConversionInfo * _Nullable info) {
       NSLog(@"progress:%f", progress);
   } completionHandler:^(BOOL success, ConvertedFiles * _Nullable ppt, WhiteConversionInfo * _Nullable info, NSError * _Nullable error) {
       NSLog(@"success:%d ppt: %@ error:%@", success, [ppt yy_modelDescription], error);
       if (ppt) {
-          // 场景相关内容，详情参考[场景管理](/docs/advance/scenes.md)文档
+          // Scene-related content, please refer to [Scene Management](/docs/advance/scenes.md) document for details
           [self.room putScenes:@"/dynamic" scenes:ppt.scenes index:0];
-          //第一页
+          // First page
           [self.room setScenePath:@"/dynamic/1"];
       }
   }];
@@ -308,7 +309,7 @@ room.setScenePath(`/${filename}/${res.scenes[0].name}`);
 <!--Android/Java-->
 ```Java
 Converter c = new Converter(this.roomToken);
-c.startConvertTask("文档地址", Converter.ConvertType.Dynamic, new ConverterCallbacks(){
+c.startConvertTask("Document url", Converter.ConvertType.Dynamic, new ConverterCallbacks(){
     @Override
     public void onFailure(ConvertException e) {
         logAction("ppt fail");
@@ -317,9 +318,9 @@ c.startConvertTask("文档地址", Converter.ConvertType.Dynamic, new ConverterC
     @Override
     public void onFinish(ConvertedFiles ppt, ConversionInfo convertInfo) {
         if (ppt.getScenes() != null) {
-            // 场景相关内容，详情参考[场景管理](/docs/advance/scenes.md)文档
+            // Scene-related content, please refer to [Scene Management](/docs/advance/scenes.md) document for details
             room.putScenes("dynamic", ppt.getScenes(), 0); 
-            // 第一页
+            // First page
             room.setScenePath("dynamic/1");
         }
     }
@@ -338,22 +339,22 @@ c.startConvertTask("文档地址", Converter.ConvertType.Dynamic, new ConverterC
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Web/Typescript-->
 ```javascript
-room.pptNextStep(); // 下一页（下一步）
-room.pptPreviousStep() // 上一页（上一步）
+room.pptNextStep(); // Next page(Next step)
+room.pptPreviousStep() // Previous step (previous step)
 ```
 <!--iOS/Objective-C-->
 ```Objective-C
-[room pptNextStep]; // 下一页（下一步）
-[room pptPreviousStep]; // 上一页（上一步）
+[room pptNextStep]; // Next page(Next step)
+[room pptPreviousStep]; // Previous step (previous step)
 ```
 <!--Android/Java-->
 ```Java
-room.pptNextStep(); // 下一页（下一步）
-room.pptPreviousStep(); // 上一页（上一步）
+room.pptNextStep(); // Next page(Next step)
+room.pptPreviousStep(); // Previous step (previous step)
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-## 效果展示
+## Show results
 
 <video style="width: 100%" loop="loop" autoplay="autoplay" id="video">
   <source id="mp4" src="https://white-sdk.oss-cn-beijing.aliyuncs.com/video/netless_pptx.mp4">
