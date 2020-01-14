@@ -27,7 +27,7 @@ public class MemberState {
 
 ### Switching tools
 
-The White SDK provides a variety of teaching aids. We can change the current teaching aid by modifying `memberState`. For example, to switch the current teaching aid to the Pencil tool, you can use the following code.
+The White SDK provides a variety of teaching aids. We can change the current tool by modifying `memberState`. For example, to switch the current tool to the Pencil tool, you can use the following code.
 
 ```java
 MemberState memberState = new MemberState();
@@ -35,7 +35,7 @@ memberState.setCurrentApplianceName("pencil");
 room.setMemberState(memberState);
 ```
 
-You can get the name of the teaching aid in the current room through the following code.
+You can get the name of the tool in the current room through the following code.
 
 ```java
 room.getMemberState().getCurrentApplianceName();
@@ -68,7 +68,7 @@ room.getMemberState().getStrokeColor();
 ```
 The palette can affect the effects of the pencil, rectangle, oval, and text tools.
 
-## Prohibition of teaching aid operation<span class="anchor" id="disableDeviceInputs">
+## Prohibition of tool operation<span class="anchor" id="disableDeviceInputs">
 
 >2.2.0 New API
 

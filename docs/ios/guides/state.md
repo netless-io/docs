@@ -17,7 +17,7 @@ title: State management
 #pragma mark-Synchronization API
 /** Global status */
 @property (nonatomic, strong, readonly) WhiteGlobalState * globalState;
-/** Teaching aid information */
+/** Tool information */
 @property (nonatomic, strong, readonly) WhiteReadonlyMemberState * memberState;
 /** Whiteboard Online Member Information */
 @property (nonatomic, strong, readonly) NSArray <WhiteRoomMember *> * roomMembers;

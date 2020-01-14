@@ -51,7 +51,7 @@ WhiteSdk whiteSdk = new WhiteSdk(whiteBroadView PlayActivity.this, interrupter);
 > Starting with 2.2.0, the API is split into:
 
 Disable user movement, zoom API: `disableCameraTransform` (for details, please refer to [Viewpoint Operation-Disable Viewpoint Change](./view.md#disableCameraTransform));
-Disable user input API: `disableDeviceInputs` (For details, please refer to [Teaching aid use-Disable teaching aid operation](./tools.md#disableDeviceInputs) API.
+Disable user input API: `disableDeviceInputs` (For details, please refer to [Tool use-Disable tool operation](./tools.md#disableDeviceInputs) API.
 
 You can disable the user to operate the whiteboard through `room.disableOperations (true)`.
 

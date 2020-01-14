@@ -77,18 +77,18 @@ Just click on the third-level directory to jump to the corresponding document.
 
 ## Features
 
-### [Teaching aid operation（memberState）](../features/tools.md)
+### [Tool operation（memberState）](../features/tools.md)
 1. Ordinary teaching aids
     1. Type (brush, circle, rectangle)
     2. Detail parameters (color, thickness, text size)
-    3. Teaching aid information
+    3. Tool information
     4. Eraser configuration options (optional initialization parameters)
 2. Image
     1. Difference between picture and background
     <!-- Image display logic (zoom, black border, fill, etc.) -->
 3. Hand tool
     * Initial parameter configuration
-4. Disable teaching aid operation
+4. Disable tool operation
     * Optional initialization parameters
 
 ### [Perspective operation](../features/view.md)
@@ -145,7 +145,7 @@ Just click on the third-level directory to jump to the corresponding document.
 
 ### [Whiteboard operation](../features/operation.md)
 1. Read only：
-    1. Prohibition of teaching aid operation
+    1. Prohibition of tool operation
     2. Disable perspective movement / zoom
 2. Custom GlobalState
 3. Zoom

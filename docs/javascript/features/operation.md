@@ -7,7 +7,7 @@ title: Whiteboard operation
 
 > Starting from 2.2.0, the API can be replaced by the following two APIs:  
 1. Perspective locking API: `disableCameraTransform` (for details, please refer to [Perspective Operations -> Locking Perspective](./view.md#disableCameraTransform));
-2. Disable teaching aid API: `disableDeviceInputs` (for details, please refer to [teaching aid operation -> disable teaching aid](./tools.md#disableDeviceInputs))
+2. Disable tool API: `disableDeviceInputs` (for details, please refer to [tool operation -> disable tool](./tools.md#disableDeviceInputs))
 
 ```JavaScript
 /// room.d.ts

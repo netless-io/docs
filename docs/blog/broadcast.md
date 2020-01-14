@@ -80,18 +80,18 @@ The realization of the viewer service is based on the premise that the user of t
 In the current business scenario (no interaction), viewers are not required to become `free` mode through operation. This is achieved by calling the `Forbidden Operation API` of the whiteboard.
 * If the anchor and the viewer are fixed and there is no operation requirement on the viewer, you can call the `Prohibited Operation API` when joining the room *
 
-* Forbidden operation API can be divided into `Prohibited teaching aid operation`,` Forbidden perspective change` (mobile zoom) two APIs, the following is the API documentation link at each end:
+* Forbidden operation API can be divided into `Prohibited tool operation`,` Forbidden perspective change` (mobile zoom) two APIs, the following is the API documentation link at each end:
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Web/Typescript-->
 <br>
 [Whiteboard operation -> Disable operation: disableOperations](/docs/javascript/guides/js-operation#disableOperations): This API calls the following two APIs at the same time.
-[Teaching aid use -> Disable teaching aid operation: disableDeviceInputs](/docs/javascript/guides/js-tools#disableDeviceInputs) 
+[Tool use -> Disable tool operation: disableDeviceInputs](/docs/javascript/guides/js-tools#disableDeviceInputs) 
 [View operation -> Disable view change: disableCameraTransform](/docs/javascript/guides/js-view#disableCameraTransform)
 <!--iOS/Objective-C-->
 <br>
 [Whiteboard operation -> Disable operation: disableOperations](/docs/ios/guides/ios-operation#disableOperations): This API calls the following two APIs at the same time.
-[Teaching aid use -> Disable teaching aid operation: disableDeviceInputs](/docs/ios/guides/ios-tools#disableDeviceInputs)
+[Tool use -> Disable tool operation: disableDeviceInputs](/docs/ios/guides/ios-tools#disableDeviceInputs)
 [View operation -> Disable view change: disableCameraTransform](/docs/ios/guides/ios-view#disableCameraTransform)
 <!--Android/Java-->
 <br>

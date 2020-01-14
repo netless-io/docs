@@ -260,7 +260,7 @@ export enum RoomPhase {
 
 When the room connection status changes, SDK will call back the API. The specific status is the above string.
 
-Only when the room is in the `connected` state, the room accepts user teaching aid operations. For user experience, it is recommended to handle the status of the connection.
+Only when the room is in the `connected` state, the room accepts user tool operations. For user experience, it is recommended to handle the status of the connection.
 ```
 
 ### **onRoomStateChanged**
@@ -324,7 +324,7 @@ ppt preload cache callback, uuid is taskId during ppt conversion, and progress i
 
 ## Recommended reading
 
-1. [Teaching aid operation](../features/tools.md)
+1. [Tool operation](../features/tools.md)
 1. [Perspective operation](../features/view.md)
 1. [Page management](../features/scenes.md)
 1. [Status monitoring](../features/state.md)

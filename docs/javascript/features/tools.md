@@ -14,12 +14,12 @@ Common teaching aids can be described by `memberState`.
 
 ```typescript
 type MemberState = {
-    // Name of current teaching aid
+    // Name of current tool
     currentApplianceName: string;
-    // The current teaching aid color is an array of integers, which respectively represent [R, G, B] and an integer ranging from 0 to 255.
-    // This value affects all common teaching aids
+    // The current tool color is an array of integers, which respectively represent [R, G, B] and an integer ranging from 0 to 255.
+    // This value affects all common tool
     strokeColor: Color;
-    // Current teaching aid thickness, default 4
+    // Current tool thickness, default 4
     strokeWidth: number;
     // Text aid font size, default 16px
     textSize: number;
@@ -55,7 +55,7 @@ You can access the contents of `memberState` by the following methods.
 ```js
 const memberState = room.state.memberState;
 const appliance = room.state.memberState.currentApplianceName;
-//...Other teaching aid details
+//...Other tool details
 ```
 
 ### Eraser erase picture configuration
@@ -108,7 +108,7 @@ room.insertImage({
 room.completeImageUpload(uuid, imageUrl)
 ```
 
-### The difference between `picture teaching aid` and` ppt background map`
+### The difference between `picture tool` and` ppt background map`
 
 Difference| Insert background image `putScenes` | `insertImage` and `completeImageUpload`
 ---------|----------|---------
@@ -131,9 +131,9 @@ When the grabber tool is activated, the onHandToolActive method of callbacks in 
 Modify the `disableDeviceInputs` property of` room` or configure the `disableDeviceInputs` parameter during initialization.
 
 ```javascript
-// Prohibition of teaching aid operation
+// Prohibition of tool operation
 room.disableDeviceInputs = true;
-// Resume teaching aid operation
+// Resume tool operation
 room.disableDeviceInputs = false;
 
 sdk.joinRoom({uuid: "uuid", roomToken: "roomToken", disableDeviceInputs: true})
