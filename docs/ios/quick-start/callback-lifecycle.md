@@ -1,66 +1,66 @@
 ---
 id: ios-callback-lifecycle
-title: 生命周期以及事件回调
+title: Callback and lifecycle
 ---
 
-本文相关代码，可以在 [Demo](declaration.md#demo) 项目的 `WhiteRoomViewController` 中查看。
+The relevant code of this article can be viewed in the `WhiteRoomViewController` of the [Demo](declaration.md#demo) project.
 
-`WhiteRoomViewController` 部分实现 `WhiteRoomCallbackDelegate` 协议，定义可以查看 SDK 的 `WhiteRoomCallbacks.h` 文件。 
+The `WhiteRoomViewController` part implements the` WhiteRoomCallbackDelegate` protocol, which defines the `WhiteRoomCallbacks.h` file that can be viewed in the SDK.
 
-[加入房间](./join-room.md) 在调用加入房间操作时，传入了 `id<WhiteRoomCallbackDelegate>)callbacks` ，当白板出现以下状态回调时，SDK 会回调 `id<WhiteRoomCallbackDelegate>)callbacks` 接口。
+[Join Room](./join-room.md) When calling the Join Room operation, `id <WhiteRoomCallbackDelegate>) callbacks` is passed in. When the following status callback occurs on the whiteboard, the SDK will callback the` id <WhiteRoomCallbackDelegate>) callbacks` interface.
 
-## 回调事件
+## Callback event
 
 ```Objective-C
-//WhiteRoomCallbacks.h 文件
+//WhiteRoomCallbacks.h
 @protocol WhiteRoomCallbackDelegate <NSObject>
 
 @optional
 
-/** 白板网络连接状态回调事件 */
+/** Whiteboard network connection status callback event */
 - (void)firePhaseChanged:(WhiteRoomPhase)phase;
 
 /**
- 白板中RoomState属性，发生变化时，会触发该回调。
- 注意：主动设置的 RoomState，不会触发该回调。
- 目前有个别 state 内容，主动调用时，也会触发。
- @param modifyState 发生变化的 RoomState 内容
+ The RoomState property in the whiteboard will trigger this callback when it changes.
+ Note: The RoomState that is actively set will not trigger this callback.
+ Currently there are individual state contents, which are also triggered when actively called.
+ @param modifyState RoomState content changed
  */
 - (void)fireRoomStateChanged:(WhiteRoomState *)modifyState;
 
 - (void)fireBeingAbleToCommitChange:(BOOL)isAbleToCommit;
 
-/** 白板失去连接回调，附带错误信息 */
-- (void)fireDisconnectWithError:(NSString *)error;
+/** Whiteboard loses connection callback with error message */
+- (void) fireDisconnectWithError: (NSString *) error;
 
-/** 用户被远程服务器踢出房间，附带踢出原因 */
-- (void)fireKickedWithReason:(NSString *)reason;
+/** The user was kicked out of the room by the remote server with a kick out reason */
+- (void) fireKickedWithReason: (NSString *) reason;
 
-/** 用户错误事件捕获，附带用户 id，以及错误原因 */
-- (void)fireCatchErrorWhenAppendFrame:(NSUInteger)userId error:(NSString *)error;
+/** User error event capture with user id and error cause */
+- (void) fireCatchErrorWhenAppendFrame: (NSUInteger) userId error: (NSString *) error;
 
 /**
- 白板自定义事件回调，
- 自定义事件参考文档，或者 RoomTests 代码
- */
-- (void)fireMagixEvent:(WhiteEvent *)event;
+ Whiteboard custom event callback,
+ Custom event reference documentation, or RoomTests code
+ */
+- (void) fireMagixEvent: (WhiteEvent *) event;
 
 @end
 
 ```
 
-### 断线重连
+### Disconnection and reconnection
 
-当房间出现意外断连时，sdk 首先会进行重连操作。
-由于房间连接状态发生变化，sdk 会回调加入房间 API 传入的 callback 代理，调用其实现的 `- (void)firePhaseChanged:` 方法。
+When the room is disconnected unexpectedly, the SDK first reconnects.
+As the connection status of the room changes, SDK will call back to the callback proxy passed in the Room API, and call the `- (void) firePhaseChanged:` method implemented by it.
 
-当 sdk 自动重连失败时，可以使用 sdk 加入房间 API，重新连接。（此时不传入 callbacks，就不会变更 callbacks 代理）。
+When the SDK fails to reconnect automatically, you can use SDK to join the room API and reconnect. (If callbacks are not passed in, the callbacks proxy will not be changed.)
 
 ```Objective-C
 - (void)firePhaseChanged:(WhiteRoomPhase)phase
 {
     NSLog(@"%s, %ld", __FUNCTION__, (long)phase);
-    // 增加部分判断，因为在 SDK 初次加入房间时，也会回调此API。
+    // Add some judgments, because this API will also be called back when the SDK first joins the room.
     if (phase == WhiteRoomPhaseDisconnected && self.sdk && !self.isReconnecting) {
         self.reconnecting = YES;
         [self.sdk joinRoomWithUuid:self.roomUuid roomToken:self.roomToken completionHandler:^(BOOL success, WhiteRoom *room, NSError *error) {

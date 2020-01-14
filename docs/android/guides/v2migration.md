@@ -50,13 +50,13 @@ Currently, you need to manage the scene catalog yourself. If you don't need mult
 
 #### Insert PPT API
 
-Old method:
+Old function:
 
 ```Java
 public void pushPptPages(PptPage[] pages)
 ```
 
-New func：
+New function:
 
 ```Java
 
@@ -74,13 +74,13 @@ public void putScenes(String dir, Scene[] scenes, int index)
 
 #### Delete Page API
 
-Old method:
+Old function:
 
 ```Java
 public void removePage(int index)
 ```
 
-新方法：
+New function:
 
 ```Java
  /**

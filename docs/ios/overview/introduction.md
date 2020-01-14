@@ -1,66 +1,66 @@
 ---
 id: ios-introduction
-title: 使用须知
+title: Introduction
 ---
 
-## 介绍
+## Introduction
 
-依赖库：YYModel，DSBridge-iOS。
+Dependent libraries: YYModel, DSBridge-iOS.
 
-导入方式：支持`Cocoapods`（推荐）与直接导入。
+Import method: Support `Cocoapods` (recommended) and direct import.
 
-支持版本：iOS 9+
+Supported version: iOS 9
 
-兼容性：<span style="color:red">iOS 2.1.0 之前的版本与 iOS 2.1.0 及其以后的版本，连接的是不同服务器，无法互连。SDK API 保持兼容。</span>具体请看 [2.0.0正式版发布](/docs/ios/guides/ios-v2migration)
+Compatibility: <span style = "color: red"> Before iOS 2.1.0 and iOS 2.1.0 and later, different servers are connected and cannot be interconnected. The SDK API remains compatible. </ span> For details, please see [2.0.0 official release](/docs/ios/guides/ios-v2migration).
 
-## Cocoapods 使用
+## Cocoapods used
 
-### 使用镜像站加速
+### Use mirror station to accelerate
 
-由于网络原因，GitHub cocoapods 仓库网络可能存在延迟，此类用户，推荐使用[清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/CocoaPods/)。
-具体使用请看该站使用帮助。
+Due to network reasons, there may be a delay in the GitHub cocoapods warehouse network. Such users are recommended to use [Tsinghua University Open Source Software Mirror Station](https://mirrors.tuna.tsinghua.edu.cn/help/CocoaPods/).
+For specific use, please see the site's help.
 
-### 疑难问题
+### Difficult Problems
 
-提示`[!] Unable to find a pod with name, author, summary, or descriptionmatching`等提示。
+Prompt `[!] Unable to find a pod with name, author, summary, or descriptionmatching`.
 
-由于`Cocoapods`安装是根据本地库进行查询。如果安装时，查询不到对应版本，可以执行以下命令更新
+Because `Cocoapods` installation is based on querying the local library. If you cannot find the corresponding version during installation, you can run the following command to update
 
 ```shell
-# 更新 cocoapods repo 内容
+# Update cocoapods repo content
 pod repo update
-# 重新安装
+# re-install
 pod install
 ```
 
-### 查看使用版本
+### View version used
 
-`podfile`中存的是版本约束，并非最终使用的版本。具体版本需要在`Podfile.lock`文件中查看。
+`Podfile 'stores version constraints, not the final version. The specific version needs to be viewed in the `Podfile.lock` file.
 
 ```text
-# 2.5.0 即为所使用的版本
+# 2.5.0 Is the version used
 - Whiteboard (2.5.0):
     - dsBridge (~> 3.0.2)
     - YYModel (~> 1.0.4)
 ```
 
-### 更新 sdk 版本
+### Update sdk version
 
-由于`Cocoapods`使用了`Podfile.lock`锁定版本号，所以，一旦安装过 sdk（存在符合`Podfile`的`lock` 文件），`pod install`将不再变更版本。
+Because `Cocoapods` uses` Podfile.lock` to lock the version number, once sdk has been installed (the `lock` file that matches` Podfile`), `pod install` will no longer change the version.
 
-先执行以下命令：
+First execute the following command:
 
 ```shell
-# 查看本地 cocoapods spec repo，是否有最新版本
+# Check the local cocoapods spec repo for the latest version
 pod search Whiteboard
-# 如果没有最新版本，更新spec repo
+# If there is no latest version, update the spec repo
 pod repo update
 ```
 
-通过以下任一方式更新 sdk：
-1. 可以通过执行`pod update Whiteboard`进行单独更新。
-1. 删除`Podfile.lock`文件中 sdk 相关内容，重新执行`pod install`
+Update the SDK in any of the following ways:
+1. It can be updated individually by executing `pod update Whiteboard`.
+2. Delete the sdk related content in the `Podfile.lock` file and re-execute` pod install`
 
-### 参考资料
+### References
 
 [pod update](https://guides.cocoapods.org/using/pod-install-vs-update.html)
