@@ -1,20 +1,21 @@
 ---
 id: ios-create-room
-title: 创建房间/获取房间信息
+title: Create Room
 ---
 
 本文相关代码，可以在 [Demo](declaration.md#demo) 项目的 `WhiteUtils` 类中查看。
 
-## 安全须知
+The relevant code of this article can be viewed in the `WhiteUtils` class of the [Demo](declaration.md#demo) project.
 
-创建房间/获取房间，需要使用 sdkToken，与 SDK 后端服务器，进行交互。
-该 Token，是 SDK 后端服务器，与开发者后端业务服务器通讯的凭证。掌握了这个 Token，SDK 后端服务器就会认为，这是开发者进行的操作。
+## Safety instructions
 
-Example 中，为了演示方便，将创建房间/获取房间 roomToken 操作写在了客户端中，实际业务中，为了防止有人反编译客户端代码，获取 SDKToken，不应该在任何客户端暴露该 Token。
-该 Token，应该在开发者的业务服务器代码，或者配置项中。
+To create a room / get a room, you need to use sdkToken to interact with the SDK backend server.
+The Token is a certificate for the SDK back-end server to communicate with the developer's back-end business server. After mastering this token, the SDK backend server will think that this is an operation performed by the developer.
 
-## 创建新房间，并直接获取 RoomToken
+In the example, for the convenience of demonstration, the operation of creating a room / obtaining a roomToken is written on the client. In actual business, in order to prevent someone from decompiling the client code and obtaining the SDKToken, the token should not be exposed on any client.
+The token should be in the developer's business server code or configuration item.
 
+## Create a new room and get RoomToken directly
 ```Objective-C
 @interface WhiteUtils : NSObject
 + (NSString *)sdkToken;
@@ -31,7 +32,7 @@ Example 中，为了演示方便，将创建房间/获取房间 roomToken 操作
     [modifyRequest setHTTPMethod:@"POST"];
     [modifyRequest addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [modifyRequest addValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    //@"mode": @"historied" 为可回放房间，默认为持久化房间。
+    //@"mode": @"historied" For replayable rooms, the default is persistent.
     NSDictionary *params = @{@"name": @"test", @"limit": @110, @"mode": @"historied"};
     NSData *postData = [NSJSONSerialization dataWithJSONObject:params options:0 error:nil];
     [modifyRequest setHTTPBody:postData];
@@ -52,7 +53,7 @@ Example 中，为了演示方便，将创建房间/获取房间 roomToken 操作
 @end
 ```
 
-## 已知房间 UUID，获取房间 RoomToken
+## Know Room UUID, Get Room RoomToken
 
 ```Objective-C
 @interface WhiteUtils : NSObject

@@ -1,40 +1,41 @@
 ---
 id: blog-glossary
-title: 专业名词说明
+title: Glossary
 ---
 
 ## sdkToken
 
-1、定义说明
-    
-   - sdkToken 是注册企业的身份认证，也是使用 Netless 所有服务的前提条件。如果把我们的服务比作一个商场，那么 sdkToken 相当于入驻证明。
+1. Description
+    
+   - sdkToken is the identity authentication of the registered company, and also a prerequisite for using all Netless services. If we compare our service to a mall, then sdkToken is equivalent to proof of occupancy.
 
-2、获取方式
-    
-   - 如果还未注册企业账户：进入<a target="_blank" href="https://console.herewhite.com">管理控制台</a> 注册账号。
-   - 如果已经注册企业账户：
+2. How to get
+    
+   - If you haven't registered a business account yet: Go to <a target="_blank" href="https://console.herewhite.com"> Admin Console </a> to register an account.
+   - If you have registered a business account:
    ![sdkTokenGet](/img/sdkTokenGet.jpg)
 
-3、使用注意点
-    
-   - 由于 sdkToken 有非常大的权限，建议将其保管在服务端。因为客户端一旦被反编译或者其他黑客手段获取到 sdkToken，可能会导致用户产生一定的费用损失。
+3. Notes on use
+    
+   - Since sdkToken has very large permissions, it is recommended to keep it on the server. Because once the client is decompiled or obtained by other hacking methods, the sdkToken may cause a certain cost loss to the user.
+
 
 ## roomToken
 
-1、定义说明
+1.Description
 
-   - roomToken 是进入某个实时房间的凭证，映射到现实生活中可以理解为房门钥匙🗝。
-   
-2、获取方式
+   - roomToken is a voucher for entering a real-time room, which can be understood as a room key in real life.
+   
+2.How to get
 
-   - 调用[创建白板房间的 Api](../server/api/whiteboard-base.md) 时候可以获取。
+   - Can be obtained when [Api to create whiteboard room](../server/api/whiteboard-base.md).
 
 ## uuid
 
-1、定义说明
+1.Description
 
-   - uuid 是房间的唯一识别符，映射到现实生活中可以理解为房间的门牌号。
-   
-2、获取方式
+   - uuid is the unique identifier of the room, which maps to the house number that can be understood in real life.
+   
+2.How to get
 
-  - 调用[创建白板房间的 Api](../server/api/whiteboard-base.md) 时候可以获取。
+  - Can be obtained when [Api to create whiteboard room](../server/api/whiteboard-base.md).

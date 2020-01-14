@@ -1,36 +1,36 @@
 ---
 id: blog-add-driver
-title: 配置云存储
+title: Add storage driver
 ---
 
-## 一、目的说明
+## 1. Purpose
 
-> 我们将三方的存储服务称为 Storage Driver，下面我们要详细说明的是如何配置 Storage Driver.
+> We refer to the storage services of the three parties as the Storage Driver. Below we will explain in detail how to configure the Storage Driver.
 
-在使用 netless 的白板或者 pptx 转网页等功能的时候难免会涉及到各种富媒体资源的同步，面对这种业务场景，我们采取的策略是将数据传到云存储，然后将云存储的地址同步给房间中的所有用户。因此我们要引入云存储的 Drive 来满足这个场景。
+When using functions such as netless whiteboard or pptx to web page, it will inevitably involve the synchronization of various rich media resources. Facing this business scenario, our strategy is to transfer data to cloud storage, and then the cloud storage address Sync to all users in the room. So we have to introduce Drive for cloud storage to meet this scenario.
 
-当用户指定了 Storage Driver 后，相关资源会存储到 Storage Driver 关联的存储服务中，用户目前可以自定义配置阿里云或者七牛云的 Storage Driver。
+After the user specifies the Storage Driver, the related resources are stored in the storage service associated with the Storage Driver. The user can currently customize the storage driver of Alibaba Cloud or Qiniu Cloud.
 
-当然 netless 也提供了一个默认的 Storage Driver 供用户使用，当使用了这个 Storage Driver 后，相关的资源将由 netless 代为保管。
+Of course, Netless also provides a default Storage Driver for users to use. After using this Storage Driver, the related resources will be stored by Netless.
 
-## 二、添加 Storage Drive 的方法
+## 2. the method of adding Storage Drive
 
-在用户登录进入 netless 控制台 https://console.herewhite.com 后，可以左侧菜单栏的“个人中心”里找到入口
-![个人菜单入口](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/driverEnter.png?x-oss-process=image/resize,w_350)
+After the user logs in to the netless [console](https://console.herewhite.com), the entry can be found in the "Personal Center" on the left menu bar
+![Personal menu entry](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/driverEnter.png?x-oss-process=image/resize,w_350)
 
-之后点击右上角的“新建云存储”按钮，选择需要的云存储进行添加即可
-![driver 管理页面](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/addDriver.png)
+Then click the "New Cloud Storage" button in the upper right corner and select the required cloud storage to add
+![driver management page](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/addDriver.png)
 
-已经创建好的 Storage Driver 可以在这个页面进行管理，通过卡片右上的按钮可以进行编辑或删除等操作
-![driver 编辑](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/storageManage.png)
+The created Storage Driver can be managed on this page, and the buttons on the top right of the card can be used to edit or delete.
+![driver editor](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/storageManage.png)
 
-> 请注意，当用户选择使用七牛云的存储服务时，需要额外配置一个外链域名的字段，否则 netless 将无法访问该存储服务内的资源.
+> Please note that when users choose to use the storage service of Qiniu Cloud, an extra domain name field needs to be configured, otherwise netless will not be able to access the resources in the storage service.
 
-七牛外链字段获取位置如图：
+The location of Qiniu's external chain field is shown in the figure:
 
 ![qiniu url](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/qiniuStorageUrl.png)
 
-对应字段如图：
+The corresponding fields are as follows:
 
 ![qiniu url](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/qiniuStorage.png?x-oss-process=image/resize,w_400)
 

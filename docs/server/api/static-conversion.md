@@ -1,62 +1,63 @@
 ---
 id: server-static-conversion
-title: 文档转图片（静态文档转换）
+title: Document to Picture
 ---
 
-静态文档转换是指将 PPT、PPTX、Word、PDF 等格式文件，转换成图片的服务。主要是帮助客户在白板中插入演示资料来辅助在线授课或者远程会议。该功能由 SDK 服务器提供，需要与服务器进行交互。
+Static document conversion refers to the service of converting PPT, PPTX, Word, PDF and other format files into pictures. It is mainly to help customers insert presentation materials in whiteboards to assist online lectures or remote conferences. This function is provided by the SDK server and requires interaction with the server.
 
-在最新版本中，我们将这部分交互，封装在了 SDK 中，开发者只需要在后台开启服务，配置存储地址，即可在项目中，通过 `Converter` 类（不同平台，名称略有不同）进行转换。
+In the latest version, we have encapsulated this part of the interaction in the SDK. Developers only need to start the service in the background and configure the storage address. In the project, the `Converter` class (different platforms, slightly different names) For conversion.
 
-## 准备工作
+## Ready to work
 
-### 1. 根据 [配置云存储](/docs/blog/blog-add-driver) 文章，在 [console](https://console.herewhite.com) 中配置云存储
+### 1. According to [Configure Cloud Storage](/docs/blog/blog-add-driver) article, configure cloud storage in [console](https://console.herewhite.com)
 
-### 2. 在管理控制台上开启静态文档服务
 
-1. 进入 [console](https://console.herewhite.com)，点击左侧列表中的 <svg viewBox="64 64 896 896" class="" data-icon="appstore" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false"><path d="M464 144H160c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16zm-52 268H212V212h200v200zm452-268H560c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16zm-52 268H612V212h200v200zM464 544H160c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V560c0-8.8-7.2-16-16-16zm-52 268H212V612h200v200zm452-268H560c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V560c0-8.8-7.2-16-16-16zm-52 268H612V612h200v200z"></path></svg> ，进入应用管理页面。
+### 2. Start the static document service on the management console
 
-2. 找到 `文档转图片` 进行开通，更新 QPS ，结束操作。
+1. Enter [console], click <svg viewBox="64 64 896 896" class="" data-icon="appstore" width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false"><path d="M464 144H160c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16zm-52 268H212V212h200v200zm452-268H560c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16zm-52 268H612V212h200v200zM464 544H160c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V560c0-8.8-7.2-16-16-16zm-52 268H212V612h200v200zm452-268H560c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V560c0-8.8-7.2-16-16-16zm-52 268H612V612h200v200z"></path></svg> in the list on the left to enter the application management page.
+
+2. Find "File to Picture" to activate, update QPS, and end the operation.
 
 <details>
-<summary>**点击展开：console 中操作示意图**</summary>
+<summary>**Click to expand: operation diagram in console**</summary>
 
-* 静态文档转换初始状态
-![静态文档初始状态](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/static0.png)
+* Static document conversion initial state
+![Static document initial state](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/static0.png)
 
-* 静态文档转换管理页面
-![静态文档管理页面](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/static1.png)
+* Static document conversion management page
+![Static document management page](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/static1.png)
 
-* 关闭静态文档转换服务
-![静态文档停止服务](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/static2.png)
+* Turn off static document conversion services
+![Static document stop service](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/static2.png)
 
 </details>
 
-## API 使用说明
+## API instructions for use
 
-静态文档转换功能由“发起转换任务”和“查询转换任务”两个 API 组成
+The static document conversion function consists of two APIs, "Initiate Conversion Task" and "Query Conversion Task"
 
-### 发起转换任务
+### Initiate a conversion task
 
 `POST /services/conversion/tasks`
 
->在服务端可以使用 sdk token。客户端封装类要求使用 roomToken，避免 sdk token 泄露。
+> You can use sdk token on the server. The client-side encapsulation class requires the use of roomToken to avoid sdk token leakage.
 
-* header参数
+* header parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
-roomToken 或 token | string | {{roomtoken}} 或 {{token}}|
+roomToken or token | string | {{roomtoken}} or {{token}}|
 
-* body参数
+* body parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
-sourceUrl | stirng | 需要进行转换的文件的地址 |
-serviceType | string | 服务类型，静态文档转换固定为 "static_conversion" |
+sourceUrl | stirng | Address of the file to be converted |
+serviceType | string | Service type, static document conversion fixed to "static_conversion" |
 
-> 在发起转换任务前请确保您已经在 console 上开启了“文档转图片”服务并配置 QPS 上限大于 0，否则该接口将会报"Service not enable"、"Task waiting line is full"等异常
+> Before initiating the conversion task, please make sure that you have enabled the "Document to Picture" service on the console and configured the QPS upper limit to be greater than 0, otherwise the interface will report exceptions such as "Service not enable" and "Task waiting line is full"
 
-* body 例子
+* body example
 
 ```json
 {
@@ -65,7 +66,7 @@ serviceType | string | 服务类型，静态文档转换固定为 "static_conver
 }
 ```
 
-* response 例子
+* response example
 
 ```JSON
 {
@@ -77,19 +78,19 @@ serviceType | string | 服务类型，静态文档转换固定为 "static_conver
     }
 }
 ```
-task UUID 长度为 32 位，是转换任务的唯一标识
+task UUID is 32 bits in length and is the unique identifier of the conversion task
 
-### 查询转换任务
+### Query Conversion Task
 
 `GET /services/conversion/tasks/{{taskUUID}}/progress?serviceType=static_conversion`
 
-* header参数
+* header parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
-roomToken 或 token | string | {{roomtoken}} 或 {{token}}|
+roomToken or token | string | {{roomtoken}} or {{token}}|
 
-* response 例子
+* response example
 
 ```JSON
 {
@@ -98,10 +99,10 @@ roomToken 或 token | string | {{roomtoken}} 或 {{token}}|
         "task": {
             "convertStatus": "Finished",
             "reason": "",
-            "totalPageSize": 3, // 文档总页数
-            "convertedPageSize": 3, // 文档已转换完成页数
-            "convertedPercentage": 100, // 文档转换进度百分比
-            "convertedFileList": [  // 文档转换结果列表
+            "totalPageSize": 3, // Total number of pages in the document
+            "convertedPageSize": 3, // Document Completed Pages
+            "convertedPercentage": 100, // Document conversion progress percentage
+            "convertedFileList": [  // Document conversion result list
                 {
                     "width": 1652,
                     "height": 2338,
@@ -118,52 +119,52 @@ roomToken 或 token | string | {{roomtoken}} 或 {{token}}|
                     "conversionFileUrl": "staticConvert/{{taskUUID}}/3.png"
                 }
             ],
-            "prefix": "https://xxxx.xxx.xxx.com/" // 文档转换结果前缀
+            "prefix": "https://xxxx.xxx.xxx.com/" // Document conversion result prefix
         }
     }
 }
 ```
 
-> 1. 静态转换任务将会返回每一页的宽高，该宽高单位是 px，但由于数字可能会过大导致在白板中渲染时超出视野，用户可以仅仅使用比例，自定义合适的宽度或高度
-> 2. 用户使用返回结果中的 "prefix" 仅在转换结果为 "Finished" 时有效
-> 3. 转换任务需要用户轮询结果，时间间隔建议为 3 秒以上
+> 1. The static conversion task will return the width and height of each page, the unit of width and height is px, but because the number may be too large and the rendering is beyond the field of view when rendering in the whiteboard, the user can only use the proportion and customize the appropriate width or height
+> 2. The use of "prefix" in the returned result is only valid when the conversion result is "Finished"
+> 3. The conversion task requires users to poll the results, and the interval is recommended to be more than 3 seconds
 
-`convertStatus` 存在以下几种情况：
-- Waiting: 由于 QPS 到达上限等原因任务在等待中
-- Converting: 任务正在执行中
-- NotFound: 根据 taskUUID 未找到对应任务信息
-- Finished: 任务执行完成且正常
-- Fail: 任务执行失败，失败时，会有提示 reason
+`convertStatus` the following situations exist:
+- Waiting: The task is waiting due to QPS reaching the upper limit, etc.
+- Converting: Task in progress
+- NotFound: No corresponding task information was found according to taskUUID
+- Finished: Task execution completed and normal
+- Fail: The task execution fails. When it fails, there will be a prompt reason
 
-## SDK 封装类使用
+## SDK wrapper class use
 
->iOS Android 2.2.0 新增 API
+> iOS Android 2.2.0 New API
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Web/Typescript-->
 ```js
 import {WhiteWebSdk} from "white-web-sdk";
 const whiteWebSdk = new WhiteWebSdk();
-// 服务端鉴权用
-const pptConverter = whiteWebSdk.pptConverter("输入 roomToken");
+// Server authentication
+const pptConverter = whiteWebSdk.pptConverter("input roomToken");
 
 
-// 1、调用 pptConverter 的成员方法 convert 开始转码
-// 2、convert 的参数类型参考 PptConvertParams
+// 1. Call the member method convert of pptConverter to start transcoding
+// 2、Convert parameter type reference PptConvertParams
 type PptConvertParams = {
-    readonly url: string; //静态文档的网络地址，请确保可以下载
-    readonly kind: PptKind; //文档转换类型，静态为 PptKind.static(typescript) 或者 "static" (javascript)
+    readonly url: string; // Network address of the static document, please make sure it can be downloaded
+    readonly kind: PptKind; // Document conversion type, static is PptKind.static (typescript) or "static" (javascript)
     readonly onProgressUpdated?: (progress: number) => void;
-    readonly checkProgressInterval?: number;  // 轮询间隔时间
-    readonly checkProgressTimeout?: number; // 超时时间
+    readonly checkProgressInterval?: number;  // Polling interval
+    readonly checkProgressTimeout?: number; // overtime time
 };
 
-// 请求转码，获得每一个页面的数据
+// Request transcoding, get data for each page
 res = await pptConverter.convert({
-    // ppt 在云存储中地址，注意需要在控制台配置
+    // ppt address in cloud storage, note that you need to configure in the console
     url: pptURL,
     kind: "static", 
-    // 转换进度监听
+    // Conversion progress monitoring
     onProgressUpdated: progress => {
         if (onProgress) {
             onProgress(PPTProgressPhase.Converting, progress);
@@ -171,16 +172,16 @@ res = await pptConverter.convert({
     },
 });
 
-// convert 返回的数据结构
+// Data structure returned by convert
 export type Ppt = {
-    // 服务器端，转换任务的 uuid
+    // Server-side, uuid of conversion task
     readonly uuid: string;
     readonly kind: PptKind;
     readonly width: number;
     readonly height: number;
-    // 预览页面地址
+    // Preview page address
     readonly slideURLs: ReadonlyArray<string>;
-    // ppt场景数据格式，使用该属性，即可直接插入新的场景页面
+    // Ppt scene data format, using this property, you can directly insert a new scene page
     readonly scenes: ReadonlyArray<SceneDefinition>;
 };
 
@@ -192,18 +193,18 @@ room.setScenePath(`/${filename}/${res.scenes[0].name}`);
 
 ```Objective-C
 #import <WhiteSDK.h>
-// 详情请见 sdk WhiteConverter.h WhiteConversionInfo.h
+// See sdk  sdk WhiteConverter.h WhiteConversionInfo.h for detail
 @implementation RoomCommandListController
 - (void)convertStatic {
   WhiteConverter *converter = [[WhiteConverter alloc] initWithRoomToken:self.roomToken];
-  [converter startConvertTask:@"文档地址" type:ConvertTypeStatic progress:^(CGFloat progress, WhiteConversionInfo * _Nullable info) {
+  [converter startConvertTask:@"Document url" type:ConvertTypeStatic progress:^(CGFloat progress, WhiteConversionInfo * _Nullable info) {
       NSLog(@"progress:%f", progress);
   } completionHandler:^(BOOL success, ConvertedFiles * _Nullable ppt, WhiteConversionInfo * _Nullable info, NSError * _Nullable error) {
       NSLog(@"success:%d ppt: %@ error:%@", success, [ppt yy_modelDescription], error);
       if (ppt) {
-          // 场景相关内容，详情参考[场景管理](/docs/advance/scenes.md)文档
+          // Scene-related content, please refer to [Scene Management](/docs/advance/scenes.md) document for details
           [self.room putScenes:@"/static" scenes:ppt.scenes index:0];
-          //第一页
+          // First page
           [self.room setScenePath:@"/static/1"];
       }
   }];
@@ -214,7 +215,7 @@ room.setScenePath(`/${filename}/${res.scenes[0].name}`);
 <!--Android/Java-->
 ```Java
 Converter c = new Converter(this.roomToken);
-c.startConvertTask("文档地址", Converter.ConvertType.Static, new ConverterCallbacks(){
+c.startConvertTask("document url", Converter.ConvertType.Static, new ConverterCallbacks(){
     @Override
     public void onFailure(ConvertException e) {
         logAction("ppt fail");
@@ -223,9 +224,9 @@ c.startConvertTask("文档地址", Converter.ConvertType.Static, new ConverterCa
     @Override
     public void onFinish(ConvertedFiles ppt, ConversionInfo convertInfo) {
         if (ppt.getScenes() != null) {
-            // 场景相关内容，详情参考[场景管理](/docs/advance/scenes.md)文档
+            // Scene-related content, please refer to [Scene Management](/docs/advance/scenes.md) document for details
             room.putScenes("static", ppt.getScenes(), 0); 
-            // 第一页
+            // First page
             room.setScenePath("static/1");
         }
     }
@@ -239,6 +240,6 @@ c.startConvertTask("文档地址", Converter.ConvertType.Static, new ConverterCa
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-## 调用示意图
+## Call diagram
 
 ![static_conversion_frame@2x](/img/static_conversion_frame@2x.png)

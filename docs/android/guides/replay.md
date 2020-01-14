@@ -1,12 +1,12 @@
 ---
 id: android-replay
-title: 回放
+title: Replay
 ---
 
->创建房间时，需要设置为可回放房间。由于回放房间会占用更多资源，需要开发者主动设置。  
-具体请在 [服务器文档](/docs/server/api/server-whiteboard-base) 中查看 创建白板 API。
+> When creating a room, you need to set it as a replayable room. Since the playback room consumes more resources, it needs to be set up by the developer.
+For details, please refer to [Server Documentation] (/ docs / server / api / server-whiteboard-base) to create the whiteboard API.
 
-## 快速开始
+## Quick start
 
 ```Java
 Intent intent = getIntent();
@@ -19,19 +19,19 @@ WhiteSdk whiteSdk = new WhiteSdk(
         whiteBroadView,
         PlayActivity.this,
         new WhiteSdkConfiguration(DeviceType.touch, 10, 0.1));
-// beta13 增加 roomToken 要求
-PlayerConfiguration playerConfiguration = new PlayerConfiguration(uuid, roomToken);
-// 2.0.0-beta15 开始 Android 时间单位统一为毫秒。
-// 开始时间戳，持续时间，由之前的秒，修正为毫秒。
+// beta13 adds roomToken requirements
+PlayerConfiguration playerConfiguration = new PlayerConfiguration (uuid, roomToken);
+// 2.0.0-beta15 starting Android time unit is unified to milliseconds.
+// Start timestamp, duration, corrected from the previous second to milliseconds.
 
-// 目前，持续时间，只有在传入了开始时间戳时，才有效
-// playerConfiguration.setDuration(3L);
-// playerConfiguration.setBeginTimestamp(1559966276L);
-// 传入音频地址时，Player 会自动与音视频播放做同步，保证同时播放，当一方缓冲时，会暂停。
+// Currently, the duration is only valid when the start timestamp is passed in
+// playerConfiguration.setDuration (3L);
+// playerConfiguration.setBeginTimestamp (1559966276L);
+// When an audio address is passed in, the Player will automatically synchronize with the audio and video playback to ensure simultaneous playback, and will pause when one party buffers.
 playerConfiguration.setAudioUrl(m3u8);
 
 whiteSdk.createPlayer(playerConfiguration, new AbstractPlayerEventListener() {
-    // 以下为房间状态回调，可以查看 [状态管理] 文档
+    // The following is the room status callback, you can view the [status management] document
     @Override
     public void onPhaseChanged(PlayerPhase phase) {
         showToast(gson.toJson(phase));
@@ -84,181 +84,180 @@ whiteSdk.createPlayer(playerConfiguration, new AbstractPlayerEventListener() {
 });
 ```
 
-* 以上代码，可以在 [white-demo-android](https://github.com/duty-os/white-demo-android) Demo 中的 PlayActivity 中查看。
+* The above code can be viewed in PlayActivity in [white-demo-android](https://github.com/duty-os/white-demo-android) Demo.
 
-## 视频支持
+## Video support
 
-2.4.23 开始，sdk 提供`PlayerSyncManager`类，支持同步白板与视频播放器的状态。
+Starting from 2.4.23, SDK provides the `PlayerSyncManager` class, which supports the synchronization of the status of the whiteboard and the video player.
 
-* 开发者需要做的：
+* What developers need to do:
 
-1. 在`whitePlayer`的`onPhaseChanged(PlayerPhase phase)`回调中，将`whitePlayer`的状态通过`playerSyncManager`的`updateWhitePlayerPhase`方法传递给`playerSyncManager`。
-1. 在视频播放器中，实现`nativePlayer`接口。并且在视频播放器，进入缓冲，结束缓冲时，及时调用`playerSyncManager`的`updateNativePhase`，根据视频播放器的状态，传入合适的`NativePlayerPhase`。
-1. 使用`PlayerSyncManager`的`play`,`pause`方法。
+1. In the `onPhaseChanged (PlayerPhase phase)` callback of `whitePlayer`, pass the status of` whitePlayer` to `playerSyncManager` via the` updateWhitePlayerPhase` method of `playerSyncManager`.
+2. In the video player, implement the `nativePlayer` interface. And when the video player enters the buffer, when the buffering ends, call the updateNativePhase of playerSyncManager in time, and pass in the appropriate NativePlayerPhase according to the state of the video player.
+3. Use the `play`,` pause` methods of `PlayerSyncManager`.
 
-## 相关类与 API
+## Related classes and APIs
 
 ### PlayerConfiguration
 
-用于初始化 Player，传入特定的参数，通过设置 beginTimestamp，来确定开始回放的 UTC 时间。设置 duration，来确定持续时间。
+Used to initialize the Player, pass in specific parameters, and set the beginTimestamp to determine the UTC time to start playback. Set duration to determine the duration.
 
 ```Java
 public class PlayerConfiguration extends WhiteObject {
-    private String room;//房间 uuid
-    private String roomToken;// 房间 roomToken
-    private String slice;//分片 id，暂时无需了解
-    private Long beginTimestamp;//开始时间戳——2.0.0-beta15 开始，为毫秒；之前为秒
-    private Long duration;//持续时间——2.0.0-beta15 开始，为毫秒；之前为秒
+    private String room; // room uuid
+    private String roomToken; // room roomToken
+    private String slice; // shard id, no need to know for now
+    private Long beginTimestamp; // start timestamp-2.0.0-beta15 start, milliseconds; before, seconds
+    private Long duration; // Duration-2.0.0-beta15 start, milliseconds; seconds before
 
-    /*
-    音频地址，暂不支持视频。
-    Player 会自动与音视频播放做同步，保证同时播放，当一方缓冲时，会暂停。
-    */
-    private String audioUrl;
+    / *
+    Audio address. Video is not supported at this time.
+    Player will automatically synchronize with audio and video playback to ensure simultaneous playback. When one party buffers, it will pause.
+    * /
+    private String audioUrl;
 
-    public PlayerConfiguration(String room, String roomToken) {
-        this.room = room;
-        this.roomToken = roomToken;
-    }
+    public PlayerConfiguration (String room, String roomToken) {
+        this.room = room;
+        this.roomToken = roomToken;
+    }
 
-    // 以下省略 setter getter 方法
+    // setter getter method omitted below
 }
 ```
 
->目前：持续时间只有在传入了开始 UTC 时间戳的时候，才生效。
+> Current: Duration takes effect only when the start UTC timestamp is passed in.
 
->音频地址，暂不支持视频。Player 会自动与音频播放做同步，保证同时播放，当一方缓冲时，会一起暂停。
+> Audio address, video is not supported at this time. Player will automatically synchronize with audio playback to ensure simultaneous playback. When one party buffers, it will pause together.
 
 ### Player
 
 ```Java
-public void play()
-public void pause()
-//stop 后，player 资源会被释放。需要重新创建WhitePlayer实例，才可以重新播放
-public void stop()
-//跳转至特定时间，开始时间为 0，单位毫秒
-public void seekToScheduleTime(long beginTime)
-//设置查看模式
-public void setObserverMode(PlayerObserverMode mode)
+public void play ()
+public void pause ()
+// stop, the player resource will be released. Need to recreate the WhitePlayer instance before it can be replayed
+public void stop ()
+// Jump to specific time, start time is 0, unit is millisecond
+public void seekToScheduleTime (long beginTime)
+// Set viewing mode
+public void setObserverMode (PlayerObserverMode mode)
 /**
-* 获取房间状态
-* 目前：初始状态为 WhitePlayerPhaseWaitingFirstFrame
+* Get room status
+* Currently: Initial state is WhitePlayerPhaseWaitingFirstFrame
 */
-public PlayerPhase getPhase()
+public PlayerPhase getPhase ()
 
-//监听自定义事件
-public void addMagixEventListener(String eventName, EventListener eventListener)
-//移除自定义事件监听
-public void removeMagixEventListener(String eventName)
+// Listen to custom events
+public void addMagixEventListener (String eventName, EventListener eventListener)
+// Remove custom event listener
+public void removeMagixEventListener (String eventName)
 
 /**
-* 当 phase 状态为 WhitePlayerPhaseWaitingFirstFrame
-* 回调得到的数据是空的
+* When phase is WhitePlayerPhaseWaitingFirstFrame
+* Callback data is empty
 */
-public PlayerState getPlayerState()
-/** 获取播放器信息（当前时长，总时长，开始 UTC 时间戳）单位：毫秒 */
-public PlayerTimeInfo getPlayerTimeInfo()
+public PlayerState getPlayerState ()
+/** Get player information (current time, total time, start UTC timestamp) Unit: milliseconds */
+public PlayerTimeInfo getPlayerTimeInfo ()
 ```
 
 ### PlayerPhase
 
-表示房间播放状态的枚举值。
+An enumerated value representing the playback status of the room.
 
 ```Java
 public enum PlayerPhase {
-    waitingFirstFrame,  //等待第一帧
-    playing,            //播放状态
-    pause,              //暂停状态
-    stopped,            //停止
-    ended,              //播放结束
-    buffering,          //缓冲
+    waitingFirstFrame, // waiting for the first frame
+    playing, // playing status
+    pause, // Pause status
+    stopped, // stop
+    ended, // Ended
+    buffering, // buffering
 }
 ```
 
 ### PlayerObserverMode
 
-表示视角模式，跟随模式会跟随主播用户，没有主播时，会跟随最早进入的用户。
+Represents the perspective mode. The follow mode will follow the anchor user. When there is no anchor, it will follow the earliest user.
 
 ```Java
 public enum  PlayerObserverMode {
-    directory, //跟随模式
-    freedom    //自由模式
+    directory, // Follow the pattern
+    freedom // free mode
 }
 ```
 
 ### PlayerEventListener
 
-回放房间状态发生改变，会调用在创建 Player 时，传入的 `PlayerEventListener` ，有默认空实现：`AbstractPlayerEventListener` 。
+When the state of the playback room changes, the `PlayerEventListener` that is passed in when the Player is created will have a default empty implementation: `AbstractPlayerEventListener`.
 
 ```Java
 public interface PlayerEventListener {
-    /**
-     * 播放状态切换回调
-     */
-    void onPhaseChanged(PlayerPhase phase);
+    /**
+     * Playback status switching callback
+     */
+    void onPhaseChanged (PlayerPhase phase);
 
-    /**
-     * 首帧加载回调
-     */
-    void onLoadFirstFrame();
+    /**
+     * First frame loading callback
+     */
+    void onLoadFirstFrame ();
 
-    /**
-     * 分片切换回调，需要了解分片机制。目前无实际用途
-     */
-    void onSliceChanged(String slice);
+    /**
+     * Shard switching callback requires understanding of the sharding mechanism. No actual use
+     */
+    void onSliceChanged (String slice);
 
-    /**
-     * 播放中，状态出现变化的回调
-     */
-    void onPlayerStateChanged(PlayerState modifyState);
+    /**
+     * Callback when the status changes during playback
+     */
+    void onPlayerStateChanged (PlayerState modifyState);
 
-    /**
-     * 出错暂停
-     */
-    void onStoppedWithError(SDKError error);
+    /**
+     * Pause on error
+     */
+    void onStoppedWithError (SDKError error);
 
-    /**
-     * 进度时间变化
-     */
-    void onScheduleTimeChanged(long time);
+    /**
+     * Progress time changes
+     */
+    void onScheduleTimeChanged (long time);
 
-    /**
-     * 添加帧出错
-     */
-    void onCatchErrorWhenAppendFrame(SDKError error);
-    /**
-     * 渲染时，出错
-     */
-    void onCatchErrorWhenRender(SDKError error);
+    /**
+     * Error adding frame
+     */
+    void onCatchErrorWhenAppendFrame (SDKError error);
+    /**
+     * Error during rendering
+     */
+    void onCatchErrorWhenRender (SDKError error);
 }
 ```
 
 ### PlayerState
 
-类似于 `Room` 的 `RoomState` ，储存了回放房间的一些状态。状态变化事件回调，请参考 `PlayerEventListener` 以及 [状态管理](./state.md) 。
-
+Similar to `RoomState`,` RoomState` stores some states of the playback room. State change event callback, please refer to `PlayerEventListener` and [State Management](./state.md).
 
 ```Java
 public class PlayerState {
-    private GlobalState globalState;
-    /**
-     * 房间用户状态
-     */
-    private RoomMember[] roomMembers;
+    private GlobalState globalState;
+    /**
+     * Room user status
+     */
+    private RoomMember [] roomMembers;
 
-    private SceneState sceneState;
-    /**
-     * 用户观察状态
-     */
-    private PlayerObserverMode observerMode;
+    private SceneState sceneState;
+    /**
+     * User observation status
+     */
+    private PlayerObserverMode observerMode;
 
-    // 以下省略 getter 方法，修改该属性中的值，不会对 player 产生影响，所以该类，只有 getter 方法
+    // The getter method is omitted below. Modifying the value of this property will not affect the player, so this class has only the getter method
 }
 ```
 
 ### PlayerTimeInfo
 
-该类记录 Player 相关时间记录信息
+This type of record Player related time record information
 
 ```Java
 public class PlayerTimeInfo {
@@ -270,28 +269,28 @@ public class PlayerTimeInfo {
     private long beginTimestamp;
 
     /**
-     * 当前时间进度（毫秒）
-     */
-    public long getScheduleTime() {
-        return scheduleTime;
-    }
-    /**
-     * 总时长(毫秒）
-     */
-    public long getTimeDuration() {
-        return timeDuration;
-    }
+     * Current time progress (ms)
+     */
+    public long getScheduleTime () {
+        return scheduleTime;
+    }
+    /**
+     * Total duration (ms)
+     */
+    public long getTimeDuration () {
+        return timeDuration;
+    }
 
-    public int getFramesCount() {
-        return framesCount;
-    }
+    public int getFramesCount () {
+        return framesCount;
+    }
 
-    /**
-     * 开始时间，UTC 时间戳（毫秒）
-     */
-    public long getBeginTimestamp() {
-        return beginTimestamp;
-    }
+    /**
+     * Start time, UTC timestamp (ms)
+     */
+    public long getBeginTimestamp () {
+        return beginTimestamp;
+    }
 }
 
 ```

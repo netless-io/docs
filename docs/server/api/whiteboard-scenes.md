@@ -1,36 +1,36 @@
 ---
 id: server-whiteboard-scenes
-title: 场景管理 API
+title: Scene management API
 ---
 
-## 插入新的场景
+## Insert new scene
 
-场景是个相对抽象的概念，可以是一页 PPT 也可以是一页空白白板，具体可以参考 [场景管理](/docs/javascript/guides/js-scenes)
+Scene is a relatively abstract concept, which can be a page of PPT or a blank whiteboard. For details, please refer to [Scene Management](/docs/javascript/guides/js-scenes)
 
 `POST /rooms/{{uuid}}/scenes`
 
-* header参数
+* Header parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
 roomToken | string | {{roomtoken}}|
 
-* body 参数
+* body parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
-basePath | string | 基础文件夹 |
-startIndex | number | 插入到当前文件的第几页之后, 0 是插入到第一页之前，1 是第一页和第二页之间，以此类推 |
-scenes | scene 数组 | 插入进去一组 scene ，可能对应一组 PPT |
+basePath | string | base folder |
+startIndex | number | After the first few pages of the current file, 0 is inserted before the first page, 1 is between the first and second pages, and so on |
+scenes | scene array | Inserted into a set of scenes, which may correspond to a set of PPT |
 
-* scene 定义
+* scene definition
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
-name | string | 基础文件夹 |
-ppt (可选) | ``` {width: number, height: number, src: string} ```| ppt 的宽、高、路径（路径可以是以 https:// 开头的图片地址，也可以是以 pptx:// 协议开头的动态 ppt 地址） |
+name | string | base folder |
+ppt (optional) | ``` {width: number, height: number, src: string} ```| ppt width, height, path (path can be a picture address that starts with https: // or a dynamic ppt address that starts with the pptx: // protocol) |
 
-* body 样例
+* body sample
 
 ``` json
 {
@@ -57,27 +57,27 @@ ppt (可选) | ``` {width: number, height: number, src: string} ```| ppt 的宽�
 }
 ```
 
-**注意：该接口只能输入 room token**
+**Note: This interface can only enter room token**
 
-## 更新场景路径
+## Update scene path
 
-场景可以进行切换，体现在 PPT 上可以实现翻页的效果。
+Scenes can be switched to reflect the effect of turning pages on PPT.
 
 `PUT /rooms/{{uuid}}/scenepath`
 
-* header参数
+* header parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
 roomToken | string | {{roomtoken}}|
 
-* body 参数
+* body parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
-path | string | 场景路径 |
+path | string | scene path |
 
-* body 样例
+* body sample
 
 ``` json
 {
@@ -85,4 +85,4 @@ path | string | 场景路径 |
 }
 ```
 
-**注意：该接口只能输入 room token**
+**Note: This interface can only enter room token**

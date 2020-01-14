@@ -1,13 +1,13 @@
 ---
 id: android-init-sdk
-title: 初始化
+title: Initialization
 ---
 
-在初始化 SDK 前，请确保已经完成注册账号获取 token，集成安装包等操作，详见 [集成客户端](./prepare.md)。
+Before initializing the SDK, please make sure that you have completed registering the account to obtain tokens and integrate the installation package. For details, see [Integration Client](./prepare.md).
 
-## 添加 UI 代码
+## Adding UI code
 
-* 我们使用 Android XML 来描述 UI 视图，修改 `activity_main.xml` 为如下内容，可以看到整个视图由一个白板页面填充，这个页面实现（com.herewhite.sdk.WhiteBroadView）由 White Android SDK 提供。
+* We use Android XML to describe the UI view. Modify `activity_main.xml` to the following content. You can see that the entire view is filled by a whiteboard page. This page implementation (com.herewhite.sdk.WhiteBroadView) is provided by the White Android SDK.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>

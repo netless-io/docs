@@ -1,81 +1,82 @@
 ---
 id: android-tools
-title: 教具使用
+title: Tools
 ---
 
 ## 教具
 
 ```java
 public class MemberState {
-    // 当前工具，修改它会切换工具。有如下工具可供挑选：
-    // 1. selector 选择工具
-    // 2. pencil 铅笔工具
-    // 3. rectangle 矩形工具
-    // 4. ellipse 椭圆工具
-    // 5. eraser 橡皮工具
-    // 6. text 文字工具
+    // The current tool. Modifying it will switch tools. The following tools are available:
+    // 1. selector
+    // 2. pencil tool
+    // 3. rectangle tool
+    // 4. ellipse tool
+    // 5. eraser tool
+    // 6. text tool
     private String currentApplianceName;
-    // 线条的颜色，将 RGB 写在一个数组中。形如 [255, 128, 255]。
+    // The color of the line, write RGB in an array. It looks like [255, 128, 255].
     private int[] strokeColor;
-    // 线条的粗细
+    // Thickness of lines
     private Double strokeWidth;
-    // 文字的字号
+    // Text size
     private Double textSize;
     ... setter/getter
 }
 ```
 
-### 切换教具
+### Switching tools
 
-White SDK 提供多种教具，我们可以通过修改 `memberState` 来切换当前的教具。例如，将当前教具切换成「铅笔」工具可以使用如下代码。
+The White SDK provides a variety of teaching aids. We can change the current tool by modifying `memberState`. For example, to switch the current tool to the Pencil tool, you can use the following code.
+
 ```java
 MemberState memberState = new MemberState();
 memberState.setCurrentApplianceName("pencil");
 room.setMemberState(memberState);
 ```
-可以通过如下代码获取当前房间的教具名称。
+
+You can get the name of the tool in the current room through the following code.
 
 ```java
 room.getMemberState().getCurrentApplianceName();
 ```
 
-### 教具列表
+### Tool list
 
-| 名称 | 字符串 | 描述 |
-| :--- | :--- | :--- |
-| 选择 | selector | 选择、移动、放缩 |
-| 铅笔 | pencil | 画出带颜色的轨迹 |
-| 矩形 | rectangle | 画出矩形 |
-| 椭圆 | ellipse | 画出正圆或椭圆 |
-| 橡皮 | eraser | 删除轨迹 |
-| 文字 | text | 编辑、输入文字 |
+| Name | String | Description |
+|: --- |: --- |:: --- |
+| Select | selector | select, move, scale |
+| Pencil | pencil | draw colored tracks |
+| Rectangle | draw a rectangle |
+Ellipse | ellipse | draw a perfect circle or ellipse |
+| Eraser | eraser | delete track |
+| Text | text | edit, enter text |
 
+### Palette
 
-### 调色盘
-
-通过如下代码可以修改调色盘的颜色。
+The following code can modify the color of the palette.
 ```java
 MemberState memberState = new MemberState();
 memberState.setStrokeColor(new int[]{255, 0, 0});
 room.setMemberState(memberState);
 ```
-通过将 RGB 写在一个数组中，形如 [255, 0, 0] 来表示调色盘的颜色。
+The color of the palette is represented by writing RGB in an array of the form [255, 0, 0].
 
-也可以根据如下代码获取当前调色盘的颜色。
+You can also get the color of the current palette according to the following code.
 ```java
 room.getMemberState().getStrokeColor();
 ```
-调色盘能影响铅笔、矩形、椭圆、文字工具的效果。
+The palette can affect the effects of the pencil, rectangle, oval, and text tools.
 
-## 禁止教具操作<span class="anchor" id="disableDeviceInputs">
+## Prohibition of tool operation<span class="anchor" id="disableDeviceInputs">
 
->2.2.0 新增 API
+>2.2.0 New API
 
-你可以通过如下方法屏蔽教具。
+You can block teaching aids as follows.
 
 ```java
-// 禁止教具操作
+// Prohibition of tool operation
 room.disableDeviceInputs(true);
-// 恢复教具操作
+// Recovery tool operation
 room.disableDeviceInputs(false);
 ```

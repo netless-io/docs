@@ -1,23 +1,23 @@
 ---
 id: android-create-room
-title: 创建房间/获取房间信息
+title: Create Room
 ---
 
-本文相关代码，可以在 [Demo](declaration.md#demo) 项目的 `demoAPI` `RoomActivity` 类中查看。
-该部分为服务器逻辑，实际开发中，不应该在客户端实现。
-客户端应该向开发者自己的后端服务器进行请求，获取内容。
+The related code of this article can be viewed in the `DemoAPI`` RoomActivity` class of the [Demo](declaration.md#demo) project.
+This part is server logic. In actual development, it should not be implemented on the client.
+The client should make a request to the developer's own back-end server to get the content.
 
-## 安全须知
+## Safety instructions
 
-创建房间/获取房间，需要使用 sdkToken，与 SDK 后端服务器，进行交互。
-该 Token，是 SDK 后端服务器，与开发者后端业务服务器通讯的凭证。掌握了这个 Token，SDK 后端服务器就会认为，这是开发者进行的操作。
+To create-room / get-room, you need to use sdkToken to interact with the SDK backend server.
+The Token is a certificate for the SDK back-end server to communicate with the developer's back-end business server. After mastering this token, the SDK backend server will think that this is an operation performed by the developer.
 
-Example 中，为了演示方便，将创建房间/获取房间 roomToken 操作写在了客户端中，实际业务中，为了防止有人反编译客户端代码，获取 SDKToken，不应该在任何客户端暴露该 Token。
-该 Token，应该在开发者的业务服务器代码，或者配置项中。
+In the example, for the convenience of demonstration, the operation of creating a room / obtaining a roomToken is written on the client. In actual business, in order to prevent someone from decompiling the client code and obtaining the SDKToken, the token should not be exposed on any client.
+The token should be in the developer's business server code or configuration item.
 
-## 创建新房间，并直接获取 RoomToken
+## Create a new room and get RoomToken directly
 
-向 sdk 业务服务器，进行请求
+Make a request to the sdk business server
 
 ```Java
 
@@ -46,7 +46,7 @@ public class DemoAPI {
 
 ```
 
-从 sdk 服务器的响应中，读取 uuid 和 roomToken。
+From the response from the sdk server, read uuid and roomToken.
 
 ```Java
 
@@ -54,7 +54,7 @@ public class RoomActivity {
     demoAPI.createRoom("sdk demo", 100, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                alert("网络请求错误", e.toString());
+                alert("Network request error", e.toString());
             }
 
             @Override
@@ -70,17 +70,17 @@ public class RoomActivity {
                             joinRoom(uuid, roomToken);
                         }
                     } else {
-                        alert("网络请求错误", response.body().string());
+                        alert("Network request error", response.body().string());
                     }
                 } catch (Throwable e) {
-                    alert("创建房间失败", e.toString());
+                    alert("Failed to create room", e.toString());
                 }
             }
         });
 }
 ```
 
-## 已知房间 UUID，获取房间 RoomToken
+## Know the room UUID, get the room RoomToken
 
 ```Java
 public class demoAPI {
@@ -103,7 +103,7 @@ public class RoomActivity {
         demoAPI.getRoomToken(uuid, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                alert("获取房间 token 请求失败", e.toString());
+                alert("Failed to get room token request", e.toString());
             }
 
             @Override
@@ -119,10 +119,10 @@ public class RoomActivity {
                             joinRoom(uuid, roomToken);
                         }
                     } else {
-                        alert("获取房间 token 失败", response.body().string());
+                        alert("Failed to get room token request", response.body().string());
                     }
                 } catch (Throwable e) {
-                    alert("获取房间 token 失败", e.toString());
+                    alert("Failed to get room token request", e.toString());
                 }
             }
         });

@@ -1,42 +1,42 @@
 ---
 id: server-whiteboard-base
-title: 白板基础 API
+title: Whiteboard basics API
 ---
 
-## 主要 API
+## Main API
 
-### 创建白板
+### create whiteboard room
 
 `POST /room`
 
-* header参数
+* header parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
 token | string | {{token}}|
 
-* body参数
+* body parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
-name | string | 白板名称|
-limit | number | 白板最大人数；为0时，不限制人数 | 
-mode | string | **v2版本参数**；房间类型：`persistent`,`historied` |
+name | string | Whiteboard name|
+limit | number | The maximum number of people on the whiteboard; when it is 0, there is no limit on the number of people | 
+mode | string | **v2 version parameters**; Room type: `persistent`,` historied` |
 
-* 房间类型：
+* Room type:
 
-房间有两种模式：持久化房间、可回放房间。房间模式必须在创建时指定，一旦确定，将不可修改。不同模式，特征如下：
+There are two modes of the room: persistent room and replayable room. The room mode must be specified when it is created, and once determined, it cannot be modified. Different modes have the following characteristics:
 
-|    模式    | 可持久化 | 可回放 |                            描述                            |
+|    Mode    | Persistent | Replayable |                            description                            |
 | :--------: | :------: | :----: | :--------------------------------------------------------: |
-| 持久化房间（默认）- `persistent` |    ✓     |   ✘   |        即便房间将永久存在，除非调用 API 手动删除。         |
-| 可回放房间 - `historied` |    ✓     |   ✓    | 同「持久化房间」。并且房间所有内容将被自动录制，以供回放。 |
+| Persistent Room (default)-`persistent` |    ✓     |   ✘   |    Even if the room will be permanent, unless manually deleted by calling the API.     |
+| Playable Room-`historied` |    ✓     |   ✓    | Same as "Persistent Room". And everything in the room will be recorded automatically for playback. |
 
-* body 例子
+* body example
 
 ```json
 {
-    "name":"白板名称",
+    "name":"Whiteboard name",
     "limit":100,
     "mode": "persistent"
 }
@@ -57,70 +57,70 @@ mode | string | **v2版本参数**；房间类型：`persistent`,`historied` |
             "mode": "persistent",
             "template": "meeting",
             "region": "cn",
-            "uuid": "此处为房间 uuid",
+            "uuid": "Here is the room uuid",
             "updatedAt": "2019-01-15T09:12:05.974Z",
             "createdAt": "2019-01-15T09:12:05.974Z"
         },
         "hare": "{\"uuid\":\"uuid\",\"teamId\":\"1\",\"mode\":\"persistent\",\"region\":\"cn\",\"isBan\":false,\"beginTimestamp\":1547543526200,\"endTimestamp\":1547543526200,\"endFrameId\":0,\"usersMaxCount\":100,\"survivalDuration\":30000,\"chunkFramesCount\":700,\"snapshotIdInterval\":80}",
-        "roomToken": "此处为房间 roomToken",
+        "roomToken": "Here is the room roomToken",
         "code": 201
     }
 }
 ```
 
-### 获取特定白板 room Token
+### Get specific whiteboard room Token
 
 `POST /room/join?uuid={{uuid}}`
 
-* header参数
+* header parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
 token | string | {{token}}|
 
-* query 参数
+* query parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
-uuid | string | 白板唯一标识符 |
+uuid | string | Whiteboard unique identifier |
 
-该请求的 response 中，在 `msg` 字段中，可以获取到需要的 `roomToken` 字段。
+In the response of this request, in the msg field, the required roomToken field can be obtained.
 
-## 白板信息
+## Whiteboard information
 
-### 获取白板列表
+### Get whiteboard list
 
 `GET /room?offset={{offset}}&limit={{limit}}`
 
-* header参数
+* header parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
 token | string | {{token}}|
 
-* query 参数
+* query parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
-offset | number | 第几块白板开始查找(从1开始计数) |
-limit | number | 每次获取白板的个数 |
+offset | number | Find the whiteboard (counting from 1) |
+limit | number | Get the number of whiteboards each time |
 
 
-### 获取特定白板详细信息
+### Get specific whiteboard details
 
 `GET /room/id?uuid={{uuid}}`
 
-* header参数
+* header parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
 token | string | {{token}}|
 
-* query 参数
+* query parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
-uuid | string | 白板唯一标识符 |
+uuid | string | Whiteboard unique identifier |
 
 * response
 
@@ -131,8 +131,8 @@ uuid | string | 白板唯一标识符 |
         "id": 11600,
         "teamId": 1,
         "adminId": 1,
-        "uuid": "此处为uuid",
-        "name": "未命名",
+        "uuid": "Here is uuid",
+        "name": "unnamed",
         "limit": 10,
         "current": 0,
         "enable": true,
@@ -147,39 +147,39 @@ uuid | string | 白板唯一标识符 |
 }
 ```
 
-### 获取特定白板页数
+### Get the number of specific whiteboard pages
 
 `GET /room/scenes/count?roomuuid={{uuid}}`
 
-* header参数
+* header parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
 token | string | {{token}}|
 
-* query 参数
+* query parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
-roomuuid | string | 白板唯一标识符 |
+roomuuid | string | Whiteboard unique identifier |
 
-## 白板管理
+## Whiteboard management
 
-### 禁用和恢复白板
+### Disable and restore whiteboard
 
 `POST /banRoom`
 
-使用该 API后，会将所有用户从房间中踢出，并无法在客户端 sdk 中执行加入房间操作。被禁用的白板，可以进行回放操作。
+After using this API, all users will be kicked out of the room, and the room join operation cannot be performed in the client SDK. The disabled whiteboard can be played back.
 
-* header参数
+* header parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
 token | string | {{token}}|
 
-* body 参数
+* body parameter
 
-字段 | 类型 | 描述 |
+Field | Type | Description |
 --  | -- | -- |
-ban | boolean | true为禁用；false为恢复 |
-uuid | string | 白板唯一标识符 |
+ban | boolean | true to disable; false to restore |
+uuid | string | Whiteboard unique identifier |
