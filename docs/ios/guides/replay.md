@@ -1,12 +1,12 @@
 ---
 id: ios-replay
-title: 回放
+title: Replay
 ---
 
->创建房间时，需要设置为可回放房间。由于回放房间会占用更多资源，需要开发者主动设置。  
-具体请在 [服务器文档](../../server/api/whiteboard-base.md) 中查看 创建白板 API。
+> When creating a room, you need to set it as a replayable room. Since the playback room consumes more resources, it needs to be set up by the developer.
+For details, please refer to [Server Documentation](../../server/api/whiteboard-base.md) Create Whiteboard API.
 
-## 快速开始
+## Quick start
 
 ```Objective-C
 @interface WhitePlayerViewController ()<WhitePlayerEventDelegate>
@@ -14,30 +14,30 @@ title: 回放
 
 @implementation WhitePlayerViewController
 
-//配置 SDK 设置
+// Configure SDK settings
 WhiteSdkConfiguration *config = [WhiteSdkConfiguration defaultConfig];
 config.enableDebug = YES;
-//通过实例化，并已经添加在视图栈中 Whiteboard，初始化 WhiteSDK。
+// Initialize WhiteSDK by instantiating and adding Whiteboard to the view stack.
 self.sdk = [[WhiteSDK alloc] initWithWhiteBoardView:self.boardView config:config commonCallbackDelegate:self];
-//初始化回放配置类
+// Initialize the playback configuration class
 WhitePlayerConfig *playerConfig = [[WhitePlayerConfig alloc] initWithRoom:@"uuid" roomToken:@"roomToken"];
-//回放房间，支持播放m3u8地址。可以播放 rtc 录制的声音内容。
+// Playback room, support playing m3u8 address. Can play audio content recorded by rtc.
 playerConfig.audioUrl = @"https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8";
-//创建 whitePlayer 实例，进行回放
+// Create a whitePlayer instance for playback
 
 [self.sdk createReplayerWithConfig:playerConfig callbacks:self completionHandler:^(BOOL success, WhitePlayer * _Nonnull player, NSError * _Nonnull error) {
     if (error) {
-        NSLog(@"创建回放房间失败 error:%@", [error localizedDescription]);
+        NSLog(@"Failed to create playback room error:%@", [error localizedDescription]);
     } else {
         self.player = player;
-        NSLog(@"创建回放房间成功，开始回放");
+        NSLog(@"Create playback room successfully, start playback");
         [self.player seekToScheduleTime:0];
         [self.player play];
     }
 }];
 
 #pragma mark - WhitePlayerEventDelegate
-//见 WhitePlayerEvent 类解释
+//See WhitePlayerEvent class explanation
 - (void)phaseChanged:(WhitePlayerPhase)phase
 {
     NSLog(@"player %s %ld", __FUNCTION__, (long)phase);
@@ -72,52 +72,52 @@ playerConfig.audioUrl = @"https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/
 @end
 ```
 
->以上代码，可以在 [Whiteboard](https://github.com/netless-io/Whiteboard-ios) Example 中的 WhitePlayerViewController 中查看。
+> The above code can be viewed in the WhitePlayerViewController in [Whiteboard](https://github.com/netless-io/Whiteboard-ios) Example.
 
-### 视频回放
+### Video playback
 
->2.5.0 (开源版本 SDK)开始，新增`WhiteCombinePlayer`类，支持白板+视频的回放方式。
+> 2.5.0 (open source version SDK). Added the `WhiteCombinePlayer` class to support whiteboard video playback.
 
-* 实现步骤：
+* Implementation steps:
 
-1. 初始化`WhiteCombinePlayer`。
-2. 在`WhitePlayer`的`- (void)phaseChanged:(WhitePlayerPhase)phase` 回调中，主动更新 `WhiteCombinePlayer`的`whitePlayer`状态。
-3. 初始化`WhiteVideoView`，并调用`- (void)setAVPlayer:(AVPlayer *)player`方法，传入`CombinePlayer`的`nativePlayer`。
+1. Initialize `WhiteCombinePlayer`.
+2. In the `-(void) phaseChanged: (WhitePlayerPhase) phase` callback of` WhitePlayer`, actively update the `whitePlayer` status of` WhiteCombinePlayer`.
+3. Initialize `WhiteVideoView`, and call`-(void) setAVPlayer: (AVPlayer *) player` method, and pass in `nativePlayer` of` CombinePlayer`.
 
->可以在[开源版本 SDK](../overview/ios-open-source)的 example 中查看示例代码。
+> You can view the sample code in the example of [Open Source Version SDK] (../ overview / ios-open-source).
 
-## 详细类与 API
+## Detailed classes and APIs
 
 ### WhitePlayerConfig
 
-用于初始化 WhitePlayer，传入特定的参数，通过设置 beginTimestamp，来确定开始回放的 UTC 时间。设置 duration，来确定持续时间。
+Used to initialize WhitePlayer, pass in specific parameters, and set the beginTimestamp to determine the UTC time to start playback. Set duration to determine the duration.
 
 ```Objective-C
 @interface WhitePlayerConfig : WhiteObject
 
 - (instancetype)initWithRoom:(NSString *)roomUuid roomToken:(NSString *)roomToken;
 
-/** 房间UUID，目前必须要有 */
-@property (nonatomic, copy, nonnull) NSString *room;
-/** 分片 ID，可以跳转至特定的房间位置，目前可以不关心。 */
-@property (nonatomic, copy, nullable) NSString *slice;
-/** 传入对应的UTC 时间戳(秒)，如果正确，则会在对应的位置开始播放。 */
-@property (nonatomic, strong, nullable) NSNumber *beginTimestamp;
-/** 传入持续时间（秒），当播放到对应位置时，就不会再播放。如果不设置，则从开始时间，一直播放到房间结束。 */
-@property (nonatomic, strong, nullable) NSNumber *duration;
-/** 音频地址。
- 传入视频，也只会播放音频部分。设置后，sdk 会负责与白板同步播放 。
- 如需播放音频，请使用 WhiteNativePlayer 模块中的 WhiteCombinePlayer。
- */
+/** Room UUID, currently must have */
+@property (nonatomic, copy, nonnull) NSString * room;
+/** Fragment ID, which can jump to a specific room location, which can be ignored at present. */
+@property (nonatomic, copy, nullable) NSString * slice;
+/** Pass in the corresponding UTC timestamp (seconds). If correct, playback will start at the corresponding position. */
+@property (nonatomic, strong, nullable) NSNumber * beginTimestamp;
+/** Incoming duration (seconds), when the corresponding position is played, it will not be played again. If not set, it will play from the start time to the end of the room. */
+@property (nonatomic, strong, nullable) NSNumber * duration;
+/** Audio address.
+ Incoming video will only play the audio part. Once set, the SDK will be responsible for synchronous playback with the whiteboard.
+ To play audio, use WhiteCombinePlayer in the WhiteNativePlayer module.
+ */
 @property (nonatomic, strong, nullable) NSString *audioUrl;
 @end
 ```
 
->目前：持续时间只有在传入了开始 UTC 时间戳的时候，才生效。
+> Current: Duration takes effect only when the start UTC timestamp is passed in.
 
-回放类，可以将该类看做一个视频播放器。有类似播放器的播放，暂停等功能，并且可以通过 get API，获取一些 Player 的当前状态。  
+Playback class, you can think of this class as a video player. There are functions similar to player playback, pause, etc., and the current status of some Players can be obtained through the get API.
 
->Player 主动的状态变化回调，请在 [状态管理](./state.md) 或者 `WhitePlayerEvent` 查看
+> Player Active state change callback, please check in [State Management] (./ state.md) or `WhitePlayerEvent`
 
 ```Objective-C
 
@@ -125,93 +125,93 @@ playerConfig.audioUrl = @"https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/
 
 - (void)play;
 - (void)pause;
-//stop 后，player 资源会被释放。需要重新创建，才可以重新播放
+// stop, the player resource will be released. Need to be recreated before it can be replayed
 - (void)stop;
-//跳转至特定时间（开始时间为 0）
+// Jump to a specific time (start time is 0)
 - (void)seekToScheduleTime:(NSTimeInterval)beginTime;
-//设置查看模式
+// Set viewing mode
 - (void)setObserMode:(WhiteObserverMode)mode;
 
-//获取播放状态
+// Get playback status
 - (void)getPhaseWithResult:(void (^)(WhitePlayerPhase phase))result;
-//获取 PlayerState
+// Get PlayerState
 - (void)getPlayerStateWithResult:(void (^) (WhitePlayerState *state))result;
-//获取播放信息
+// Get playback information
 - (void)getPlayerTimeInfoWithResult:(void (^) (WhitePlayerTimeInfo *info))result;
 
 ```
 
 ### WhiteConsts.h
 
-部分枚举常量，用来表示当前的跟随模式，以及播放状态。
+Some enumeration constants are used to indicate the current follow mode and playback status.
 
 ```Objective-C
 typedef NS_ENUM(NSInteger, WhiteObserverMode) {
-    WhiteObserverModeDirectory, //跟随模式
-    WhiteObserverModeFreedom    //自由模式
+    WhiteObserverModeDirectory, // Follow Mode
+    WhiteObserverModeFreedom // Free mode
 };
 
 typedef NS_ENUM(NSInteger, WhitePlayerPhase) {
-    WhitePlayerPhaseWaitingFirstFrame,  //等待第一帧
-    WhitePlayerPhasePlaying,            //播放状态
-    WhitePlayerPhasePause,              //暂停状态
-    WhitePlayerPhaseStopped,            //停止
-    WhitePlayerPhaseEnded,              //播放结束
-    WhitePlayerPhaseBuffering,          //缓冲中
+    WhitePlayerPhaseWaitingFirstFrame, // Wait for the first frame
+    WhitePlayerPhasePlaying, // Playing status
+    WhitePlayerPhasePause, // Pause status
+    WhitePlayerPhaseStopped, // Stop
+    WhitePlayerPhaseEnded, // End of playback
+    WhitePlayerPhaseBuffering, // In buffering
 };
 ```
 
 ### WhitePlayerEvent
 
-`WhitePlayerEvent` 本身不对外暴露 API。  
-开发者在创建 `WhitePlayer` 时，需要传入一个实现了 `WhitePlayerEventDelegate` 协议的实例。Player 触发特定事件时，`WhitePlayerEvent` 会回调该实例。
+`WhitePlayerEvent` itself does not expose the API.
+When creating a WhitePlayer, developers need to pass in an instance that implements the WhitePlayerEventDelegate protocol. When the Player triggers a specific event, `WhitePlayerEvent` will call back the instance.
 
 ```Objective-C
 @protocol WhitePlayerEventDelegate <NSObject>
 
 @optional
 
-/** 播放状态切换回调 */
-- (void)phaseChanged:(WhitePlayerPhase)phase;
-/** 首帧加载回调 */
-- (void)loadFirstFrame;
-/** 分片切换回调，需要了解分片机制。目前无实际用途 */
-- (void)sliceChanged:(NSString *)slice;
-/** 播放中，状态出现变化的回调 */
-- (void)playerStateChanged:(WhitePlayerState *)modifyState;
-/** 出错暂停 */
-- (void)stoppedWithError:(NSError *)error;
-/** 进度时间变化 */
-- (void)scheduleTimeChanged:(NSTimeInterval)time;
-/** 添加帧出错 */
-- (void)errorWhenAppendFrame:(NSError *)error;
-/** 渲染时，出错 */
-- (void)errorWhenRender:(NSError *)error;
+/** Playback status switching callback */
+-(void) phaseChanged: (WhitePlayerPhase) phase;
+/** First frame loading callback */
+-(void) loadFirstFrame;
+/** Shard switching callback, you need to understand the sharding mechanism. No actual use at this time */
+-(void) sliceChanged: (NSString *) slice;
+/** Callback when status changes during playback */
+-(void) playerStateChanged: (WhitePlayerState *) modifyState;
+/** Pause on error */
+-(void) stoppedWithError: (NSError *) error;
+/** Progress time change */
+-(void) scheduleTimeChanged: (NSTimeInterval) time;
+/** Error adding frame */
+-(void) errorWhenAppendFrame: (NSError *) error;
+/** Error during rendering */
+-(void) errorWhenRender: (NSError *) error;
 /**
- 2.0.4新增API
- 白板自定义事件回调，
- 自定义事件参考文档，或者 RoomTests 代码
- */
-- (void)fireMagixEvent:(WhiteEvent *)event;
+ 2.0.4 New API
+ Whiteboard custom event callback,
+ Custom event reference documentation, or RoomTests code
+ */
+-(void) fireMagixEvent: (WhiteEvent *) event;
 @end
 ```
 
 ### WhitePlayerState
 
-类似于 `WhiteRoom` 的 `WhiteRoomState` ，储存了回放房间的一些状态。
+`WhiteRoomState`, similar to `WhiteRoom`, stores some states of the playback room.
 
 ```Objective-C
 @interface WhitePlayerState : WhiteObject
 
-@property (nonatomic, strong, readonly, nullable) WhiteGlobalState *globalState;
-/** 房间用户状态 */
-@property (nonatomic, strong, readonly, nullable) NSArray<WhiteRoomMember *> *roomMembers;
-// 该 API 获取的信息不正确，为防止使用该 API 获取到不正确的内容，2.0.4 版本，已移除该 API
-//@property (nonatomic, strong, readonly, nullable) WhiteObserverState *observerState;
-/** 用户观察状态 */
+@property (nonatomic, strong, readonly, nullable) WhiteGlobalState * globalState;
+/** Room user status */
+@property (nonatomic, strong, readonly, nullable) NSArray <WhiteRoomMember *> * roomMembers;
+// The information obtained by this API is incorrect. In order to prevent the use of this API to obtain incorrect content, version 2.0.4, this API has been removed
+// @ property (nonatomic, strong, readonly, nullable) WhiteObserverState * observerState;
+/** User observation status */
 @property (nonatomic, assign, readonly) WhiteObserverMode observerMode;
-/** 场景状态 */
-@property (nonatomic, strong, readonly, nullable) WhiteSceneState *sceneState;
+/** Scene status */
+@property (nonatomic, strong, readonly, nullable) WhiteSceneState * sceneState;
 
 @end
 ```

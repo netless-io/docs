@@ -31,19 +31,19 @@ The `WhiteRoomViewController` part implements the` WhiteRoomCallbackDelegate` pr
 - (void)fireBeingAbleToCommitChange:(BOOL)isAbleToCommit;
 
 /** Whiteboard loses connection callback with error message */
--(void) fireDisconnectWithError: (NSString *) error;
+- (void) fireDisconnectWithError: (NSString *) error;
 
 /** The user was kicked out of the room by the remote server with a kick out reason */
--(void) fireKickedWithReason: (NSString *) reason;
+- (void) fireKickedWithReason: (NSString *) reason;
 
 /** User error event capture with user id and error cause */
--(void) fireCatchErrorWhenAppendFrame: (NSUInteger) userId error: (NSString *) error;
+- (void) fireCatchErrorWhenAppendFrame: (NSUInteger) userId error: (NSString *) error;
 
 /**
  Whiteboard custom event callback,
  Custom event reference documentation, or RoomTests code
  */
--(void) fireMagixEvent: (WhiteEvent *) event;
+- (void) fireMagixEvent: (WhiteEvent *) event;
 
 @end
 
@@ -52,7 +52,7 @@ The `WhiteRoomViewController` part implements the` WhiteRoomCallbackDelegate` pr
 ### Disconnection and reconnection
 
 When the room is disconnected unexpectedly, the SDK first reconnects.
-As the connection status of the room changes, SDK will call back to the callback proxy passed in the Room API, and call the `-(void) firePhaseChanged:` method implemented by it.
+As the connection status of the room changes, SDK will call back to the callback proxy passed in the Room API, and call the `- (void) firePhaseChanged:` method implemented by it.
 
 When the SDK fails to reconnect automatically, you can use SDK to join the room API and reconnect. (If callbacks are not passed in, the callbacks proxy will not be changed.)
 
