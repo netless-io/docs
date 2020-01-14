@@ -40,13 +40,13 @@ export type GlobalState = {};
 export type RoomMember = {
     // Whiteboard user id, increasing from 0
     readonly memberId: number;
-    // User's teaching aid status
+    // User's tool status
     readonly memberState: MemberState;
     // User information, user-defined information passed in during initialization, refer to [Initialization Parameters-Room Parameters] document
     readonly payload: any;
 };
 
-// Refer to [Teaching aid operation] document
+// Refer to [Tool operation] document
 type MemberState
 
 // Refer to [Page (Scene) Management] document
@@ -93,7 +93,7 @@ export type PlayerState = {
 ```Typescript
 // Get global status
 var globalState = room.state.globalState;
-// Get current user teaching aid status
+// Get current user tool status
 var memberState = room.state.memberState;
 // Get scene status
 var sceneState = room.state.sceneState;
@@ -106,7 +106,7 @@ var broadcastState = room.state.broadcastState;
 ## Status monitoring
 ### Real-time room state (RoomState)
 
-When the room status (user joins and exits, whiteboard page (scene), user teaching aid changes, anchor, global state) changes, SDK will actively call back the `onRoomStateChanged` method in` callbacks` parameter when `joinRoom`.
+When the room status (user joins and exits, whiteboard page (scene), user tool changes, anchor, global state) changes, SDK will actively call back the `onRoomStateChanged` method in` callbacks` parameter when `joinRoom`.
 
 > For more callback parameters, please read [Initialization Parameters -> Room Parameters](../parameters/room.md#roomcallbacks)。
 

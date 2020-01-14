@@ -41,7 +41,7 @@ Open source version, the version is iteratively increased based on the old versi
 ### [2.4.16]-2019-11-08
 - Color only supports integer
 ### [2.4.15]-2019-11-04
-- Eraser teaching aid, add the option to prohibit erasing pictures (initialize room parameter configuration)
+- Eraser, add the option to prohibit erasing pictures (initialize room parameter configuration)
 - Fixed the problem that some incoming parameters do not take effect during SDK initialization
 - Extract the methods shared by Player and Room, and migrate them into Displayer as the parent instance methods (refreshViewSize, convertToPointInWorld, addMagixEventListener, addHighFrequencyEventListener, removeMagixEventListener)
 ### [2.4.14]-2019-10-29
@@ -58,7 +58,7 @@ Open source version, the version is iteratively increased based on the old versi
 ### [2.4.10]-2019-09-20
 - Optimize text layout
 - Fixed the perspective switching behavior when switching between horizontal and vertical screens
-- Text teaching aid function adapted to iOS 13
+- Text function adapted to iOS 13
 ### [2.4.9]-2019-09-11
 - Optimize weak network connection
 - More options when entering live room (prohibited operation, close Bezier, etc.)
@@ -87,7 +87,7 @@ Open source version, the version is iteratively increased based on the old versi
 - Optimize disconnection and reconnect function
 ### [2.4.0]-2019-07-25
 - Added API for real-time room synchronization and playback of room status
-- When acquiring online members, you can simultaneously obtain the teaching aid status of each user, as well as transparent user information
+- When acquiring online members, you can simultaneously obtain the tool status of each user, as well as transparent user information
 - Support for synchronizing custom global status
 - Support to modify the background color of the whiteboard locally (not synchronized to other remote ends)
 ### [2.3.4]-2019-07-17

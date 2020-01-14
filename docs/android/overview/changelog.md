@@ -30,7 +30,7 @@ title: Version history
 ### [2.4.19] - 2019-11-13
 - Fix drawing problem caused by disableCameraTransform
 ### [2.4.18] - 2019-11-05
-- Eraser teaching aid, add the option of forbidden to erase pictures
+- Eraser, add the option of forbidden to erase pictures
 ### [2.4.17] - 2019-11-04
 - Fixed the problem that some incoming parameters do not take effect during SDK initialization
 - Extract the methods shared by Player and Room, and migrate them into Displayer as the parent instance method（refreshViewSize, convertToPointInWorld, addMagixEventListener, addHighFrequencyEventListener, removeMagixEventListener）
@@ -63,7 +63,7 @@ title: Version history
 - Fixed an issue where two fingers moved abnormally at the maximum zoom ratio
 ## [2.4.8] - 2019-08-16
 - Support custom global status
-- Room member list (RoomMember) adds user information, user teaching aid status content
+- Room member list (RoomMember) adds user information, user tool status content
 - Viewing angle (BroadcastState), increase the information of the anchor user; fix the issue that the anchor id is 0 when there is no anchor
 - Fixed `component` field type error in Scene class
 - Fixed whiteboard class names and provide forward compatibility

@@ -70,7 +70,7 @@ window.addEventListener("resize", refreshViewSize);
 
 * [Initialization parameters -> room parameters](../parameters/room.md)：Relevant configuration can be performed when the room is initialized.
 * [Status monitoring](../features/state.md): Listen for changes in room status (members join and exit, room pages, etc.).
-* [Teaching aid operation](../features/tools.md): Use `brush`,` rectangle`, `round` to insert` picture`.
+* [Tool operation](../features/tools.md): Use `brush`,` rectangle`, `round` to insert` picture`.
 * [Perspective operation](../features/view.md): Control user visible range, zoom, and move behavior.
 * [Whiteboard operation](../features/operation.md): Control user permissions.
 * [Custom event](../features/events.md): Enhance the whiteboard function to realize the business requirements of global notification.
