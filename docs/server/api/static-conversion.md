@@ -197,7 +197,7 @@ room.setScenePath(`/${filename}/${res.scenes[0].name}`);
 @implementation RoomCommandListController
 - (void)convertStatic {
   WhiteConverter *converter = [[WhiteConverter alloc] initWithRoomToken:self.roomToken];
-  [converter startConvertTask:@"Document address" type:ConvertTypeStatic progress:^(CGFloat progress, WhiteConversionInfo * _Nullable info) {
+  [converter startConvertTask:@"Document url" type:ConvertTypeStatic progress:^(CGFloat progress, WhiteConversionInfo * _Nullable info) {
       NSLog(@"progress:%f", progress);
   } completionHandler:^(BOOL success, ConvertedFiles * _Nullable ppt, WhiteConversionInfo * _Nullable info, NSError * _Nullable error) {
       NSLog(@"success:%d ppt: %@ error:%@", success, [ppt yy_modelDescription], error);
@@ -215,7 +215,7 @@ room.setScenePath(`/${filename}/${res.scenes[0].name}`);
 <!--Android/Java-->
 ```Java
 Converter c = new Converter(this.roomToken);
-c.startConvertTask("document address", Converter.ConvertType.Static, new ConverterCallbacks(){
+c.startConvertTask("document url", Converter.ConvertType.Static, new ConverterCallbacks(){
     @Override
     public void onFailure(ConvertException e) {
         logAction("ppt fail");

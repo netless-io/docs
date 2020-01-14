@@ -1,79 +1,80 @@
 ---
 id: android-v2migration
-title: 2.0迁移指南
+title: 2.0 v2migration
 ---
 
-## 新增功能：
+## new features:
 
-1. 云端录制：创建房间时，选择可回放房间，SDK 服务器会在云端自动录制
-1. 回放功能：提供回放API
-1. 白板页面管理功能
+1. Cloud recording: When creating a room, select the replayable room, and the SDK server will automatically record in the cloud
+1. Playback function: Provide playback API
+1. Whiteboard page management function
 
-v2.0 注意内容：
+v2.0 Attention:
 
-> v1.0与v2.0房间不互通；但是 SDK 所使用的 Token 不需要更新。  
-v2.0移除了部分 API，您需要通过下面的文档，使用新 API 实现。
+> v1.0 and v2.0 rooms are not interoperable; however, the token used by the SDK does not need to be updated.
+v2.0 has removed some APIs. You need to implement the new APIs through the following documents.
 
-*我们不会关闭 v1.0 的服务，但我们依然推荐你迁移到 v2.0。*
+* We will not shut down v1.0 services, but we still recommend that you migrate to v2.0. *
 
-### 新增概念——场景
+### New Concept-Scene
 
-首先，为了增强白板的页面管理功能，我们引入一些新概念：场景以及场景目录。
-如果您不能理解场景这个概念，我们建议您参考资源管理器以及文件的概念，进行参考。
+First of all, in order to enhance the page management function of the whiteboard, we introduce some new concepts: scenes and scene directories.
+If you don't understand the concept of scene, we suggest you refer to the concept of explorer and file for reference.
 
-场景目前主要包括：场景名，PPT（背景图），PPT宽，PPT高 这几个内容。
-还有一个与场景有关，不是由场景本身持有的内容：场景路径。场景路径由场景目录+场景名，后者由场景本身持有。
+Scenes currently include: scene name, PPT (background image), PPT width, PPT height content.
+There is also something related to the scene, not held by the scene itself: the scene path. The scene path is the scene directory scene name, which is held by the scene itself.
 
-场景目录，则是文件的所在目录。（SDK 中的场景目录，格式参考的是 Unix 系统下的文件格式。`\dir1\dir`）
+The scene directory is the directory where the files are located. (The scene directory in the SDK, the format reference is the file format under the Unix system. `\Dir1\dir`)
 
->推荐阅读 [场景管理](./scenes.md) 
+> Recommended reading [Scene Management](./scenes.md) 
 
-## 修改的 API
+## Modified API
 
-2.0的 API 修改主要在场景这一块。为了支持更复杂的页面管理需求，我们抛弃了过去，白板是一串页面数组的形式。转而使用资源管理器的方式进行管理。
+The 2.0 API changes are mainly in the scene. In order to support more complex page management requirements, we abandoned the past. Whiteboards are in the form of a series of page arrays. Instead, use Explorer to manage it.
 
 ### PPT API
 
-#### 获取 ppt API
+#### Get ppt API
 
-我们仍然提供获取 ppt API，但是我们不再推荐使用此 API。因为即使您获取到了 ppt 地址，也无法通过ppt地址所在的index 索引进行页面管理。所以，我们更推荐使用以下的方法获取当前页面的内容：
+We still provide the Get ppt API, but we no longer recommend this API. Because even if you get the ppt address, you cannot manage the page through the index of the ppt address. Therefore, we recommend using the following methods to get the content of the current page:
 
 ```Java
-//返回当前场景目录下，所有的场景，ppt属性可能为空。
+// Return all scenes in the current scene directory. The ppt attribute may be empty.
 public Scene[] getScenes();
 
-//获取的 WhiteSceneState 中，有当前场景目录，该场景目录下所有的场景列表，当前场景在场景列表中的索引。
+// In the obtained WhiteSceneState, there is a current scene directory, a list of all scenes under the scene directory, and an index of the current scene in the scene list.
 public SceneState getSceneState();
 ```
 
-目前，您需要自行管理场景目录。如果您没有多个场景列表（多维数组）的需求。我建议您使用固定的场景目录（例如"\"）。
+Currently, you need to manage the scene catalog yourself. If you don't need multiple scene lists (multidimensional arrays). I recommend that you use a fixed scene directory (eg "\").
 
-#### 插入 PPT API
+#### Insert PPT API
 
-旧方法：
+Old method:
 
 ```Java
 public void pushPptPages(PptPage[] pages)
 ```
 
-新方法：
+New func：
 
 ```Java
-/**
- 插入，或许新建多个页面
 
- @param dir scence 页面组名称，相当于目录。
- @param scenes WhiteScence 实例；在生成 WhiteScence 时，可以同时配置 ppt
- @param index 选择在页面组，插入的位置。index 即为新 scence 的 index 位置。如果想要放在最末尾，可以传入 NSUIntegerMax。
- */
+ /**
+ Insert, maybe create multiple pages
+
+ @param dir scence page group name, equivalent to a directory.
+ @param scenes WhiteScence instance; ppt can be configured at the same time when generating WhiteScence
+ @param index Select where to insert the page group. index is the index position of the new scence. If you want to put it at the end, you can pass in NSUIntegerMax.
+ */
 public void putScenes(String dir, Scene[] scenes, int index)
 ```
 
-### 页面管理 API
+### Page Management API
 
-#### 删除页面 API
+#### Delete Page API
 
-旧方法:
+Old method:
 
 ```Java
 public void removePage(int index)
@@ -82,47 +83,47 @@ public void removePage(int index)
 新方法：
 
 ```Java
-/**
- 当有
- /ppt/page0
- /ppt/page1
- 传入 "/ppt/page0" 时，则只删除对应页面。
- 传入 "/ppt" 时，会将两个页面一起移除。
+ /**
+ When there is
+ /ppt/page0
+ /ppt/page1
+ When "/ppt/page0" is passed in, only the corresponding page is deleted.
+ Passing "/ppt" removes both pages together.
 
- @param dirOrPath 页面具体路径，或者为页面组路径
- */
+ @param dirOrPath Page specific path, or page group path
+ */
 public void removeScenes(String dirOrPath)
 ```
 
-现在删除，不再接受index 索引，对应的，接受的是场景的路径，或者是目录。
+Delete now, no longer accept the index index, correspondingly, the path or directory of the scene is accepted.
 
-#### 插入页面 API
+#### Insert Page API
 
 ```Java
 /**
- 插入，或许新建多个页面
+Insert, maybe create multiple pages
 
- @param dir scence 页面组名称，相当于目录。
- @param scenes WhiteScence 实例；在生成 WhiteScence 时，可以同时配置 ppt
- @param index 选择在页面组，插入的位置。index 即为新 scence 的 index 位置。如果想要放在最末尾，可以传入 NSUIntegerMax。
+ @param dir scence page group name, equivalent to a directory.
+ @param scenes WhiteScence instance; ppt can be configured at the same time when generating WhiteScence
+ @param index Select where to insert the page group. index is the index position of the new scence. If you want to put it at the end, you can pass in NSUIntegerMax.
  */
 public void putScenes(String dir, Scene[] scenes, int index)
 ```
 
-现在插入页面 API，增加了插入时，自定义内容（ppt）的接口。所以插入页面 API 和插入 PPT API，现在已经合并成了同一个 API。
+Now insert page API, add interface for custom content (ppt) when inserting. So the Insert Page API and Insert PPT API have now been merged into the same API.
 
-*我们现在提供新API支持移动，重命名白板页面*
+* We now provide a new API to support mobile, rename whiteboard pages *
 
-### 图片替换 API
+### Image Replacement API
 
-由于图片替换 API，同时对互动房间与回放生效，所以我们将该设置迁移到了 WhiteSdkConfig 中，在初始化 WhiteSDK 时，就需要设置好。
+Since the image replacement API takes effect on the interactive room and playback at the same time, we have migrated this setting to WhiteSdkConfig, which needs to be set when the WhiteSDK is initialized.
 
 ```Java
 WhiteSdkConfiguration sdkConfig = new WhiteSdkConfiguration(DeviceType.touch, 10, 0.1);
-//必须在sdk 初始化时，就设置替换
+// You must set the replacement when sdk is initialized
 sdkConfig.setHasUrlInterrupterAPI(true);
 
-//初始一个实现了 UrlInterrupter interface 的类，作为 WhiteSDK 初始化参数即可。
+// Initialize a class that implements the UrlInterrupter interface as the WhiteSDK initialization parameter.
 UrlInterrupterObject interrupter = new UrlInterrupterObject()
 WhiteSdk whiteSdk = new WhiteSdk(whiteBroadView PlayActivity.this, interrupter);
 ```
