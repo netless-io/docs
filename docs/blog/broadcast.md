@@ -1,56 +1,56 @@
 ---
 id: blog-broadcast
-title: 主播与观众
+title: Anchor and audience
 ---
 
-## 简要
+## Brief
 
-本文介绍如何实现： 一对一，一对多（无互动）形式，主播对观众的业务场景。
+This article describes how to achieve: one-to-one, one-to-many (non-interactive) form, the business scenario of anchor to audience
 
->阅读本文前，请先阅读各端文档中`快速开始`部分，完成基础接入。
+> Before reading this article, please read the "Quick Start" section of each end document to complete the basic access.
 
-## 概念介绍：视角模式<span class="anchor" id="viewmode">
+## Concept: Perspective Mode <span class = "anchor" id = "viewmode">
 
-首先介绍实现该业务所需要了解的概念——**视角模式**。
+First introduce the concept needed to realize the business-** perspective mode **.
 
-视角模式一共有三种：`主播`，`跟随`，`自由`。
+There are three perspective modes: `anchor`,` follow`, `freedom`.
 
-### 主播模式
+### Anchor Mode
 
-一个房间，只能有一个主播；当新用户调用主播时，旧主播也会同时变为跟随者。  
-sdk 会保证主播端所有的屏幕内容，都完整的同步给`跟随`模式下的用户（观众）。
+There can be only one anchor in a room; when a new user calls the anchor, the old anchor will also become a follower at the same time.
+sdk will ensure that all the screen content of the anchor is completely synchronized to the user (viewer) in the `follow` mode.
 
->当有用户成为主播时，房间其他用户视角模式，都会自动变成`跟随`模式。此时，新加入用户，视角模式均为`跟随`模式。
+> When a user becomes the anchor, the other users' perspective mode in the room will automatically change to the `follow` mode. At this time, new users are added, and the perspective mode is `follow` mode.
 
-### 跟随模式
+### Follow mode
 
-`跟随`模式的用户（以下将跟随模式下的用户称为观众），会同步看到`主播`模式用户的所有屏幕内容。  
+Users in `Follow` mode (hereafter, users in Follow mode will be referred to as viewers) will see all screen contents of users in` Anchor` mode simultaneously.
 
->主动设置`跟随`模式时，需要房间中存在主播，否则会自动切换回自由模式。
+> When actively setting the `follow` mode, there needs to be a host in the room, otherwise it will automatically switch back to free mode.
 
->在`跟随`模式下的用户，如果进行了任意操作（移动白板，缩放视野，进行笔画等教具操作），都会自动从`跟随`模式切换到`自由`模式。  
-如果想要一直保持`跟随`模式，可以调用 sdk 的`禁止操作API`（具体见下文观众端业务实现代码），禁止白板响应用户操作。
- 
-* 屏幕
+> Users in `Follow` mode will automatically switch from` Follow` mode to `Free` mode if they perform any operation (moving the whiteboard, zooming the field of view, teaching tools such as strokes).
+If you want to keep the "following" mode, you can call the SDK's "Prohibition Operation API" (for details, see the audience-side business implementation code below) to prevent the whiteboard from responding to user operations.
+ 
+* Screen
 
-由于不同用户的屏幕（白板）宽高比例可以不一致，所以为了保证能够显示主播端的所有内容，sdk 会在观众端主动进行缩放（同步的是视野，而非缩放比例——zoomScale），保证主播屏幕中的所有内容都能被观众看到。
+Since the screen (whiteboard) width and height ratios of different users can be inconsistent, in order to ensure that all content on the host can be displayed, SDK will actively zoom in on the viewer (the field of view is synchronized, not the zoom ratio-zoomScale) to ensure the screen Everything in can be seen by viewers.
 
 ![perspective](/screenshot/perspective.jpeg)
 
-### 自由模式
+### Free Mode
 
-当房间不存在时主播，所有人均为自由视角。该状态不同步视野位置，只会将内容同步给所有用户。
+When the room does not exist, the anchor, everyone has a free perspective. This state does not synchronize the view position, and only synchronizes the content to all users.
 
->当用户处于跟随模式时，进行任何操作（缩放，移动，笔画操作），都会自动切换成自由视角。  
+> When the user is in the follow mode, any operation (zoom, move, stroke operation) will automatically switch to free view.
 
-## 业务实现<span class="anchor" id="implement">
+## BUSINESS IMPLEMENTATION <span class = "anchor" id = "implement">
 
-开发者在客户端，自行区分主播端与跟随端，也可以提供按钮功能，让用户选择切换。
+On the client side, the developer can distinguish between the anchor and the follower, and can also provide a button function to let users choose to switch.
 
-### 主播端
+### Anchor
 
-* 在主播用户进入房间时，主动设置。
-* 在用户主动选择成为主播时，再进行调用。
+* Actively set when the anchor user enters the room.
+* Recall when the user actively chooses to become the anchor.
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Web-->
@@ -71,48 +71,48 @@ room.setViewMode(ViewMode.Broadcaster);
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-### 观众端
+### Audience
 
-观众端业务实现，是基于`主播`模式用户已存在的前提。
+The realization of the viewer service is based on the premise that the user of the anchor mode already exists.
 
->在主播端设置主播时，房间中其他用户，都会切换为跟随者模式，新加入用户的视角模式，也会是跟随者模式。
+> When the anchor is set on the anchor, other users in the room will switch to follower mode, and the perspective mode of newly added users will also be follower mode.
 
-在当前业务场景（无互动）中，不需要观众通过操作变成`自由`模式。这里通过调用白板的`禁止操作API`来达到目的。  
-*如果主播与观众端固定不变，且观众端无操作需求，可以在加入房间时就调用`禁止操作API`*
+In the current business scenario (no interaction), viewers are not required to become `free` mode through operation. This is achieved by calling the `Forbidden Operation API` of the whiteboard.
+* If the anchor and the viewer are fixed and there is no operation requirement on the viewer, you can call the `Prohibited Operation API` when joining the room *
 
-* 禁止操作 API，可以分为`禁止教具操作`，`禁止视角变化`（移动缩放）两个 API，以下为各端 API 文档链接：
+* Forbidden operation API can be divided into `Prohibited teaching aid operation`,` Forbidden perspective change` (mobile zoom) two APIs, the following is the API documentation link at each end:
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Web/Typescript-->
 <br>
-[白板操作-禁止操作:disableOperations](/docs/javascript/guides/js-operation#disableOperations)：该 API 同时调用了以下两个 API。  
-[教具使用-禁止教具操作:disableDeviceInputs](/docs/javascript/guides/js-tools#disableDeviceInputs)  
-[视角操作-禁止视角变化:disableCameraTransform](/docs/javascript/guides/js-view#disableCameraTransform)
+[Whiteboard operation -> Disable operation: disableOperations](/docs/javascript/guides/js-operation#disableOperations): This API calls the following two APIs at the same time.
+[Teaching aid use -> Disable teaching aid operation: disableDeviceInputs](/docs/javascript/guides/js-tools#disableDeviceInputs) 
+[View operation -> Disable view change: disableCameraTransform](/docs/javascript/guides/js-view#disableCameraTransform)
 <!--iOS/Objective-C-->
 <br>
-[白板操作-禁止操作:disableOperations](/docs/ios/guides/ios-operation#disableOperations)：该 API 同时调用了以下两个 API。  
-[教具使用-禁止教具操作:disableDeviceInputs](/docs/ios/guides/ios-tools#disableDeviceInputs)  
-[视角操作-禁止视角变化:disableCameraTransform](/docs/ios/guides/ios-view#disableCameraTransform)
+[Whiteboard operation -> Disable operation: disableOperations](/docs/ios/guides/ios-operation#disableOperations): This API calls the following two APIs at the same time.
+[Teaching aid use -> Disable teaching aid operation: disableDeviceInputs](/docs/ios/guides/ios-tools#disableDeviceInputs)
+[View operation -> Disable view change: disableCameraTransform](/docs/ios/guides/ios-view#disableCameraTransform)
 <!--Android/Java-->
 <br>
-[白板操作-禁止操作:disableOperations](/docs/ios/guides/js-operation#disableOperations)：该 API 同时调用了以下两个 API。  
-[教具使用-禁止教具操作:disableDeviceInputs](/docs/ios/guides/js-tools#disableDeviceInputs)  
-[视角操作-禁止视角变化:disableCameraTransform](/docs/ios/guides/js-view#disableCameraTransform)
+[Whiteboard operation -> Disable operation: disableOperations](/docs/ios/guides/js-operation#disableOperations): This API calls the following two APIs at the same time.
+[Use of teaching aids -> Disable teaching aids operation: disableDeviceInputs](/docs/ios/guides/js-tools#disableDeviceInputs) 
+[View operation -> Disable view change: disableCameraTransform](/docs/ios/guides/js-view#disableCameraTransform)
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-#### 调用 `禁止操作`API 时机：
+#### When to call the `Forbidden Operation` API:
 
-1. 在观众端用户进入时主动设置（主播已存在）。
-1. 当有用户成为主播，其他用户自动切换为`跟随`模式。
+1. Actively set when the audience user enters (anchor already exists).
+1. When a user becomes the anchor, other users automatically switch to `follow` mode.
 
->后者请阅读各端`状态管理`文档，在房间状态发生改变的回调中，调用`禁止操作`API。
+> For the latter, please read the `State Management` document on each side. In the callback where the room status changes, call the` Forbidden Operation` API.
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Web-->
 ```js
 room.disableOperations = true;
 
-//可以再次主动设置为跟随模式，防止用户中间进行过操作，切换成了自由模式
+// Can be actively set to follow mode again to prevent users from performing operations in the middle and switch to free mode
 //typescript
 room.setViewMode(ViewMode.Follower);
 //javascript
@@ -122,14 +122,14 @@ room.setViewMode("follower");
 ```Objective-C
 [room disableOperations:YES];
 
-//可以再次主动设置为跟随模式，防止用户中间进行过操作，切换成了自由模式
+// Can be actively set to follow mode again to prevent users from performing operations in the middle and switch to free mode
 [room setViewMode:WhiteViewModeFollower];
 ```
 <!--Android/Java-->
 ```Java
 room.disableOperations(true);
 
-//可以再次主动设置为跟随模式，防止用户中间进行过操作，切换成了自由模式
+// Can be actively set to follow mode again to prevent users from performing operations in the middle and switch to free mode
 room.setViewMode(ViewMode.Follower);
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->

@@ -1,30 +1,30 @@
 ---
 id: blog-scenes
-title: 场景管理(ppt)
+title: Scene management
 ---
 
-## 新增概念
+## New concepts
 
-### 场景 (scene)
+### scene
 
-为了增强白板的页面管理功能，我们引入一个新概念：**场景**。
-`场景`，就是我们一直在使用的白板的一个页面。
+In order to enhance the page management function of the whiteboard, we introduce a new concept: ** scene **.
+`Scene` is a page of the whiteboard we have been using.
 
-一个`场景`，主要包含 `场景名`，`PPT（背景图）` 两部分。
+A `scene` consists of` scene name` and `PPT (background image)`.
 
-### 场景路径 (scenePath) = 场景目录 + 场景名 
+### scene path (scenePath) = scene directory scene name
 
-当管理多个场景时，我们想要获取到特定的场景，此时就需要 **`场景路径`** 。每一个`场景路径` 指向一个特定的场景。
+When managing multiple scenes, we want to get a specific scene, at this time we need ** `Scene Path` **. Each `scene path` points to a specific scene.
 
-`场景路径`由：`场景目录` 和 `场景名` 组成。前者与`场景`本身无关，与`场景`存放的位置有关。
+The `scene path` consists of:` scene directory` and `scene name`. The former has nothing to do with `scene` itself, and is related to the location where` scene` is stored.
 
->可以迁移资源管理器的知识进行理解。  
-场景->文件  
-场景路径->文件绝对地址  
-场景目录->文件所在的文件夹路径
+> The knowledge of the resource manager can be transferred for understanding.
+Scene-> File
+Scene path-> File absolute address
+Scene directory-> folder path where files are located
 
 
-如下是一组合法的`场景路径`。
+The following is a set of legal `scene paths`.
 
 ```shell
 /init
@@ -36,122 +36,122 @@ title: 场景管理(ppt)
 /Phy/ppt3
 ```
 
-> 如果你熟悉 Unix / Linux 的文件系统，你会发现路径的形式和它们很像。场景就像文件，场景组就像文件夹。我们推荐你这么想象。
+> If you are familiar with the Unix / Linux file system, you will find the paths are similar in form. Scenes are like files, and scene groups are like folders. We recommend that you imagine so.
 
 
-可以看出来，`场景路径`与文件绝对路径相似。
+It can be seen that the `scene path` is similar to the absolute path of the file.
 
-**`场景路径`以 `/` 符分割层级，且一定以 `/` 开始。最右边的层级就是场景的名字。**
+** `Scene Path` is separated by` / `, and must start with` / `. The rightmost hierarchy is the name of the scene. **
 
 
-也可以用以下表示文件结构的形式，来表示这一组场景。
+This set of scenarios can also be represented in the form of the following file structure.
 
 ```shell
-|____init（场景）
-|____Eng（场景目录）
-| |____ppt1（场景）
-| |____ppt3（场景）
-| |____ppt2（场景）
-|____Phy（场景目录）
-| |____ppt1（场景）
-| |____ppt3（场景）
-| |____ppt2（场景）
+| ____ init (scene)
+| ____ Eng (Scene Directory)
+| | ____ ppt1 (scene)
+| | ____ ppt3 (scene)
+| | ____ ppt2 (scene)
+| ____ Phy (Scene Directory)
+| | ____ ppt1 (scene)
+| | ____ ppt3 (scene)
+| | ____ ppt2 (scene)
 ```
 
-### 场景组
+### Scene group
 
-在同一一个`场景目录`下的多个`场景`属于同一个`场景组`。上面的场景，就有如下两个`场景组`；
+Multiple `scenes` in the same `scene directory` belong to the same `scene group`. In the above scenario, there are the following two `Scene Groups`;
 
 - /Phy
 - /Eng
 
-我们可以说 `/Phy` 这个 `场景目录` 下有以下三个`场景`，也可以说 `/Phy` 这个`场景组`，有以下三个`场景`。
+We can say that there are three scenes under the scene directory `/Phy`, or there are three scenes under the scene group `/Phy`.
 
 - /Phy/ppt1
 - /Phy/ppt2
 - /Phy/ppt3
 
->我们推荐，在移动`场景`时，使用`场景目录`的概念，其他时候，都用`场景组`的概念。
+> We recommend that you use the concept of `scene directory` when moving `scene`, and other times, use the concept of `scene group`.
 
-### 场景路径的唯一性
+### Uniqueness of scene path
 
-#### 场景路径指向唯一一个白板
+#### The scene path points to the only whiteboard
 
-每一个场景路径，指向一个唯一的一个场景。
+Each scene path points to a unique scene.
 
-使用移动，复制，插入场景 API 时，如果传入的路径已经存在一个特定的场景，该场景会被新的场景所覆盖。
+When using the Move, Copy, and Insert Scene APIs, if a specific scene already exists in the incoming path, the scene will be overwritten by the new scene.
 
-#### 场景目录与场景路径不能相同
+#### Scene directory and scene path cannot be the same
 
-当白板房间存在一个场景路径为`/Eng/ppt1`的场景时，则不可能存在/接受一个名为`/Eng`的场景。因为`场景路径`由`场景目录`与`场景名`组成。
-如果发生该情况，则会插入失败。
+When a scene with a scene path of `/ Eng / ppt1` exists in the whiteboard room, it is impossible to exist / accept a scene named` / Eng`. Because `scene path` is composed of` scene directory` and `scene name`.
+If this happens, the insertion fails.
 
 ---
 
 ## API
 
-本文档涉及的 API，都是白板 `Room` (iOS：`WhiteRoom`) 的方法。也可以在sdk 对应文件中进行查看。
+The APIs involved in this document are methods of the whiteboard `Room` (iOS:` WhiteRoom`). It can also be viewed in the corresponding SDK file.
 
-### 获取当前场景信息
+### Get current scene information
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Web/Typescript-->
 ```Typescript
 let scenceState = room.state.sceneState;
 
-/* scenceState 的数据结构
+/* scenceState Data structure
 {
-    //当前场景的场景路径
+    // Scene path of current scene
     scenePath: "/Phy/ppt1",
-    //场景组，（同一场景目录下的所有场景）
-    scenes: [{
-        name: "ppt1",
-        //（ppt 为可选值，此处都没有 ppt 属性）
-    }, {
-        name: "ppt2",
-    }, {
-        name: "ppt3",
-    }],
-    //当前场景，在场景组列表里面的索引位置
-    index: 0,
+    // Scene group, (all scenes in the same scene directory)
+    scenes: [{
+        name: "ppt1",
+        // (ppt is optional, there is no ppt attribute here)
+    }, {
+        name: "ppt2",
+    }, {
+        name: "ppt3",
+    }],
+    // The current scene, the index position in the scene group list
+    index: 0,
 }
 */
 ```
 <!--iOS/Objective-C-->
 ```Objective-C
 @interface WhiteRoom : NSObject
-/** 获取当前场景状态 */
+/** Get the current scene state */
 - (void)getSceneStateWithResult:(void (^) (WhiteSceneState *state))result;
 
-/** 获取当前场景目录，所有场景信息 */
+/** Get current scene directory, all scene information */
 - (void)getScenesWithResult:(void (^) (NSArray<WhiteScene *> *scenes))result;
 @end
 ```
 <!--Android/Java-->
 ```Java
 //Room.Java
-/** 获取当前场景状态 */
+/** Get the current scene state */
 public void getSceneState(final Promise<SceneState> promise)
-/** 获取当前场景目录，所有场景信息 */
+/** Get current scene directory, all scene information */
 public void getScenes(final Promise<Scene[]> promise) 
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-通过以上 API，获取当前场景信息内容，具体内容结构，可以在各 SDK 中查看结构。
+Through the above API, get the current scene information content, and the specific content structure, you can view the structure in each SDK.
 
-### 设置当前场景
+### Set the current scene
 
-当前场景代表白板房间内，所有人看到的页面。
+The current scene represents the page everyone sees in the whiteboard room.
 
-创建一个白板房间时，会有一个名为 `init` 的默认`场景`。他的`场景目录`则是 `/`，他的`场景路径` 则是 `/init`。
+When creating a whiteboard room, there will be a default `scene` named `init`. His `Scene Directory` is `/`, and his `Scene Path` is `/init`.
 
-如果要修改当前场景，移动到另外一个场景，则只需要调用以下 API，传入想要`场景`的`场景路径`即可。
+If you want to modify the current scene and move to another scene, you only need to call the following API and pass in the scene path of the scene you want.
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Web/Typescript-->
 ```js
-// 其中，room 是你通过 whiteWebSdk.joinRoom(...) 获取的房间对象
-// 该方法的参数为你想切换到的场景路径
+// where room is the room object you got through whiteWebSdk.joinRoom (...)
+// The parameter of this method is the scene path you want to switch to
 room.setScenePath("/phy/ppt1");
 
 ```
@@ -176,12 +176,12 @@ room.setScenePath:"/Phy/ppt1";
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
->当切换 API 没有反应，或者回调中报错，有可能是以下情况：
->1. 路径不合法。请阅读之前的章节，确保输入了`场景路径`符合规范（以 `/`开头）。
->2. 路径对应的`场景`不存在。
->3. 路径对应的是`场景目录`。注意`场景目录`和场景是不一样的。
+> When the switching API does not respond, or an error is reported in the callback, the following situations may occur:
+> 1. The path is illegal. Please read the previous section and make sure that the `scene path` input conforms to the specification (begins with `/`).
+> 2. The `scene` corresponding to the path does not exist.
+> 3. The path corresponds to the `scene directory`. Note that `Scene Directory` is not the same as a scene.
 
-### 插入新场景
+### Insert new scene
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Web/Typescript-->
@@ -193,11 +193,11 @@ room.putScenes("/Phy", [{name: "ppt4"}]);
 @interface WhiteRoom : NSObject
 
 /**
- 插入，或许新建多个页面
+ Insert, maybe create multiple pages
 
- @param dir scene 页面组名称，相当于目录
- @param scenes WhiteScence 实例；在生成 WhiteScence 时，可以同时配置 ppt
- @param index 选择在页面组，插入的位置。index 即为新 scence 的 index 位置。如果想要放在最末尾，可以传入 NSUIntegerMax。
+ @param dir scene page group name, equivalent to directory
+ @param scenes WhiteScence instance; ppt can be configured at the same time when generating WhiteScence
+ @param index Select where to insert the page group. index is the index position of the new scence. If you want to put it at the end, you can pass in NSUIntegerMax.
  */
 - (void)putScenes:(NSString *)dir scenes:(NSArray<WhiteScene *> *)scenes index:(NSUInteger)index;
 @end
@@ -207,39 +207,39 @@ room.putScenes("/Phy", [{name: "ppt4"}]);
 ```Java
 //Room.java
 /**
- 插入，或许新建多个页面
+ Insert, maybe create multiple pages
 
- @param dir scene 页面组名称，相当于目录
- @param scenes WhiteScence 实例；在生成 WhiteScence 时，可以同时配置 ppt
- @param index 选择在页面组，插入的位置。index 即为新 scence 的 index 位置。如果想要放在最末尾，可以传入 Integer.MAX_VALUE。
+ @param dir scene page group name, equivalent to directory
+ @param scenes WhiteScence instance; ppt can be configured at the same time when generating WhiteScence
+ @param index Select where to insert the page group. index is the index position of the new scence. If you want to put it at the end, you can pass Integer.MAX_VALUE.
  */
 public void putScenes(String dir, Scene[] scenes, int index)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-插入场景 API，接受三个参数:
+Insert scene API, accepts three parameters:
 
-* dir: `场景目录`，场景想要插入的对应目录位置。
-* scenes: 为需要新建的场景列表。
-* index: scenes 中第一个场景所在的位置。
+* dir: `Scene Directory`, the corresponding directory location where the scene is to be inserted.
+* scenes: list of scenes to be created.
+* index: The location of the first scene in scenes.
 
->传入的`场景目录` (dir) 不能是已存在场景的 `场景路径`。（你不能向文件中插入文件）
+> Incoming `scene directory` (dir) cannot be a 'scene path' of an existing scene. (You cannot insert files into the file)
 
->当新插入的场景，`场景路径`（dir + 场景名）与旧场景的`场景路径`相同时，新`场景`会覆盖旧`场景`。（新文件会覆盖旧文件）
+> When the newly inserted scene, `scene path` (dir scene name) is the same as the` scene path` of the old scene, the new `scene` will overwrite the old` scene`. (New files overwrite old files)
 
-### 重名、移动场景
+### Duplicate name, mobile scene
 
-类似于 Linux，macOS 的 mv 命令。
+Similar to Linux, the mv command for macOS.
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Web/Typescript-->
 ```js
 /**
- 移动/重命名页面
+ Move / rename page
 
- @param source 想要移动的页面的场景路径
- @param target 目标路径。如果是场景目录，则将 source 移入；否则，移动的同时重命名。
+ @param source Scene path of the page you want to move
+ @param target The target path. If it is a scene directory, move the source in; otherwise, rename it while moving.
  */
 room.moveScene("/math/geometry", "/graphics/geometry");
 ```
@@ -247,10 +247,10 @@ room.moveScene("/math/geometry", "/graphics/geometry");
 ```Objective-C
 @interface WhiteRoom : NSObject
 /**
- 移动/重命名页面
+ Move / rename page
 
- @param source 想要移动的页面的绝对路径
- @param target 目标路径。如果是文件夹，则将 source 移入；否则，移动的同时重命名。
+ @param source absolute path of the page you want to move
+ @param target The target path. If it is a folder, move the source in; otherwise, rename it while moving.
  */
 - (void)moveScene:(NSString *)source target:(NSString *)target;
 @end
@@ -260,10 +260,10 @@ room.moveScene("/math/geometry", "/graphics/geometry");
 ```Java
 //Room.Java
 /**
- 移动/重命名页面
+ Move / rename page
 
- @param source 想要移动的页面的场景路径
- @param target 目标路径。如果是场景目录，则将 source 移入；否则，移动的同时重命名。
+ @param source Scene path of the page you want to move
+ @param target The target path. If it is a scene directory, move the source in; otherwise, rename it while moving.
  */
 public void moveScene(String source, String target)
 ```
@@ -271,14 +271,14 @@ public void moveScene(String source, String target)
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 
-### 删除场景
+### Delete scene
 
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Web/Typescript-->
 ```js
 /**
- @param dirOrPath 场景路径，或者是场景目录。如果传入的是场景路径，则移除场景路径。如果传入的是场景目录，则移除场景目录下的所有场景。
+@param dirOrPath Scene path, or scene directory. If a scene path is passed in, the scene path is removed. If the scene directory is passed in, all scenes under the scene directory are removed.
  */
 room.removeScenes("/Phy/ppt4")
 room.removeScenes("/Eng");
@@ -288,7 +288,7 @@ room.removeScenes("/Eng");
 @interface WhiteRoom : NSObject
 
 /**
- @param dirOrPath 场景路径，或者是场景目录。如果传入的是场景路径，则移除场景路径。如果传入的是场景目录，则移除场景目录下的所有场景。
+@param dirOrPath Scene path, or scene directory. If a scene path is passed in, the scene path is removed. If the scene directory is passed in, all scenes under the scene directory are removed.
  */
 - (void)removeScenes:(NSString *)dirOrPath;
 ```
@@ -297,16 +297,15 @@ room.removeScenes("/Eng");
 ```Java
 // Room.java
 /**
- @param dirOrPath 场景路径，或者是场景目录。如果传入的是场景路径，则移除场景路径。如果传入的是场景目录，则移除场景目录下的所有场景。
+@param dirOrPath Scene path, or scene directory. If a scene path is passed in, the scene path is removed. If the scene directory is passed in, all scenes under the scene directory are removed.
  */
 public void removeScenes(String dirOrPath)
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
+You can pass `" / "` to this parameter to clear all scenes in the blank board room.
 
-可以给该参数传入 `"/"`，来清空白板房间内所有场景。
-
->白板房间会至少存在一个场景。
-因此，当你删光白板房间里的最后一个场景时，会立即自动生成一个名为 init，场景路径为"/init"的空白场景。
+> There will be at least one scene in the whiteboard room.
+Therefore, when you delete the last scene in the whiteboard room, a blank scene named init with a scene path of "/ init" will be automatically generated immediately.
 

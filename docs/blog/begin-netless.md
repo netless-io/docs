@@ -1,17 +1,14 @@
 ---
 id: blog-begin-netless
-title: 使用说明
+title: Instructions
 ---
 
-## 一、注册 Netless 账号
+## 1. Register for a Netless Account
 
-   1. 注册地址：[console.herewhite.com](https://console.herewhite.com/zh-CN/register/)
-   2. 注册条件：手机号码、工作邮箱
+   1. Registered address: [console.herewhite.com](https://console.herewhite.com/zh-CN/register/)
+   2. Registration conditions: mobile number, work email
    ![register_page](/img/register_page.jpg)
-       
-## 二、获取 sdkToken
+
+## 2. get sdkToken
 
    ![sdkTokenGet](/img/sdkTokenGet.jpg)
-
-## 三、开启新功能
-
