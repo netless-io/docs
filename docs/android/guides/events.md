@@ -1,13 +1,13 @@
 ---
 id: android-events
-title: 自定义事件
+title: Custom event
 ---
 
-可以使用自定义事件来满足类似 IM 、弹幕、点赞等场景。
+You can use custom events to meet scenarios such as IM, barrage, and like.
 
-Room ， Player（2.0.0-beta15） 均支持自定义事件。Player 不能发送自定义事件，但是支持增加监听，以及移除监听。
+Room, Player (2.0.0-beta15) both support custom events. Player cannot send custom events, but supports adding and removing listeners.
 
-## 注册，移除自定义事件监听
+## Register and remove custom event listeners
 
 ```java
 
@@ -15,18 +15,18 @@ public void addMagixEventListener(String eventName, EventListener eventListener)
 public void removeMagixEventListener(String eventName) ;
 ```
 
-`addMagixEventListener` 和 `removeMagixEventListener` 用来注册和移除自定义事件监听，eventName 为消息类型名称。 `EventListener` 则为收到自定义事件时的处理。
+`addMagixEventListener` and` removeMagixEventListener` are used to register and remove custom event listeners, and eventName is the message type name. `EventListener` is handled when a custom event is received.
 
-## 发送自定义事件（Room only）
+## Sending Custom Events (Room only)
 
 ```Java
 
 public void dispatchMagixEvent(AkkoEvent eventEntry);
 ```
 
-`dispatchMagixEvent` 用来发送 AkkoEvent，AkkoEvent 结构如下：
-- `payload` 为任意可被 JSON 序列化的对象
-- `eventName` 为消息类型名称，同一个房间的所有人都会收到房间内同一个消息类型的消息
+`dispatchMagixEvent` is used to send AkkoEvent. AkkoEvent structure is as follows:
+- `payload` is any JSON serializable object
+- `eventName` is the name of the message type. Everyone in the same room will receive a message of the same type in the room.
 
 ```java
 public class AkkoEvent {
