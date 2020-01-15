@@ -47,6 +47,10 @@ const siteConfig = {
         href: 'https://github.com/netless-io',
         label: 'GitHub',
     },
+    {
+        href: 'https://developer-en.netless.link/',
+        label: '🇬🇧 English',
+    },
   ],
   algolia: {
       apiKey: 'c438dda9f510a0e984c1e0582e03fa62',
