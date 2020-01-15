@@ -3,19 +3,11 @@ id: js-changelog
 title: Version history
 ---
 
-## 2.5.3 - 2020-01-07
+## 2.5.4-2020-01-11
 
-> - Fixed a bug where `` plugin.attributes`` sometimes returned empty objects
-> - Fixed an issue where some 2.3.x SDK playback videos could not be played
-
-## 2.5.2 - 2020-01-04
-
-> - Updated plugin function
-
-## 2.5.1 - 2020-01-01
-
-> - Support automatic upgrade
-> - Open beta features
+> - New: API to get all scenes of a room
+> - New: API to determine if a specific address is a scene or a scene group
+> - Fix: After typing beyond the screen boundary, the viewing angle will be wrong
 
 ## 2.3.19 - 2019-12-26
 
@@ -165,3 +157,17 @@ However, it cannot be interconnected with an earlier SDK. Connect with Android 2
 
 > For customers connected before 2019.06.24, when upgrading to this version, please contact the SDK team to confirm that the server is pointing to the version.
 > Read more [2.0.0 official release](blog/2019/06/22/release-note.md)
+
+# Expired version
+
+## 2.5.3-2020-01-07 (expired)
+
+> - Fixed `plugin.attributes` sometimes returning empty objects
+> - Fixed the problem that some 2.3.x SDK playback videos cannot be played
+## 2.5.2-2020-01-04 (expired)
+
+> - Updated plugin functionality
+## 2.5.1-2020-01-01 (expired)
+
+> - Support automatic upgrade
+> - Open beta features

@@ -5,6 +5,24 @@ title: Document to Web
 
 Dynamic document conversion is a service that converts files in pptx format into web pages.
 
+## List of Features Not Supported by Document to Web
+
+The pptx features currently known to be unsupported are as follows:
+
+1. wps files are not supported, and files converted from wps to pptx are not guaranteed to parse successfully
+2. Does not support gradient rendering
+3. The punctuation at the end of the text line is not supported beyond the text box (will cause word wrap)
+4. Does not support word art
+5. Charts such as histograms are not supported
+6. Graphics created through the SmartArt feature are not supported
+7. Does not support transition effects when page switching
+8. Text animation and action drawing are not supported (that is, one animation per line in the text box)
+9. Does not support images in emf or wmf format
+10. Does not support most animation effects such as dissolve, checkerboard, etc. Currently only fade-in and fade-out effects are available.
+11. If the conversion result font is missing, you can use the custom font function in SDK or contact us
+
+Document to web page is undergoing research and development iterations, and the above list will be continuously updated
+
 > Compared to static document conversion, dynamic document conversion retains the sequence animation in the ppt file and provides switching control functions.
 > The dynamic `ppt` is based on the` Microsoft Office` specification and cannot guarantee that WPS files can be parsed correctly.
 
