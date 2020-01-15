@@ -48,7 +48,7 @@ const siteConfig = {
       label: 'GitHub',
     },
     {
-      href: 'https://developer.herewhite.com/',
+      href: 'https://developer.netless.link/',
       label: '🇨🇳 中文',
   },
   ],
