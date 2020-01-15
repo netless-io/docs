@@ -62,7 +62,7 @@ yarn add @netless/white-audio-plugin
         width: 480, // 插入视频组件的宽
         height: 270, // 插入视频组件的高
         attributes: {
-            pluginAudioUrl: url, // 插入视频的网络地址，注意调试的时候资源允许跨域访问
+            pluginVideoUrl: url, // 插入视频的网络地址，注意调试的时候资源允许跨域访问
         },
     });
     // 6、插入音频 plugin （字段同上）
