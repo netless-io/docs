@@ -5,7 +5,7 @@ title: replay
 
 ## Start Replay
 
-> Prerequisites for replay: When creating a room, you must declare mode to historied so that the room will perform cloud recording.
+> Prerequisites for replay. When creating a room, you should declare the mode to `historied` so that the room will perform cloud recording.
 
 ```js
 var roomUUID = "..."; // required，The uuid of the replay room.
@@ -24,19 +24,19 @@ whiteWebSdk.replayRoom({
 })
 ```
 
-## Stop Replay
+## Stop The Replay
 
 ```js
 player.stop();
 ```
 
-After calling the `stop` API, the` player` resource will be cast and cannot be played again. If you need to replay, you need to use the `sdk` to call the` replayRoom` method to regenerate the `player` instance.
+After calling the `stop` API, the data stored in the `player` will be released and cannot be played any more. If the replay is needed, you should use the `sdk` to call `replayRoom` method to regenerate a new `player` instance.
 
 ## Note
 
 ### Initial exception handling
 
-Initializing the playback room API returns a promise, which may produce errors (wrong room authentication information, audio and video parsing errors), and so on. It needs to be handled in the exception, and at this time, the room initialization fails and needs to be re-initialized.
+Initializing the playback room API returns a promise, which may produce errors (wrong room authentication information, audio or video parsing errors), and so on. It needs to be handled in the exception, and at this time, the room initialization fails and needs to be re-initialized.
 
 ### Playback status processing
 
@@ -44,15 +44,15 @@ Playback needs to obtain resources from the server. When the playback status cha
 
 ### With video playback limitation
 
-Because Safari has strict privacy restrictions, audio and video files with sound cannot be played through code.
-At present, the playback of Safari and iOS needs to be buffered by `player` (check the [playback function] document to understand the playback status), and then allow users to actively click to play.
+Because Safari has strict privacy restrictions, audio and video files with sound cannot be played using the code.
+At present, playback in Safari needs to be buffered by `player` (check the [playback function] document to understand the playback status), and the file can be replayed by clicking.
 
 ### Whiteboard size changes
 
 When the size of the `div` bound by the whiteboard changes, you need to actively call the` refreshViewSize` method of `room`.
 including but not limited to:
 
-1. The size of the `div` changes due to changes in the browser window` window`.
+1. The size of the `div` changes due to changes in the browser window `window`.
 2. Due to business needs, actively adjust the page layout, causing the size of the `div` to change.
 
 After the above situation, the developer needs to manually execute the `room.refreshViewSize ()` method.
