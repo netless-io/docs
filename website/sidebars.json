@@ -83,6 +83,7 @@
       "javascript/features/js-operation",
       "javascript/features/js-events",
       "javascript/features/js-plugin",
+      "javascript/features/js-cursor",
       "javascript/features/js-document",
       "javascript/features/js-replay"
     ],
