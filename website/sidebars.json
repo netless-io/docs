@@ -82,6 +82,7 @@
       "javascript/features/js-state",
       "javascript/features/js-operation",
       "javascript/features/js-events",
+      "javascript/features/js-plugin",
       "javascript/features/js-document",
       "javascript/features/js-replay"
     ],
