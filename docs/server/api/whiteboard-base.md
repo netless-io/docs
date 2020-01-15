@@ -70,6 +70,25 @@ There are two modes of the room: persistent room and replayable room. The room m
 
 ### Get specific whiteboard room Token
 
+`GET /room/{{uuid}}/roomtoken`
+
+* header parameter
+
+Field | Type | Description |
+-|-|-|
+token | string | {{token}} |
+
+* query parameter
+
+Field | Type | Description |
+-|-|-|
+uuid | string | Whiteboard Unique Identifier |
+
+In the response of this request, in the msg field, the required roomToken field can be obtained.
+
+<details>
+    <summary> ** Click to view: get the roomtoken interface in the old version ** </summary>
+
 `POST /room/join?uuid={{uuid}}`
 
 * header parameter
@@ -85,6 +104,9 @@ Field | Type | Description |
 uuid | string | Whiteboard unique identifier |
 
 In the response of this request, in the msg field, the required roomToken field can be obtained.
+
+New and old version interfaces are valid and consistent at the same time, only the urls are different
+</details>
 
 ## Whiteboard information
 
