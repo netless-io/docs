@@ -70,6 +70,24 @@ mode | string | **v2版本参数**；房间类型：`persistent`,`historied` |
 
 ### 获取特定白板 room Token
 
+`GET /room/{{uuid}}/roomtoken`
+
+* header参数
+
+字段 | 类型 | 描述 |
+--  | -- | -- |
+token | string | {{token}}|
+
+* query 参数
+
+字段 | 类型 | 描述 |
+--  | -- | -- |
+uuid | string | 白板唯一标识符 |
+
+该请求的 response 中，在 `msg` 字段中，可以获取到需要的 `roomToken` 字段。
+
+<details>
+<summary>**点击查看：旧版获取 roomtoken 接口**</summary>
 `POST /room/join?uuid={{uuid}}`
 
 * header参数
@@ -85,6 +103,9 @@ token | string | {{token}}|
 uuid | string | 白板唯一标识符 |
 
 该请求的 response 中，在 `msg` 字段中，可以获取到需要的 `roomToken` 字段。
+
+新旧版本接口同时有效且实现一致，仅 url 不同
+</details>
 
 ## 白板信息
 
