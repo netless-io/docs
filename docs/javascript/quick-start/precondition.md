@@ -21,8 +21,8 @@ title: 前提条件
 <html>
     <head>
         <!-- 版本号根据最新版本更改即可 -->
-        <link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.5.5.css">
-        <script src="https://sdk.herewhite.com/white-web-sdk/2.5.5.js"></script>
+        <link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.5.6.css">
+        <script src="https://sdk.herewhite.com/white-web-sdk/2.5.6.js"></script>
         <script>
             //后续实现代码
         </script>
