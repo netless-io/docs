@@ -9,6 +9,10 @@ title: 版本历史
 开源版本，版本在旧版本数字基础上迭代增加。
 
 >迁移：将`import <White-SDK-iOS/WhiteSDK.h>` 更改为 `import <Whiteboard/Whiteboard.h>` 即可。
+## [2.5.8] - 2019-02-03
+- 修复图片替换 API
+- 增加预热器功能，使用最快资源
+- 增加倍速播放 API（详情见 WhitePlayer  `playbackSpeed` 属性，以及 CombinePlayer `playbackSpeed` 属性）
 ## [2.5.7] - 2019-01-13
 - 修复【支持插件系统】的用户，出现无法连接的问题
 ## [2.5.6] - 2019-01-07
