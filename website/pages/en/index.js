@@ -84,16 +84,16 @@ class Index extends React.Component {
                         <div className="home-page-cell-icon">
                             <img src={`${siteConfig.baseUrl}img/blog.svg`} />
                         </div>
-                        <a href={`${siteConfig.baseUrl}docs/blog/blog-add-driver`}>
+                        <a href={`${siteConfig.baseUrl}docs/blog/add-driver`}>
                             <div className="home-page-cell-inner">配置云存储</div>
                         </a>
                         <a href={`${siteConfig.baseUrl}docs/blog/debug-center`}>
                             <div className="home-page-cell-inner">在线 debug</div>
                         </a>
-                        <a href={`${siteConfig.baseUrl}docs/blog/blog-begin-netless`}>
+                        <a href={`${siteConfig.baseUrl}docs/blog/begin-netless`}>
                             <div className="home-page-cell-inner">使用说明</div>
                         </a>
-                        <a href={`${siteConfig.baseUrl}docs/blog/blog-broadcast`}>
+                        <a href={`${siteConfig.baseUrl}docs/blog/broadcast`}>
                             <div className="home-page-cell-inner">主播与观众</div>
                         </a>
                     </div>
