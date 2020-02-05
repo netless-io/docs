@@ -1,5 +1,5 @@
 ---
-id: blog-broadcast
+id: broadcast
 title: 主播与观众
 ---
 

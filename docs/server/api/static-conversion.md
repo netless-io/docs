@@ -9,7 +9,7 @@ title: 文档转图片（静态文档转换）
 
 ## 准备工作
 
-### 1. 根据 [配置云存储](/docs/blog/blog-add-driver) 文章，在 [console](https://console.herewhite.com) 中配置云存储
+### 1. 根据 [配置云存储](/docs/blog/add-driver) 文章，在 [console](https://console.herewhite.com) 中配置云存储
 
 ### 2. 在管理控制台上开启静态文档服务
 

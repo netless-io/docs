@@ -11,7 +11,7 @@ https://cloudcapiv4.herewhite.com
 
 ## 全局使用参数
 
-阅读 [接入准备](/docs/blog/blog-begin-netless/)，注册账号，获取该 token。
+阅读 [接入准备](/docs/blog/begin-netless/)，注册账号，获取该 token。
 
 * {{token}} 参数
 

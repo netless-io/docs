@@ -12,7 +12,7 @@ title: 客户端集成
 
 ## 获取 sdkToken
 
-阅读 [接入准备](/docs/blog/blog-begin-netless/)，注册账号，获取 sdk token。
+阅读 [接入准备](/docs/blog/begin-netless/)，注册账号，获取 sdk token。
 
 ## 添加 SDK 到项目中
 

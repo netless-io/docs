@@ -93,11 +93,13 @@
   },
   "blog": {
     "博客": [
-      "blog/blog-glossary",
-      "blog/blog-broadcast",
-      "blog/blog-add-driver",
+      "blog/term",
+      "blog/broadcast",
+      "blog/add-driver",
+      "blog/prefetch",
+      "blog/playback-speed",
       "blog/debug-center",
-      "blog/blog-begin-netless"
+      "blog/begin-netless"
     ]
   },
   "server": {
