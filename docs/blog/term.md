@@ -1,6 +1,6 @@
 ---
-id: blog-glossary
-title: 专业名词说明
+id: blog-term
+title: 术语
 ---
 
 ## sdkToken
