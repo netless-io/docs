@@ -1,5 +1,5 @@
 ---
-id: blog-term
+id: term
 title: 术语
 ---
 
