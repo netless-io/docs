@@ -1,5 +1,5 @@
 ---
-id: begin-netless
+id: blog-begin-netless
 title: 使用说明
 ---
 

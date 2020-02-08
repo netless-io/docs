@@ -1,5 +1,5 @@
 ---
-id: playback-speed
+id: blog-playback-speed
 title: 播放速率（三端）
 ---
 

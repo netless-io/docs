@@ -1,5 +1,5 @@
 ---
-id: prefetch
+id: blog-prefetch
 title: 预热器（三端）
 ---
 
