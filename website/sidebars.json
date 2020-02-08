@@ -93,10 +93,12 @@
   },
   "blog": {
     "Blog": [
-      "blog/blog-glossary",
+      "blog/blog-term",
       "blog/blog-broadcast",
       "blog/blog-add-driver",
-      "blog/debug-center",
+      "blog/blog-prefetch",
+      "blog/blog-playback-speed",
+      "blog/blog-debug-center",
       "blog/blog-begin-netless"
     ]
   },

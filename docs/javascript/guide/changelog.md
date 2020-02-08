@@ -3,7 +3,26 @@ id: js-changelog
 title: Version history
 ---
 
-## 2.5.4-2020-01-11
+> - Fixed a bug that caused a large number of invalid requests when the client's sudden network quality deteriorated suddenly.
+> - Fixed a bug where * .d.ts files were not available
+> - Fixed a bug where closing WebSocket may report an error in the console
+
+## 2.5.7-2020-01-22
+
+> - When the client enters an abnormality due to a network problem, it will automatically reconnect to restore the normal state.
+
+## 2.5.6-2020-01-18
+
+> - Fixed: Before onLoadFirstFrame was called back, some methods of Player could not be called and some members could not be modified
+
+## 2.5.5-2020-01-17
+
+> - Added DNS warm-up function
+> - Added the function of player double speed playback
+> - Fixed `` urlInterrupter '' not working
+> - Fixed some abnormal behavior of the gripper tool
+
+## 2.5.4 - 2020-01-11
 
 > - New: API to get all scenes of a room
 > - New: API to determine if a specific address is a scene or a scene group
