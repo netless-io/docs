@@ -21,8 +21,8 @@ Create `index.html` with the following content:
 <html>
     <head>
         <!-- The version number can be changed according to the latest version. -->
-        <link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.5.3.css">
-        <script src="https://sdk.herewhite.com/white-web-sdk/2.5.3.js"></script>
+        <link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.5.8.css">
+        <script src="https://sdk.herewhite.com/white-web-sdk/2.5.8.js"></script>
         <script>
             // Subsequent implementation code
         </script>

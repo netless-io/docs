@@ -1,5 +1,5 @@
 ---
-id: blog-broadcast
+id: broadcast
 title: Anchor and audience
 ---
 

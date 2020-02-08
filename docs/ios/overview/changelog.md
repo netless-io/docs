@@ -9,6 +9,16 @@ title: Version history
 Open source version, the version is iteratively increased based on the old version number.
 
 > Migration: Change `import <White-SDK-iOS / WhiteSDK.h>` to `import <Whiteboard / Whiteboard.h>`.
+## [2.5.8] - 2019-02-03
+- Fix image replacement API
+- Add preheater function to use the fastest resources
+- Added double-speed playback API (see WhitePlayer `playbackSpeed` property and CombinePlayer` playbackSpeed` property)
+## [2.5.7] - 2019-01-13
+- Fixed the problem that users who [support plug-in system] cannot connect
+## [2.5.6] - 2019-01-07
+- Updated audio and video plugins
+- Increased backward compatibility possibilities
+- `Picture blocking function is temporarily unavailable and will be restored in subsequent versions`
 ## [2.5.5]-2019-12-31
 - Optimized audio and video plugins
 - Provide multiple routing options (WhiteSdkConfiguration routeBackup attribute)

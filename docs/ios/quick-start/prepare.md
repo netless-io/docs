@@ -21,12 +21,6 @@ Read [Access Preparation](/docs/blog/blog-begin-netless/), register for an accou
 <br>
 
 <details>
-<summary>安装 Cocoapods（已安装可跳过）</summary>
-
-如果你未接触过 Cocoapods ，我们推荐您阅读 [唐巧的博客-用CocoaPods做iOS程序的依赖管理](https://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/ "用CocoaPods做iOS程序的依赖管理") ，了解我们为何使用 Cocoapods 。另外文章中提及的淘宝源已经不再维护，需要使用 [Ruby-China RubyGems 镜像](https://gems.ruby-china.com/)替换。
-
-如果觉得上面两个文章比较繁琐，可以直接根据我们提供的简要步骤，进行安装。
-* 简要步骤：打开mac自带的 终端(terminal)，然后输入依次执行下述命令。
 
 <summary> Install Cocoapods (installed skippable) </ summary>
 

@@ -4,6 +4,19 @@ title: Version history
 ---
 
 >[The latest version list -> automatic release updates](https://jitpack.io/#duty-os/white-sdk-android)
+## [2.5.4]-2019-02-04
+-Fixed crash issue under VIVO x7 Android 5.0
+-Add server configuration information interface when initializing SDK
+## [2.5.3]-2019-02-04
+-Fix image blocking API
+-Add preheater function, select and enter resources in advance
+-Added whiteboard magnification playback API
+## [2.5.1]-2019-01-13
+-Fixed the problem that users who [support plug-in system] cannot connect
+## [2.5.0]-2019-01-07
+-Optimized audio and video plugins
+-Increased backward compatibility possibilities
+-`Picture blocking function is temporarily unavailable and will be restored in subsequent versions`
 ### [2.4.28] - 2019-12-31
 - Updated audio and video plugins
 - Repair section

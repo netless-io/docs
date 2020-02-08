@@ -1,6 +1,6 @@
 ---
-id: blog-glossary
-title: Glossary
+id: term
+title: Term
 ---
 
 ## sdkToken
