@@ -1,5 +1,5 @@
 ---
-id: blog-scenes
+id: scenes
 title: Scene management
 ---
 

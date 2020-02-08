@@ -1,5 +1,5 @@
 ---
-id: blog-prefetch
+id: prefetch
 title: Prefetch
 ---
 

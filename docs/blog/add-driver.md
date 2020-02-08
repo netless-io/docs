@@ -1,5 +1,5 @@
 ---
-id: blog-add-driver
+id: add-driver
 title: Add storage driver
 ---
 

@@ -1,5 +1,5 @@
 ---
-id: blog-debug-center
+id: debug-center
 title: Only debug
 ---
 

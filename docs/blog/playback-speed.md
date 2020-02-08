@@ -1,5 +1,5 @@
 ---
-id: blog-playback-speed
+id: playback-speed
 title: Playback speed
 ---
 
