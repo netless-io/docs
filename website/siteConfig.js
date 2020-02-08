@@ -42,15 +42,15 @@ const siteConfig = {
     {doc: 'android/overview/android-introduction', label: 'Android'},
     {doc: 'ios/overview/ios-introduction', label: 'iOS'},
     {doc: 'server/overview/server-introduction', label: 'Server'},
-    {doc: 'blog/term', label: '博客'},
+    {doc: 'blog/blog-glossary', label: 'Blog'},
     {
-        href: 'https://github.com/netless-io',
-        label: 'GitHub',
+      href: 'https://github.com/netless-io',
+      label: 'GitHub',
     },
     {
-        href: 'https://developer-en.netless.link/',
-        label: '🇬🇧 English',
-    },
+      href: 'https://developer.netless.link/',
+      label: '🇨🇳 中文',
+  },
   ],
   algolia: {
       apiKey: 'c438dda9f510a0e984c1e0582e03fa62',
@@ -100,6 +100,7 @@ const siteConfig = {
     'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js',
     '/js/code-block-buttons.js',
     "/js/analytic.js",
+    "/js/redirect.js",
     "/js/spec-code.js"
   ],
   stylesheets: ['/css/code-block-buttons.css'],

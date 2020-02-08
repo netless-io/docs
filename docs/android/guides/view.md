@@ -1,36 +1,36 @@
 ---
 id: android-view
-title: 视角操作
+title: Perspective operation
 ---
 
-本文中的 API，都可以在 `Room` 类中查看。本文示例代码中的 `room` 即为 `whiteRoom` 的实例。
+The APIs in this article can be viewed in the `Room` class. The room in the sample code in this article is an example of whiteRoom.
 
-White SDK 提供的白板是向四方无限延伸的。同时也允许用户通过鼠标滚轮、手势等方式移动白板。因此，即便是同一块白板的同一页，不同用户的屏幕上可能看到的内容是不一样的。为了满足，所有用户观看同一内容的需求，本文引入了「`主播模式`」这个概念。
+The whiteboard provided by the White SDK is infinitely extended to the Quartet. At the same time, it also allows users to move the whiteboard by mouse wheel, gestures and other methods. Therefore, even on the same page of the same whiteboard, different users may see different content on the screen. In order to meet the needs of all users to watch the same content, this article introduces the concept of "anchor mode".
 
-## 主播视角
+## Anchor perspective
 
-sdk 支持将房间内的某一个人设为主播（其他用户会自动变成 `观众模式`），该用户屏幕上看到的内容即是其他所有观众看到的内容。
-当主播进行视角的放缩、移动时，其他人的屏幕也会自动进行放缩、移动等操作，来保证，可以观看到主播端所有的可见内容。
+sdk supports setting a certain person in the room as the anchor (other users will automatically change to `Audience Mode`), and what the user sees on the screen is what all other viewers see.
+When the anchor performs zooming and moving of the perspective, other people's screens will also automatically perform zooming and moving to ensure that all visible content on the anchor can be viewed.
 
-* 观众端显示的内容，多于主播端的情况
+**The content displayed by the viewer is more than that of the anchor**
 
-主播模式中，主播所看到的内容，会全部同步到观众端。但是由于观众端屏幕比例可能与主播端不一致。为了完全显示主播端的内容，会进行缩放调整，类似于电影播放时，为了保持原始画面比例并保留原始内容，在某些显示器上，会进行比例缩放，会出现黑边。
+In the anchor mode, all the content that the anchor sees will be synchronized to the audience. However, the screen ratio of the viewer may be inconsistent with that of the anchor. In order to fully display the content of the anchor, zoom adjustment will be performed. Similar to movie playback, in order to maintain the original picture proportion and retain the original content, on some displays, scaling will be performed, and black borders will appear.
 
 ## 视角模式 —— 主播，观众，自由（默认）
 
 ```Java
 public class BroadcastState {
-    // 当前视角模式，有如下：
-    // 1."freedom" 自由视角，视角不会跟随任何人
-    // 2."follower" 跟随视角，将跟随房间内的主播
-    // 2."broadcaster" 主播视角，房间内其他人的视角会跟随我
+    // The current perspective mode is as follows:
+    // 1. "freedom" perspective, the perspective will not follow anyone
+    // 2. "follower" follows the perspective and will follow the anchor in the room
+    // 3. "broadcaster" perspective of the anchor, the perspective of others in the room will follow me
     private ViewMode mode;
 
-    // 房间主播 ID。
-    // 如果当前房间没有主播，则为 undefined
+    // Room anchor ID.
+    // if the current room has no anchor, it is undefined
     private Long broadcasterId;
 
-    // 主播信息，可以自定义，具体参见下面的数据结构
+   // Anchor information, which can be customized, see the data structure below for details
     private MemberInformation broadcasterInformation;
     ... setter/getter
 }
@@ -38,43 +38,43 @@ public class BroadcastState {
 public class MemberInformation {
     // ID
     private Long id;
-    // 昵称
+    // Nick Name
     private String nickName;
-    // 头像 URL
+    // Avatar URL
     private String avatar;
     ... setter/getter
 }
 ```
 
-### 设置视角模式
+### Set perspective mode
 
-* 例子：设置当前用户为主播视角
+* Example: Set the current user's anchor perspective
 
 ```java
-// 主播模式
-// 房间内其他人的视角模式会被自动修改成 follower，并且强制观看你的视角。
-// 如果房间内存在另一个主播，该主播的视角模式也会被强制改成 follower。
-// 就好像你抢了他/她的主播位置一样。
+// anchor mode
+// The perspective mode of other people in the room will be automatically modified to follower, and forced to watch your perspective.
+// If there is another anchor in the room, the anchor's perspective mode will also be forced to change to follower.
+// It's as if you grabbed his / her anchor position.
 room.setViewMode(ViewMode.broadcaster);
 
-// 自由模式
-// 你可以自由放缩、移动视角。
-// 即便房间里有主播，主播也无法影响你的视角。
+// free mode
+// You can freely zoom and move the perspective.
+// Even if there are anchors in the room, the anchor cannot influence your perspective.
 room.setViewMode(ViewMode.freedom);
 
-// 追随模式
-// 你将追随主播的视角。主播在看哪里，你就会跟着看哪里。
-// 在这种模式中如果你放缩、移动视角，将自动切回 freedom模式。
+// follow mode
+// You will follow the anchor's perspective. Where the anchor is watching, you will follow where you are.
+// In this mode, if you zoom in and move the perspective, you will automatically switch back to freedom mode.
 room.setViewMode(ViewMode.follower);
 ```
 
-### 获取当前视角状态
+### Get the current view state
 
 ```Java
 room.getBroadcastState();
 ```
 
-其获取的内容结构，如下图所示
+The content structure obtained by it is shown in the following figure
 ```Java
 public class BroadcastState {
     private ViewMode mode;
@@ -85,32 +85,32 @@ public class BroadcastState {
 }
 ```
 
-## 调整视角
+## Adjust perspective
 
->2.2.0新增 API，2.3.2 增加动画选项；回放 replay 与 实时房间 room 都支持该 API
+> 2.2.0 added API, 2.3.2 added animation option; playback replay and real-time room room support this API
 
 ```Java
 public class Displayer {
-    // 调整视角中心
+    // Adjust perspective center
     public void moveCamera(CameraConfig camera);
-    // 调整视觉矩形
+    // Adjust visual rectangle
     public void moveCameraToContainer(RectangleConfig rectange);
 }
 ```
 
 <span id="moveCamera">
-### 调整视角中心
+### Adjust perspective center
 
-`moveCamera` API，可以用来调整视角，参数均为可选参数。SDK 会根据传入参数，调整视角中心与缩放比例。
+`moveCamera` API can be used to adjust the view angle. The parameters are optional. The SDK adjusts the center of view and the zoom ratio based on the incoming parameters.
 
 ```Java
-// 视角中心移动参数
+// View center movement parameter
 public class CameraConfig extends WhiteObject {
 
     public AnimationMode getAnimationMode() {
         return animationMode;
     }
-    // 默认连续动画，可以设置为瞬间切换
+    // Default continuous animation, can be set to switch instantly
     public void setAnimationMode(AnimationMode animationMode) {
         this.animationMode = animationMode;
     }
@@ -121,7 +121,7 @@ public class CameraConfig extends WhiteObject {
         return centerX;
     }
     
-    //可选参数，如果不填，则不会发生变化
+    // Optional parameter, if not filled, it will not change
     public void setCenterX(Double centerX) {
         this.centerX = centerX;
     }
@@ -130,7 +130,7 @@ public class CameraConfig extends WhiteObject {
         return centerY;
     }
 
-    //可选参数，如果不填，则不会发生变化
+    // Optional parameter, if not filled, it will not change
     public void setCenterY(Double centerY) {
         this.centerY = centerY;
     }
@@ -139,7 +139,7 @@ public class CameraConfig extends WhiteObject {
         return scale;
     }
 
-    //可选参数，如果不填，则不会发生变化，替代 zoomScale
+    // Optional parameter, if not filled, it will not change, instead of zoomScale
     public void setScale(Double scale) {
         this.scale = scale;
     }
@@ -151,11 +151,11 @@ public class CameraConfig extends WhiteObject {
 ```
 
 <span id="moveCameraToContain">
-### 调整视觉矩形
+### Adjust visual rectangle
 
-除了调整视角中心，SDK 还提供调整视觉矩形API。
+In addition to adjusting the perspective center, the SDK also provides an API for adjusting the visual rectangle.
 
-> 视觉矩形表示你的视角必须容纳的区域。当你设置好视觉矩形后，视角会自动调整到刚好可以完整展示视觉矩形所表示的范围。
+> The visual rectangle indicates the area your viewing angle must accommodate. After you set the visual rectangle, the angle of view will automatically adjust to just show the range represented by the visual rectangle.
 
 ```Java
 public class RectangleConfig extends WhiteObject {
@@ -169,7 +169,7 @@ public class RectangleConfig extends WhiteObject {
         this.animationMode = mode;
     }
 
-    // 中心点为初始位置
+    // Center point is initial position
     public RectangleConfig(Double width, Double height) {
         this.width = width;
         this.height = height;
@@ -233,16 +233,16 @@ public class RectangleConfig extends WhiteObject {
 }
 ```
 
-## ppt 铺满当前屏幕
+## ppt fills the current screen
 
 >2.4.22
 
 ```Java
 // displayer.java
-// room player 通用
+// room player use for public
 
 /**
-* 以连续动画的形式，等比例缩放ppt，保证ppt所有内容都在容器内。
+* In the form of continuous animation, the ppt is proportionally scaled to ensure that everything in the ppt is inside the container.
 * @since 2.4.22
 */
 public void scalePptToFit() {
@@ -250,27 +250,27 @@ public void scalePptToFit() {
 }
 
 /**
-* 等比例缩放ppt，保证ppt所有内容都在容器内。
-* @param mode 缩放时，动画行为
+* Scale the ppt equally to ensure that everything in the ppt is inside the container.
+* @param mode Animation behavior when zooming
 * @since 2.4.28
 */
 public void scalePptToFit(AnimationMode mode) {
 
 ```
 
-## 禁止视角变化<span class="anchro" id="disableCameraTransform">
+## Prohibit changes in perspective<span class="anchro" id="disableCameraTransform">
 
->2.2.0 新增 API
+>2.2.0 new API
 
-开发者可以通过如下方法禁止用户手动调整视角（使用鼠标滚轮缩放、Touch 板手势移动，缩放、移动端双指操作移动）。
+Developers can use the following methods to prevent users from manually adjusting the viewing angle (using the mouse wheel to zoom, touchpad gesture movement, zoom, mobile two-finger operation).
 
 ```Java
-// 禁止用户主动改变视野
+// Prevent users from actively changing their vision
 room.disableCameraTransform(true);
-// 恢复用户视野变化权限
+// Restore user vision change permissions
 room.disableCameraTransform(false);
 ```
 
-## 相关文档
+## Related documents
 
-[主播一对多业务实现](/docs/blog/broadcast)
+[Anchor one-to-many service implementation](/docs/blog/blog-broadcast)

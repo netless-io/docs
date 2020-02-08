@@ -1,17 +1,17 @@
 ---
 id: android-declare
-title: 概述
+title: Overview
 ---
 
-熟悉白板的从创建到结束的生命周期，以及事件回调。
+Familiar with the whiteboard's life cycle from creation to end, and event callbacks.
 
-## 流程
+## Process
 
-1. 在 sdk 后台创建账号，并将 SDK 集成如 iOS 项目中
-1. 在 iOS 项目中，创建白板实例，初始化 SDK
-1. 通过与 sdk 业务服务器通讯，在 sdk 服务器端，创建房间
-1. 获得房间 uuid 与 roomToken，调用 sdk 加入房间方法，并传入房间状态回调
+1. Create an account in the SDK background and integrate the SDK into an Android project
+2. In the Android project, create a whiteboard instance and initialize the SDK
+3. Create a room on the sdk server by communicating with the sdk business server
+4. Get the room uuid and roomToken, call sdk to add the room method, and pass in the room status callback
 
 ## Demo
 
-demo 地址： [White-demo-android](https://github.com/duty-os/white-demo-android) 中获取。
+demo url： [White-demo-android](https://github.com/duty-os/white-demo-android)

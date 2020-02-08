@@ -1,190 +1,190 @@
 ---
 id: ios-changelog
-title: 版本历史
+title: Version history
 ---
 
-## `Whiteboard` 版本记录
+## `Whiteboard` Imprint
 
-- 基于 `White-SDK-iOS` 基础上，整理结构，进行开源。
-开源版本，版本在旧版本数字基础上迭代增加。
+-Based on `White-SDK-iOS`, organize structure and open source.
+Open source version, the version is iteratively increased based on the old version number.
 
->迁移：将`import <White-SDK-iOS/WhiteSDK.h>` 更改为 `import <Whiteboard/Whiteboard.h>` 即可。
+> Migration: Change `import <White-SDK-iOS / WhiteSDK.h>` to `import <Whiteboard / Whiteboard.h>`.
 ## [2.5.8] - 2019-02-03
-- 修复图片替换 API
-- 增加预热器功能，使用最快资源
-- 增加倍速播放 API（详情见 WhitePlayer  `playbackSpeed` 属性，以及 CombinePlayer `playbackSpeed` 属性）
+- Fix image replacement API
+- Add preheater function to use the fastest resources
+- Added double-speed playback API (see WhitePlayer `playbackSpeed` property and CombinePlayer` playbackSpeed` property)
 ## [2.5.7] - 2019-01-13
-- 修复【支持插件系统】的用户，出现无法连接的问题
+- Fixed the problem that users who [support plug-in system] cannot connect
 ## [2.5.6] - 2019-01-07
-- 更新音视频插件
-- 增加向后兼容可能性
-- `图片拦截功能暂时不可用，将在后续版本恢复`
-## [2.5.5] - 2019-12-31
-- 优化音视频插件
-- 提供多路由选项（WhiteSdkConfiguration routeBackup 属性）
-## [2.5.4] - 2019-12-26
-- 优化`CombinePlayer`
-- 优化音视频插件
-## [2.5.3] - 2019-12-25
-- 提供显示视频，音频插件的功能（内测功能）
-## [2.5.2] - 2019-12-20
-- 支持动态 ppt 点击动画
-- 新增铺满 ppt API （Displayer scalePptToFit)  
-## [2.5.1] - 2019-12-16
-- 修复新版本`refreshViewSize`失效的问题
-### [2.5.0] - 2019-12-14
-- 增加`NativeReplayer`模块，支持在回放白板内容的同时，同步使用系统`AVPlayer`播放视频。
-- Native 端调用代码开源
-- 提供视野范围限制API
+- Updated audio and video plugins
+- Increased backward compatibility possibilities
+- `Picture blocking function is temporarily unavailable and will be restored in subsequent versions`
+## [2.5.5]-2019-12-31
+- Optimized audio and video plugins
+- Provide multiple routing options (WhiteSdkConfiguration routeBackup attribute)
+## [2.5.4]-2019-12-26
+- Optimized `CombinePlayer`
+- Optimized audio and video plugins
+## [2.5.3]-2019-12-25
+- Provide the function of displaying video and audio plug-in (internal test function)
+## [2.5.2]-2019-12-20
+- Support dynamic ppt click animation
+- Added ppt API (Displayer scalePptToFit)
+## [2.5.1]-2019-12-16
+- Fixed the issue that the new version `refreshViewSize` is invalid
+### [2.5.0]-2019-12-14
+- Added `NativeReplayer` module, which supports to use the system` AVPlayer` to play videos while playing back whiteboard content.
+- Native calling code is open source
+- Provide FOV Limit API
 
-## `White-SDK-iOS` 版本记录
-### [2.4.20] - 2019-12-17
-- 修复2.4.15引入的`refreshViewSize`失效问题
-### [2.4.19] - 2019-12-10
-- 优化断线重连逻辑
-- 优化 iOS 音频播放
-### [2.4.18] - 2019-11-27
-- 兼容 iOS 9
-### [2.4.17] - 2019-11-18
-- 兼容 32 位 CPU（iPhone 5s 之前设备）
-- 修复 disableCameraTransform 时，导致的绘制问题
-### [2.4.16] - 2019-11-08
-- 颜色只支持整型
-### [2.4.15] - 2019-11-04
-- 橡皮擦教具，增加禁止擦除图片选项（初始化房间参数配置）
-- 修复 SDK 初始化时，部分传入参数不生效的问题
-- 提取 Player 与 Room 共有方法，迁移进 Displayer 作为父类实例方法（refreshViewSize, convertToPointInWorld, addMagixEventListener, addHighFrequencyEventListener, removeMagixEventListener）
-### [2.4.14] - 2019-10-29
-- 回放增加 refreshViewSize API
-- 修复了回放时首帧存在快进的问题
-- 修复了文字教具在不同端使用不同字体时，造成的文字截断问题
-### [2.4.13] - 2019-10-28
-- 修复[2.4.12]造成 iOS 9 崩溃的问题
-### [2.4.12] - 2019-10-25
-- 增加高频自定义事件 API
-- 优化部分同步问题
-### [2.4.11] - 2019-10-14
-- 兼容 Xcode10
-### [2.4.10] - 2019-09-20
-- 优化文字排版
-- 修复横竖屏切换时，视角切换行为
-- 文字教具功能适配 iOS 13
-### [2.4.9] - 2019-09-11
-- 优化弱网连接
-- 进入实时房间时，提供更多选项（禁止操作，关闭贝塞尔等）
-- 修正房间背景色 API
-### [2.4.8] - 2019-08-30
-- 优化截图效果
-### [2.4.7] - 2019-08-24
-- 修复回放时，图片替换 API 失效问题
-- 修复带音视频回放时，PlayerPhase 状态变化回调不及时问题
-- 优化带音视频回放效果，支持重复初始化
-- 优化回放同步获取状态 API
-- 修正主播状态信息类型，无主播时，对应信息为空
-- 修复主动断连时，无回调问题
-- 修正断连回调时，出现两次断连回调
-- 修复处于最大缩放比例时，双指移动异常的问题
-- 更新代码注释，添加更多 nullable 注释，优化对 swift 支持
-- demo 添加部分新 API 调用示例
-### [2.4.6] - 2019-08-06
-- 修复部分情况下，用户加入白板，无法立刻看到主播端画面的问题
-### [2.4.4] - 2019-08-02
-- 优化重连逻辑
-### [2.4.1] - 2019-07-31
-- 修复文字教具再次编辑时，无法弹出完整键盘的问题
-- 增加错误日志上传功能
-- 提供关闭日志上传功能接口（默认打开）
-- 优化断线重连功能
-### [2.4.0] - 2019-07-25
-- 增加同步获取实时房间，回放房间状态 API
-- 获取在线成员时，可以同时获取各个用户的教具状态，以及透传的用户信息
-- 支持同步自定义全局状态
-- 支持在本地修改白板背景色（不会同步到其他远端）
-### [2.3.4] - 2019-07-17
-- 适配服务器端动态 PPT，动态 ppt 客户请升级
-### [2.3.3] - 2019-07-12
-- 适配服务器端动态转换新 API
-### [2.3.2] - 2019-07-06
+## `White-SDK-iOS` Release History
+### [2.4.20]-2019-12-17
+- Fixed refreshViewSize invalidation introduced in 2.4.15
+### [2.4.19]-2019-12-10
+- Optimize disconnection reconnection logic
+- Optimized iOS audio playback
+### [2.4.18]-2019-11-27
+- Compatible with iOS 9
+### [2.4.17]-2019-11-18
+- Compatible with 32-bit CPU (pre-iPhone 5s devices)
+- Fixed drawing problem caused by disableCameraTransform
+### [2.4.16]-2019-11-08
+- Color only supports integer
+### [2.4.15]-2019-11-04
+- Eraser, add the option to prohibit erasing pictures (initialize room parameter configuration)
+- Fixed the problem that some incoming parameters do not take effect during SDK initialization
+- Extract the methods shared by Player and Room, and migrate them into Displayer as the parent instance methods (refreshViewSize, convertToPointInWorld, addMagixEventListener, addHighFrequencyEventListener, removeMagixEventListener)
+### [2.4.14]-2019-10-29
+- Added refreshViewSize API for playback
+- Fixed the problem of fast forward in the first frame during playback
+- Fixed the problem of text truncation caused by text teaching aids using different fonts on different ends
+### [2.4.13]-2019-10-28
+-[2.4.12] Fixed an issue that caused iOS 9 to crash
+### [2.4.12]-2019-10-25
+- Added high frequency custom event API
+- Optimize some synchronization issues
+### [2.4.11]-2019-10-14
+- Compatible with Xcode10
+### [2.4.10]-2019-09-20
+- Optimize text layout
+- Fixed the perspective switching behavior when switching between horizontal and vertical screens
+- Text function adapted to iOS 13
+### [2.4.9]-2019-09-11
+- Optimize weak network connection
+- More options when entering live room (prohibited operation, close Bezier, etc.)
+- Fixed room background color API
+### [2.4.8]-2019-08-30
+- Optimize screenshot effect
+### [2.4.7]-2019-08-24
+- Fixed the problem of invalid image replacement API during playback
+- Fixed the problem that PlayerPhase status change callback is not timely during audio and video playback
+- Optimize audio and video playback effect, support repeated initialization
+- Optimized playback synchronization to get status API
+- Fixed the type of anchor status information, when there is no anchor, the corresponding information is empty
+- Fixed the problem of no callback when actively disconnecting
+- Fixed two disconnection callbacks when disconnecting callbacks
+- Fixed an issue where two fingers moved abnormally at the maximum zoom ratio
+- Updated code comments, added more nullable comments, optimized support for swift
+- Demo adds some new API call examples
+### [2.4.6]-2019-08-06
+- Fixed the problem that the user cannot see the screen of the host immediately after joining the whiteboard in some cases
+### [2.4.4]-2019-08-02
+- Optimize reconnection logic
+### [2.4.1]-2019-07-31
+- Fixed the problem that the full keyboard cannot pop up when editing text teaching aids again
+- Add error log upload function
+- Provide interface to close log upload function (open by default)
+- Optimize disconnection and reconnect function
+### [2.4.0]-2019-07-25
+- Added API for real-time room synchronization and playback of room status
+- When acquiring online members, you can simultaneously obtain the tool status of each user, as well as transparent user information
+- Support for synchronizing custom global status
+- Support to modify the background color of the whiteboard locally (not synchronized to other remote ends)
+### [2.3.4]-2019-07-17
+- Adapt to server-side dynamic PPT, dynamic ppt customers please upgrade
+### [2.3.3]-2019-07-12
+- Adapt server-side dynamic conversion new API
+### [2.3.2]-2019-07-06
 #### Add
-- 支持阿里云跨域图片
-### [2.3.0] - 2019-07-04
+- Support Alibaba Cloud cross-domain images
+### [2.3.0]-2019-07-04
 #### Add
-- 增加场景预览截图 API
-- 增加场景封面截图 API
-- 增加使用 index 切换场景 API
+- Added scene preview screenshot API
+- Added scene cover screenshot API
+- Added use of index to switch scene API
 
-### [2.2.2] - 2019-07-02
+### [2.2.2]-2019-07-02
 #### Fix
-- 修复 swift 环境下调用时，回放命令失效的问题
-### [2.2.0] - 2019-07-01
+- Fixed the issue that playback command fails when called in swift environment
+### [2.2.0]-2019-07-01
 #### Add
-- 增加文档转换 API，初始化时，支持自定义动态PPT 中字体链接
-- 增加动态PPT 控制 API
-- 增加视角控制 API
+- Add document conversion API, support font link in custom dynamic PPT during initialization
+- Add dynamic PPT control API
+- Added perspective control API
 
-### [2.1.3] - 2019-06-24
+### [2.1.3]-2019-06-24
 #### Fix
-- 恢复只读 API（后续将拆分为两个 API）
+- Restore read-only API (separated into two APIs later)
 
-### [2.1.2] - 2019-06-24
+### [2.1.2]-2019-06-24
 #### Fix
-- 兼容旧版本的静态 ppt 回放
+- Compatible with older versions of static ppt playback
 
-### [2.1.0] - 2019-06-22
-#### <span style="color:red">兼容性变化</span>
-与之前版本 API 兼容，但是无法与低版本互连，进入同一房间。
-可以与 Android 2.0.0 正式版，web 2.0.0 正式版互连，无法与 Android 2.0.0-beta 以及 web 2.0.0-beta 开头的版本互连。
+### [2.1.0]-2019-06-22
+#### <span style = "color: red"> Compatibility changes </ span>
+Compatible with previous versions of the API, but cannot interconnect with lower versions to enter the same room.
+It can be interconnected with the official version of Android 2.0.0 and the official version of web 2.0.0. It cannot be interconnected with the versions starting with Android 2.0.0-beta and web 2.0.0-beta.
 
-可以回放 2.0.0 开始的房间，但是无法进入 2.1.0 之前的房间。
+You can play back rooms starting from 2.0.0, but you cannot enter rooms before 2.1.0.
 
->2019.06.24 前接入的客户，在升级至该版本时，请联系 SDK 团队，确认服务器指向版本。  
->更多内容，请查看 [2.0.0正式版发布](/blog/2019/06/22/release-note)
+> Customers accessing before 2019.06.24, when upgrading to this version, please contact the SDK team to confirm that the server is pointing to the version.
+> For more content, please check [2.0.0 official release] (/ blog / 2019/06/22 / release-note)
 #### Fix
-- 修复文字书写位置，被软键盘覆盖的情况下，键盘消失后，白板整体偏移问题。
-- 增加显示版本功能
+- Fixed the problem that the whiteboard was shifted after the keyboard disappeared when the text writing position was covered by the soft keyboard.
+- Add display version function
 
-### [2.0.5] - 2019-06-16
+### [2.0.5]-2019-06-16
 #### Fix
-- 用户头像没有正确缩放
-- 文字教具，键盘无法弹出问题。（开发者目前需要手动管理键盘后，WhiteboardView 中的抖动问题）
+- User avatar is not scaled correctly
+- Text teaching tool, keyboard cannot pop up. (Developers currently need to manually manage keyboard jitter issues in WhiteboardView)
 
-### [2.0.4] - 2019-06-03
+### [2.0.4]-2019-06-03
 #### Add
-- 回放增加自定义事件支持
+- Added custom event support for playback
 #### Fix
-- 修复 2.0.3-ppt 多人进入房间出现报错
+- Fixed 2.0.3-ppt error when multiple people enter the room
 
-### [2.0.3-ppt] - 2019-06-01
-- 支持与 web 端，带动态 ppt 版本连接
-- 修复 2.0.0-ppt 中 pencil 的抖动问题
-- 修复 2.0.0-ppt 中 replay 支持
-- 恢复默认用户头像支持
+### [2.0.3-ppt]-2019-06-01
+- Support connection with web terminal with dynamic ppt version
+- Fix pencil jitter in 2.0.0-ppt
+- Fixed replay support in 2.0.0-ppt
+- Restore default user avatar support
 
-### [2.0.0-ppt] - 2019-05-19
+### [2.0.0-ppt]-2019-05-19
 #### Add
-- 支持与 web 端，带动态 ppt 版本连接
+- Support connection with web terminal with dynamic ppt version
 
-### [2.0.3] - 2019-04-12
+### [2.0.3]-2019-04-12
 #### Add
-- 提供自定义实现用户头像回调参数
-- 提供延时 API
+- Provide custom implementation of user avatar callback parameters
+- Provide delay API
 
-### [2.0.2] - 2019-04-03
+### [2.0.2]-2019-04-03
 #### Add
-- 增加用户信息传入接口
-- 增加显示用户头像功能
-- 增加白板外部坐标转为白板内部坐标
+- Add user information input interface
+- Add user avatar function
+- Add whiteboard external coordinates to whiteboard internal coordinates
 
-### [2.0.1] - 2019-03-13
+### [2.0.1]-2019-03-13
 #### Add
-- 提供清屏 API（封装 API，并非新 API），提供测试代码
-- 修复 Player 的 seek 问题
+- Provide clear screen API (package API, not new API), provide test code
+- Fixed seek issue for Player
 
-### [2.0.0] - 2019-03-10
-#### 兼容性变化
-大版本更新，与过去版本API存在部分不兼容。无法与 1.0 版本进行互联。
+### [2.0.0]-2019-03-10
+#### Compatibility changes
+Major version updates, partly incompatible with past versions of the API. Unable to interconnect with version 1.0.
 #### Add
-- 增加回放 API，并提供回放 API 示例
-- 增加测试用例代码，大部分 API 可以参考测试用例
+- Added playback API and provides examples of playback API
+- Add test case code, most APIs can refer to test cases
 #### Change
-- 修改 PPT 翻页 API，并修改示例代码
+- Modify the PPT page turning API and modify the sample code

@@ -1,42 +1,42 @@
 ---
 id: ios-view
-title: 视角操作
+title: Perspective operation
 ---
 
-本文中的 API，都可以在 `WhiteRoom` 类中查看。本文示例代码中的 `room` 即为 `whiteRoom` 的实例。
+The APIs in this article can be viewed in the `WhiteRoom` class. The room in the sample code in this article is an example of whiteRoom.
 
-White SDK 提供的白板是向四方无限延伸的。同时也允许用户通过鼠标滚轮、手势等方式移动白板。因此，即便是同一块白板的同一页，不同用户的屏幕上可能看到的内容是不一样的。为了满足，所有用户观看同一内容的需求，本文引入了「`主播模式`」这个概念。
+The whiteboard provided by the White SDK is infinitely extended to the Quartet. At the same time, it also allows users to move the whiteboard by mouse wheel, gestures and other methods. Therefore, even on the same page of the same whiteboard, different users may see different content on the screen. In order to meet the needs of all users to watch the same content, this article introduces the concept of "anchor mode".
 
-## 主播视角
+## Anchor perspective
 
-sdk 支持将房间内的某一个人设为主播（其他用户会自动变成 `观众模式`），该用户屏幕上看到的内容即是其他所有观众看到的内容。
-当主播进行视角的放缩、移动时，其他人的屏幕也会自动进行放缩、移动等操作，来保证，可以观看到主播端所有的可见内容。
+sdk supports setting a certain person in the room as the anchor (other users will automatically change to `Audience Mode`), and what the user sees on the screen is what all other viewers see.
+When the anchor performs zooming and moving of the perspective, other people's screens will also automatically perform zooming and moving to ensure that all visible content on the anchor can be viewed.
 
-* 观众端显示的内容，多于主播端的情况
+* The content displayed by the viewer is more than that of the anchor
 
-主播模式中，主播所看到的内容，会全部同步到观众端。但是由于观众端屏幕比例可能与主播端不一致。为了完全显示主播端的内容，会进行缩放调整，类似于电影播放时，为了保持原始画面比例并保留原始内容，在某些显示器上，会进行比例缩放，会出现黑边。
+In the anchor mode, all the content that the anchor sees will be synchronized to the audience. However, the screen ratio of the viewer may be inconsistent with that of the anchor. In order to fully display the content of the anchor, zoom adjustment will be performed. Similar to movie playback, in order to maintain the original picture proportion and retain the original content, on some displays, scaling will be performed, and black borders will appear.
 
-## 视角模式 —— 主播，观众，自由（默认）
+## Perspective mode-anchor, audience, free (default)
 
 ```Objective-C
 typedef NS_ENUM(NSInteger, WhiteViewMode) {
-    // 自由模式
-    // 用户可以自由放缩、移动视角。
-    // 即便房间里有主播，主播也无法影响用户的视角。
+    // free mode
+    // The user can freely zoom and move the perspective.
+    // Even if there are anchors in the room, the anchor cannot influence the user's perspective.
     WhiteViewModeFreedom,
-    // 追随模式
-    // 用户将追随主播的视角。主播在看哪里，用户就会跟着看哪里。
-    // 在这种模式中，如果用户进行缩放、移动视角操作，将自动切回 freedom模式。
+    // follow mode
+    // The user will follow the anchor's perspective. Where the anchor is watching, the user follows.
+    // In this mode, if the user zooms or moves the camera, it will automatically switch back to freedom mode.
     WhiteViewModeFollower,
-    // 主播模式
-    // 房间内其他人的视角模式会被自动修改成 follower，并且强制观看该用户的视角。
-    // 如果房间内存在另一个主播，该主播的视角模式也会被强制改成 follower。
+    // anchor mode
+    // The perspective mode of other people in the room will be automatically changed to follower, and the user's perspective is forced to be viewed.
+    // If there is another anchor in the room, the anchor's perspective mode will also be forced to change to follower.
     WhiteViewModeBroadcaster,
 };
 
-//以下类，只有在 fireRoomStateChanged: 回调事件中，才会使用。
-@interface WhiteBroadcastState : WhiteObject
-//视角模式
+// The following classes are only used in the fireRoomStateChanged: callback event.
+@interface WhiteBroadcastState: WhiteObject
+// View mode
 @property (nonatomic, assign) WhiteViewMode viewMode;
 @property (nonatomic, assign) NSInteger broadcasterId;
 @property (nonatomic, strong) WhiteMemberInformation *broadcasterInformation;
@@ -44,16 +44,16 @@ typedef NS_ENUM(NSInteger, WhiteViewMode) {
 
 ```
 
-### 设置视角模式
+### Set perspective mode
 
-* 例子：设置当前用户为主播视角
+* Example: Set the current user's anchor perspective
 
+```Objective-C
+// Just pass in the enumeration value
+[whiteRoom setViewMode: WhiteViewModeBroadcaster];
 ```
-//只需要传入枚举值即可
-[whiteRoom setViewMode:WhiteViewModeBroadcaster];
-```
 
-### 获取当前视角状态
+### Get the current perspective state
 
 ```Objective-C
 [self.room getBroadcastStateWithResult:^(WhiteBroadcastState *state) {
@@ -61,45 +61,44 @@ typedef NS_ENUM(NSInteger, WhiteViewMode) {
 }];
 ```
 
-## 视角中心同步
+## Perspective center synchronization
 
-同一个房间的不同用户各自的屏幕尺寸可能不一致，这将导致他们的白板都有各自不同的尺寸。实际上，房间的其他用户会将白板的中心对准主播的白板中心（注意主播和其他用户的屏幕尺寸不一定相同）。
+The screen sizes of different users in the same room may be different, which will cause their whiteboards to have different sizes. In fact, other users in the room will align the center of the whiteboard with the anchor's whiteboard (note that the screen size of the anchor and other users may not be the same).
 
-我们需要通过如下方法设置白板的尺寸，以便主播能同步它的视角中心。
+We need to set the size of the whiteboard in the following way so that the anchor can synchronize its perspective center.
 
 ```Objective-C
 [room refreshViewSize];
 ```
 
-尺寸应该和白板在产品中的实际尺寸相同（一般而言就是浏览器页面或者应用屏幕的尺寸）。如果用户调整了窗口大小导致白板尺寸改变。应该重新调用该方法刷新尺寸。
+The size should be the same as the actual size of the whiteboard in the product (generally the size of the browser page or application screen). If the user resizes the window, the size of the whiteboard changes. This method should be called again to refresh the size.
 
-## 调整视角
+## Adjust perspective
 
->2.2.0新增 API，2.2.2 增加动画选项；回放 replay 与 实时房间 room 都支持该 API
-
+> 2.2.0 added API, 2.2.2 added animation option; playback replay and real-time room room support this API
 ```Objective-C
 @interface WhiteDisplayer
-// 调整视角中心
+// Adjust perspective center
 - (void)moveCamera:(WhiteCameraConfig *)camera;
-// 调整视觉矩形
+// Adjust visual rectangle
 - (void)moveCameraToContainer:(WhiteRectangleConfig *)rectange;
 @end
 ```
 
 <span id="moveCamera">
-### 调整视角中心
+### Adjust visual rectangle
 
-`moveCamera` API，可以用来调整视角，参数均为可选参数。SDK 会根据传入参数，调整视角中心与缩放比例。
+`moveCamera` API can be used to adjust the view angle. The parameters are optional. The SDK adjusts the center of view and the zoom ratio based on the incoming parameters.
 
 ```Objective-C
 @interface WhiteCameraConfig : WhiteObject
 @property (nonatomic, strong, nullable) NSNumber *centerX;
 @property (nonatomic, strong, nullable) NSNumber *centerY;
-/** 缩放比例，原先 zoomScale 已弃用 */
+/** Zoom ratio, formerly zoomScale is deprecated */
 @property (nonatomic, strong, nullable) NSNumber *scale;
 /**
- AnimationMode 默认为 AnimationModeContinuous，
- 其他属性，均为可选值，需要使用 NSNumber
+AnimationMode defaults to AnimationModeContinuous,
+ All other attributes are optional and require NSNumber
  */
 @property (nonatomic, assign) AnimationMode animationMode;
 
@@ -107,20 +106,20 @@ typedef NS_ENUM(NSInteger, WhiteViewMode) {
 ```
 
 <span id="moveCameraToContain">
-### 调整视觉矩形
+### Adjust visual rectangle
 
-除了调整视角中心，SDK 还提供调整视觉矩形API。
+In addition to adjusting the perspective center, the SDK also provides an API for adjusting the visual rectangle.
 
-> 视觉矩形表示你的视角必须容纳的区域。当你设置好视觉矩形后，视角会自动调整到刚好可以完整展示视觉矩形所表示的范围。
+> The visual rectangle indicates the area your viewing angle must accommodate. After you set the visual rectangle, the angle of view will automatically adjust to just show the range represented by the visual rectangle.
 
 ```Objective-C
 @interface WhiteRectangleConfig : WhiteObject
 
 - (instancetype)initWithInitialPosition:(CGFloat)width height:(CGFloat)height;
-/** 移动到初始位置，并根据宽高进行缩放 */
+/** Move to the initial position and scale based on width and height */
 - (instancetype)initWithInitialPosition:(CGFloat)width height:(CGFloat)height animation:(AnimationMode)mode;
 
-/** 白板内部坐标，以中心点为初始点，此处 originX: - width / 2，originY: -height /2 */
+/** The internal coordinates of the whiteboard, with the center point as the initial point, here is originX: - width / 2，originY: -height /2 */
 - (instancetype)initWithOriginX:(CGFloat)originX originY:(CGFloat)originY width:(CGFloat)width height:(CGFloat)height;
 - (instancetype)initWithOriginX:(CGFloat)originX originY:(CGFloat)originY width:(CGFloat)width height:(CGFloat)height animation:(AnimationMode)mode;
 
@@ -133,36 +132,36 @@ typedef NS_ENUM(NSInteger, WhiteViewMode) {
 @end
 ```
 
-## ppt 铺满当前屏幕
+## ppt fills the current screen
 
-> [Whiteboard](https://github.com/netless-io/Whiteboard-iOS) 开源版本 2.5.1 新增 API
+> [Whiteboard](https://github.com/netless-io/Whiteboard-iOS) Open source version 2.5.1 adds API
 
 ```Objective-C
 /**
- 将 ppt 等比例铺满屏幕（参考 UIViewContentModeScaleAspectFit ）。
- 该操作为一次性操作，不会持续锁定。
- 如果当前页没有 ppt，则不会进行缩放。
- @param mode 动画参数，连续动画，或者瞬间切换
+ Fill the screen with ppt proportionally (see UIViewContentModeScaleAspectFit).
+ This operation is a one-time operation and does not continue to lock.
+ If the current page does not have ppt, no scaling will occur.
+ @param mode Animation parameters, continuous animation, or instant switching
  */
 - (void)scalePptToFit:(WhiteAnimationMode)mode;
 ```
 
-## 禁止视角变化<span class="anchro" id="disableCameraTransform">
+## Disable perspective changes <span class = "anchro" id = "disableCameraTransform">
 
->2.2.0 新增 API
+> 2.2.0 Added API
 
-开发者可以通过如下方法禁止用户手动调整视角（使用鼠标滚轮缩放、Touch 板手势移动，缩放、移动端双指操作移动）。
+Developers can use the following methods to prevent users from manually adjusting the viewing angle (using the mouse wheel to zoom, touchpad gesture movement, zoom, mobile two-finger operation).
 
 ```Objective-C
-// 禁止用户主动改变视野
-[room disableCameraTransform:YES];
-// 恢复用户视野变化权限
-[room disableCameraTransform:NO];
+// Forbid users from actively changing their vision
+[room disableCameraTransform: YES];
+// Restore user's vision change permissions
+[room disableCameraTransform: NO];
 ```
 
->你仍然通过程序调整视角；用户仍然可以进行笔画等输出操作。
+> You still adjust the angle of view through the program; users can still perform output operations such as strokes.
 
 
-## 相关文档
+## Related documents
 
-[主播一对多业务实现](/docs/blog/broadcast)
+[Anchor one-to-many service implementation](/docs/blog/blog-broadcast)

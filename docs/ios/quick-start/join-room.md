@@ -1,13 +1,13 @@
 ---
 id: ios-join-room
-title: 加入房间
+title: Join room
 ---
 
-在完成创建房间/获取特定房间 RoomToken 操作，拿到房间 UUID 与房间 RoomToken 后，开发者可以调用 `WhiteSDK` `joinRoom` 相关的 API。
+After completing the operation of creating a room / obtaining a RoomToken for a specific room, and getting the room UUID and room RoomToken, the developer can call `WhiteSDK`` joinRoom` related APIs.
 
-本文相关代码，可以在 [Demo](declaration.md#demo) 项目的 `WhiteRoomViewController` 中查看。
+The related code in this article can be viewed in the `WhiteRoomViewController` of the [Demo](declaration.md#demo) project.
 
-## 加入房间
+## Join the room
 
 ```Objective-C
 @import UIKit;
@@ -30,18 +30,18 @@ title: 加入房间
 
 - (void)joinRoomWithToken:(NSString *)roomToken
 {
-    self.title = NSLocalizedString(@"正在连接房间", nil);
+    self.title = NSLocalizedString(@"Connecting room", nil);
     
     WhiteRoomConfig *roomConfig = [[WhiteRoomConfig alloc] initWithUuid:self.roomUuid roomToken:roomToken memberInfo:memberInfo];
     
     [self.sdk joinRoomWithConfig:roomConfig callbacks:self.roomCallbackDelegate completionHandler:^(BOOL success, WhiteRoom * _Nonnull room, NSError * _Nonnull error) {
         if (success) {
-            self.title = NSLocalizedString(@"我的白板", nil);
+            self.title = NSLocalizedString(@"My whiteboard", nil);
             self.room = room;
         } else {
-            self.title = NSLocalizedString(@"加入失败", nil);
-            UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"加入房间失败", nil) message:[NSString stringWithFormat:@"错误信息:%@", [error localizedDescription]] preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *action = [UIAlertAction actionWithTitle:NSLocalizedString(@"确定", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            self.title = NSLocalizedString(@"Join failed", nil);
+            UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Failed to join the room", nil) message:[NSString stringWithFormat:@"Error message:%@", [error localizedDescription]] preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:NSLocalizedString(@"determine", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
                 [self.navigationController popViewControllerAnimated:YES];
             }];
             [alertVC addAction:action];
@@ -53,19 +53,17 @@ title: 加入房间
 @end
 ```
 
-## 主动断开房间
+## Active disconnect room
 
-调用主动断连 API 后，如果想再次加入房间，需要重新创建 SDK 实例，进行连接。room uuid 和 room token，可以保持不变。
+After calling the active disconnect API, if you want to join the room again, you need to re-create the SDK instance to connect. Room uuid and room token can remain unchanged.
 
 ```Objective-C
 [self.room disconnect:^{
-    //断连成功
+    // Disconnected successfully
 }];
 ```
 
-## 效果
+## Effect
 
 
 ![image.png | left | 488x850](/screenshot/iOS_screen.png)
-
-## 相关文档

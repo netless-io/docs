@@ -1,71 +1,71 @@
 ---
 id: js-plugin
-title: 集成白板插件
+title: Plugins
 ---
 
-## 视频、音频插件（支持 mp3 / mp4）
+## Video and audio plugins (supports mp3 / mp4)
 
-**集成前提**
+** Prerequisites for Integration **
 
-> SDK 版本升级到 2.5.4 以上 (iOS 端可以显示的版本为: 2.5.7，Android 端可以显示的版本为： 2.5.1)。
-> 如果插入调用无效，说明是在 2.3.x 的旧版环境，请联系我们切换到支持 plugin 环境（support@netless.link）。 
+> The SDK version is upgraded to 2.5.4 or higher (the version that can be displayed on iOS is 2.5.7, and the version that can be displayed on Android is 2.5.1).
+> If the insert call is invalid, it means that it is in the old environment of 2.3.x, please contact us to switch to the support plugin environment (support@netless.link).
 
-在一个白板上面控制视频、音频的播放、暂停、拖动进度条。效果如下：
+Control video, audio playback, pause, and drag progress bar on a whiteboard. The effect is as follows:
 
-**视频**
+**Video**
 
 <video style="width: 100%" loop="loop" autoplay="autoplay" id="video">
   <source id="mp4" src="https://white-sdk.oss-cn-beijing.aliyuncs.com/video/video_board.mp4">
 </video>
 
 
-**音频**
+**Audio**
 
 <video style="width: 100%" loop="loop" autoplay="autoplay" id="video">
   <source id="mp4" src="https://white-sdk.oss-cn-beijing.aliyuncs.com/video/audio_plugin.mp4">
 </video>
 
-## 安装 cursor-adapter 库
+## Install the cursor-adapter library
 
 ``` bash
 npm install @netless/white-video-plugin -save
 npm install @netless/white-audio-plugin -save
 
-或者
+or
 
 yarn add @netless/white-video-plugin
 yarn add @netless/white-audio-plugin
 ```
 
-## 载入 plugin
+## Load plugin
 
 ```tsx
-    import { WhiteWebSdk, createPlugins } from "white-web-sdk";
-    // 1、引入对应的库 videoPlugin
-    import {videoPlugin} from "@netless/white-video-plugin";
-    // 2、createPlugins 方法可以构造出 plugins
-    const plugins = createPlugins({"video": videoPlugin, "audio": audioPlugin});
-    // 3、setPluginContext 方法可以设置 plugin 谁可以控制
-    plugins.setPluginContext("video", {identity: "host"}); // 如果身份是老师填 host 是学生 guest
-    plugins.setPluginContext("audio", {identity: "host"});
-    // 4、初始化的时候载入 plugins
-    whiteWebSdk = new WhiteWebSdk({plugins: plugins});
+    import {WhiteWebSdk, createPlugins} from "white-web-sdk";
+    // 1.Introduce the corresponding library videoPlugin
+    import {videoPlugin} from "@ netless / white-video-plugin";
+    // 2, createPlugins method can construct plugins
+    const plugins = createPlugins ({"video": videoPlugin, "audio": audioPlugin});
+    // 3, setPluginContext method can set plugin who can control
+    plugins.setPluginContext ("video", {identity: "host"}); // if identity is a teacher, host is a student guest
+    plugins.setPluginContext ("audio", {identity: "host"});
+    // 4.Load plugins during initialization
+    whiteWebSdk = new WhiteWebSdk ({plugins: plugins});
 ```
 
 ## 启用 plugin
 
 ```tsx
-    // 5、插入视频 plugin
+    // 5. Insert video plugin
     room.insertPlugin("video", {
-        originX: 0, // 插入视频的相对位置 originX: 0 originY: 0 是正中间
+        originX: 0, // Relative position of inserted video originX: 0 originY: 0 is exactly in the middle
         originY: 0,
-        width: 480, // 插入视频组件的宽
-        height: 270, // 插入视频组件的高
+        width: 480, // Insert the width of the video component
+        height: 270, // Insert the height of the video component
         attributes: {
-            pluginVideoUrl: url, // 插入视频的网络地址，注意调试的时候资源允许跨域访问
+            pluginVideoUrl: url, // Insert the network address of the video. Note that resources allow cross-domain access when debugging
         },
     });
-    // 6、插入音频 plugin （字段同上）
+   // 6. insert audio plugin (fields are the same as above)
     room.insertPlugin("audio", {
         originX: 0,
         originY: 0,

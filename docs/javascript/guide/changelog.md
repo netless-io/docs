@@ -1,196 +1,192 @@
 ---
 id: js-changelog
-title: 版本历史
+title: Version history
 ---
 
-## 2.5.8 - 2020-02-03
+> - Fixed a bug that caused a large number of invalid requests when the client's sudden network quality deteriorated suddenly.
+> - Fixed a bug where * .d.ts files were not available
+> - Fixed a bug where closing WebSocket may report an error in the console
 
-> - 修复了客户端突发的网络质量变差时，产生大量无效请求的缺陷。
-> - 修复了 *.d.ts 文件不可用的缺陷
-> - 修复了关闭 WebSocket 可能在控制台报错的缺陷
+## 2.5.7-2020-01-22
 
-## 2.5.7 - 2020-01-22
+> - When the client enters an abnormality due to a network problem, it will automatically reconnect to restore the normal state.
 
-> - 当客户端因网络问题，进入异常后，会自动重连以恢复正常状态。
+## 2.5.6-2020-01-18
 
-## 2.5.6 - 2020-01-18
+> - Fixed: Before onLoadFirstFrame was called back, some methods of Player could not be called and some members could not be modified
 
-> - 修复了：在 onLoadFirstFrame 被回调之前，Player 的某些方法无法被调用，某些成员无法被修改
+## 2.5.5-2020-01-17
 
-## 2.5.5 - 2020-01-17
-
-> - 新增了 DNS 预热功能
-> - 新增播放器倍速播放的功能
-> - 修复了 ``urlInterrupter`` 不起作用的问题
-> - 修复了抓手工具的一些异常行为
+> - Added DNS warm-up function
+> - Added the function of player double speed playback
+> - Fixed `` urlInterrupter '' not working
+> - Fixed some abnormal behavior of the gripper tool
 
 ## 2.5.4 - 2020-01-11
 
-> - 新增：获取房间所有场景的 API
-> - 新增：判断特定地址是场景或场景组的 API
-> - 修复：在打字超过屏幕边界后，视角会出现问题
+> - New: API to get all scenes of a room
+> - New: API to determine if a specific address is a scene or a scene group
+> - Fix: After typing beyond the screen boundary, the viewing angle will be wrong
 
 ## 2.3.19 - 2019-12-26
 
-> - 修复部分文字渲染时找不到内容的问题
+> - Fixed the problem that some text could not be found when rendering
 
 ## 2.3.18 - 2019-12-20
 
-> - 支持 mobile端 ppt点击动画
-> - 增加等比例缩放ppt至满屏API (scalePptToFit)
+> - Support mobile ppt click animation
+> - Add proportional scaling ppt to full screen API (scalePptToFit)
 
 ## 2.3.17 - 2019-12-07
 
-> - 动态 ppt 支持超链接跳转
+> - Dynamic ppt support hyperlink jump
 
 ## 2.3.16 - 2019-12-03
 
-> - 修复了若干缺陷
+> - Fixed several bugs
 
 ## 2.3.15 - 2019-11-18
 
-> - 动态 ppt 支持点击动画
+> - Dynamic ppt supports click animation
 
 ## 2.3.12 - 2019-11-02
 
-> - 优化了动态 PPT 的加载过程，优化的渲染性能
-> - 可以禁止橡皮擦除图片
+> - Optimized the loading process of dynamic PPT and optimized rendering performance
+> - Can Eraser Erasing Pictures
 
 ## 2.3.11 - 2019-10-28
 
-> - 修复了回放时首帧存在快进的问题
-> - 修复了文字教具在不同端使用不同字体时，造成的文字截断问题
-> - 修复了 Surface 设备下，图形编辑点错位问题
-> - 优化了场景预览 API，支持不传入宽高的情况
+> - Fixed an issue where the first frame was fast forwarded during playback
+> - Fixed text truncation caused by text teaching aids using different fonts on different ends
+> - Fixed the problem of misaligned graphics editing points on Surface devices
+> - Optimized the scene preview API to support situations where width and height are not passed in
 
 ## 2.3.9 - 2019-10-21
 
-> - 动态 PPT 修复部分文字排版 bug
+> - Dynamic PPT fixes some text typesetting bugs
 
 ## 2.3.6 - 2019-09-30
 
-> - 动态 PPT 优化渲染引擎，提升渲染还原度
+> - Dynamic PPT optimizes rendering engine to improve rendering reduction
 
 ## 2.3.5 - 2019-09-24
 
-> - 修复了动态 PPT 的样式问题
-> - 优化了动态 PPT 的性能
-> - 新增了抓手工具
-> - 优化了性能
+> - Fixed style issues with dynamic PPTs
+> - Optimized the performance of dynamic PPT
+> - Added gripper tool
+> - Optimized performance
 
 ## 2.3.4 - 2019-09-20
 
-> - 优化了动态 PPT 文字排版
-> - 优化了鼠标事件处理逻辑
+> - Optimized dynamic PPT text layout
+> - Optimized mouse event processing logic
 
 ## 2.3.3 - 2019-09-16
 
-> - 动态 PPT 支持文字上下标，修改部分图片无法渲染问题
-> - 修复了修改窗口大小时，视角转化存在问题
+> - Dynamic PPT supports text superscript and subscript, modify some pictures can not render
+> - Fixed issue with perspective conversion when modifying window size
 
 ## 2.3.1 - 2019-09-09
 
-> - 修复了动态 PPT 部分音频无法播放的缺陷
+> - Fixed issue with perspective conversion when modifying window size
 
 ## 2.3.0 - 2019-09-04
 
-> - 支持白板添加边界
-> - 优化了弱网下的体验
-> - 修复了播放器的若干缺陷
+> - Support for whiteboard to add borders
+> - Optimized the experience under the weak net
+> - Fixed several defects of the player
 
 ## 2.2.14 - 2019-08-29
 
-> - 修复了截图在特定设备上截不全的缺陷
-> - 优化笔迹效果
-> - 修复了矩形工具的若干缺陷
-> - 动态 PPT 提供预加载功能
+> - Fixed a bug where screenshots were incomplete on specific devices
+> - Optimize handwriting effect
+> - Fixed several defects of the rectangle tool
+> - Dynamic PPT provides preload function
 
 ## 2.2.13 - 2019-08-24
 
-> - 优化了弱网下的体验
-> - 支持禁止笔迹贝塞尔曲线
-> - 修复了动态 PPT 的若干缺陷
+> - Optimized the experience under the weak net
+> - Support for prohibiting handwriting Bezier
+> - Fixed several defects of dynamic PPT
 
 ## 2.2.12 - 2019-08-15
 
-> - 修复了动态 PPT 的若干缺陷
+> - Fixed several defects of dynamic PPT
 
 ## 2.2.11 - 2019-08-06
 
-> - 修复了缺陷：房间有主播时，新进房间的用户的白板看不到任何东西
-> - 修复了白板排版的缺陷
-> - 兼容 vue start-kit 下白板错位问题
+> - Fixed bug: When there is a host in the room, the whiteboard of the new user cannot see anything
+> - Fixed whiteboard layout defects
+> - Compatible with whiteboard misalignment under vue start-kit
 
 ## 2.2.10 - 2019-08-02
 
-> - 优化了重连的逻辑
+> - Optimized the reconnection logic
 
 ## 2.2.9 - 2019-07-30
 
-> - 修复了多人同时进入房间时，一定几率无法加入房间的缺陷
+> - Fixed a bug where certain people could not join the room when they entered the room at the same time
 
 ## 2.2.8 - 2019-07-25
 
-> - 修复了 Windows 上断线重连的缺陷
+> - Fixed broken link reconnection bug on Windows
 
 ## 2.2.7 - 2019-07-23
 
-> - 修复了无法断线重连的缺陷
-> - 优化了移动端橡皮工具的体验
-> - 修复了动态 PPT 排版的若干缺陷
+> - Fixed the bug that cannot be disconnected and reconnected
+> - Optimized the mobile rubber tool experience
+> - Fixed several defects in dynamic PPT typography
 
 ## 2.2.6 - 2019-07-17
 
-> - 修复了动态 PPT 排版渲染上的一些缺陷
-> - 修复了加入房间时有时找不到教具的缺陷
+> - Fixed some defects on dynamic PPT typography rendering
+> - Fixed bug where sometimes teaching aids could not be found when joining the room
 
 ## 2.2.5 - 2019-07-12
 
-> - 修复了初始化视角可能失败的缺陷
-> - 动态 PPT 修复了一些文字排版的缺陷
+> - Fixed a bug that could fail to initialize the perspective
+> - Dynamic PPT fixes some text typesetting defects
 
 ## 2.2.4 - 2019-07-06
 
-> - 动态 PPT 支持多媒体播放
-> - 动态 PPT 支持更多的动画
-> - 动态 PPT 修复了一些图形渲染的缺陷
+> - Dynamic PPT supports multimedia playback
+> - Dynamic PPT supports more animations
+> - Dynamic PPT fixes some graphics rendering defects
 
 ## 2.2.2 - 2019-07-01
 
-> - 支持选择调整视角的动画模式
-> - 支持渲染场景快照
+> - Support to select the animation mode to adjust the viewing angle
+> - Support for rendering scene snapshots
 
 ## 2.2.1 - 2019-06-29
 
-> - 支持主动调整视角
-> - 支持为动态 PPT 自定义字体文件
-> - 支持禁止镜头、禁止设备输入
+> - Supports active viewing angle adjustment
+> - Support for custom font files for dynamic PPT
+> - Support forbidden lens and device input
 
 ## 2.0.3 - 2019-06-24
 
-> - 修复：在 beta 版录制的回放时 PPT 的尺寸错误
-> - 修复：Preview 的展示区域不会随着屏幕 scale 变化而变化
+> - Fix: PPT size error during playback of beta recordings
+> - Fix: Preview display area does not change with screen scale
 
 ## 2.0.0 - 2019-06-23
 
-正式版与之前beta 版本，API 基本一致。
-但是不能与低版本sdk 进行互联。可与 Android 2.0.0 正式版，以及 iOS 2.1.0 版本进行互联。
+The official version is basically the same as the previous beta version, and the API is basically the same.
+However, it cannot be interconnected with an earlier SDK. Connect with Android 2.0.0 official version and iOS 2.1.0 version.
 
->2019.06.24 前接入的客户，在升级至该版本时，请联系 SDK 团队，确认服务器指向版本。
->更多内容，请查看 [2.0.0正式版发布](blog/2019/06/22/release-note.md)
+> For customers connected before 2019.06.24, when upgrading to this version, please contact the SDK team to confirm that the server is pointing to the version.
+> Read more [2.0.0 official release](blog/2019/06/22/release-note.md)
 
-# 已过期的版本
+# Expired version
 
-## 2.5.3 - 2020-01-07 （已过期）
+## 2.5.3-2020-01-07 (expired)
 
-> - 修复了 ``plugin.attributes`` 有时返回空对象的错误
-> - 修复了某些 2.3.x 版本 SDK 录制的回放录像无法播放的问题
+> - Fixed `plugin.attributes` sometimes returning empty objects
+> - Fixed the problem that some 2.3.x SDK playback videos cannot be played
+## 2.5.2-2020-01-04 (expired)
 
-## 2.5.2 - 2020-01-04 （已过期）
+> - Updated plugin functionality
+## 2.5.1-2020-01-01 (expired)
 
-> - 更新了 plugin 功能
-
-## 2.5.1 - 2020-01-01 （已过期）
-
-> - 支持自动升级
-> - 开放 beta 版的功能
+> - Support automatic upgrade
+> - Open beta features

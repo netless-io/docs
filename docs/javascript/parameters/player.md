@@ -1,22 +1,22 @@
 ---
 id: js-player
-title: 回放参数
+title: Replay parameters
 ---
 
-`room`与`player`实际上，都是内部`displayer`的子类。`TypeScript`签名中，以`///Displayer.d.ts`开头的方法签名，`room`和`player`均可使用。
+`room` and` player` are actually subclasses of the internal `displayer`. In the `TypeScript` signature, the method signatures starting with` /// Displayer.d.ts` can be used in both `room` and` player`.
 
-我们将正在回放过去操作的房间，称为 **回放房间**（`对应类为 player`）。
+We will play back the room that was operated in the past, called ** playback room ** (the corresponding class is player`).
 
-## 初始化 API
+## Initialize the API
 
-### TypeScript 方法签名
+### TypeScript signature
 
 ```typescript
 //WhiteWebSdk.d.ts
 replayRoom(params: ReplayRoomParams, callbacks?: PlayerCallbacks): Promise<Player>;
 ```
 
-### 示例代码
+### Sample
 
 ```js
 whiteWebSdk.replayRoom({
@@ -38,12 +38,12 @@ whiteWebSdk.replayRoom({
 }).then(function(player) {
     window.player = player;
 }).catch((e: Error) => {
-    //初始化回放失败
+    // Failed to initialize playback
     console.log(e);
 });
 ```
 
-## ReplayRoomParams 参数说明
+## ReplayRoomParams parameter Description
 
 ```typescript
 type ReplayRoomParams = {
@@ -58,16 +58,16 @@ type ReplayRoomParams = {
 }
 ```
 
-| 参数 |  描述 | 备注 |
+| parameter |  description | remark |
 | ---- | ---- | --- |
-| **uuid** | 回放房间的 uuid |必填，且房间必须为`可回放模式`|
-| slice | 回放房间 分片地址 |sdk 会根据`beginTimestamp`与`duration`参数，查找对应`room`中的数据，无需填写|
-| **roomToken** | 房间鉴权 token | 必填 |
-| beginTimestamp | 开始回放的 Unix 时间戳（毫秒） | 可选，若不填，则从房间创建时开始回放 |
-| duration | 回放持续时长（毫秒）| 可选，若不填，则持续到最后一次用户全部退出的时间 |
-| mediaURL | 音视频地址（由sdk负责同步播放状态）| 可选，如果有，白板会统一播放进度和播放状态，白板或者媒体文件进入缓冲状态时，都会进行缓冲状态（PlayerPhase进入缓冲状态）|
+| **uuid** | Uuid of playback room | Required, and the room must be in `playable mode`|
+| slice | Playback Room Fragment Address |sdk will find the data in the corresponding room according to the beginTimestamp and duration parameters, no need to fill in|
+| **roomToken** | Room authentication token | require |
+| beginTimestamp | Unix timestamp in milliseconds when playback started | Optional, if not filled, playback will start from room creation |
+| duration |Playback duration (ms)| Optional, if not filled, it will last until the last time all users log out|
+| mediaURL | Audio and video address (sdk is responsible for synchronous playback status)| Optional. If there is, the whiteboard will uniformly play progress and playback status. When the whiteboard or media file enters the buffering state, it will be buffered (PlayerPhase enters the buffering state)|
 
-## PlayerCallbacks 参数说明
+## PlayerCallbacks Parameter Description
 
 ```typescript
 type PlayerCallbacks = {
@@ -84,71 +84,71 @@ type PlayerCallbacks = {
 ### **onHandToolActive**
 
 ```js
-抓手工具激活/取消回调
+Hand tool activation / deactivation callback
 ```
 
 ### **onPPTLoadProgress**
 
-* TypeScript 签名
+* TypeScript signature
 ```typescript
 (uuid: string, progress: number) => void;
 ```
 
 ```js
-ppt 预加载缓存回调，uuid 为 ppt 转换时的 taskId，progress 为 0~1 之间的两位小数。
+ppt preload cache callback, uuid is taskId during ppt conversion, and progress is two decimal places between 0 and 1.
 ```
 
->只有在初始化 SDK 时，`preloadDynamicPPT`，设置为 true 时，该回调才有用。
+> This callback is only useful when the SDK is initialized with `preloadDynamicPPT` set to true
 
 ### **onPhaseChanged**
 
 ```typescript
 export enum PlayerPhase {
-    //初始化后，正在等待回放信息，此时无法做任何操作，无法获取 player.state 信息
+    // After initialization, it is waiting for playback information. At this time, no operation can be performed, and player.state information cannot be obtained.
     WaitingFirstFrame = "waitingFirstFrame",
-    //正在播放
+    // Playing
     Playing = "playing",
-    //暂停
+    // Stop
     Pause = "pause",
-    //中止，无法再次播放，需要重新初始化新的实例
+    // Aborted, unable to play again, new instance needs to be re-initialized
     Stopped = "stop",
-    //播放完成
+    // Play completed
     Ended = "ended",
-    //缓冲中
+    // Buffering
     Buffering = "buffering",
 }
 ```
 
 ```js
-播放器状态变化回调
+Player state change callback
 ```
 
 ### **onLoadFirstFrame**
 
 ```js
-首帧数据加载完成，房间状态由`WaitingFirstFrame`变为其他状态。
+The first frame of data is loaded, and the state of the room changes from `WaitingFirstFrame` to another state.
 ```
 
 ### **onPlayerStateChanged**
 
 ```js
-房间状态发生改变时，会回调该 API。
-该回调返回的`PlayerState`只包含发生变化的房间状态字段。
+This API is called back when the room status changes.
+The `PlayerState` returned by this callback contains only the room state fields that have changed.
 ```
 
 ### **onStoppedWithError**
 
 ```js
-出现错误，播放器中止播放。
+An error occurred and the player stopped playing.
 ```
 
 ### **onScheduleTimeChanged**
 
 ```js
-时间进度回调
+Time progress callback
 ```
 
-## 推荐阅读
+## Recommended reading
 
-1. [状态监听](../features/state.md)
-1. [自定义事件-监听、注销](../features/events.md)
+1. [Status monitoring](../features/state.md)
+1. [Custom events-listen, logout](../features/events.md)

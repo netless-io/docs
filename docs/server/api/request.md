@@ -1,35 +1,35 @@
 ---
 id: server-request
-title: 请求规范
+title: Request specification
 ---
 
-## API 请求域名
+## API request a domain name
 
 ```plain
 https://cloudcapiv4.herewhite.com
 ```
 
-## 全局使用参数
+## Use parameters globally
 
-阅读 [接入准备](/docs/blog/begin-netless/)，注册账号，获取该 token。
+Read [Access Preparation](/docs/blog/blog-begin-netless/), register an account, and get the token.
 
-* {{token}} 参数
+* {{token}} parameter
 
-sdk 服务器，通过 URL 参数中的 token 进行用户验证。
+sdk server, user authentication through token in URL parameter.
 
-* {{roomtoken}} 参数
+* {{roomtoken}} parameter
 
-用户在调用 [获取白板 roomtoken](/docs/server/api/server-whiteboard-base#获取特定白板-room-token) 后得到的参数，用于调用部分房间 api
+The parameter obtained by the user after calling [Get whiteboard roomtoken](/docs/server/api/server-whiteboard-base#获取特定白板-room-token), used to call some room APIs
 
-## 请求格式
+## Request format
 
-对于 POST 和 PUT 请求，请求的主体必须是 JSON 格式，而且 HTTP header 的 Content-Type 需要设置为 `application/json`
+For POST and PUT requests, the body of the request must be in JSON format, and the Content-Type of the HTTP header needs to be set to `application / json`
 
-## 响应格式
+## Response format
 
-对于所有的请求，响应格式都是一个 JSON 对象。
+For all requests, the response format is a JSON object.
 
-一个请求总会包含 code 字段，200 表示成功，成功的响应附带一个 msg 字段表示具体业务的返回内容：
+A request always contains a code field, 200 indicates success, and a successful response is accompanied by a msg field indicating the specific business return content:
 
 ```json
 {
@@ -51,7 +51,7 @@ sdk 服务器，通过 URL 参数中的 token 进行用户验证。
 }
 ```
 
-当一个请求失败时响应的主体仍然是一个 JSON 对象，但是总是会包含 `code` 和 `msg`这两个字段，你可以用它们来进行调试，举个例子：
+When a request fails, the body of the response is still a JSON object, but it always contains the two fields `code` and` msg`. You can use them for debugging. For example:
 
 ```json
 {

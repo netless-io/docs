@@ -1,21 +1,21 @@
 ---
 id: playback-speed
-title: 播放速率（三端）
+title: Playback speed
 ---
 
-## 倍速播放
+## Double speed playback
 
-新增倍率播放 API，可以修改白板回放时的播放速率（暂停后，该属性不会被修改，再次调用播放，该值仍然有效）
+Added the magnification playback API, which can modify the playback rate during whiteboard playback (after pausing, this property will not be modified, and calling playback again, the value is still valid)
 
 ### Web
 
->`player`2.5.8版本，新增`playbackSpeed`属性，可以指定回放时的播放速率。
+> `player` version 2.5.8, add` playbackSpeed` property, you can specify the playback speed during playback
 
-#### 带视频回放
+#### With video playback
 
-目前`player`的`playbackSpeed`属性，暂时只支持白板本身。
-通过回放时，`media`挂载的音视频，暂时不会被`playbackSpeed`影响。
-白板本身是通过`videojs`来操作音视频的，所以可以通过`videojs`的播放器，修改音视频的播放速率。
+Currently, the `playbackSpeed` property of` player` currently only supports the whiteboard itself.
+During playback, the audio and video mounted by `media` will not be affected by` playbackSpeed` for the time being.
+The whiteboard itself operates audio and video through `videojs`, so you can modify the playback rate of audio and video through the` videojs` player.
 
 ```js
 const videoJsId = "white-sdk-video-js";
@@ -26,24 +26,24 @@ mediaPlayer.playbackRate = 1.25;
 
 ### iOS
 
->whiteboard 开源版本 2.5.8 新增 API。
+> Whiteboard open source version 2.5.8 New API.
 
-* 单独白板操作
+* Separate whiteboard operation
 
-如果单独白板播放，直接操作`WhitePlayer.playbackSpeed`即可。同样不支持对在创建回放时，带入的`mediaUrl`音频，进行速率调整。
+If you play on the whiteboard alone, you can directly operate `WhitePlayer.playbackSpeed`. It also does not support rate adjustment of the `mediaUrl` audio that is brought in when creating playback.
 
-* 使用WhiteCombinePlayer同时播放音视频与白板
+* Use WhiteCombinePlayer to play audio and video and whiteboard at the same time
 
-如果使用sdk提供的`WhiteCombinePlayer`来处理音视频+白板同步播放，则设置`WhiteCombinePlayer.playbackSpeed`即可。
+If you use the `WhiteCombinePlayer` provided by the SDK to handle audio and video whiteboard synchronous playback, set` WhiteCombinePlayer.playbackSpeed`.
 
 ### Android
 
->Android 2.5.3 新增 API。
+> Android 2.5.3 new API.
 
-* 白板单独操作
+* Separate whiteboard operation
 
-如果单独白板操作，直接操作`Player.playbackSpeed`。同样不支持对在创建回放时，带入的`mediaUrl`音频，进行速率调整。
+If you operate it on the whiteboard alone, operate `Player.playbackSpeed` directly. It also does not support rate adjustment of the `mediaUrl` audio that is brought in when creating playback.
 
-* 使用PlaySyncManager同时播放音视频与白板
+* Use PlaySyncManager to play audio and video and whiteboard at the same time
 
-首先根据 [android-音视频播放](/docs/android/guides/replay.md#视频支持) 接入并实现 nativePlayer 接口。然后在 nativePlayer 自己实现 seek，在修改音视频播放速率的同时，调用`Player`的`playbackSpeed`API。
+First access and implement the nativePlayer interface according to [android-audio and video playback] (/ docs / android / guides / replay.md # video support). Then in nativePlayer implement seek itself, while modifying the audio and video playback rate, call the `PlaybackSpeed` API of` Player`.

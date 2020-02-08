@@ -1,187 +1,188 @@
 ---
 id: js-outline
-title: 文档大纲
+title: Outline
 ---
 
-本节将各个文档里面列出各个页面的主要内容，方便开发者查询。  
-直接点击三级目录，即可跳转至对应文档。
+This section lists the main content of each page in each document for the convenience of developers.  
+Just click on the third-level directory to jump to the corresponding document.
 
 ---
 
-## 安装指南
+## Installation guide
 
-### [sdk集成](../guide/sdk.md)
-#### sdk 项目
-1. 纯 js
+### [sdk integration](../guide/sdk.md)
+
+#### sdk project
+1. pure js
 2. react-sdk
-#### 导入方式
-1. npm 引入
-2. 手动导入
-#### TypeScript 支持
-1. `.d.ts` 引入
-2. `tsconfig` 配置
+#### Import method
+1. npm
+2. import manually
+#### TypeScript support
+1. `.d.ts` introduce
+2. `tsconfig` configuration
 
-### [版本历史](../guide/changelog.md)
-* 更新记录
+### [Changelog](../guide/changelog.md)
+* Changelog
 
-### [开源项目](../guide/open-source.md)
-* 开源 demo
+### [Open source](../guide/open-source.md)
+* Open source demo
 
-### [快速调试](../guide/debug.md)
-1. 房间加入问题——在线加入房间
-2. 其他调试
-
----
-
-## 快速开始
-
-### [前置条件](../quick-start/precondition.md)
-1. 注册账号，获取`sdkToken`
-### [房间鉴权](../quick-start/token.md)
->生产环境中，应当在服务器端调用
-1. 创建房间
-1. 获取房间信息
-### [实时房间](../quick-start/room.md)
-1. 初始化
-1. 退出
-1. 注意点
-    1. 异常处理
-    1. 注意事项
-1. 线上代码
-### [回放房间](../quick-start/player.md)
-1. 快速播放
-1. 结束播放
-1. 注意事项
-1. 线上代码
+### [Quick debug](../guide/debug.md)
+1. Room Join Problem -> Joining a Room Online
+2. Other debugging
 
 ---
 
-## 初始化参数
+## Quick start
 
-### [SDK参数](../parameters/sdk.md)
-1. 初始化 API
-1. 参数说明
-
-### [房间参数](../parameters/room.md)
-1. 初始化 API
-1. JoinRoomParams 参数说明
-1. RoomCallbacks 参数说明
-
-### [回放参数](../parameters/player.md)
-1. 初始化 API
-1. ReplayRoomParams 参数说明
-1. PlayerCallbacks 参数说明
+### [Condition](../quick-start/precondition.md)
+1. Register for an account and get `sdkToken`
+### [Room authentication](../quick-start/token.md)
+> In a production environment, it should be called on the server side
+1. Create room
+2. Get room information
+### [Real-time room](../quick-start/room.md)
+1. Initialization
+2. Quit
+3. Note
+    1. Exception handling
+    2. Precautions
+4. Online code
+### [Replay room](../quick-start/player.md)
+5. Replay
+6. Stop play
+7. Precautions
+8. Online code
 
 ---
 
-## 功能介绍
+## Initialization parameters
 
-### [教具操作（memberState）](../features/tools.md)
-1. 普通教具
-    1. 种类（画笔，圆，矩形）
-    1. 细节参数（颜色，粗细，文字大小）
-    1. 教具信息
-    1. 橡皮配置选项（初始化参数可选）
-1. 图片
-    1. 图片与背景图区别
-    <!-- 1. 图片显示逻辑（缩放，黑边，铺满等行为） -->
-1. 抓手工具
-    * 初始化参数配置
-1. 禁用教具操作
-    * 初始化参数可选
+### [SDK parameters](../parameters/sdk.md)
+1. Initialize the API
+2. Parameter Description
 
-### [视角操作](../features/view.md)
-1. 白板内部坐标系
-    * 坐标转换 API
-1. 主播模式
-1. 视角模式（概念介绍）
-    1. 主播
-    1. 观众
-    1. 自由
-    * 视角非代码（用户主动）切换逻辑
-1. 刷新宽高数据
-    1. 调用时机（发生后再调用）
-1. 调整视角中心
-    1. 动画
-    1. 回到初始位置
-    1. 缩放
-1. 调整视野范围（视觉矩形）
-    1. 动画
-    1. 铺满 ppt 示例
-1. 锁定视角
-1. 限制视野范围
-    1. 限制视角范围(初始化参数可选)
+### [Room parameters](../parameters/room.md)
+1. Initialize the API
+2. JoinRoomParams
+3. RoomCallbacks
 
-### [页面（场景）操作 API](../features/scenes.md)
-1. 页面
-    * 定义
-1. 页面管理用概念
-    1. 目录——页面分组
-    2. 路径——指定页面
-1. 获取当前 目录/页面信息
-1. 切换页面
-    * 注意点：不生效原因
-1. 翻页（同目录）
-    * 注意点：报错原因
-1. 新增页面
-    * 注意点：不生效原因
-1. 重命名、移动页面
-1. 删除页面
-1. 页面预览
-1. 页面截图
+### [Replay parameters](../parameters/player.md)
+1. Initialize the API
+2. ReplayRoomParams
+3. PlayerCallbacks
 
-### [状态监听](../features/state.md)
-1. 房间状态
-    1. 概念定义
-    1. 类型结构
-        1. DisplayerState 及相关结构
-        1. roomState
-        1. playerState
-1. 获取状态
-1. 监听状态变化
-    1. 实时房间
-    1. 回放房间
+---
 
-### [白板操作](../features/operation.md)
-1. 只读：
-    1. 禁止教具操作
-    1. 禁止视角移动/缩放
-1. 自定义 GlobalState
-1. 缩放
-    1. 禁用缩放
-    1. 用户主动缩放
-    1. API操作
-1. 主动延时
-1. 清屏（link 至页面）
-    1. 保留与不保留背景（PPT）
+## Features
 
-### [自定义事件](../features/events.md)
-1. 发送自定义事件（仅限实时房间）
-    * 注意点
-1. 监听自定义事件
-    1. 普通频率
-    1. 高频事件
-1. 注销自定义监听
+### [Tool operation（memberState）](../features/tools.md)
+1. Ordinary teaching aids
+    1. Type (brush, circle, rectangle)
+    2. Detail parameters (color, thickness, text size)
+    3. Tool information
+    4. Eraser configuration options (optional initialization parameters)
+2. Image
+    1. Difference between picture and background
+    <!-- Image display logic (zoom, black border, fill, etc.) -->
+3. Hand tool
+    * Initial parameter configuration
+4. Disable tool operation
+    * Optional initialization parameters
 
-### [文档转换（word,ppt,pdf等文件）](../features/document.md)
-1. 前提条件（后台开启配置）
-1. 转换任务——sdk 内部提供
-1. 动态 ppt API
-    1. 动画切换
-    1. 自定义字体
+### [Perspective operation](../features/view.md)
+1. Whiteboard internal coordinate system
+    * Coordinate Transformation API
+2. Anchor mode
+3. Perspective Mode (Concept Introduction)
+    1. Anchor
+    2. Audience
+    3. freedom
+    * Perspective non-code (user active) switching logic
+4. Refresh width and height data
+    1. When to call (call it after it happens)
+5. Adjust perspective center
+    1. Animation
+    2. Back to original position
+    3. Zoom
+6. Adjust field of view (visual rectangle)
+    1. Animation
+    2. Padding ppt example
+7. Lock perspective
+8. Limited field of view
+    1. Limiting the viewing angle range (optional initialization parameters)
 
-### [回放功能](../features/replay.md)
+### [Page (scene) operation API](../features/scenes.md)
+1. Page
+    * definition
+2. Page management concepts
+    1. Table of Contents-Page Grouping
+    2. Path-specified page
+3. Get current directory / page information
+4. Switch pages
+    * Note: Reasons for not taking effect
+5. Page turning (same directory)
+    * Note: the reason for the error
+6. Add page
+    * Note: Reasons for not taking effect
+7. Rename, move pages
+8. Delete page
+9. Page preview
+10. Page screenshot
 
-1. 前提条件
-1. 音视频支持
-    1. 音频
-    1. 视频
-    1. 局限性
-        * macOS Safari，iOS 端，禁止代码播放视频，以及 workaround
-1. 回放状态监听
-1. 回放主动操作
-    1. 播放
-    1. 快进
-    1. 暂停
-    1. 切换观察模式
-    1. 中止，释放资源
+### [Status monitoring](../features/state.md)
+1. Room status
+    1. Definition of concept
+    2. Type structure
+        1. DisplayerState and related structures
+        2. roomState
+        3. playerState
+2. Get status
+3. Listening for status changes
+    1. Real-time room
+    2. Replay room
+
+### [Whiteboard operation](../features/operation.md)
+1. Read only：
+    1. Prohibition of tool operation
+    2. Disable perspective movement / zoom
+2. Custom GlobalState
+3. Zoom
+    1. Disable zoom
+    2. User active zoom
+    3. API operations
+4. Active delay
+5. Clear screen (link to page)
+    1. Preserved vs. Unpreserved Background (PPT)
+
+### [Custom event](../features/events.md)
+1. Send custom events (live room only)
+    * Note
+2. Listen for custom events
+    1. Ordinary frequency
+    2. High frequency event
+3. Log out of custom listeners
+
+### [Document conversion (word, ppt, pdf, etc.)](../features/document.md)
+1. Prerequisites (start configuration in the background)
+2. Conversion task-provided by SDK
+3. Dynamic ppt API
+    1. Animation switching
+    2. Custom font
+
+### [Replay function](../features/replay.md)
+
+1. Prerequisite
+2. Audio and video support
+    1. Audio
+    2. Video
+    3. Limitation
+        * MacOS Safari, iOS, prohibit code to play videos, and workaround
+3. Replay status monitoring
+4. Active playback
+    1. Play
+    2. Seek
+    3. Pause
+    4. Switch observation mode
+    5. Abort, cast resources

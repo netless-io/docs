@@ -1,54 +1,54 @@
 ---
 id: prefetch
-title: 预热器（三端）
+title: Prefetch
 ---
 
-Android 2.5.3，iOS 2.5.8 新增 API，web 2.5.8 后，会自动进行预热。
+Android 2.5.3 and iOS 2.5.8 add APIs. After web 2.5.8, it will automatically warm up.
 
 ## Web
 
-预热器在调用初始化时，自动启动。joinRoom 会等待预热器请求完毕后，才执行加入房间操作。
+The preheater starts automatically when the initialization is called. joinRoom waits for the preheater request to complete before performing the join room operation.
 
 ## iOS
 
-新增`WhiteOriginPrefetcher fetchConfigAndPrefetchDomains`API，执行预热器。
-`WhiteOriginPrefetcher`提供单例，调用`fetchConfigAndPrefetchDomains`方法后，可以通过其`prefetchDelgate`属性，来接受三种回调:
+Added `WhiteOriginPrefetcher fetchConfigAndPrefetchDomains` API to execute preheater.
+`WhiteOriginPrefetcher` provides a singleton. After calling the` fetchConfigAndPrefetchDomains` method, you can accept three callbacks through its `prefetchDelgate` property:
 
 ```Objective-C
 @protocol WhiteOriginPrefetcherDelegate <NSObject>
 
-/** 当触发`originPrefetcherFetchOriginConfigsFail:`回调时，说明从服务器获取服务器配置信息失败，预热器停止不再执行操作。此时与服务器连通性不佳，即使加入房间，也可能会比较慢，或者失败 */
+/** When the `originPrefetcherFetchOriginConfigsFail:` callback is triggered, it means that the server configuration information from the server failed to be obtained, and the preheater stops performing operations. At this time, the connection to the server is not good. Even if you join the room, it may be slow or fail */
 - (void)originPrefetcherFetchOriginConfigsFail:(NSError *)error;
 
-/** 当触发`originPrefetcherFetchOriginConfigsSuccess:`回调时，说明预热器成功从服务器获取配置信息，将继续下一步：对获取到的地址，进行连接性测试。（每个域名的请求超时时间为 30s） */
+/** When the `originPrefetcherFetchOriginConfigsSuccess:` callback is triggered, it means that the preheater successfully obtained the configuration information from the server and will continue to the next step: perform a connectivity test on the obtained address. (The request timeout for each domain name is 30s) */
 - (void)originPrefetcherFetchOriginConfigsSuccess:(NSDictionary *)dict;
 
 /**
- 当触发`originPrefetcherFinishPrefetch:`回调时，说明预热器加载完成。回调的`result`（`sdkStrategyConfig`属性）即为每个服务器需要最后的连接情况，在初始化sdk时，将该配置信息传递给`WhiteSdkConfiguration`的`sdkStrategyConfig`属性，即可将 native 预热结果，传递给 sdk。 */
+ When the `originPrefetcherFinishPrefetch:` callback is triggered, the preheater loading is completed. The `result` (`sdkStrategyConfig` property) of the callback is the last connection situation for each server. When the sdk is initialized, the configuration information is passed to the `sdkStrategyConfig` property of` WhiteSdkConfiguration`, which can warm up the result. Passed to sdk. */
 - (void)originPrefetcherFinishPrefetch:(NSDictionary *)result;
 @end
 ```
 
->建议提前进行预热操作，确保在创建 SDK 时，预热行为已经完成。
+> It is recommended to perform the warm-up operation in advance to ensure that the warm-up behavior is completed when the SDK is created.
 
 ## Android
 
-2.5.3 版本
+2.5.3 version
 
-预热器：`com.herewhite.sdk.Utils.PreFetcher` 类。
+Preheater: `com.herewhite.sdk.Utils.PreFetcher` class.
 
-创建实例后，设置实现 `Prefetcher.ResultCallback` 接口的类，在
+After creating the instance, set up a class that implements the `Prefetcher.ResultCallback` interface.
 
 ```Java
     public interface ResultCallback {
 
-//从服务器获取服务器配置信息失败，预热器停止后续操作。
+// Failed to obtain the server configuration information from the server, the preheater stops subsequent operations.
 void fetchOriginConfigFail(Exception exception);
-//说明预热器成功从服务器获取配置信息，将继续下一步：对获取到的地址，进行连接性测试。（每个域名的请求超时时间为 30s），此处JsonObject为从服务器中获取的配置列表。
+// Indicates that the preheater successfully obtained the configuration information from the server, and will continue to the next step: perform a connectivity test on the obtained address. (The request timeout time for each domain name is 30s), here JsonObject is the configuration list obtained from the server.
 void fetchOriginConfigSuccess(JsonObject jsonObject);
-//说明预热器加载完成。回调的`jsonObject`（`sdkStrategyConfig`属性）即为每个服务器需要最后的连接情况，在初始化sdk时，将该配置信息传递给`WhiteSdkConfiguration`的`sdkStrategyConfig`属性，即可将 native 预热结果，传递给 sdk。
+// Indicates that the preheater is loaded. The `jsonObject` (` sdkStrategyConfig` property) of the callback is the last connection situation for each server. When the sdk is initialized, the configuration information is passed to the `sdkStrategyConfig` property of` WhiteSdkConfiguration`, which can warm up the result natively. Passed to sdk.
 void finishPrefetch(JsonObject jsonObject);
 ```
 
-在初始化 SDK 时，将`prefetcher``finishPrefetch`返回的`jsonObject`通过`WhiteSdkConfiguration``setSdkStrategyConfig`方法，传递给 sdk。
->2.5.4版本提供该 API
+When initializing the SDK, pass the `jsonObject` returned by` prefetcher``finishPrefetch` to the sdk via the `WhiteSdkConfiguration` setSdkStrategyConfig` method.
+> 2.5.4 version provides the API

@@ -34,41 +34,41 @@ class Footer extends React.Component {
                 height="58"
               />
             )}
-            <div style={{width: 80, marginTop: 16}}>接入即互动</div>
+            <div style={{width: 80, marginTop: 16}}>Let's interactive.</div>
           </a>
           <div>
-            <h5>产品</h5>
+            <h5>Product</h5>
             <a target="_blank" href="https://console.herewhite.com/">
-              管理控制台
+              Console
             </a>
             <a target="_blank" href="https://netless.link/">
-              官网网站
+              Homepage
             </a>
             <a target="_blank" href="https://demo-rtc.herewhite.com/#/">
-              Demo 体验
+              Demo
             </a>
             <a target="_blank" href="https://github.com/netless-io">
               Github
             </a>
           </div>
           <div>
-            <h5>公司</h5>
+            <h5>Company</h5>
             <a href="mailto:hr@herewhite.com">
-                加入我们
+              Join us
             </a>
-            <a target="_blank" href="https://netless.link/zh-CN/service/">服务条款</a>
+            <a target="_blank" href="https://netless.link/zh-CN/service/">Service</a>
             <a
               href="https://netless.link/zh-CN/privacy/"
               target="_blank">
-              隐私协议
+              Privacy
             </a>
           </div>
           <div>
-            <h5>联系方式</h5>
+            <h5>Contact</h5>
               <a href="mailto:support@netless.link">
                   support@netless.link
               </a>
-            <a href="https://spectrum.chat/netless?tab=posts" target="_blank">社区</a>
+            <a href="https://spectrum.chat/netless?tab=posts" target="_blank">Community</a>
           </div>
         </section>
         <section className="copyright">{this.props.config.copyright}</section>

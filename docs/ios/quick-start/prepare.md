@@ -1,59 +1,59 @@
 ---
 id: ios-prepare
-title: 客户端集成
-sidebar_label: 客户端集成
+title: Client integration
 ---
 
-本文介绍在正式使用白板 SDK 前，需要准备的开发环境。
+This article describes the development environment that needs to be prepared before using the whiteboard SDK formally.
 
-## 前提条件
+## Prerequisites
 
-1. Xcode 10.10+
-1. iOS 9.0+
+1. Xcode 10.10
+1. iOS 9.0
 
-## 获取 sdkToken
+## Get sdkToken
 
-阅读 [接入准备](/docs/blog/begin-netless/)，注册账号，获取 sdk token。
+Read [Access Preparation](/docs/blog/blog-begin-netless/), register for an account, and get the sdk token.
 
-## 添加 SDK 到项目中
+## Add SDK to the project
 
-### 方式一： 使用 Cocoapods 添加
+### Option 1: Add with Cocoapods
 
 <br>
 
 <details>
-<summary>安装 Cocoapods（已安装可跳过）</summary>
 
-如果你未接触过 Cocoapods ，我们推荐您阅读 [唐巧的博客-用CocoaPods做iOS程序的依赖管理](https://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/ "用CocoaPods做iOS程序的依赖管理") ，了解我们为何使用 Cocoapods 。另外文章中提及的淘宝源已经不再维护，需要使用 [Ruby-China RubyGems 镜像](https://gems.ruby-china.com/)替换。
+<summary> Install Cocoapods (installed skippable) </ summary>
 
-如果觉得上面两个文章比较繁琐，可以直接根据我们提供的简要步骤，进行安装。
-* 简要步骤：打开mac自带的 终端(terminal)，然后输入依次执行下述命令。
+If you have n’t come into contact with Cocoapods, we recommend that you go to [docs](https://cocoapods.org/);
+
+If you find the above two articles cumbersome, you can install them directly according to the brief steps we provide.
+* Brief steps: Open the terminal that comes with mac, and then enter and execute the following commands in order.
 
 ```bash
-## 注释：Ruby-China 推荐2.6.x，实际 mac 自带的 ruby 也能用了
+## Note: Ruby-China recommends 2.6.x, the actual ruby ​​that comes with mac can also be used
 gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/
 gem sources -l
-## 注释：上面的命令，应该会输出以下内容，>>> 代表此处为输出
+## Note: The above command should output the following, >>> means here is the output
 >>> https://gems.ruby-china.com
-## 注释：确保只有 gems.ruby-china.com
+## Note: Make sure only gems.ruby-china.com
 
 sudo gem install cocoapods
-## 注释：由于我们不需要使用官方库，所以可以不执行 pod setup。
+## Note: Since we don't need to use the official library, we can not perform pod setup.
 ```
 
 </details>
 
 <br>
 
-#### 使用 Podfile 集成
+#### Using Podfile Integration
 
-1. 创建 Podfile 文件。在 Terminal 里进入项目所在路径，然后输入以下命令行。输入后，项目路径下会出现一个 Podfile 文本文件。
+1. Create a Podfile. Enter the project path in Terminal and enter the following command line. After inputting, a Podfile text file will appear under the project path.
 
-```shell
+`` `shell
 pod init
-```
+`` `
 
-2. 添加 SDK 引用。在项目根目录下的 Podfile 文件中添加如下内容。注意 “Your App” 是你的 Target 名称
+2. Add SDK reference. Add the following to the Podfile in the project root directory. Note "Your App" is your target name
 
 ```ruby
 
@@ -64,23 +64,23 @@ target 'Your App' do
 end
 ```
 
-3. 安装 SDK。
+3. Install the SDK.
 
->如果长时间没有拉取过pod 仓库，可能出现无法找到我们的repo的情况，此时建议先使用 `pod repo update` 更新pod仓库。
+> If you haven't pulled the pod repository for a long time, we may not be able to find our repo. At this time, it is recommended to use `pod repo update` to update the pod repository first.
 
 ```shell
 pod install
 ```
 
-如果 Terminal 显示 Pod installation complete!，则表示自动添加库已完成。点击打开项目的 YourApp.xcworkspace 文件，或输入以下命令行进行打开，注意 “Your App” 是你的 Target 名称。
+If Terminal displays Pod installation complete !, the automatic library addition is complete. Click to open the project's YourApp.xcworkspace file, or enter the following command line to open it. Note that "Your App" is your Target name.
 
 ```shell
  open YourApp.xcworkspace
 ```
 
-### 方式二：手动添加（不建议）
+### Method 2: Add manually (not recommended)
 
-1. 下载 [cocoapods发布的版本](https://github.com/netless-io/whiteboard-ios)。
-    * 根据需要安装的对应版本，切换到不同分支。（建议选择最新的 tag，而不是最新的 commit，以保证可运行性）
-1. 进入`Example`文件夹，执行`pod install`，然后 build 项目，在 Pod Project 下，找到 `Products` 文件夹，复制`Whiteboard.framework` 文件，复制到对应文件中。 
-1. 在要集成的项目中，选择 `Build Phases` 标签，找到 `Link Binary with Libraries` 项，点击 + 图标开始添加 `WebKit.framework`。
+1. Download [cocoapods released version](https://github.com/netless-io/whiteboard-ios).
+    * Switch to different branches according to the corresponding version installed. (It is recommended to choose the latest tag instead of the latest commit to ensure operability)
+1. Enter the `Example` folder, execute` pod install`, and then build the project. Under the Pod Project, find the `Products` folder, copy the` Whiteboard.framework` file, and copy it to the corresponding file.
+1. In the project to be integrated, select the Build Phases tab, find the `Link Binary with Libraries` item, and click the icon to start adding `WebKit.framework`.

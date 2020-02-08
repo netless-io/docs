@@ -1,134 +1,134 @@
 ---
 id: android-changelog
-title: 版本历史
+title: Version history
 ---
 
->[最新版本列表——发版自动更新](https://jitpack.io/#duty-os/white-sdk-android)
-## [2.5.4] - 2019-02-04
-- 修复 VIVO x7 Android 5.0 下的闪退问题
-- 初始化 SDK 时，添加服务器配置信息接口
-## [2.5.3] - 2019-02-04
-- 修复图片拦截 API
-- 增加预热器功能，提前选取就进资源
-- 增加白板倍率播放 API
-## [2.5.1] - 2019-01-13
-- 修复【支持插件系统】的用户，出现无法连接的问题
-## [2.5.0] - 2019-01-07
-- 优化音视频插件
-- 增加向后兼容可能性
-- `图片拦截功能暂时不可用，将在后续版本恢复`
+>[The latest version list -> automatic release updates](https://jitpack.io/#duty-os/white-sdk-android)
+## [2.5.4]-2019-02-04
+-Fixed crash issue under VIVO x7 Android 5.0
+-Add server configuration information interface when initializing SDK
+## [2.5.3]-2019-02-04
+-Fix image blocking API
+-Add preheater function, select and enter resources in advance
+-Added whiteboard magnification playback API
+## [2.5.1]-2019-01-13
+-Fixed the problem that users who [support plug-in system] cannot connect
+## [2.5.0]-2019-01-07
+-Optimized audio and video plugins
+-Increased backward compatibility possibilities
+-`Picture blocking function is temporarily unavailable and will be restored in subsequent versions`
 ### [2.4.28] - 2019-12-31
-- 更新音视频插件
-- 修复部分
-- 修复带参数的 `scalePptToFit` 无效问题
+- Updated audio and video plugins
+- Repair section
+- Fixed `scalePptToFit` with parameter not working
 ### [2.4.27] - 2019-12-26
-- 添加音视频插件支持
+- Add audio and video plugin support
 ### [2.4.26] - 2019-12-26
-- 修复 `PlayerSyncManager`
+- Fixed `PlayerSyncManager`
 ### [2.4.24] - 2019-12-25
-- 提供源码以及注释内容
-- 修复 `PlayerSyncManager` 问题
+- Provide source code and comment content
+- Fixed `PlayerSyncManager` problem
 ### [2.4.23] - 2019-12-23
-- 增加 CombinePlayer 模块，提供 `PlayerSyncManager` 同步客户端音视频播放器与白板回放播放状态。
-    * 具体使用，见回放文档。
-    * 具体见[Android-Demo](./android-open-source)提供的 NativeMediaPlayer 类。
+- Added CombinePlayer module to provide `PlayerSyncManager` to synchronize client and video player and whiteboard playback playback status.
+    * For specific use, see playback documentation.
+    * For details, see the NativeMediaPlayer class provided by [Android-Demo](./android-open-source).
 ### [2.4.22] - 2019-12-20
-- 优化重连逻辑
-- 支持动态 ppt 点击动画
-- 提供 ppt 铺满屏幕 API `scalePptToFit`
+- Optimize reconnection logic
+- Support dynamic ppt click animation
+- Provide ppt screen-to-screen API `scalePptToFit`
 ### [2.4.21] - 2019-11-24
-- 修复 Android 4.4 支持问题
+- Fix Android 4.4 support issues
 ### [2.4.20] - 2019-11-19
-- 修复 Android 部分文字阶段问题
+- Fix some text stage issues in Android
 ### [2.4.19] - 2019-11-13
-- 修复 disableCameraTransform 导致的绘制问题
+- Fix drawing problem caused by disableCameraTransform
 ### [2.4.18] - 2019-11-05
-- 橡皮擦教具，增加禁止擦除图片选项（初始化房间参数配置）
+- Eraser, add the option of forbidden to erase pictures
 ### [2.4.17] - 2019-11-04
-- 修复 SDK 初始化时，部分传入参数不生效的问题
-- 提取 Player 与 Room 共有方法，迁移进 Displayer 作为父类实例方法（refreshViewSize, convertToPointInWorld, addMagixEventListener, addHighFrequencyEventListener, removeMagixEventListener）
+- Fixed the problem that some incoming parameters do not take effect during SDK initialization
+- Extract the methods shared by Player and Room, and migrate them into Displayer as the parent instance method（refreshViewSize, convertToPointInWorld, addMagixEventListener, addHighFrequencyEventListener, removeMagixEventListener）
 ### [2.4.16] - 2019-10-29
-- 回放增加 refreshViewSize API
-- 修复了回放时首帧存在快进的问题
-- 修复了文字教具在不同端使用不同字体时，造成的文字截断问题
+- Playback added refreshViewSize API
+- Fixed an issue where the first frame was fast forwarded during playback
+- Fixed text truncation caused by text teaching aids using different fonts on different ends
 ### [2.4.15] - 2019-10-25
-- 增加高频自定义事件 API
-- 优化部分同步问题
+- Add high frequency custom event API
+- Optimize some synchronization problems
 ## [2.4.14] - 2019-09-20
-- 优化屏幕大小切换时视野处理逻辑
+- Optimize the vision processing logic when screen size is switched
 ## [2.4.13] - 2019-09-09
-- 恢复图片替换 API
-- 切换场景 API，提供成功失败回调
-- 移除异步 API Deprecate 警告
-- 设置场景路径 API，增加成功失败回调
+- Restore image replacement API
+- Switch scene API, provide success and failure callback
+- Remove asynchronous API Deprecate warning
+- Set scene path API, add success and failure callbacks
 ## [2.4.11] - 2019-08-30
-- 优化 Android 4.4 显示
-- 优化截图效果
-- room 中 ObserverId，表示当前用户在白板内部的 id
+- Optimized Android 4.4 display
+- Optimize screenshot effect
+- ObserverId in room, which represents the id of the current user inside the whiteboard
 ## [2.4.10] - 2019-08-25
-- 兼容 Android 4.4
-- 修复回放时，图片替换 API 失效问题
-- 修复带音视频回放时，PlayerPhase 状态变化回调不及时问题
-- 优化带音视频回放效果，支持重复初始化
-- 优化回放同步获取状态 API
-- 修正主播状态信息类型，无主播时，对应信息为空
-- 修复主动断连时，无回调问题
-- 修复处于最大缩放比例时，双指移动异常的问题
+- Compatible with Android 4.4
+- Fixed the problem of invalid image replacement API during playback
+- Fixed the problem that PlayerPhase status change callback is not timely during audio and video playback
+- Optimize audio and video playback effect, support repeated initialization
+- Optimized playback synchronization to get status API
+- Fixed the type of anchor status information, when there is no anchor, the corresponding information is empty
+- Fixed the problem of no callback when actively disconnecting
+- Fixed an issue where two fingers moved abnormally at the maximum zoom ratio
 ## [2.4.8] - 2019-08-16
-- 支持自定义全局状态
-- 房间成员列表（RoomMember）增加用户信息，用户教具状态内容
-- 视角状态（BroadcastState），增加主播用户信息；修正无主播时，主播id 为 0 的问题
-- 修正 Scene 类中，`component` 字段类型错误
-- 修正白板类名，并提供向前兼容
-- 移除部分无效类与字段
+- Support custom global status
+- Room member list (RoomMember) adds user information, user tool status content
+- Viewing angle (BroadcastState), increase the information of the anchor user; fix the issue that the anchor id is 0 when there is no anchor
+- Fixed `component` field type error in Scene class
+- Fixed whiteboard class names and provide forward compatibility
+- Remove some invalid classes and fields
 ## [2.4.6] - 2019-08-06
-- 修复部分情况下，用户加入白板，无法立刻看到主播端画面的问题
+- Fixed the problem that the user cannot see the screen of the host immediately after joining the whiteboard in some cases
 ### [2.4.4] - 2019-08-02
-- 优化重连逻辑
+- Optimize reconnection logic
 ### [2.4.3] - 2019-08-01
-- 修复视角锁定 API
+- Fix perspective lock API
 ### [2.4.2] - 2019-08-01
-- 增加错误日志上传功能
-- 提供关闭日志上传功能接口（默认打开）
+- Add error log upload function
+- Provide interface to close log upload function (open by default)
 ### [2.4.1] - 2019-07-25
-- 扩大橡皮擦响应范围
-- 优化重连逻辑
-- 增加白板本地背景色支持
-- 优化断线重连功能
+- Expanded eraser response range
+- Optimize reconnection logic
+- Added local background color support for whiteboard
+- Optimize disconnection and reconnect function
 ### [2.4.0] - 2019-07-18
-- 获取状态 API，增加同步接口
+- Get status API, add synchronous interface
 ### [2.3.5] - 2019-07-17
-- 适配服务器端动态 PPT，动态 ppt 客户请升级
+- Adapt to server-side dynamic PPT, dynamic ppt customers please upgrade
 
 ### [2.3.4] - 2019-07-12
-- 适配服务器端动态转换新 API
+- Adapt server-side dynamic conversion new API
 
 ### [2.3.2] - 2019-07-09
-- 更新视角移动，视觉矩形移动 API参数类型
-- 优化动态 PPT
+- Updated the view movement, visual rectangle movement API parameter types
+- Optimize dynamic PPT
 
 ### [2.3.0] - 2019-07-04
-- 增加截图 API
-- 增加根据 index 切换场景 API
+- Added screenshot API
+- Added API to switch scenes based on index
 
 ### [2.2.1] - 2019-07-04
-- 修复 PPT 转换工具初始化错误
+- Fix PPT conversion tool initialization error
 
 ### [2.2.0] - 2019-07-02
-- 添加 PPT 转换支持
-- 添加动态 PPT 控制API
-- 添加视角移动，视角调整 API
+- Add PPT conversion support
+- Add dynamic PPT control API
+- Add perspective movement, perspective adjustment API
 
 ### [2.0.4] - 2019-06-24
-- 恢复只读 API（后续将拆分为两个 API）
+- Restore read-only API (separated into two APIs later)
 ### [2.0.3] - 2019-06-24
-- 兼容旧版本静态 ppt 回放
+- Compatible with older versions of static ppt playback
 
 ### [2.0.0] - 2019-06-23
 
-#### 兼容性变化
-与之前版本 API 兼容，但是无法与低版本互连，进入同一房间。
-可以与 iOS 2.1.0，web 2.0.0 正式版互连，无法与 iOS 2.1.0 以下版本，以及 web 2.0.0-beta 开头的版本互连。
+#### Compatibility changes
+Compatible with previous versions of the API, but cannot interconnect with lower versions to enter the same room.
+It can be interconnected with the official version of iOS 2.1.0, web 2.0.0, and cannot be interconnected with versions lower than iOS 2.1.0, and versions starting with web 2.0.0-beta.
 
->2019.06.24 前接入的客户，在升级至该版本时，请联系 SDK 团队，确认服务器指向版本。  
->更多内容，请查看 [2.0.0正式版发布](/docs/android/guides/android-v2migration)
+> For customers connected before 2019.06.24, when upgrading to this version, please contact the SDK team to confirm that the server is pointing to the version.
+> For more details, please see [2.0.0 official release](/docs/android/guides/android-v2migration)

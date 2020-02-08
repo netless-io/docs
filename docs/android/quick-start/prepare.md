@@ -1,24 +1,24 @@
 ---
 id: android-prepare
-title: 客户端集成
+title: Client integration
 ---
 
-本文介绍在正式使用白板 SDK 前，需要准备的开发环境。
+This article describes the development environment that needs to be prepared before using the whiteboard SDK formally.
 
-## 前提条件
+## Prerequisite
 
 1. Android Studio
 1. API 18+
 
-## 获取 sdkToken
+## Get sdkToken
 
-阅读 [接入准备](/docs/blog/begin-netless/)，注册账号，获取 sdk token。
+Read [Access Preparation](/docs/blog/blog-begin-netless/), register an account, and get the sdk token.
 
-## 添加 SDK 到项目中
+## Add SDK to the project
 
-### 配置 build.gradle
+### Configuration build.gradle
 
-打开根目录下的 build.gradle 进行如下标准配置：
+Open build.gradle in the root directory and perform the following standard configuration:
 
 ```plain
 allprojects {
@@ -29,7 +29,7 @@ allprojects {
 }
 ```
 
-然后打开 app 目录下的 build.gradle 进行如下配置：
+Then open build.gradle in the app directory and configure it as follows:
 
 ```plain
 dependencies {
@@ -37,13 +37,13 @@ dependencies {
 }
 ```
 
-* 这时你会看到 Android Studio 在编辑器的顶部有一行提示 
+* At this point you will see a line prompt in Android Studio at the top of the editor
 
 `gradle files have changed since last project sync. a project sync may be necessary for the IDE to work properly` 
 
-* 点击 `Sync Now` 按钮后提示变为 `Gradle project sync in process...` ，稍等一段时间（依你的网络环境而定）后提示消失，则集成完毕。
+* After clicking the `Sync Now` button, the prompt changes to` Gradle project sync in process ... `. After a while (depending on your network environment), the prompt disappears, and the integration is complete.
 
-### Proguard 配置
+### Proguard configuration
 
 ```shell
 # SDK model
