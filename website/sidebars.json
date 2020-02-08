@@ -99,7 +99,8 @@
       "blog/prefetch",
       "blog/playback-speed",
       "blog/debug-center",
-      "blog/begin-netless"
+      "blog/begin-netless",
+      "blog/oss-config"
     ]
   },
   "server": {
