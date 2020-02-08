@@ -1,5 +1,5 @@
 ---
-id: blog-oss-config
+id: oss-config
 title: 阿里云 oss 快速配置
 ---
 

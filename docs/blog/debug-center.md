@@ -1,5 +1,5 @@
 ---
-id: blog-debug-center
+id: debug-center
 title: 在线 debug
 ---
 
