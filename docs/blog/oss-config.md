@@ -16,6 +16,3 @@ title: 阿里云 oss 快速配置
 2. 跨域设置
 
  ![cross-domain](/img/cross-domain.png)
-
-
-
