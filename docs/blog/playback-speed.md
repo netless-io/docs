@@ -19,10 +19,12 @@ title: 播放速率（三端）
 
 ```js
 const videoJsId = "white-sdk-video-js";
-const mediaPlayer = videojs.getPlayer(videoJsId);
+const mediaPlayer = videojs.getPlayer(videoDom);
 // https://docs.videojs.com/docs/api/player.html#MethodsplaybackRate
-mediaPlayer.playbackRate = 1.25;
+mediaPlayer.playbackRate(1.25);
 ```
+
+>vue 用户的 mediaPlayer 可以为 dom 节点，操作略有不同。
 
 ### iOS
 
