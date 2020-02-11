@@ -9,6 +9,9 @@ title: 版本历史
 开源版本，版本在旧版本数字基础上迭代增加。
 
 >迁移：将`import <White-SDK-iOS/WhiteSDK.h>` 更改为 `import <Whiteboard/Whiteboard.h>` 即可。
+## [2.5.9] - 2019-02-10
+- 修复头像中，教具显示异常问题
+- 修复 iOS 13 以下版本，加入房间石，出现的 index db 报错
 ## [2.5.8] - 2019-02-03
 - 修复图片替换 API
 - 增加预热器功能，使用最快资源
