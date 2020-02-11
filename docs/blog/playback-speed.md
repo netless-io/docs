@@ -47,5 +47,5 @@ mediaPlayer.playbackRate(1.25);
 如果单独白板操作，直接操作`Player.playbackSpeed`。同样不支持对在创建回放时，带入的`mediaUrl`音频，进行速率调整。
 
 * 使用PlaySyncManager同时播放音视频与白板
-
-首先根据 [android-音视频播放](/docs/android/guides/replay.md#视频支持) 接入并实现 nativePlayer 接口。然后在 nativePlayer 自己实现 seek，在修改音视频播放速率的同时，调用`Player`的`playbackSpeed`API。
+docs/android/guides/replay.md
+首先根据 [android-音视频播放](../android/guides/replay.md#视频支持) 接入并实现 nativePlayer 接口。然后在 nativePlayer 自己实现 seek，在修改音视频播放速率的同时，调用`Player`的`playbackSpeed`API。
