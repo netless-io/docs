@@ -22,7 +22,7 @@ public joinRoom(params: JoinRoomParams, callbacks: RoomCallbacks = {}): Promise<
 whiteWebSdk.joinRoom({
     uuid: json.msg.room.uuid,
     roomToken: json.msg.roomToken,
-}, 
+},
 // callback 本身为可选参数，可不传。
 {
     onRoomStateChanged: modifyState => {
@@ -49,6 +49,7 @@ export type JoinRoomParams = {
     readonly uuid: string;
     readonly roomToken: string;
     readonly userPayload?: any;
+    readonly isWritable?: boolean;
     readonly disableDeviceInputs?: boolean;
     readonly disableBezier?: boolean;
     readonly cursorAdapter?: CursorAdapter;
@@ -79,10 +80,20 @@ export type JoinRoomParams = {
 SDK 会将其作为用户的信息，完整传递，不作处理。
 ```
 
+### **isWritable**: 只读模式 / 可写模式
+
+```
+是否以可写模式进入房间（否则为只读模式）。
+可写模式进入房间后，可以急性：操作教具、修改房间相关状态等一切将自己的信息同步给房间其他人的操作。
+只读模式进入房间后，仅仅只能接收其他人同步的信息，不能操作教具、修改房间状态。
+以只读模式进入房间的人无法被其他人察觉，也无法出现在房间成员列表中。
+默认是值是 true
+```
+
 ### cursorAdapter: 鼠标光标显示
 
 ```typescript
-//处理用户信息(`userPayload`)与用户头像div之间的映射关系。   
+//处理用户信息(`userPayload`)与用户头像div之间的映射关系。
 //需要实现该接口
 export interface CursorAdapter {
     createCursor(memberId: number): CursorDescription & {readonly reactNode?: any};
@@ -200,7 +211,7 @@ whiteWebSdk.joinRoom({
 ### **disableDeviceInputs**(默认`false`): 禁用教具
 
 ```js
-默认`false`，类型:`boolean`；默认启用教具。  
+默认`false`，类型:`boolean`；默认启用教具。
 可以通过`room.disableDeviceInputs`进行获取，修改。
 ```
 
@@ -215,7 +226,7 @@ whiteWebSdk.joinRoom({
 ### **disableEraseImage**: 禁止擦除图片
 
 ```js
-是否禁止橡皮擦删除所有图片。默认`false`，即允许橡皮擦删除图片（无法擦除背景图）。  
+是否禁止橡皮擦删除所有图片。默认`false`，即允许橡皮擦删除图片（无法擦除背景图）。
 可以通过`room.disableEraseImage`进行获取，修改。
 ```
 
