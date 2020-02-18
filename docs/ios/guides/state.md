@@ -228,7 +228,9 @@ v2版本将事件回调拆分成了以下三种。其中v1版本中的图片替�
 
 >2.0 版本一直设置自定义`globalState`状态。`setGlobalState:`API，传入自定义`globalState`子类即可将自定义内容传递给房间中其他用户。
 
-开发者可以调用 `WhiteDisplayerState`中的`+(BOOL)setCustomGlobalStateClass:`类方法，全局设置自定义`globalState`属性。
+开发者可以调用`WhiteDisplayerState`中的`+(BOOL)setCustomGlobalStateClass:`类方法，全局设置自定义`globalState`子类。
+
+>swift 用户，继承`GlobalState`后，需要将想被转换的属性标记为`@objc`。
 
 ```Objective-C
 @interface WhiteDisplayerState : WhiteObject<YYModel>
