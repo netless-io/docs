@@ -44,17 +44,22 @@ WhiteSdk whiteSdk = new WhiteSdk(whiteBroadView PlayActivity.this, interrupter);
 
 >该方法会同时对 ppt插入以及图片插入API起效。
 
->该 API 会在渲染时，被频繁调用。如果没有需求，就不需要使用该方法。  
+>该 API 会在渲染时，被频繁调用。如果没有需求，就不需要使用该方法。
 
-## 只读<span class="anchor" id="disableOperations">
+## 禁止操作<span class="anchor" id="disableOperations">
 
->2.2.0 开始，该 API 拆分为：  
-禁止用户移动，缩放 API：`disableCameraTransform` (详情请参考 [视角操作-禁止视角变化](./view.md#disableCameraTransform))；  
+> 2.2.0 开始，该 API 拆分为：
+禁止用户移动，缩放 API：`disableCameraTransform` (详情请参考 [视角操作-禁止视角变化](./view.md#disableCameraTransform))；
 禁止用户输入 API：`disableDeviceInputs` (详情请参考 [教具使用-禁止教具操作](./tools.md#disableDeviceInputs) API。
 
 你可以通过 `room.disableOperations(true)` 来禁止用户操作白板。
 
 你可以通过 `room.disableOperations(false)` 来恢复用户操作白板的能力。
+
+## 只读模式
+
+> 2.6.0 及其更高版本支持
+
 
 ## 缩放
 
@@ -72,7 +77,7 @@ room.zoomChange(10);
 
 >2.0.0 正式版新增 API
 
-从 2.0.0 开始，SDK 支持开发者在加入房间时，携带部分额外信息。  
+从 2.0.0 开始，SDK 支持开发者在加入房间时，携带部分额外信息。
 >该字段会被转换为 JSON 中的一个 value，所以需要满足 JSON 对 JSON 元素的约束。
 
 在其他客户端，可以通过查询房间 `roomMembers` 来获取各个用户携带的信息。

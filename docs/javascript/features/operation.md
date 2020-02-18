@@ -3,10 +3,10 @@ id: js-operation
 title: 白板操作
 ---
 
-## 只读<span class="anchor" id="disableOperations">
+## 禁止操作<span class="anchor" id="disableOperations">
 
->2.2.0 开始，该 API 可以由以下两个 API 代替:  
-1. 视角锁定 API：`disableCameraTransform` (详情请参考 [视角操作-锁定视角](./view.md#disableCameraTransform))；  
+>2.2.0 开始，该 API 可以由以下两个 API 代替:
+1. 视角锁定 API：`disableCameraTransform` (详情请参考 [视角操作-锁定视角](./view.md#disableCameraTransform))；
 1. 禁用教具 API：`disableDeviceInputs` (详情请参考 [教具操作-禁用教具](./tools.md#disableDeviceInputs))
 
 ```JavaScript
@@ -15,6 +15,42 @@ title: 白板操作
 room.disableOperations = true;
 // 恢复响应用户手势
 room.disableOperations = false;
+```
+
+## 只读模式
+
+> 2.6.0 及其更高版本支持
+
+只读模式进入房间后，仅仅只能接收其他人同步的信息，不能操作教具、修改房间状态。
+以只读模式进入房间的人无法被其他人察觉，也无法出现在房间成员列表中。
+
+想要以只读模式加入房间，可以在加入房间时添加如下参数：
+
+```typescript
+whiteWebSdk.joinRoom({
+    uuid: "room-uuid",
+    roomToken: "room-token",
+    isWritable: false, // 以只读模式加入房间
+});
+```
+
+加入房间后，可以通过如下方法切换到只读模式：
+
+```typescript
+room.setWritable(false).then(function() {
+    // 成功
+}).catch(function (error) {
+    // 失败
+});
+```
+
+加入房间后，可以通过如下方法切换到可写模式：
+```typescript
+room.setWritable(true).then(function() {
+    // 成功
+}).catch(function (error) {
+    // 失败
+});
 ```
 
 ## 自定义 GlobalState
