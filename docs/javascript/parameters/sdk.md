@@ -32,14 +32,15 @@ var whiteWebSdk = new WhiteWebSdk({
 export type WhiteWebSdkConfiguration = {
     readonly deviceType?: DeviceType;
     readonly screenType?: ScreenType;
+    readonly renderEngine?: RenderEngine;
     readonly fonts?: UserFonts;
     readonly handToolKey?: string;
     readonly preloadDynamicPPT?: boolean;
     readonly loggerOptions?: LoggerOptions;
+    readonly reconnectionOptions?: Partial<ReconnectionOptions> | false;
     readonly onlyCallbackRemoteStateModify?: boolean;
+    readonly plugins?: Plugins;
     readonly urlInterrupter?: (url: string) => string;
-    readonly zoomMaxScale?: number;
-    readonly zoomMinScale?: number;
 };
 ```
 
@@ -57,7 +58,7 @@ urlInterrupter?: (url: string) => string;
 传入一个插入图片/ppt 时的原始地址，返回一个任意修改后的地址
 ```
 
->在插入图片和创建新场景背景图时，sdk 会调用该 API，此时可以修改最终显示的url。  
+>在插入图片和创建新场景背景图时，sdk 会调用该 API，此时可以修改最终显示的url。
 >如果没有需要，请不要传入该参数。目前在绘制时，会频繁调用该 API。
 
 ### **deviceType**: 设备类型
@@ -75,8 +76,23 @@ export enum DeviceType {
 ```js
 值：`desktop`|`touch`|`surface`。
 
-默认会根据运行环境进行推断是`desktop`还是`touch`。  
+默认会根据运行环境进行推断是`desktop`还是`touch`。
 根据传入值，依次接受`mouse`事件，`touch`事件；传入`surface`时，则会同时接收`touch`,`mouse`事件。
+```
+
+### **renderEngine**：渲染模式
+
+默认值是 ``RenderEngine.SVG``。
+
+TypeScript 签名：
+
+```typescript
+export enum RenderEngine {
+    /** 以 svg 的形式渲染 */
+    SVG = "svg",
+    /** 以 canvas 的形式渲染 */
+    Canvas = "canvas",
+}
 ```
 
 ### fonts: ppt 映射字体
@@ -91,7 +107,7 @@ export enum DeviceType {
 
 ```js
 类型：`string`
-设置后，用户同时按住该快捷键与鼠标，即可移动整个白板。  
+设置后，用户同时按住该快捷键与鼠标，即可移动整个白板。
 可以输入`KeyboardEvent`键盘事件可以出发的`key`属性。推荐传入空格键(`" "`)
 ```
 
@@ -138,14 +154,14 @@ export enum DeviceType {
 
 ### zoomMaxScale:放大上限
 
-用户可以放到的最大比例，默认不限制。  
+用户可以放到的最大比例，默认不限制。
 开发者仍然可以使用代码进行放大。
 
 >2.3.0 支持更高级 API，在初始化`room`，以及`player`时配置。
 
 ### zoomMinScale:缩小下限
 
-用户可以缩小的最小比例，默认不限制。  
+用户可以缩小的最小比例，默认不限制。
 开发者仍然可以使用代码进行缩小。
 
 >2.3.0 支持更高级 API，在初始化`room`，以及`player`时配置。
