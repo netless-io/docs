@@ -4,6 +4,11 @@ title: 版本历史
 ---
 
 >[最新版本列表——发版自动更新](https://jitpack.io/#duty-os/white-sdk-android)
+## [2.6.1] - 2020-02-20
+- 添加回放时间进度回调频率 API（详情见 PlayerConfiguration`step`属性）
+- 添加重连等待时长 API（详见 RoomParams`timeout`属性）
+- 添加`writable`只读模式（详情见 RoomParams`writable`属性，以及 Room `setWritable:`方法）
+- 修复部分情况下，清屏 API 失效的情况
 ## [2.6.0] - 2020-02-18
 - 优化加入房间API，修复部分情况下，加入房间不回调的问题
 ## [2.5.7] - 2020-02-11
