@@ -20,7 +20,7 @@ token | string | {{token}}|
 字段 | 类型 | 描述 |
 --  | -- | -- |
 name | string | 白板名称|
-limit | number | 白板最大人数；为0时，不限制人数 | 
+limit | number | 设置为 0 是不限制，推荐使用设置为 0：房间不限制，从业务上去限制。 | 
 mode | string | **v2版本参数**；房间类型：`persistent`,`historied` |
 
 * 房间类型：
@@ -37,7 +37,7 @@ mode | string | **v2版本参数**；房间类型：`persistent`,`historied` |
 ```json
 {
     "name":"白板名称",
-    "limit":100,
+    "limit":0,
     "mode": "persistent"
 }
 ```
@@ -51,7 +51,7 @@ mode | string | **v2版本参数**；房间类型：`persistent`,`historied` |
         "room": {
             "id": 650,
             "name": "console-room",
-            "limit": 100,
+            "limit": 0,
             "teamId": 1,
             "adminId": 1,
             "mode": "persistent",
@@ -154,7 +154,7 @@ uuid | string | 白板唯一标识符 |
         "adminId": 1,
         "uuid": "此处为uuid",
         "name": "未命名",
-        "limit": 10,
+        "limit": 0,
         "current": 0,
         "enable": true,
         "playable": false,

@@ -26,7 +26,7 @@ var requestInit = {
     },
     body: JSON.stringify({
         name: "房间名称",
-        limit: 100, // 房间人数限制
+        limit: 0, // 设置为 0 是不限制，推荐使用设置为 0：房间不限制，从业务上去限制。
         mode: "persistent",  // 普通房间，无法回放
         // mode: "historied"， // 可回放房间
     }),

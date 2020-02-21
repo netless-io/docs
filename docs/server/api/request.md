@@ -38,7 +38,7 @@ sdk 服务器，通过 URL 参数中的 token 进行用户验证。
         "room": {
             "id": 10987,
             "name": "111",
-            "limit": 100,
+            "limit": 0,
             "teamId": 1,
             "adminId": 1,
             "uuid": "5d10677345324c0cb3febd3291e2a607",
