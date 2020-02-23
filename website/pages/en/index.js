@@ -80,7 +80,7 @@ class Index extends React.Component {
                         </a>
                     </div>
                     <div className="home-page-cell">
-                        <div className="home-page-cell-title">博客</div>
+                        <div className="home-page-cell-title">FAQ</div>
                         <div className="home-page-cell-icon">
                             <img src={`${siteConfig.baseUrl}img/blog.svg`} />
                         </div>
