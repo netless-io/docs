@@ -18,7 +18,10 @@ title: 版本历史
 ```
 
 将项目中`import <White-SDK-iOS/WhiteSDK.h>`引用，更改为`import <Whiteboard/Whiteboard.h>`。
-
+## [2.6.2] - 2020-02-23
+- 优化只读模式
+- 修复回放时，后半段时间回调`step`失效的问题
+- 修复`throwError`回调丢失信息的问题
 ### [2.6.1] - 2020-02-20
 - 开放视野限制 API（查看 WhiteCameraBound 类相关内容）
 - 添加回放时间进度回调频率 API（详情见 WhitePlayerConfig`step`属性）
