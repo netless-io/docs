@@ -3,6 +3,11 @@ id: js-changelog
 title: 版本历史
 ---
 
+## 2.6.3 - 2020-02-23
+
+> - 新增了：``rejectWhenReadonlyErrorLevel``
+> - 修复了设置 ``disableBezier: true`` 之后无法以只读模式进入房间的问题
+
 ## 2.6.2 - 2020-02-22
 
 > - 修复了：房间有主播时，改变白板尺寸，无法跟踪视觉矩形的缺陷
