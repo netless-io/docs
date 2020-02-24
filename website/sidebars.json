@@ -108,6 +108,8 @@
       "blog/docs-transform",
       "blog/visual-rectangle",
       "blog/debug-help",
+      "blog/replay",
+      "blog/scene-about",
       "blog/large-class"
     ]
   },
