@@ -20,6 +20,7 @@
       "android/guides/android-operation",
       "android/guides/android-events",
       "android/guides/android-scenes",
+      "android/guides/android-readonly",
       "android/guides/android-replay"
     ],
     "升级指南": [
@@ -48,6 +49,7 @@
       "ios/guides/ios-operation",
       "ios/guides/ios-events",
       "ios/guides/ios-scenes",
+      "ios/guides/ios-readonly",
       "ios/guides/ios-replay"
     ],
     "升级指南": [
@@ -85,6 +87,7 @@
       "javascript/features/js-cursor",
       "javascript/features/js-document",
       "javascript/features/js-replay",
+      "javascript/features/js-readonly",
       "javascript/features/js-plugin"
     ],
     "升级指南": [
@@ -102,7 +105,8 @@
       "blog/begin-netless",
       "blog/handle-net-state",
       "blog/oss-config",
-      "blog/docs-transform"
+      "blog/docs-transform",
+      "blog/large-class"
     ]
   },
   "server": {
