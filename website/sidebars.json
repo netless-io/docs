@@ -101,7 +101,8 @@
       "blog/debug-center",
       "blog/begin-netless",
       "blog/handle-net-state",
-      "blog/oss-config"
+      "blog/oss-config",
+      "blog/docs-transform"
     ]
   },
   "server": {
