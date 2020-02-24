@@ -106,6 +106,8 @@
       "blog/handle-net-state",
       "blog/oss-config",
       "blog/docs-transform",
+      "blog/visual-rectangle",
+      "blog/debug-help",
       "blog/large-class"
     ]
   },
