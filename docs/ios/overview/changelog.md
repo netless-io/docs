@@ -18,6 +18,11 @@ title: 版本历史
 ```
 
 将项目中`import <White-SDK-iOS/WhiteSDK.h>`引用，更改为`import <Whiteboard/Whiteboard.h>`。
+## [2.6.3] - 2020-03-03
+- 优化只读模式
+- 优化动态 ppt 音视频
+- 新增`getScenePathType`API（见 WhiteDisplayer `getScenePathType:result:`方法）
+- 部分类，增加带参数初始化方法
 ## [2.6.2] - 2020-02-23
 - 优化只读模式
 - 修复回放时，后半段时间回调`step`失效的问题
