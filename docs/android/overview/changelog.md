@@ -4,6 +4,13 @@ title: 版本历史
 ---
 
 >[最新版本列表——发版自动更新](https://jitpack.io/#duty-os/white-sdk-android)
+## [2.6.4] - 2020-03-03
+- 优化只读模式
+- 优化动态 ppt 音视频
+- 新增`getScenePathType`API（见 Displayer `getScenePathType:`方法）
+- 部分类，增加带参数初始化方法
+- 恢复支持 Android 4.4 支持
+- 优化只读模式
 ## [2.6.3] - 2020-02-24
 - 优化连接性，以及日志上报逻辑
 ## [2.6.2] - 2020-02-23
