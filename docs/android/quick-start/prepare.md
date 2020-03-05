@@ -20,7 +20,7 @@ title: 客户端集成
 
 打开根目录下的 build.gradle 进行如下标准配置：
 
-```plain
+```gradle
 allprojects {
     repositories {
         jcenter()
@@ -31,9 +31,10 @@ allprojects {
 
 然后打开 app 目录下的 build.gradle 进行如下配置：
 
-```plain
+```gradle
 dependencies {
-    implementation 'com.github.duty-os:white-sdk-android:2.4.0'
+    //  数字请自行使用最新版本
+    implementation 'com.github.duty-os:white-sdk-android:2.6.3'
 }
 ```
 
