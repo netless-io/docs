@@ -121,8 +121,19 @@ room.completeImageUpload(uuid, imageUrl)
 ### 快捷键设置
 请阅读[初始化参数-SDK参数](../parameters/sdk.md#handToolKey)中的`handToolKey`字段说明。
 
+### 主动激活/关闭
+
+直接修改`room`的`handToolActive`属性。
+
+```js
+//主动激活
+room.handToolActive = true;
+//主动关闭
+room.handToolActive = false;
+```
+
 ### 激活/关闭回调
-当抓手工具被激活时，会回调[初始化参数-房间参数](../parameters/room.md#disableeraseimage)中`callbacks`的`onHandToolActive` 方法。
+当抓手工具被激活（包括主动激活）时，会回调[初始化参数-房间参数](../parameters/room.md#disableeraseimage)中`callbacks`的`onHandToolActive` 方法。
 
 ## 禁用教具<span class="anchor" id="disableDeviceInputs">
 
