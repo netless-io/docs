@@ -20,6 +20,7 @@ title: 版本历史
 将项目中`import <White-SDK-iOS/WhiteSDK.h>`引用，更改为`import <Whiteboard/Whiteboard.h>`。
 ## [2.6.4] - 2020-03-04
 - 组合播放器，增加音视频单独缓冲开始，结束回调
+- 兼容 iOS 9
 ## [2.6.3] - 2020-03-03
 - 优化只读模式
 - 优化动态 ppt 音视频
