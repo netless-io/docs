@@ -49,11 +49,11 @@ title: 文档转网页（动态文档转换）
 </details>
 
 
-## 服务端 API
+## 转换 API
 
 动态文档转换功能由“发起转换任务”和“查询转换任务”两个 API 组成
 
-### 发起转换任务
+### 1. 发起转换
 
 
 `POST /services/conversion/tasks`
@@ -99,7 +99,7 @@ serviceType | string | 服务类型，动态文档转换固定为 "dynamic_conve
 ```
 task UUID 长度为 32 位，是转换任务的唯一标识。后续请求中需要以该 task 作为查询。
 
-### 查询转换任务进度
+### 2. 查询转换进度
 
 `GET /services/conversion/tasks/{{taskUUID}}/progress?serviceType=dynamic_conversion`
 
@@ -155,13 +155,13 @@ roomToken 或 token | string | {{roomtoken}} 或 {{token}}|
 - Finished: 任务执行完成且正常
 - Fail: 任务执行失败，失败时，会有提示 reason
 
-### 拼接 SDK 可用数据
+## 数据拼接
 
 获取转换结果后，需要自行进行拼接转换为 sdk 可用的场景数据（scenes）。
 
 该部分可以交由客户端自行拼接，或者在服务器端拼好，以 JSON 格式发送给客户端。
 
-#### 1. 交由客户端自行拼接
+### 1. 交由客户端自行拼接
 
 将转换结果的 `json`，`taskId`，还有 `prefix` 转给客户端，进行拼接。（推荐方式，因为客户端仍然需要转换成 sdk 支持的 scene 类进行传入）
 
@@ -219,7 +219,7 @@ for (int i = 0; i < ppts.size(); i++) {
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-#### 2. 转换成 JSON 发给客户端
+### 2. 转换成 JSON 发给客户端
 
 ```JSON
 scenes: [
@@ -236,8 +236,8 @@ scenes: [
         //name 为字符串即可
         "name" : "2",
         // height，width 为 info 中返回的宽高
-        "height" : ${info.heigh},
-        "width" : ${info.width},
+        "height" : {info.heigh},
+        "width" : {info.width},
         //数字索引值+1，第一页即为 slide1.xml,第二页为 slide2.xml
         "src" : {prefix}/{taskId}/slide/slide2.xml
     }
@@ -245,6 +245,10 @@ scenes: [
 ```
 
 ## SDK 封装类使用
+
+基于使用便捷性考虑，SDK 内部已经封装了转换任务完整的请求流程。在测试时，可以使用该 API。
+
+>由于转换任务计算的是 QPS，即以每日峰值计费，所以不推荐在生产环境上，使用`SDK`端API。
 
 ### 使用转换 API
 
