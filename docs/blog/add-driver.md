@@ -13,9 +13,11 @@ title: 配置云存储
 
 当然 netless 也提供了一个默认的 Storage Driver 供用户使用，当使用了这个 Storage Driver 后，相关的资源将由 netless 代为保管。
 
+>目前，动态 ppt 不支持使用第三方云存储，只能存在 netless 默认的 storage driver 中。第三方云存储支持，正在开发中。
+
 ## 二、添加 Storage Drive 的方法
 
-在用户登录进入 netless 控制台 <https://console.herewhite.com> 后，可以左侧菜单栏的“个人中心”里找到入口
+在用户登录进入 [netless后台登陆界面](https://console.netless.link)后，可以左侧菜单栏的“个人中心”里找到入口
 ![个人菜单入口](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/driverEnter.png?x-oss-process=image/resize,w_350)
 
 之后点击右上角的“新建云存储”按钮，选择需要的云存储进行添加即可
