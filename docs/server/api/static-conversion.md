@@ -41,11 +41,11 @@ title: 文档转图片（静态文档转换）
 
 </details>
 
-## API 使用说明
+## 转换 API
 
 静态文档转换功能由“发起转换任务”和“查询转换任务”两个 API 组成
 
-### 发起转换任务
+### 1. 发起转换
 
 `POST /services/conversion/tasks`
 
@@ -89,7 +89,7 @@ serviceType | string | 服务类型，静态文档转换固定为 "static_conver
 ```
 task UUID 长度为 32 位，是转换任务的唯一标识
 
-### 查询转换任务
+### 2. 查询转换进度
 
 `GET /services/conversion/tasks/{{taskUUID}}/progress?serviceType=static_conversion`
 
@@ -145,7 +145,16 @@ roomToken 或 token | string | {{roomtoken}} 或 {{token}}|
 - Finished: 任务执行完成且正常
 - Fail: 任务执行失败，失败时，会有提示 reason
 
+## 数据拼接
+
+获取转换结果后，需要自行进行拼接转换为 sdk 可用的场景数据（scenes）。
+该部分可以交由客户端自行拼接，或者在服务器端拼好，以 JSON 格式发送给客户端。
+
 ## SDK 封装类使用
+
+基于使用便捷性考虑，SDK 内部已经封装了转换任务完整的请求流程。在测试时，可以使用该 API。
+
+>由于转换任务计算的是 QPS，即以每日峰值计费，所以不推荐在生产环境上，使用`SDK`端API。
 
 >iOS Android 2.2.0 新增 API
 

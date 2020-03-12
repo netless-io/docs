@@ -96,8 +96,8 @@
   },
   "blog": {
     "FAQ": [
-      "blog/term",
-      "blog/broadcast",
+      "blog/token",
+      "blog/viewmode",
       "blog/add-driver",
       "blog/prefetch",
       "blog/playback-speed",
