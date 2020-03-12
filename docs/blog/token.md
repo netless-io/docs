@@ -1,6 +1,6 @@
 ---
-id: term
-title: 术语
+id: token
+title: 鉴权信息
 ---
 
 ## sdkToken
