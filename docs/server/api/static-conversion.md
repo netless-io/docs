@@ -7,10 +7,16 @@ Static document conversion refers to the service of converting PPT, PPTX, Word, 
 
 In the latest version, we have encapsulated this part of the interaction in the SDK. Developers only need to start the service in the background and configure the storage address. In the project, the `Converter` class (different platforms, slightly different names) For conversion.
 
+1. The ideal number of pages is less than 50 pages, and documents with more than 100 pages may have a certain conversion timeout.
+2. PDF, PPT, PPTX, Word, PDF conversion results are the most accurate.
+3. The higher the resolution of the pictures referenced in the document, the slower the conversion speed.
+4. The most popular picture formats are png and jpg.
+5. If you find that the style expression is too inaccurate during the transcoding process, please export the pdf and re-convert.
+6. The implementation of this function is based on [libreoffice](https://www.libreoffice.org/) Because libreoffice has a long history and complex code, it is difficult for us to deal with conversion bugs by ourselves. Therefore, the customer should do a full test before using it. If it does not meet the expectations, please use the three-party conversion service.
+
 ## Ready to work
 
 ### 1. According to [Configure Cloud Storage](/docs/blog/blog-add-driver) article, configure cloud storage in [console](https://console.herewhite.com)
-
 
 ### 2. Start the static document service on the management console
 
@@ -78,6 +84,7 @@ serviceType | string | Service type, static document conversion fixed to "static
     }
 }
 ```
+
 task UUID is 32 bits in length and is the unique identifier of the conversion task
 
 ### Query Conversion Task
@@ -130,6 +137,7 @@ roomToken or token | string | {{roomtoken}} or {{token}}|
 > 3. The conversion task requires users to poll the results, and the interval is recommended to be more than 3 seconds
 
 `convertStatus` the following situations exist:
+
 - Waiting: The task is waiting due to QPS reaching the upper limit, etc.
 - Converting: Task in progress
 - NotFound: No corresponding task information was found according to taskUUID
@@ -163,7 +171,7 @@ type PptConvertParams = {
 res = await pptConverter.convert({
     // ppt address in cloud storage, note that you need to configure in the console
     url: pptURL,
-    kind: "static", 
+    kind: "static",
     // Conversion progress monitoring
     onProgressUpdated: progress => {
         if (onProgress) {

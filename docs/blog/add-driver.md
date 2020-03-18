@@ -33,4 +33,3 @@ The location of Qiniu's external chain field is shown in the figure:
 The corresponding fields are as follows:
 
 ![qiniu url](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/qiniuStorage.png?x-oss-process=image/resize,w_400)
-

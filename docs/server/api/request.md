@@ -38,7 +38,7 @@ A request always contains a code field, 200 indicates success, and a successful 
         "room": {
             "id": 10987,
             "name": "111",
-            "limit": 100,
+            "limit": 0,
             "teamId": 1,
             "adminId": 1,
             "uuid": "5d10677345324c0cb3febd3291e2a607",

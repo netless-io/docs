@@ -9,20 +9,22 @@ Added the magnification playback API, which can modify the playback rate during 
 
 ### Web
 
-> `player` version 2.5.8, add` playbackSpeed` property, you can specify the playback speed during playback
+> `player` version 2.5.8, add`playbackSpeed` property, you can specify the playback speed during playback
 
 #### With video playback
 
-Currently, the `playbackSpeed` property of` player` currently only supports the whiteboard itself.
-During playback, the audio and video mounted by `media` will not be affected by` playbackSpeed` for the time being.
-The whiteboard itself operates audio and video through `videojs`, so you can modify the playback rate of audio and video through the` videojs` player.
+Currently, the `playbackSpeed` property of`player` currently only supports the whiteboard itself.
+During playback, the audio and video mounted by `media` will not be affected by`playbackSpeed` for the time being.
+The whiteboard itself operates audio and video through `videojs`, so you can modify the playback rate of audio and video through the`videojs` player.
 
 ```js
 const videoJsId = "white-sdk-video-js";
-const mediaPlayer = videojs.getPlayer(videoJsId);
+const mediaPlayer = videojs.getPlayer(videoDom);
 // https://docs.videojs.com/docs/api/player.html#MethodsplaybackRate
-mediaPlayer.playbackRate = 1.25;
+mediaPlayer.playbackRate(1.25);
 ```
+
+>vue 用户的 mediaPlayer 可以为 dom 节点，操作略有不同。
 
 ### iOS
 
@@ -34,7 +36,7 @@ If you play on the whiteboard alone, you can directly operate `WhitePlayer.playb
 
 * Use WhiteCombinePlayer to play audio and video and whiteboard at the same time
 
-If you use the `WhiteCombinePlayer` provided by the SDK to handle audio and video whiteboard synchronous playback, set` WhiteCombinePlayer.playbackSpeed`.
+If you use the `WhiteCombinePlayer` provided by the SDK to handle audio and video whiteboard synchronous playback, set`WhiteCombinePlayer.playbackSpeed`.
 
 ### Android
 
@@ -45,5 +47,5 @@ If you use the `WhiteCombinePlayer` provided by the SDK to handle audio and vide
 If you operate it on the whiteboard alone, operate `Player.playbackSpeed` directly. It also does not support rate adjustment of the `mediaUrl` audio that is brought in when creating playback.
 
 * Use PlaySyncManager to play audio and video and whiteboard at the same time
-
-First access and implement the nativePlayer interface according to [android-audio and video playback] (/ docs / android / guides / replay.md # video support). Then in nativePlayer implement seek itself, while modifying the audio and video playback rate, call the `PlaybackSpeed` API of` Player`.
+docs/android/guides/replay.md
+First access and implement the nativePlayer interface according to [android-audio and video playback] (/ docs / android / guides / replay.md # video support). Then in nativePlayer implement seek itself, while modifying the audio and video playback rate, call the `PlaybackSpeed` API of`Player`.

@@ -6,6 +6,7 @@ title: Whiteboard operation
 ## Readonly<span class="anchor" id="disableOperations">
 
 > Starting from 2.2.0, the API can be replaced by the following two APIs:  
+
 1. Perspective locking API: `disableCameraTransform` (for details, please refer to [Perspective Operations -> Locking Perspective](./view.md#disableCameraTransform));
 2. Disable tool API: `disableDeviceInputs` (for details, please refer to [tool operation -> disable tool](./tools.md#disableDeviceInputs))
 
@@ -17,9 +18,46 @@ room.disableOperations = true;
 room.disableOperations = false;
 ```
 
+## Read-only mode
+
+> 2.6.0 and higher supported
+
+After entering the room in read-only mode, it can only receive information synchronized by other people, and cannot operate teaching aids and modify room status.
+People entering the room in read-only mode cannot be detected by others, nor can they appear in the room member list.
+
+To join a room in read-only mode, you can add the following parameters when joining the room:
+
+```typescript
+whiteWebSdk.joinRoom({
+    uuid: "room-uuid",
+    roomToken: "room-token",
+    isWritable: false, // Join a room in read-only mode
+});
+```
+
+After joining the room, you can switch to read-only mode by:
+
+```typescript
+room.setWritable (false) .then (function () {
+    // success
+}). catch (function (error) {
+    // fail
+});
+```
+
+After joining the room, you can switch to writable mode as follows:
+
+```typescript
+room.setWritable(true).then(function() {
+    // success
+}).catch(function (error) {
+    // fail
+});
+```
+
 ## Customize GlobalState
 
-`globalState` is currently an` Object`. Developers can insert their own fields in `globalState` to share the state information required by their business throughout the room.
+`globalState` is currently an `Object`. Developers can insert their own fields in `globalState` to share the state information required by their business throughout the room.
 
 ```js
 // Just pass in the fields that need to be updated and return the complete new GlobalState
@@ -28,7 +66,7 @@ const newGlobalState = room.setGlobalState({key: "newValue"});
 
 * Note
 
-> `globalState` is only for lightweight use, the storage content is as small as possible (recommended within 100KB), when updating, only the fields that need to be updated in` GlobalState` are passed in.
+> `globalState` is only for lightweight use, the storage content is as small as possible (recommended within 100KB), when updating, only the fields that need to be updated in `GlobalState` are passed in.
 
 ## Zoom
 

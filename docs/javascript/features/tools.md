@@ -7,7 +7,7 @@ The `room` variables in this chapter are examples of whiteboard rooms.
 
 ## Ordinary tools
 
-In the `state` of` room`, the `memberState` attribute exists (you can read [State Management](./state.md) for more` state` information).
+In the `state` of `room`, the `memberState` attribute exists (you can read [State Management](./state.md) for more`state` information).
 Common teaching aids can be described by `memberState`.
 
 ### MemberState structure
@@ -52,6 +52,7 @@ room.setMemberState({
 ### Inquiry about teaching aids
 
 You can access the contents of `memberState` by the following methods.
+
 ```js
 const memberState = room.state.memberState;
 const appliance = room.state.memberState.currentApplianceName;
@@ -62,14 +63,14 @@ const appliance = room.state.memberState.currentApplianceName;
 
 Eraser can be configured additionally, whether it can erase pictures:
 
-1. During initialization, configure according to the `disableEraseImage` field in [Initialization Parameters-Room Parameters] (../ parameters / room.md # disableeraseimage):` Whether you can erase the picture (default can be) `
+1. During initialization, configure according to the `disableEraseImage` field in [Initialization Parameters-Room Parameters] (../ parameters / room.md # disableeraseimage):`Whether you can erase the picture (default can be)`
 2. Set the `room.disableEraseImage` property.
 
 ## Picture (Internet address)
 
 `sdk` supports inserting network pictures into the current whiteboard page (if you need local pictures, please handle the upload yourself to get the network picture logic).
 
-### Typescript signature:
+### Typescript signature
 
 ```typescript
 type ImageInformation = {
@@ -91,44 +92,57 @@ public completeImageUpload(uuid: string, src: string): void;
 
 ### Sample code
 
-1. Call the `insertImage` method to ensure that the` uuid` string is unique and configure the image position (size, center position) information.
+1. Call the `insertImage` method to ensure that the`uuid` string is unique and configure the image position (size, center position) information.
 Then through the server or local upload to the cloud storage warehouse, get the network address of the picture information to be inserted, and call method 2 to pass in the picture network address.
 
 ```JavaScript
 // Method 1 Insert picture placeholder information
 // Use uuid to ensure that completeImageUpload updates the same image address
 room.insertImage({
-    uuid: uuid, 
-    centerX: x, 
-    centerY: y, 
-    width: imageFile.width, 
+    uuid: uuid,
+    centerX: x,
+    centerY: y,
+    width: imageFile.width,
     height: imageFile.height
 });
 // Method 2 Pass in the picture placeholder uuid and the picture network address.
 room.completeImageUpload(uuid, imageUrl)
 ```
 
-### The difference between `picture tool` and` ppt background map`
+### The difference between `picture tool` and`ppt background map`
 
 Difference| Insert background image `putScenes` | `insertImage` and `completeImageUpload`
 ---------|----------|---------
  Relationship to the page | Create a blank page with a background image | An image is inserted in the current page, and the front and back are determined according to the drawing relationship |
  Position | Center | Layout in the internal system of the whiteboard according to the position information of the `insertImage` input parameter|
- eraser | Cannot be altered | It can be altered by default. It can be changed by modifying the `disableEraseImage` property of` room` or by configuring the `disableEraseImage` parameter during initialization. |
+ eraser | Cannot be altered | It can be altered by default. It can be changed by modifying the `disableEraseImage` property of`room` or by configuring the `disableEraseImage` parameter during initialization. |
 
 ## Hand tool
 
 ### Shortcut settings
+
 Please read the `handToolKey` field description in [Initialization Parameters-SDK Parameters](../parameters/sdk.md#handToolKey).
 
+### Active activation / deactivation
+
+Modify the `handToolActive` property of `room` directly.
+
+```js
+// active activation
+room.handToolActive = true;
+// active shutdown
+room.handToolActive = false;
+```
+
 ### Activate / deactivate callback
+
 When the grabber tool is activated, the onHandToolActive method of callbacks in [Initialization Parameters-Room Parameters](../parameters/room.md#disableeraseimage) will be called back.
 
 ## Disable tool<span class="anchor" id="disableDeviceInputs">
 
 >2.2.0 Add API
 
-Modify the `disableDeviceInputs` property of` room` or configure the `disableDeviceInputs` parameter during initialization.
+Modify the `disableDeviceInputs` property of `room` or configure the `disableDeviceInputs` parameter during initialization.
 
 ```javascript
 // Prohibition of tool operation

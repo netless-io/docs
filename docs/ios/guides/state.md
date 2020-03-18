@@ -91,7 +91,7 @@ title: State management
 
 ## State Change Callback API
 
-When the state of the room changes, `sdk` will call back the` delegate` instance passed in when it was created.
+When the state of the room changes, `sdk` will call back the `delegate` instance passed in when it was created.
 
 The v2 version splits event callbacks into the following three. Among them, the picture replacement function in the v1 version needs to be called in the real-time room and the playback room, so it is moved to the general callback.
 
@@ -99,7 +99,7 @@ The v2 version splits event callbacks into the following three. Among them, the 
 
 ### 1. General callback (picture, error)
 
-When creating `WhiteSDK`, you can directly pass in an instance that implements` WhiteCommonCallbackDelegate` protocol.
+When creating `WhiteSDK`, you can directly pass in an instance that implements`WhiteCommonCallbackDelegate` protocol.
 
 ```Objective-C
 @interface WhiteSDK : NSObject
@@ -142,7 +142,7 @@ When joining a room, use the following API to pass in an instance that implement
 - (void)joinRoomWithRoomUuid:(NSString *)roomUuid roomToken:(NSString *)roomToken callbacks:(nullable id<WhiteRoomCallbackDelegate>)callbacks completionHandler:(void (^) (BOOL success, WhiteRoom * _Nullable room, NSError * _Nullable error))completionHandler;
 ```
 
-> When the `callbacks` parameter is passed to nil, the` roomCallback` callback will not be modified, and the previously set callbacks will not be removed. When reconnecting manually, it is not necessary to pass in `callbacks`.
+> When the `callbacks` parameter is passed to nil, the `roomCallback` callback will not be modified, and the previously set callbacks will not be removed. When reconnecting manually, it is not necessary to pass in `callbacks`.
 
 ```Objective-C
 //WhiteRoomCallbacks.h
@@ -227,7 +227,9 @@ If the custom event is a synchronous custom behavior, then `globalState` is used
 
 > 2.0 version always set custom `globalState` state. `setGlobalState:` API. Pass the custom `globalState` subclass to pass the custom content to other users in the room.
 
-Developers can call the `(BOOL) setCustomGlobalStateClass:` class method in `WhiteDisplayerState` to set the custom` globalState` property globally.
+Developers can call the `(BOOL) setCustomGlobalStateClass:` class method in `WhiteDisplayerState` to set the custom `globalState` property globally.
+
+>swift users, after inheriting `GlobalState`, need to mark the attributes that they want to be converted as @ objc`
 
 ```Objective-C
 @interface WhiteDisplayerState : WhiteObject<YYModel>

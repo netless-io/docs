@@ -20,8 +20,8 @@ token | string | {{token}}|
 Field | Type | Description |
 --  | -- | -- |
 name | string | Whiteboard name|
-limit | number | The maximum number of people on the whiteboard; when it is 0, there is no limit on the number of people | 
-mode | string | **v2 version parameters**; Room type: `persistent`,` historied` |
+limit | number | Setting it to 0 is not restricted, it is recommended to set it to 0: the room is not restricted and it is restricted from business.|
+mode | string | **v2 version parameters**; Room type: `persistent`,`historied` |
 
 * Room type:
 
@@ -37,8 +37,7 @@ There are two modes of the room: persistent room and replayable room. The room m
 ```json
 {
     "name":"Whiteboard name",
-    "limit":100,
-    "mode": "persistent"
+    "limit":0,
 }
 ```
 
@@ -51,7 +50,7 @@ There are two modes of the room: persistent room and replayable room. The room m
         "room": {
             "id": 650,
             "name": "console-room",
-            "limit": 100,
+            "limit": 0,
             "teamId": 1,
             "adminId": 1,
             "mode": "persistent",
@@ -127,7 +126,6 @@ Field | Type | Description |
 offset | number | Find the whiteboard (counting from 1) |
 limit | number | Get the number of whiteboards each time |
 
-
 ### Get specific whiteboard details
 
 `GET /room/id?uuid={{uuid}}`
@@ -155,7 +153,7 @@ uuid | string | Whiteboard unique identifier |
         "adminId": 1,
         "uuid": "Here is uuid",
         "name": "unnamed",
-        "limit": 10,
+        "limit": 0,
         "current": 0,
         "enable": true,
         "playable": false,
