@@ -1,6 +1,6 @@
 ---
-id: term
-title: Term
+id: token
+title: Authentication information
 ---
 
 ## sdkToken
