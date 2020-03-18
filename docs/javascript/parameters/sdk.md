@@ -32,14 +32,15 @@ var whiteWebSdk = new WhiteWebSdk({
 export type WhiteWebSdkConfiguration = {
     readonly deviceType?: DeviceType;
     readonly screenType?: ScreenType;
+    readonly renderEngine?: RenderEngine;
     readonly fonts?: UserFonts;
     readonly handToolKey?: string;
     readonly preloadDynamicPPT?: boolean;
     readonly loggerOptions?: LoggerOptions;
+    readonly reconnectionOptions?: Partial<ReconnectionOptions> | false;
     readonly onlyCallbackRemoteStateModify?: boolean;
+    readonly plugins?: Plugins;
     readonly urlInterrupter?: (url: string) => string;
-    readonly zoomMaxScale?: number;
-    readonly zoomMinScale?: number;
 };
 ```
 
@@ -79,6 +80,21 @@ By default, it will infer whether it is `desktop` or` touch` according to the op
 According to the incoming value, the `mouse` event and the` touch` event are received in turn. When the `surface` is passed in, the` touch` and `mouse` events are received at the same time.
 ```
 
+### **renderEngine**: rendering mode
+
+The default value is `RenderEngine.SVG`.
+
+TypeScript signature:
+
+```typescript
+export enum RenderEngine {
+    / ** Render as svg * /
+    SVG = "svg",
+    / ** Render as canvas * /
+    Canvas = "canvas",
+}
+```
+
 ### fonts: ppt Map font
 
 ```js
@@ -91,7 +107,7 @@ Custom font mapping required for dynamic ppt, `key` is the font name used by dyn
 
 ```js
 Type: `string`
-After setting, the user can move the entire whiteboard by pressing the shortcut key and the mouse at the same time. 
+After setting, the user can move the entire whiteboard by pressing the shortcut key and the mouse at the same time.
 You can enter the `key` property that can be triggered by the` KeyboardEvent` keyboard event. It is recommended to pass in the space bar (`" "`)
 ```
 
@@ -142,14 +158,14 @@ The state that is actively modified by default will not appear in the `onRoomSta
 The maximum ratio that the user can put, the default is not limited.  
 Developers can still zoom in using code.
 
-> 2.3.0 supports more advanced APIs, which are configured when `room` and` player` are initialized.
+> 2.3.0 supports more advanced APIs, which are configured when `room` and `player` are initialized.
 
 ### zoomMinScale: reduce the lower limit
 
 The minimum ratio that the user can reduce, the default is not limited.
 Developers can still use code to scale down.
 
-> 2.3.0 supports more advanced APIs, which are configured when `room` and` player` are initialized.
+> 2.3.0 supports more advanced APIs, which are configured when `room` and `player` are initialized.
 
 ## Recommended reading
 

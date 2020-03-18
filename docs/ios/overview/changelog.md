@@ -8,7 +8,47 @@ title: Version history
 -Based on `White-SDK-iOS`, organize structure and open source.
 Open source version, the version is iteratively increased based on the old version number.
 
+Change the `Podfile` file
+
+```ruby
+# Remove pod 'White-SDK-iOS'
+# Add the following
+  pod 'Whiteboard'
+```
+
 > Migration: Change `import <White-SDK-iOS / WhiteSDK.h>` to `import <Whiteboard / Whiteboard.h>`.
+
+## [2.6.4]-2020-03-04
+-Combined player, add separate buffer for audio and video to start, end callback
+-Compatible with iOS 9
+## [2.6.3]-2020-03-03
+-Optimized read-only mode
+-Optimized dynamic ppt audio and video
+-Added `getScenePathType` API (see WhiteDisplayer` getScenePathType: result: `method)
+-Some classes, add parameter initialization method
+## [2.6.2]-2020-02-23
+-Optimized read-only mode
+-Fixed the issue of callback `step` being invalid during the second half of the time during playback
+-Fixed `throwError` callback losing information
+### [2.6.1]-2020-02-20
+-Open View Restriction API (see WhiteCameraBound class related content)
+-Add playback time progress callback frequency API (see WhitePlayerConfig`step` property for details)
+-Add reconnection wait time API (see WhiteRoomConfig`timeout` property for details)
+-Added `writable` read-only mode (see WhiteRoomConfig`writable` property, and WhiteRoom` setWritable: completionHandler: `method)
+    * Fixed `disableOperations:` description as disabled operation API
+-WhiteRoom added active disconnection mark
+-Fixed the case where the clear screen API is invalid in some cases
+### [2.6.0]-2020-02-19
+-Optimized join room API, fixed the problem that in some cases, join room does not call back
+### [2.5.11]-2020-02-13
+-Optimized low dynamic iOS ppt display
+### [2.5.10]-2020-02-10
+-Fixed the problem that plugin users cannot view plugins
+## [2.5.9] - 2020-02-10
+- Fix the display problem of teaching aids in the avatar
+- Fix index db issue on earlier versions of iOS
+- Fix the display problem of teaching aids in the avatar
+- Fix index db error when adding room stone after iOS 13
 ## [2.5.8] - 2019-02-03
 - Fix image replacement API
 - Add preheater function to use the fastest resources

@@ -6,11 +6,13 @@ title: Replay
 ## Prerequisite
 
 // TODO
+>
 > 1. Make sure that when requesting the server to create a room, the room type is `Playable Room`. For details, please see [Server-side Document -> Whiteboard Type](server/api/whiteboard-base.md#%E5%88%9B%E5%BB%BA%E7%99%BD%E6%9D%BF)。  
 > 2. Read [Initialization Parameters -> Playback Parameters](../parameters/player.md) to understand the parameters required when initializing playback.
-> 3. In this section, `player` is the` player` object that was successfully returned after `sdk` called` replayRoom` API.
+> 3. In this section, `player` is the `player` object that was successfully returned after `sdk` called `replayRoom` API.
 
 ### white-react-sdk
+
 `white-react-sdk`, you can use the following methods for binding operations:
 
 ```javascript
@@ -25,8 +27,8 @@ class App extends React.Component {
 
 ## Audio and video support
 
-`sdk` supports the input of audio and video addresses during playback. For details, please refer to [Initialization Parameters -> Playback Parameters](../parameters/player.md). `sdk` will actively take over the playback of audio and video, and is responsible for handling the synchronization status of audio and video with` sdk 'player.
-When any one of the whiteboard playback and audio and video enters the `buffer` state,` sdk` will automatically stop the playback of the other, wait for the other party to finish buffering, and trigger the buffer state callback of `player` at the same time.
+`sdk` supports the input of audio and video addresses during playback. For details, please refer to [Initialization Parameters -> Playback Parameters](../parameters/player.md). `sdk` will actively take over the playback of audio and video, and is responsible for handling the synchronization status of audio and video with`sdk 'player.
+When any one of the whiteboard playback and audio and video enters the`buffer`state,`sdk`will automatically stop the playback of the other, wait for the other party to finish buffering, and trigger the buffer state callback of`player` at the same time.
 
 ### Audio
 
@@ -36,9 +38,9 @@ For audio, you only need to configure the correct audio address according to [In
 
 #### 1. Create a video tag
 
-Create a `video` tag to display and set the` id` to `white-sdk-video-js`. (Developers can configure the layout of the label themselves according to business needs.)
+Create a `video` tag to display and set the`id` to `white-sdk-video-js`. (Developers can configure the layout of the label themselves according to business needs.)
 
-> Before 2.2.13, please add the `css` name` video-js` in the `video` tag
+> Before 2.2.13, please add the `css` name`video-js` in the `video` tag
 
 ```html
 <!-- According to business needs, set the layout method by yourself -->
@@ -59,7 +61,7 @@ Create a `video` tag to display and set the` id` to `white-sdk-video-js`. (Devel
 
 * Use package management tools like npm
 
-Currently `video-js` is a` dependency` dependency of `sdk` and will be installed automatically. Just call manual import on the corresponding page.
+Currently `video-js` is a`dependency` dependency of `sdk` and will be installed automatically. Just call manual import on the corresponding page.
 
 ```js
 import "video.js/dist/video-js.css";
@@ -67,7 +69,7 @@ import "video.js/dist/video-js.css";
 
 ### Limitations-Safari limitations
 
-Due to the privacy restrictions of `iOS` (including` iOS` WeChat browser and browser `App`) and` macOS Safari`-audio and video cannot be played through code (videos marked with `muted` are OK), and` sdk` needs to synchronize `whiteboard playback` with audio and video playback. It will be paused and played by code, so it will cause normal playback on` iOS` and `macOS` Safari.
+Due to the privacy restrictions of `iOS` (including`iOS` WeChat browser and browser `App`) and`macOS Safari`-audio and video cannot be played through code (videos marked with `muted` are OK), and`sdk` needs to synchronize `whiteboard playback` with audio and video playback. It will be paused and played by code, so it will cause normal playback on`iOS` and `macOS` Safari.
 
 * Solution
 
@@ -87,7 +89,7 @@ player.play();
 
 ### Seek
 
-You can fast forward to a specific point in time as follows. `` scheduleTime`` is an integer (milliseconds) with `>=0`, it should not exceed the total time of the playback segment.
+You can fast forward to a specific point in time as follows. ``scheduleTime`` is an integer (milliseconds) with `>=0`, it should not exceed the total time of the playback segment.
 
 ```javascript
 player.seekToScheduleTime(scheduleTime);

@@ -1,18 +1,18 @@
 {
   "Android": {
-    "Overview": [
+    "产品概述": [
       "android/overview/android-introduction",
       "android/overview/android-open-source",
       "android/overview/android-changelog"
     ],
-    "Quick start": [
+    "快速开始": [
       "android/quick-start/android-declare",
       "android/quick-start/android-prepare",
       "android/quick-start/android-init-sdk",
       "android/quick-start/android-create-room",
       "android/quick-start/android-join-room"
     ],
-    "Features": [
+    "常用功能": [
       "android/guides/android-document",
       "android/guides/android-state",
       "android/guides/android-tools",
@@ -20,19 +20,20 @@
       "android/guides/android-operation",
       "android/guides/android-events",
       "android/guides/android-scenes",
+      "android/guides/android-readonly",
       "android/guides/android-replay"
     ],
-    "Upgrade": [
+    "升级指南": [
       "android/guides/android-v2migration"
     ]
   },
   "iOS": {
-    "Overview": [
+    "产品概述": [
       "ios/overview/ios-introduction",
       "ios/overview/ios-open-source",
       "ios/overview/ios-changelog"
     ],
-    "Quick start": [
+    "快速开始": [
       "ios/quick-start/ios-declare",
       "ios/quick-start/ios-prepare",
       "ios/quick-start/ios-init-sdk",
@@ -40,7 +41,7 @@
       "ios/quick-start/ios-join-room",
       "ios/quick-start/ios-callback-lifecycle"
     ],
-    "Features": [
+    "常用功能": [
       "ios/guides/ios-document",
       "ios/guides/ios-state",
       "ios/guides/ios-tools",
@@ -48,66 +49,75 @@
       "ios/guides/ios-operation",
       "ios/guides/ios-events",
       "ios/guides/ios-scenes",
+      "ios/guides/ios-readonly",
       "ios/guides/ios-replay"
     ],
-    "Upgrade": [
+    "升级指南": [
       "ios/guides/ios-v2migration"
     ]
   },
   "JavaScript": {
-    "Document structure": [
+    "文档结构": [
       "javascript/overview/js-outline"
     ],
-    "Installation guide": [
+    "安装指南": [
       "javascript/guide/js-sdk",
       "javascript/guide/js-changelog",
       "javascript/guide/js-open-source",
       "javascript/guide/js-debug"
     ],
-    "Quick start": [
+    "快速开始": [
       "javascript/quick-start/js-precondition",
       "javascript/quick-start/js-token",
       "javascript/quick-start/js-room",
       "javascript/quick-start/js-player"
     ],
-    "Initialization": [
+    "初始化参数": [
       "javascript/parameters/js-sdk",
       "javascript/parameters/js-room",
       "javascript/parameters/js-player"
     ],
-    "Features": [
+    "功能介绍": [
       "javascript/features/js-tools",
       "javascript/features/js-view",
       "javascript/features/js-scenes",
       "javascript/features/js-state",
       "javascript/features/js-operation",
       "javascript/features/js-events",
-      "javascript/features/js-plugin",
       "javascript/features/js-cursor",
       "javascript/features/js-document",
-      "javascript/features/js-replay"
+      "javascript/features/js-replay",
+      "javascript/features/js-readonly",
+      "javascript/features/js-plugin"
     ],
-    "Upgrade": [
+    "升级指南": [
       "javascript/guide/js-v2migration"
     ]
   },
   "blog": {
-    "Blog": [
-      "blog/term",
-      "blog/broadcast",
+    "FAQ": [
+      "blog/token",
+      "blog/viewmode",
       "blog/add-driver",
       "blog/prefetch",
       "blog/playback-speed",
       "blog/debug-center",
       "blog/begin-netless",
-      "blog/oss-config"
+      "blog/handle-net-state",
+      "blog/oss-config",
+      "blog/docs-transform",
+      "blog/visual-rectangle",
+      "blog/debug-help",
+      "blog/replay",
+      "blog/scene-about",
+      "blog/large-class"
     ]
   },
   "server": {
-    "Overview": [
+    "产品概述": [
       "server/overview/server-introduction"
     ],
-    "Server API": [
+    "服务端 API": [
       "server/api/server-request",
       "server/api/server-whiteboard-base",
       "server/api/server-whiteboard-cover",

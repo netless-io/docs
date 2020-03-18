@@ -4,6 +4,31 @@ title: Version history
 ---
 
 >[The latest version list -> automatic release updates](https://jitpack.io/#duty-os/white-sdk-android)
+## [2.6.5]-2020-03-12
+-Some promise APIs allow null to be passed in
+-Fixed null pointer issue when joining a room
+## [2.6.4]-2020-03-03
+-Optimized read-only mode
+-Optimized dynamic ppt audio and video
+-Added `getScenePathType` API (see Displayer` getScenePathType: `method)
+-Some classes, add parameter initialization method
+-Recovery support Android 4.4 support
+-Optimized read-only mode
+## [2.6.3]-2020-02-24
+-Optimize connectivity and log reporting logic
+## [2.6.2]-2020-02-23
+-Optimized read-only mode
+-Fixed the issue of callback `step` being invalid during the second half of the time during playback
+-Fixed `throwError` callback losing information
+## [2.6.1]-2020-02-20
+-Add playback time progress callback frequency API (see PlayerConfiguration`step` property for details)
+-Added reconnection wait time API (see RoomParams`timeout` property for details)
+-Added `writable` read-only mode (see RoomParams`writable` property and Room` setWritable: `method for details)
+-Fixed the case where the clear screen API is invalid in some cases
+## [2.6.0]-2020-02-18
+-Optimized join room API, fixed the problem that in some cases, join room does not call back
+## [2.5.7]-2020-02-11
+-Fix the problem that teaching aids are displayed incorrectly when user avatar is displayed
 ## [2.5.4]-2019-02-04
 -Fixed crash issue under VIVO x7 Android 5.0
 -Add server configuration information interface when initializing SDK
@@ -124,7 +149,7 @@ title: Version history
 ### [2.0.3] - 2019-06-24
 - Compatible with older versions of static ppt playback
 
-### [2.0.0] - 2019-06-23
+## [2.0.0] - 2019-06-23
 
 #### Compatibility changes
 Compatible with previous versions of the API, but cannot interconnect with lower versions to enter the same room.

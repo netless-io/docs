@@ -3,7 +3,7 @@ id: js-room
 title: Room parameters
 ---
 
-`room` and` player` are actually subclasses of the internal `displayer`. In the `TypeScript` signature, the method signatures starting with` /// Displayer.d.ts` can be used in both `room` and` player`.
+`room` and `player` are actually subclasses of the internal `displayer`. In the `TypeScript` signature, the method signatures starting with `/// Displayer.d.ts` can be used in both `room` and `player`.
 
 We call the room that users use in real time and synchronize with the outside, called **real-time room** (`corresponding class is room`)
 
@@ -22,7 +22,6 @@ public joinRoom(params: JoinRoomParams, callbacks: RoomCallbacks = {}): Promise<
 whiteWebSdk.joinRoom({
     uuid: json.msg.room.uuid,
     roomToken: json.msg.roomToken,
-}, 
 // callback itself is an optional parameter and may not be passed.
 {
     onRoomStateChanged: modifyState => {
@@ -40,7 +39,7 @@ whiteWebSdk.joinRoom({
 })
 ```
 
-## JoinRoomParams parameter Description:
+## JoinRoomParams parameter Description
 
 ### TypeScript signature
 
@@ -49,6 +48,7 @@ export type JoinRoomParams = {
     readonly uuid: string;
     readonly roomToken: string;
     readonly userPayload?: any;
+    readonly isWritable?: boolean;
     readonly disableDeviceInputs?: boolean;
     readonly disableBezier?: boolean;
     readonly cursorAdapter?: CursorAdapter;
@@ -58,7 +58,7 @@ export type JoinRoomParams = {
 };
 ```
 
-> Except for `uuid` and` roomToken`, all other parameters are optional. Bold fields in the directory on the right are commonly used settings.
+> Except for `uuid` and `roomToken`, all other parameters are optional. Bold fields in the directory on the right are commonly used settings.
 
 ### **uuid**(require): string
 
@@ -79,11 +79,22 @@ It can be anything and it will be reflected in room.state.roomMembers.
 The SDK will pass it as the user's information completely without processing.
 ```
 
+### **isWritable**: Read-only mode / writable mode
+
+```
+Whether to enter the room in writable mode (otherwise read-only mode).
+After entering the room in writable mode, you can be acute: operate teaching aids, modify the related status of the room, etc. and synchronize your own information to other people in the room
+After entering the room in read-only mode, it can only receive information synchronized by other people, and cannot operate teaching aids and modify room status.
+People entering the room in read-only mode cannot be detected by others, nor can they appear in the room member list.
+The default is true
+```
+
 ### cursorAdapter: Mouse cursor display
 
 ```typescript
 // Handle the mapping between user information (`userPayload`) and user avatar div.  
 // Need to implement this interface
+
 export interface CursorAdapter {
     createCursor(memberId: number): CursorDescription & {readonly reactNode?: any};
     onAddedCursor?(cursor: Cursor): void;
@@ -139,7 +150,7 @@ You can use the following code to customize the mouse cursor.
 var roomMembers = [];
 var cursorAdapter = {
   createCursor: function(memberId) {
-    	 return {x: 16, y: 16, width: 32, height: 32};
+      return {x: 16, y: 16, width: 32, height: 32};
   },
   onAddedCursor: function(cursor) {
     for (var i = 0; i < roomMembers.length; i ++) {
@@ -312,6 +323,7 @@ Hand tool activation / deactivation callback
 ### **onPPTLoadProgress**
 
 * TypeScript signature
+
 ```typescript
 (uuid: string, progress: number) => void;
 ```

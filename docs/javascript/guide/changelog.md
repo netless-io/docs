@@ -7,6 +7,58 @@ title: Version history
 > - Fixed a bug where * .d.ts files were not available
 > - Fixed a bug where closing WebSocket may report an error in the console
 
+## 2.7.0-2020-03-17
+
+>-Optimized writing performance in canvas mode
+>-Fixed the problem that Safari cannot render images in canvas mode
+>-Fixed the problem that some users cannot hear sound when playing dynamic PPT with animated audio
+>-Fixed an issue where dynamic PPT conversion fails when the audio is an empty string
+>-Fixed flickering issue during dynamic PPT audio playback
+>-Fixed the problem that the cursor is still the default cursor when entering the room
+
+## 2.6.4-2020-03-02
+
+>-Fixed the problem that the text does not specify the font size
+>-Fixed issue with sidebar playing audio
+>-Fixed replay issue when media switching pages
+>-Fixed the issue that the media in the group cannot be played
+
+## 2.6.3-2020-02-23
+
+>-Added: `` rejectWhenReadonlyErrorLevel ''
+>-Fixed the issue that the room cannot be accessed in read-only mode after setting `` disableBezier: true``
+
+## 2.6.2-2020-02-22
+
+>-Fixed the bug that when the room has an anchor, the size of the whiteboard is changed and the visual rectangle cannot be tracked
+
+## 2.6.1-2020-02-21
+
+>-Fixed: Modifying room status in custom event callback will report an error
+>-Fixed several issues with viewing angles in read-only mode
+>-Added cursor adapter onMovedCursor callback method
+
+## 2.6.0-2020-02-18
+
+>-Added Canvas rendering mode (beta version, disabled by default)
+>-Added read-only mode for live rooms
+>-Fixed several bugs
+
+## 2.5.10-2020-02-13
+
+>-Added callback for dynamic PPT video play / stop events
+
+## 2.5.9-2020-02-10
+
+>-Optimize the compatibility of dynamic PPT for earlier versions of iOS
+>-Fixed several bugs
+
+## 2.5.8-2020-02-03
+
+>-Fixed a bug that caused a large number of invalid requests when the client's sudden network quality deteriorated suddenly.
+>-Fixed a bug where * .d.ts files were not available
+>-Fixed a bug where closing WebSocket may report an error in the console
+
 ## 2.5.7-2020-01-22
 
 > - When the client enters an abnormality due to a network problem, it will automatically reconnect to restore the normal state.
@@ -183,9 +235,11 @@ However, it cannot be interconnected with an earlier SDK. Connect with Android 2
 
 > - Fixed `plugin.attributes` sometimes returning empty objects
 > - Fixed the problem that some 2.3.x SDK playback videos cannot be played
+
 ## 2.5.2-2020-01-04 (expired)
 
 > - Updated plugin functionality
+
 ## 2.5.1-2020-01-01 (expired)
 
 > - Support automatic upgrade

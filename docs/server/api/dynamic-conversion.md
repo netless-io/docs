@@ -24,7 +24,7 @@ The pptx features currently known to be unsupported are as follows:
 Document to web page is undergoing research and development iterations, and the above list will be continuously updated
 
 > Compared to static document conversion, dynamic document conversion retains the sequence animation in the ppt file and provides switching control functions.
-> The dynamic `ppt` is based on the` Microsoft Office` specification and cannot guarantee that WPS files can be parsed correctly.
+> The dynamic `ppt` is based on the`Microsoft Office` specification and cannot guarantee that WPS files can be parsed correctly.
 
 ## Ready to work
 
@@ -49,7 +49,6 @@ Document to web page is undergoing research and development iterations, and the 
 ![Turn off dynamic document conversion services](https://white-document.oss-cn-hangzhou.aliyuncs.com/netless-doc-images/dynamic2.png)
 
 </details>
-
 
 ## Server API
 
@@ -150,6 +149,7 @@ roomToken or token | string | {{roomtoken}} or {{token}}|
 > 3. The conversion task requires users to poll the results, and the interval is recommended to be more than 3 seconds
 
 `convertStatus` The following situations exist:
+
 - Waiting: The task is waiting due to QPS reaching the upper limit, etc.
 - Converting: Task in progress
 - NotFound: No corresponding task information was found according to taskUUID
@@ -164,7 +164,7 @@ This part can be spliced ​​by the client or assembled on the server and sent
 
 #### 1. Leave it to the client for splicing
 
-The `json`,` taskId`, and `prefix` of the conversion result are transferred to the client for splicing. (Recommended, because the client still needs to be converted to the scene class supported by SDK for passing in)
+The `json`,`taskId`, and `prefix` of the conversion result are transferred to the client for splicing. (Recommended, because the client still needs to be converted to the scene class supported by SDK for passing in)
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Web/Typescript-->
@@ -248,6 +248,10 @@ scenes: [
 
 ## SDK package class use
 
+Based on the convenience of use, the SDK has encapsulated the complete request process for the conversion task. You can use this API when testing.
+
+> Because the conversion task calculates QPS, that is, daily peak billing, it is not recommended to use the `SDK` side API in a production environment.
+
 ### Using the conversion API
 
 >iOS Android 2.2.0 new API
@@ -275,7 +279,7 @@ type PptConvertParams = {
 res = await pptConverter.convert({
     // ppt address in cloud storage, note that it needs to be configured in the console
     url: pptURL,
-    kind: "dynamic", 
+    kind: "dynamic",
     // conversion progress monitoring
     onProgressUpdated: progress => {
         if (onProgress) {

@@ -3,8 +3,8 @@ id: js-precondition
 title: Precondition
 ---
 
-This chapter uses pure `HTML` add ` JavaScript` text access as an introduction, and uses `es6` syntax for development.
-In actual development, `vue` and` react` can be escaped to `es5` after being configured.
+This chapter uses pure `HTML` add `JavaScript` text access as an introduction, and uses `es6` syntax for development.
+In actual development, `vue` and `react` can be escaped to `es5` after being configured.
 
 This article describes the preparations required before using the whiteboard SDK.
 
@@ -37,6 +37,7 @@ Create `index.html` with the following content:
 ```<div id="whiteboard" style="width: 100%; height: 100vh;"></div>``` Elements so we can mount the whiteboard.
 
 ## Schematic diagram of the overall process
+
 ![quick_start_flow](/img/quick_start_flow.png)
 
 ## Recommended reading

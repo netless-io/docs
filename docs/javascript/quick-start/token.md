@@ -25,8 +25,8 @@ var requestInit = {
         "content-type": "application/json",
     },
     body: JSON.stringify({
-        name: "房间名称",
-        limit: 100, // Limit on the number of rooms
+        name: "room name",
+        limit: 0, // Limit on the number of rooms
         mode: "persistent",  // Normal room, unable to play back
         // mode: "historied"， // Playback room
     }),

@@ -20,7 +20,7 @@ Read [Access Preparation](/docs/blog/blog-begin-netless/), register an account, 
 
 Open build.gradle in the root directory and perform the following standard configuration:
 
-```plain
+```gradle
 allprojects {
     repositories {
         jcenter()
@@ -31,9 +31,10 @@ allprojects {
 
 Then open build.gradle in the app directory and configure it as follows:
 
-```plain
+```gradle
 dependencies {
-    implementation 'com.github.duty-os:white-sdk-android:2.4.0'
+    //  数字请自行使用最新版本
+    implementation 'com.github.duty-os:white-sdk-android:2.6.3'
 }
 ```
 
