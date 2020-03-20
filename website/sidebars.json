@@ -1,18 +1,18 @@
 {
   "Android": {
-    "产品概述": [
+    "Overview": [
       "android/overview/android-introduction",
       "android/overview/android-open-source",
       "android/overview/android-changelog"
     ],
-    "快速开始": [
+    "Quick start": [
       "android/quick-start/android-declare",
       "android/quick-start/android-prepare",
       "android/quick-start/android-init-sdk",
       "android/quick-start/android-create-room",
       "android/quick-start/android-join-room"
     ],
-    "常用功能": [
+    "Features": [
       "android/guides/android-document",
       "android/guides/android-state",
       "android/guides/android-tools",
@@ -23,17 +23,17 @@
       "android/guides/android-readonly",
       "android/guides/android-replay"
     ],
-    "升级指南": [
+    "Upgrade": [
       "android/guides/android-v2migration"
     ]
   },
   "iOS": {
-    "产品概述": [
+    "Overview": [
       "ios/overview/ios-introduction",
       "ios/overview/ios-open-source",
       "ios/overview/ios-changelog"
     ],
-    "快速开始": [
+    "Quick start": [
       "ios/quick-start/ios-declare",
       "ios/quick-start/ios-prepare",
       "ios/quick-start/ios-init-sdk",
@@ -41,7 +41,7 @@
       "ios/quick-start/ios-join-room",
       "ios/quick-start/ios-callback-lifecycle"
     ],
-    "常用功能": [
+    "Features": [
       "ios/guides/ios-document",
       "ios/guides/ios-state",
       "ios/guides/ios-tools",
@@ -52,32 +52,32 @@
       "ios/guides/ios-readonly",
       "ios/guides/ios-replay"
     ],
-    "升级指南": [
+    "Upgrade": [
       "ios/guides/ios-v2migration"
     ]
   },
   "JavaScript": {
-    "文档结构": [
+    "Document structure": [
       "javascript/overview/js-outline"
     ],
-    "安装指南": [
+    "Installation guide": [
       "javascript/guide/js-sdk",
       "javascript/guide/js-changelog",
       "javascript/guide/js-open-source",
       "javascript/guide/js-debug"
     ],
-    "快速开始": [
+    "Quick start": [
       "javascript/quick-start/js-precondition",
       "javascript/quick-start/js-token",
       "javascript/quick-start/js-room",
       "javascript/quick-start/js-player"
     ],
-    "初始化参数": [
+    "Initialization": [
       "javascript/parameters/js-sdk",
       "javascript/parameters/js-room",
       "javascript/parameters/js-player"
     ],
-    "功能介绍": [
+    "Features": [
       "javascript/features/js-tools",
       "javascript/features/js-view",
       "javascript/features/js-scenes",
@@ -90,7 +90,7 @@
       "javascript/features/js-readonly",
       "javascript/features/js-plugin"
     ],
-    "升级指南": [
+    "Upgrade": [
       "javascript/guide/js-v2migration"
     ]
   },
@@ -114,10 +114,10 @@
     ]
   },
   "server": {
-    "产品概述": [
+    "Overview": [
       "server/overview/server-introduction"
     ],
-    "服务端 API": [
+    "Server API": [
       "server/api/server-request",
       "server/api/server-whiteboard-base",
       "server/api/server-whiteboard-cover",
