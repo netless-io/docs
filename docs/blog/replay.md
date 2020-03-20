@@ -22,19 +22,20 @@ The content saved on the whiteboard is not a video but a private structured data
 
 ### 4.1 What do we need to do in class
 
- ![realtime](/img/real-time.png)
+ ![realtime](/img/real-time-en.png)
 
 - The process of starting a class is: 1. Create a whiteboard 2. Teacher joins 3. Teacher opens the video 4. Students join 5. Start the class and record.
 - The process of ending the class is: 1. Click to end the recording 2. Exit the classroom.
 
 So recording needs to do three things
-** 1. Record the UTC time when the server starts recording **
-** 2. Record the UTC time on the server when recording ends. **
-** 3. Get the URL of audio and video recording **
+
+1. Record the UTC time when the server starts recording.
+2. Record the UTC time on the server when recording ends.
+3. Get the URL of audio and video recording
 
 ### 4.2 What do we need to do when we look back
 
- ![realtime](/img/replay.png)
+ ![realtime](/img/replay-en.png)
 
 Pass the above three important values ​​into the method
 

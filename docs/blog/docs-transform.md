@@ -22,7 +22,7 @@ Our service provides two conversion services, namely: document to picture & docu
 
 ## 3. Design Architecture for Fast Access Test
 
-![client_transform](/img/client_transform.png)
+![client_transform](/img/client_transform_en.png)
 
 - Advantage: Start transcoding service without setting up server
 - Disadvantages: Many teachers upload documents temporarily, and may need to open more concurrent (QPS) to meet the needs of fast transcoding, high cost.
@@ -33,11 +33,11 @@ Recommendation: When testing, you can use this solution to experience the transc
 
 ### 4.1 Overall Architecture Diagram
 
-![server_transform](/img/server_transform.png)
+![server_transform](/img/server_transform_en.png)
 
 ### 4.2 Schematic diagram of data after transcoding
 
-![scene_manger](/img/scene_manger.png)
+![scene_manger](/img/scene_manger_en.png)
 
 - Advantages:
   - One transcoding can be used repeatedly
