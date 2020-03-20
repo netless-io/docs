@@ -48,8 +48,9 @@ const siteConfig = {
         label: 'GitHub',
     },
     {
-        href: 'https://developer-en.netless.link/',
-        label: '🇬🇧 English',
+        href: 'https://developer.netless.link/',
+        label: '🇨🇳 中文',
+
     },
   ],
   algolia: {
