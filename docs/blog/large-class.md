@@ -7,7 +7,7 @@ title: Large class
 
 ### 1.1 Interactive Mode Design Architecture
 
-![isWritable_true](/img/isWritable_true.png)
+![isWritable_true](/img/isWritable_true_en.png)
 
 - Advantages:
   - Accelerate the direct connection between the network and the core computer room through the netless link, with low latency and good interaction performance.
@@ -18,7 +18,7 @@ title: Large class
 
 ### 1.2 Read-only design architecture
 
-![isWritable_false](/img/isWritable_false.png)
+![isWritable_false](/img/isWritable_false_en.png)
 
 - Advantages:
   - The number of subscriptions is only related to the size of the getway cluster. Removing single points can host very large classes.
