@@ -12,7 +12,7 @@ The preheater starts automatically when the initialization is called. joinRoom w
 ## iOS
 
 Added `WhiteOriginPrefetcher fetchConfigAndPrefetchDomains` API to execute preheater.
-`WhiteOriginPrefetcher` provides a singleton. After calling the` fetchConfigAndPrefetchDomains` method, you can accept three callbacks through its `prefetchDelgate` property:
+`WhiteOriginPrefetcher` provides a singleton. After calling the`fetchConfigAndPrefetchDomains` method, you can accept three callbacks through its `prefetchDelgate` property:
 
 ```Objective-C
 @protocol WhiteOriginPrefetcherDelegate <NSObject>
@@ -50,5 +50,5 @@ void fetchOriginConfigSuccess(JsonObject jsonObject);
 void finishPrefetch(JsonObject jsonObject);
 ```
 
-When initializing the SDK, pass the `jsonObject` returned by` prefetcher``finishPrefetch` to the sdk via the `WhiteSdkConfiguration` setSdkStrategyConfig` method.
+When initializing the SDK, pass the `jsonObject` returned by`prefetcher``finishPrefetch` to the sdk via the `WhiteSdkConfiguration` setSdkStrategyConfig` method.
 > 2.5.4 version provides the API
