@@ -7,11 +7,12 @@ Android 2.5.3，iOS 2.5.8 新增 API，web 2.5.8 后，会自动进行预热。
 
 ## Web
 
-预热器在调用初始化时，自动启动。joinRoom 会等待预热器请求完毕后，才执行加入房间操作。
+预热器会在初始化 SDK 后，自动启动，`joinRoom` 操作，会等待预热器加载完成后，再根据速度最快的域名进行加载。
 
 ## iOS
 
 新增`WhiteOriginPrefetcher fetchConfigAndPrefetchDomains`API，执行预热器。
+
 `WhiteOriginPrefetcher`提供单例，调用`fetchConfigAndPrefetchDomains`方法后，可以通过其`prefetchDelgate`属性，来接受三种回调:
 
 ```Objective-C
@@ -30,6 +31,9 @@ Android 2.5.3，iOS 2.5.8 新增 API，web 2.5.8 后，会自动进行预热。
 ```
 
 >建议提前进行预热操作，确保在创建 SDK 时，预热行为已经完成。
+
+在`- (void)originPrefetcherFinishPrefetch:(NSDictionary *)result;`回调成功后，可以手动持有`result`或者直接访问`WhiteOriginPrefetcher`单例的`sdkStrategyConfig`获取预热结果。
+在初始化 SDK 时，手动赋值给`WhiteSdkConfiguration`实例的`sdkStrategyConfig`。
 
 ## Android
 
