@@ -5,7 +5,7 @@ title: Aliyun OSS config
 
 ## Purpose
 
-We found that during the debugging process, customers found that they could often report cross-domain errors or upload failures. Here we provide an oss debugging method that can quickly upload uploaded pictures and documents. ** After the product is out of the testing period, be sure to pay attention to the need to change to a higher security configuration. **
+We found that during the debugging process, customers found that they could often report cross-domain errors or upload failures. Here we provide an oss debugging method that can quickly upload uploaded pictures and documents. **After the product is out of the testing period, be sure to pay attention to the need to change to a higher security configuration.**
 
 ## The configuration steps
 
