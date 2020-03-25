@@ -21,6 +21,8 @@ title: 版本历史
 >非音视频插件，web 端不支持插入音视频。
 
 将项目中`import <White-SDK-iOS/WhiteSDK.h>`引用，更改为`import <Whiteboard/Whiteboard.h>`。
+## [2.7.2] - 2020-03-25
+- 增加动态 ppt 图片加载失败的通知
 ## [2.7.1] - 2020-03-22
 - 优化了建连速度
 - 动态 PPT 修复在 iOS 下换行不正确问题
