@@ -5,6 +5,22 @@ title: Version history
 
 >[The latest version list -> automatic release updates](https://jitpack.io/#duty-os/white-sdk-android)
 
+## [2.7.2] - 2020-03-25
+
+- Optimize preheater connection speed
+
+## [2.7.1] - 2020-03-22
+
+- Optimized the connection speed
+- Fixed several display errors in canvas mode
+- Compatible with non-audio and video system users, but the authentication speed is slow
+
+## [2.7.0] - 2020-03-18
+
+- Optimize the underlying display
+- Optimize dynamic ppt
+- Note: This version currently has certain compatibility issues. Users who access the custom audio and video plug-in system can upgrade. . If you don't know the version, you can ask the service team.
+
 ## [2.6.5]-2020-03-12
 
 - Some promise APIs allow null to be passed in
