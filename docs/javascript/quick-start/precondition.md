@@ -43,4 +43,4 @@ Create `index.html` with the following content:
 ## Recommended reading
 
 1. [Real-time room](./room.md)
-1. [Replay room](./player.md)
+2. [Replay room](./player.md)
