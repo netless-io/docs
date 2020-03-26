@@ -7,8 +7,8 @@ title: Instructions
 
    1. Registered address: [console.herewhite.com](https://console.netless.link/zh-CN/register/)
    2. Registration conditions: mobile number, work email
-   ![register_page](/img/register_page.jpg)
+   ![register_page](/img/Instructions-1.jpg)
 
 ## 2. get sdkToken
 
-   ![sdkTokenGet](/img/sdkTokenGetEN.png)
+   ![sdkTokenGet](/img/Instructions-2.jpg)

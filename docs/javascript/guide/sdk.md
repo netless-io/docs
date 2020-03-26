@@ -58,8 +58,8 @@ import {Room, RoomPhase, RoomWhiteboard, WhiteWebSdk} from "white-react-sdk";
 ### 2. script tag integration
 
 ```html
-<link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.7.0.css">
-<script src="https://sdk.herewhite.com/white-web-sdk/2.7.0.js"></script>
+<link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.7.1.css">
+<script src="https://sdk.herewhite.com/white-web-sdk/2.7.1.js"></script>
 <script>
     //Global variables WhiteWebSdk
     let sdk = new WhiteWebSdk();

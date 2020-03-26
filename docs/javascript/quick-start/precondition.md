@@ -21,8 +21,8 @@ Create `index.html` with the following content:
 <html>
     <head>
         <!-- The version number can be changed according to the latest version. -->
-        <link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.5.8.css">
-        <script src="https://sdk.herewhite.com/white-web-sdk/2.5.8.js"></script>
+        <link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.7.1.css">
+        <script src="https://sdk.herewhite.com/white-web-sdk/2.7.1.js"></script>
         <script>
             // Subsequent implementation code
         </script>
@@ -36,11 +36,7 @@ Create `index.html` with the following content:
 > For the SDK integration of react project, please refer to [SDK integration](../guide/sdk.md). And add a `<body>` in index.html in the project
 ```<div id="whiteboard" style="width: 100%; height: 100vh;"></div>``` Elements so we can mount the whiteboard.
 
-## Schematic diagram of the overall process
-
-![quick_start_flow](/img/quick_start_flow.png)
-
 ## Recommended reading
 
 1. [Real-time room](./room.md)
-1. [Replay room](./player.md)
+2. [Replay room](./player.md)

@@ -7,16 +7,16 @@ title: Scene management
 
 ### scene
 
-In order to enhance the page management function of the whiteboard, we introduce a new concept: ** scene **.
+In order to enhance the page management function of the whiteboard, we introduce a new concept: **scene**.
 `Scene` is a page of the whiteboard we have been using.
 
-A `scene` consists of` scene name` and `PPT (background image)`.
+A `scene` consists of`scene name` and `PPT (background image)`.
 
 ### scene path (scenePath) = scene directory scene name
 
 When managing multiple scenes, we want to get a specific scene, at this time we need ** `Scene Path` **. Each `scene path` points to a specific scene.
 
-The `scene path` consists of:` scene directory` and `scene name`. The former has nothing to do with `scene` itself, and is related to the location where` scene` is stored.
+The `scene path` consists of:`scene directory` and `scene name`. The former has nothing to do with `scene` itself, and is related to the location where`scene` is stored.
 
 > The knowledge of the resource manager can be transferred for understanding.
 Scene-> File
@@ -38,11 +38,9 @@ The following is a set of legal `scene paths`.
 
 > If you are familiar with the Unix / Linux file system, you will find the paths are similar in form. Scenes are like files, and scene groups are like folders. We recommend that you imagine so.
 
-
 It can be seen that the `scene path` is similar to the absolute path of the file.
 
-** `Scene Path` is separated by` / `, and must start with` / `. The rightmost hierarchy is the name of the scene. **
-
+**`Scene Path` is separated by`/`, and must start with`/`. The rightmost hierarchy is the name of the scene.**
 
 This set of scenarios can also be represented in the form of the following file structure.
 
@@ -83,14 +81,14 @@ When using the Move, Copy, and Insert Scene APIs, if a specific scene already ex
 
 #### Scene directory and scene path cannot be the same
 
-When a scene with a scene path of `/ Eng / ppt1` exists in the whiteboard room, it is impossible to exist / accept a scene named` / Eng`. Because `scene path` is composed of` scene directory` and `scene name`.
+When a scene with a scene path of `/Eng/ppt1` exists in the whiteboard room, it is impossible to exist / accept a scene named`/Eng`. Because `scene path` is composed of`scene directory` and `scene name`.
 If this happens, the insertion fails.
 
 ---
 
 ## API
 
-The APIs involved in this document are methods of the whiteboard `Room` (iOS:` WhiteRoom`). It can also be viewed in the corresponding SDK file.
+The APIs involved in this document are methods of the whiteboard `Room` (iOS:`WhiteRoom`). It can also be viewed in the corresponding SDK file.
 
 ### Get current scene information
 
@@ -133,7 +131,7 @@ let scenceState = room.state.sceneState;
 /** Get the current scene state */
 public void getSceneState(final Promise<SceneState> promise)
 /** Get current scene directory, all scene information */
-public void getScenes(final Promise<Scene[]> promise) 
+public void getScenes(final Promise<Scene[]> promise)
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
 
@@ -177,6 +175,7 @@ room.setScenePath:"/Phy/ppt1";
 <!--END_DOCUSAURUS_CODE_TABS-->
 
 > When the switching API does not respond, or an error is reported in the callback, the following situations may occur:
+>
 > 1. The path is illegal. Please read the previous section and make sure that the `scene path` input conforms to the specification (begins with `/`).
 > 2. The `scene` corresponding to the path does not exist.
 > 3. The path corresponds to the `scene directory`. Note that `Scene Directory` is not the same as a scene.
@@ -220,13 +219,12 @@ public void putScenes(String dir, Scene[] scenes, int index)
 
 Insert scene API, accepts three parameters:
 
-* dir: `Scene Directory`, the corresponding directory location where the scene is to be inserted.
-* scenes: list of scenes to be created.
-* index: The location of the first scene in scenes.
+    - dir: `Scene Directory`, the corresponding directory location where the scene is to be inserted.
+    - scenes: list of scenes to be created.
+    - index: The location of the first scene in scenes.
 
 > Incoming `scene directory` (dir) cannot be a 'scene path' of an existing scene. (You cannot insert files into the file)
-
-> When the newly inserted scene, `scene path` (dir scene name) is the same as the` scene path` of the old scene, the new `scene` will overwrite the old` scene`. (New files overwrite old files)
+> When the newly inserted scene, `scene path` (dir scene name) is the same as the`scene path` of the old scene, the new `scene` will overwrite the old`scene`. (New files overwrite old files)
 
 ### Duplicate name, mobile scene
 
@@ -270,9 +268,7 @@ public void moveScene(String source, String target)
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-
 ### Delete scene
-
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Web/Typescript-->
@@ -304,8 +300,7 @@ public void removeScenes(String dirOrPath)
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-You can pass `" / "` to this parameter to clear all scenes in the blank board room.
+You can pass `/` to this parameter to clear all scenes in the blank board room.
 
 > There will be at least one scene in the whiteboard room.
 Therefore, when you delete the last scene in the whiteboard room, a blank scene named init with a scene path of "/ init" will be automatically generated immediately.
-

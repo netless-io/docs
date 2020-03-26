@@ -12,7 +12,7 @@ The preheater starts automatically when the initialization is called. joinRoom w
 ## iOS
 
 Added `WhiteOriginPrefetcher fetchConfigAndPrefetchDomains` API to execute preheater.
-`WhiteOriginPrefetcher` provides a singleton. After calling the` fetchConfigAndPrefetchDomains` method, you can accept three callbacks through its `prefetchDelgate` property:
+`WhiteOriginPrefetcher` provides a singleton. After calling the`fetchConfigAndPrefetchDomains` method, you
 
 ```Objective-C
 @protocol WhiteOriginPrefetcherDelegate <NSObject>
@@ -30,6 +30,9 @@ Added `WhiteOriginPrefetcher fetchConfigAndPrefetchDomains` API to execute prehe
 ```
 
 > It is recommended to perform the warm-up operation in advance to ensure that the warm-up behavior is completed when the SDK is created.
+
+After the `-(void) originPrefetcherFinishPrefetch: (NSDictionary *) result;` callback is successful, you can manually hold the `result` or directly access the`sdkStrategyConfig` of the `WhiteOriginPrefetcher` singleton to get the warm-up result.
+When initializing the SDK, manually assign the value to `sdkStrategyConfig` of the`WhiteSdkConfiguration` instance.
 
 ## Android
 
@@ -50,5 +53,5 @@ void fetchOriginConfigSuccess(JsonObject jsonObject);
 void finishPrefetch(JsonObject jsonObject);
 ```
 
-When initializing the SDK, pass the `jsonObject` returned by` prefetcher``finishPrefetch` to the sdk via the `WhiteSdkConfiguration` setSdkStrategyConfig` method.
+When initializing the SDK, pass the `jsonObject` returned by`prefetcher``finishPrefetch` to the sdk via the `WhiteSdkConfiguration` setSdkStrategyConfig` method.
 > 2.5.4 version provides the API

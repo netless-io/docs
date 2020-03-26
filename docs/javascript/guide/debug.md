@@ -11,4 +11,4 @@ The live room and playback room pages will expose the `room` and `player` instan
 ## Recommended reading
 
 1. [Quick Start-Live Room](../quick-start/room.md)
-1. [Quick Start-Playback Room](../quick-start/player.md)
+2. [Quick Start-Playback Room](../quick-start/player.md)
