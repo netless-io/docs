@@ -18,6 +18,17 @@ Change the `Podfile` file
 
 > Migration: Change `import <White-SDK-iOS / WhiteSDK.h>` to `import <Whiteboard / Whiteboard.h>`.
 
+## [2.7.2] - 2020-03-25
+
+- Added notification of dynamic ppt image loading failure
+
+## [2.7.1] - 2020-03-22
+
+- Optimized the connection speed
+- Dynamic PPT fixes incorrect line breaks in iOS
+- Fixed several display errors in canvas mode
+- Compatible with non-audio and video system users, but the authentication speed is slow
+
 ## [2.7.0]-2020-03-18
 
 - Optimize dynamic ppt
