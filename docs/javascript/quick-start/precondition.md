@@ -36,10 +36,6 @@ Create `index.html` with the following content:
 > For the SDK integration of react project, please refer to [SDK integration](../guide/sdk.md). And add a `<body>` in index.html in the project
 ```<div id="whiteboard" style="width: 100%; height: 100vh;"></div>``` Elements so we can mount the whiteboard.
 
-## Schematic diagram of the overall process
-
-![quick_start_flow](/img/quick_start_flow.png)
-
 ## Recommended reading
 
 1. [Real-time room](./room.md)
