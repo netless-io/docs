@@ -109,7 +109,10 @@
       "blog/visual-rectangle",
       "blog/debug-help",
       "blog/replay",
+      "blog/firewall",
       "blog/scene-about",
+      "blog/about-log",
+      "blog/dosage",
       "blog/large-class"
     ]
   },

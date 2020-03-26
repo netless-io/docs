@@ -9,10 +9,10 @@ We found that during the debugging process, customers found that they could ofte
 
 ## The configuration steps
 
-1. Allow public read and write
+    1. Allow public read and write
 
- ![read-write](/img/read-write.png)
+    ![read-write](/img/read-write.png)
 
-2. Cross-domain settings
+    2. Cross-domain settings
 
- ![cross-domain](/img/cross-domain.png)
+    ![cross-domain](/img/cross-domain.png)

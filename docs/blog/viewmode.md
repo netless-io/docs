@@ -87,7 +87,7 @@ In the current business scenario (no interaction), viewers are not required to b
 
 * If the anchor and the viewer are fixed and there is no operation requirement on the viewer, you can call the `Prohibited Operation API` when joining the room *
 
-* Forbidden operation API can be divided into `Prohibited tool operation`,` Forbidden perspective change` (mobile zoom) two APIs, the following is the API documentation link at each end:
+* Forbidden operation API can be divided into `Prohibited tool operation`,`Forbidden perspective change` (mobile zoom) two APIs, the following is the API documentation link at each end:
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Web/Typescript-->
