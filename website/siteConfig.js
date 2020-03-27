@@ -52,6 +52,7 @@ const siteConfig = {
         label: '🇬🇧 English',
     },
   ],
+
   algolia: {
       apiKey: 'c438dda9f510a0e984c1e0582e03fa62',
       indexName: 'netless',
