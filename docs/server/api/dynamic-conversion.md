@@ -356,7 +356,7 @@ c.startConvertTask("Document url", Converter.ConvertType.Dynamic, new ConverterC
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-### 进度顺序切换
+### Progress order switching
 
 <!--DOCUSAURUS_CODE_TABS-->
 <!--Web/Typescript-->
@@ -375,9 +375,3 @@ room.pptNextStep(); // Next page(Next step)
 room.pptPreviousStep(); // Previous step (previous step)
 ```
 <!--END_DOCUSAURUS_CODE_TABS-->
-
-## Show results
-
-<video style="width: 100%" loop="loop" autoplay="autoplay" id="video">
-  <source id="mp4" src="https://white-sdk.oss-cn-beijing.aliyuncs.com/video/netless_pptx.mp4">
-</video>

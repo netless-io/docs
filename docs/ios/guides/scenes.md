@@ -276,4 +276,4 @@ Whiteboard pages only accept ppt parameters when they are created.
 @end
 ```
 
-该类描述了当前场景目录的状态。
+This class describes the status of the current scene directory.

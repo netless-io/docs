@@ -7,12 +7,8 @@ title: How to use the adaptation screen
 
 ## What is perspective follow and visual rectangle
 
-<video style="width: 100%" loop="loop" autoplay="autoplay" id="video">
-  <source id="mp4" src="https://white-sdk.oss-cn-beijing.aliyuncs.com/video/visual-rectangle.mp4">
-</video>
-
 - In the first half of the demonstration, the student will follow the movement of the teacher. The concept is **perspective follow**.
-- In the second half of the presentation, although the teacher and student are not the same in proportion and size, the blue frame can be displayed completely, because in the following state, the student will show the full content of the teacher to the maximum extent during the meeting. The concept is ** visual rectangle **
+- In the second half of the presentation, although the teacher and student are not the same in proportion and size, the blue frame can be displayed completely, because in the following state, the student will show the full content of the teacher to the maximum extent during the meeting. The concept is **visual rectangle**
 
 ## How to use these features
 

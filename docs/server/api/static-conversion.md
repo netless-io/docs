@@ -247,7 +247,3 @@ c.startConvertTask("document url", Converter.ConvertType.Static, new ConverterCa
 ```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
-
-## Call diagram
-
-![static_conversion_frame@2x](/img/static_conversion_frame@2x.png)

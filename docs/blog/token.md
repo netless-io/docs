@@ -11,7 +11,7 @@ title: Authentication information
    2. How to get
       - If you haven't registered a business account yet: Go to <a target="_blank" href="https://console.herewhite.com"> Admin Console </a> to register an account.
       - If you have registered a business account:
-      ![sdkTokenGet](/img/sdkTokenGetEN.png)
+      ![sdkTokenGet](/img/Instructions-2.jpg)
 
    3. Notes on use
 
