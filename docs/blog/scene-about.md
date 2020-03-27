@@ -5,8 +5,6 @@ title: How to insert ppt, switch ppt
 
 ## 1. What is the scene
 
-![scene](/img/scene.png)
-
 For the end customer, the scenario is the "whiteboard" and "whiteboard pagination" above. For developers, it is the following data structure.
 
 ``` ts
