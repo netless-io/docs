@@ -24,7 +24,7 @@ const mediaPlayer = videojs.getPlayer(videoDom);
 mediaPlayer.playbackRate(1.25);
 ```
 
->vue 用户的 mediaPlayer 可以为 dom 节点，操作略有不同。
+> The media player of the Vue user can be a DOM node, with slightly different operations.
 
 ### iOS
 
