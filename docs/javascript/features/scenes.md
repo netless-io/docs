@@ -151,6 +151,29 @@ let scenceState = room.state.sceneState;
 */
 ```
 
+### 获取当前白板，所有页面信息
+
+>2.7.2 新增 API
+
+```typescript
+//displayer.d.ts
+export interface Displayer {
+    entireScenes(): SceneMap;
+}
+
+export type SceneMap = {
+    // 场景目录路径: 该目录下的场景列表
+    readonly [dirPath: string]: WhiteScene[];
+};
+```
+
+```javascript
+// room player 通用
+let allScenes = room.entireScenes();
+// 默认房间时，allScenes 状态，key 为场景目录的路径，value 为该场景目录下，所有的场景列表（排列不一定是该目录下的原始顺序）
+// {/: [{name: "init", componentsCount: 0, ppt: undefined}]}
+```
+
 ### 切换页面
 
 `当前页面`为白板房间内，所有用户当前可以操作的`白板`页面。（开发者可以使用`预览`API，让用户观看其他页面，但是无法操作）。
