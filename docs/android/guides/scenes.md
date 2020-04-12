@@ -96,6 +96,35 @@ public void getScenes(final Promise<Scene[]> promise)
 
 通过以上 API，获取当前场景信息内容，具体内容结构，可以在各 SDK 中查看结构。
 
+### 获取当前房间，所有场景
+
+>2.7.3 新增 API
+
+获取房间，当前所有场景信息，返回为字典格式，key 为场景目录地址，value 为该目录下，所有的页面（场景）列表。
+
+```Java
+//Displayer.java
+/**
+    * 获取当前房间内所有的白板页面信息
+    * @param promise 返回 一个 map，key 为场景目录地址，value 为该目录下，所有 Scene 数组。
+    */
+public void getEntireScene(final Promise<Map<String, Scene[]>> promise)
+```
+
+### 查询特定路径对应的内容
+
+> 2.6.4 新增 API
+
+```java
+//Displayer.java
+/**
+    * 查询路径对应的内容，还是页面（场景），或者是页面（场景）目录，或者不存在任何内容。
+    * @param path 进行查询的路径
+    * @param promise 回调结果，具体内容，可以查看 {@link WhiteScenePathType}
+    */
+public void getScenePathType(String path, final Promise<WhiteScenePathType> promise)
+```
+
 ### 设置当前场景
 
 当前场景代表白板房间内，所有人看到的页面。
