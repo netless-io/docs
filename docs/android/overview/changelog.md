@@ -8,6 +8,8 @@ title: 版本历史
 
 >[最新版本列表——发版自动更新](https://jitpack.io/#duty-os/white-sdk-android)
 
+## [2.7.4] - 2020-04-13
+- 优化音频插件显示
 ## [2.7.3] - 2020-04-12
 - 优化音视频
 - 增加获取房间内所有场景的 API（见 Displayer getEntireScenes)
