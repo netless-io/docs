@@ -22,6 +22,8 @@ title: 版本历史
 
 将项目中`import <White-SDK-iOS/WhiteSDK.h>`引用，更改为`import <Whiteboard/Whiteboard.h>`。
 
+## [2.7.5] - 2020-04-13
+- 修复音频插件，播放时自动全屏的问题
 ## [2.7.4] - 2020-04-12
 - 优化音视频插件
 - 增加获取房间所有场景 API（见 WhiteDisplayer `getEntireScenes:` 方法）
