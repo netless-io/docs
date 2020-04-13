@@ -98,6 +98,41 @@ title: 页面（场景）管理
 
 通过以上 API，获取当前场景信息内容，具体内容结构，可以在各 SDK 中查看结构。
 
+### 获取当前房间，所有场景
+
+>2.7.4 新增 API
+
+获取房间，当前所有场景信息，返回为字典格式，key 为场景目录地址，value 为该目录下，所有的页面（场景）列表。
+
+```Objective-C
+@interface WhiteDisplayer : NSObject
+
+/**
+ * 获取房间内所有场景列表，返回格式：
+ * 场景目录路径: 对应场景目录下，所有的页面数组
+ * key 为 scenepath，value 为 WhiteScene 数组。
+ * 只存在 /init 的房间，返回结构为：
+ * {"/": @[init WhiteScene]}
+ */
+- (void)getEntireScenes:(void (^) (NSDictionary<NSString *, NSArray<WhiteScene *>*> *dict))result;
+
+@end
+```
+
+### 查询特定路径对应的内容
+
+> 2.6.3 新增 API
+
+```Objective-C
+@interface WhiteDisplayer : NSObject
+/**
+ * 查询路径对应的内容，还是页面（场景），或者是页面（场景）目录，或者不存在任何内容。
+ * 查询结果见 WhiteScenePathType 类说明
+ */
+- (void)getScenePathType:(NSString *)pathOrDir result:(void (^) (WhiteScenePathType pathType))result;
+@end
+```
+
 ### 设置当前场景
 
 当前场景代表白板房间内，所有人看到的页面。

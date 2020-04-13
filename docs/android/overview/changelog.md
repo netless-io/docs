@@ -7,6 +7,10 @@ title: 版本历史
 >非音视频插件，web 端不支持插入音视频。
 
 >[最新版本列表——发版自动更新](https://jitpack.io/#duty-os/white-sdk-android)
+
+## [2.7.3] - 2020-04-12
+- 优化音视频
+- 增加获取房间内所有场景的 API（见 Displayer getEntireScenes)
 ## [2.7.2] - 2020-03-25
 - 优化预热器连接速度
 ## [2.7.1] - 2020-03-22
