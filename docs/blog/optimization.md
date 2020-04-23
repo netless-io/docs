@@ -9,9 +9,9 @@ title: 优化改动
 
 ## 1.核心改动
 
-如果您 `uuid` 从 `msg.room.uuid` 获取 `roomToken` 从 `msg.roomToken` 中获取，并且没有依赖其他字段，也没有创建房间后的返回值做严格的类型限制。本次升级对您的服务没有任何影响，无需改动。
+如果您 `uuid` 从 `msg.room.uuid`，获取 `roomToken` 从 `msg.roomToken` 中获取，并且没有依赖其他字段，也没有创建房间后的返回值做严格的类型限制。本次升级对您的服务没有任何影响，无需改动。
 
-如果您 `uuid` 从 `msg.hare.uuid` 获取 `roomToken` 从 `msg.roomToken` 中获取，并且没有依赖其他字段，也没有创建房间后的返回值做严格的类型限制。本次升级对您的服务没有任何影响，建议 `msg.hare.uuid` 改为 `msg.room.uuid`。
+如果您 `uuid` 从 `msg.hare.uuid`，获取 `roomToken` 从 `msg.roomToken` 中获取，并且没有依赖其他字段，也没有创建房间后的返回值做严格的类型限制。本次升级对您的服务没有任何影响，建议 `msg.hare.uuid` 改为 `msg.room.uuid`。
 
 ## 2.创建房间 POST /room （关键）
 
@@ -27,7 +27,7 @@ response JSON 结构变化：
 - msg.hare.appVersion 被删除
 - msg.hare.akkoVersion 被删除
 - msg.hare.akkoHash 被删除
-- msg.hare.usersMaxCount 用 msg.hare.limit 代替
+- msg.hare.usersMaxCount 用 msg.room.limit 代替
 - msg.hare.survivalDuration 被删除
 - msg.hare.isBan 被删除
 
