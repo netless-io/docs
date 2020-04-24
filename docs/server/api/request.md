@@ -45,7 +45,6 @@ sdk 服务器，通过 URL 参数中的 token 进行用户验证。
             "updatedAt": "2018-08-14T11:19:04.895Z",
             "createdAt": "2018-08-14T11:19:04.895Z"
         },
-        "hare": "{\"message\":\"ok\"}",
         "roomToken": "xx"
     }
 }
