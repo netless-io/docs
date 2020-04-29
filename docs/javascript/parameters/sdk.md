@@ -67,18 +67,19 @@ urlInterrupter?: (url: string) => string;
 
 ```typescript
 export enum DeviceType {
-    Desktop = "desktop",
-    Touch = "touch",
-    Surface = "surface",
+    Desktop = "desktop",//默认值
+    Touch = "touch",    //移动端
+    Surface = "surface",//同时监听所有移动事件
 }
 ```
 
 ```js
 值：`desktop`|`touch`|`surface`。
 
-默认会根据运行环境进行推断是`desktop`还是`touch`。
 根据传入值，依次接受`mouse`事件，`touch`事件；传入`surface`时，则会同时接收`touch`,`mouse`事件。
 ```
+
+`react` 用户可以使用 `react-device-detect` 手动判断平台，根据不同平台传入不同参数。
 
 ### **renderEngine**：渲染模式
 
