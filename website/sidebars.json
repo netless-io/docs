@@ -91,6 +91,7 @@
       "javascript/features/js-plugin"
     ],
     "升级指南": [
+      "javascript/guide/js-v2.8migration",
       "javascript/guide/js-v2migration"
     ]
   },
