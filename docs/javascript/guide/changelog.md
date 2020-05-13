@@ -3,7 +3,7 @@ id: js-changelog
 title: 版本历史
 ---
 
-## 2.8.0 - 2020-05-20
+## 2.8.0 - 2020-05-12
 > - **该版本初始化时，必须增加一个 APP identitier 参数，请在 https://support.netless.link 中提交工单，获取对应账号的 AppIdentitier**，必须的改动，见 [2.8.0升级指南](/js-v2.8migration)
 > - 优化了网络连接
 > - canvas 模式的 pencil 工具支持 bezier 曲线
