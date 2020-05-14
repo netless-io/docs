@@ -4,13 +4,16 @@ title: 版本历史
 ---
 
 ## 2.8.0 - 2020-05-12
-> - **该版本初始化时，必须增加一个 APP identitier 参数，请在 https://support.netless.link 中提交工单，获取对应账号的 AppIdentitier**，必须的改动，见 [2.8.0升级指南](./js-v2.8migration)
+> - <span style="color:red;">不兼容改动</span>：**该版本初始化时，必须增加一个 APP identitier 参数，通过 console 获取对应账号的 [APP identitier](/docs/blog/app-identifier/）**，必须的改动，见 [2.8.0升级指南](./js-v2.8migration)
 > - 优化了网络连接
 > - canvas 模式的 pencil 工具支持 bezier 曲线
 > - 新增了，在没有指定 deviceType 时，会自动根据当前设备判断的功能
 > - 修复了 canvas 模式下，两个用户同时画线，其中一个人的笔迹无法显示完整的缺陷
 > - 修复了部分情况下，笔迹无法用橡皮擦除的缺陷
 > - 修复了第二个主播进入房间时，设置了 isWritable=false 的用户无法跟随新主播的缺陷
+
+## 2.7.9 - 2020-05-14
+> - 新增 ppt 自定义协议，主要为 native 端准备，web 端可忽视
 
 ## 2.7.8 - 2020-05-07
 > - 修复 2.7.6 出现部分动态 ppt 音视频无法播放问题
