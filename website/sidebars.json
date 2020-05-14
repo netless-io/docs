@@ -115,7 +115,8 @@
       "blog/about-log",
       "blog/dosage",
       "blog/optimization",
-      "blog/large-class"
+      "blog/large-class",
+      "blog/app-identifier"
     ]
   },
   "server": {
