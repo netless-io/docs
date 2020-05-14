@@ -4,7 +4,7 @@ title: 版本历史
 ---
 
 ## 2.8.0 - 2020-05-12
-> - <span style="color:red;">不兼容改动</span>：**该版本初始化时，必须增加一个 APP identitier 参数，通过 console 获取对应账号的 [APP identitier](/docs/blog/app-identifier/）**，必须的改动，见 [2.8.0升级指南](./js-v2.8migration)
+> - <span style="color:red;">不兼容改动</span>：该版本初始化时，必须增加一个 APP identitier 参数，通过 console 获取对应账号的 [APP identitier](/docs/blog/app-identifier/)。改动见 [2.8.0升级指南](./js-v2.8migration)
 > - 优化了网络连接
 > - canvas 模式的 pencil 工具支持 bezier 曲线
 > - 新增了，在没有指定 deviceType 时，会自动根据当前设备判断的功能
