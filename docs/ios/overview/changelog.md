@@ -23,7 +23,7 @@ title: 版本历史
 将项目中`import <White-SDK-iOS/WhiteSDK.h>`引用，更改为`import <Whiteboard/Whiteboard.h>`。
 
 ## [2.8.0] - 2020-05-14
-- <span style="color:red;">不兼容改动</span>：SDK 初始化时，新增必须要的 APP identitier 参数（详情见 开发者文档中，查看 [APP identitier](/docs/blog/app-identifier/）
+- <span style="color:red;">不兼容改动</span>：SDK 初始化时，新增必填项：`APP identitier`，获取方式，请查看 [APP identitier](/docs/blog/app-identifier/)
 - 开放画笔渲染引擎选项，新增 canvas 渲染模式（需要主动选择）
 - 修复`isWritable=false`用户无法跟随新主播的问题
 ## [2.7.13] - 2020-05-07
