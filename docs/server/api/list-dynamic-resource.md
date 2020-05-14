@@ -55,25 +55,27 @@ roomToken 或 token | string | {{roomtoken}} 或 {{token}}|
 
 * {{taskUUID}} 为用户传入的路径中的 param，使用 {{taskUUID}} 作为资源保存的根目录可以避免不同的文档资源冲突
 
-```
-    /root/convertcdn.netless.link/dynamicConvert/{{taskUUID}}/info.json
-    /root/convertcdn.netless.link/dynamicConvert/{{taskUUID}}/layout/layout1.xml
-    /root/convertcdn.netless.link/dynamicConvert/{{taskUUID}}/master/master1.xml
-    /root/convertcdn.netless.link/dynamicConvert/{{taskUUID}}/pptxml/ppt.xml
-    /root/convertcdn.netless.link/dynamicConvert/{{taskUUID}}/resources/resource1.json
-    /root/convertcdn.netless.link/dynamicConvert/{{taskUUID}}/resources/ppt/media/audio1.mp4
-    /root/convertcdn.netless.link/dynamicConvert/{{taskUUID}}/slide/slide1.xml
-    /root/convertcdn.netless.link/dynamicConvert/{{taskUUID}}/slideRef/slideRef1.xml
-    /root/convertcdn.netless.link/dynamicConvert/{{taskUUID}}/theme/theme1.xml
-    /root/convertcdn.netless.link/publicFiles/icon/audio.png
-    /root/convertcdn.netless.link/publicFiles/icon/pause.png
-    /root/convertcdn.netless.link/publicFiles/icon/play.png
-    /root/convertcdn.netless.link/publicFiles/pic/notSupport.png
-    /root/convertcdn.netless.link/publicFiles/xml/PresetShapeDefinitions.xml
+```shell
+    /root/ppt/convertcdn.netless.link/dynamicConvert/{{taskUUID}}/info.json
+    /root/ppt/convertcdn.netless.link/dynamicConvert/{{taskUUID}}/layout/layout1.xml
+    /root/ppt/convertcdn.netless.link/dynamicConvert/{{taskUUID}}/master/master1.xml
+    /root/ppt/convertcdn.netless.link/dynamicConvert/{{taskUUID}}/pptxml/ppt.xml
+    /root/ppt/convertcdn.netless.link/dynamicConvert/{{taskUUID}}/resources/resource1.json
+    /root/ppt/convertcdn.netless.link/dynamicConvert/{{taskUUID}}/resources/ppt/media/audio1.mp4
+    /root/ppt/convertcdn.netless.link/dynamicConvert/{{taskUUID}}/slide/slide1.xml
+    /root/ppt/convertcdn.netless.link/dynamicConvert/{{taskUUID}}/slideRef/slideRef1.xml
+    /root/ppt/convertcdn.netless.link/dynamicConvert/{{taskUUID}}/theme/theme1.xml
+    /root/ppt/convertcdn.netless.link/publicFiles/icon/audio.png
+    /root/ppt/convertcdn.netless.link/publicFiles/icon/pause.png
+    /root/ppt/convertcdn.netless.link/publicFiles/icon/play.png
+    /root/ppt/convertcdn.netless.link/publicFiles/pic/notSupport.png
+    /root/ppt/convertcdn.netless.link/publicFiles/xml/PresetShapeDefinitions.xml
 ```
 
-之后将 /root/convertcdn.netless.link 文件夹压缩为 zip 格式，建议 zip 的命名使用{{taskUUID}}，保证不同转换任务的 zip 不会冲突，这样用户在 /root 目录下就有了一个 {{taskUUID}}.zip 文件
+之后将 /root/ppt 文件夹压缩为 zip 格式，建议 zip 的命名使用{{taskUUID}}，保证不同转换任务的 zip 不会冲突，这样用户在 /root 目录下就有了一个 {{taskUUID}}.zip 文件，zip 包内解压后，内部应该是先有 convertcdn.netless.link 文件，然后依次根据网络地址依次有 dynamicConvert， publicFiles文件夹
 
+```shell
+/convertcdn.netless.link/dynamicConvert
+/convertcdn.netless.link/publicFiles
 ```
-    /root/{{taskUUID}}.zip
 ```
