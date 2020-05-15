@@ -14,6 +14,8 @@ title: SDK集成
 
 ## 集成方式
 
+获取app-identifier，具体请查看：[查看 APP identitier](/blog/app-identifier)
+
 ### 1. 包管理工具集成
 
 <!--DOCUSAURUS_CODE_TABS-->
@@ -56,7 +58,7 @@ import {Room, RoomPhase, RoomWhiteboard, WhiteWebSdk} from "white-react-sdk";
 <script src="https://sdk.herewhite.com/white-web-sdk/2.8.0.js"></script>
 <script>
     //全局变量 WhiteWebSdk
-    let sdk = new WhiteWebSdk();
+    let sdk = new WhiteWebSdk({appIdentifier: "{{appIdentifier}}"});
 </script>
 ```
 
