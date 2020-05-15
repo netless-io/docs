@@ -17,6 +17,7 @@ constructor(params: WhiteWebSdkConfiguration = {})
 ```javascript
 //初始化 SDK
 var whiteWebSdk = new WhiteWebSdk({
+    appIdentifier: "{{appIdentifier}}"
     preloadDynamicPPT: false, // 可选,是否预先加载动态 PPT 中的图片，会显著提升用户体验，降低翻页的图片加载时长
     deviceType: "touch", // 可选, touch or desktop , 默认会根据运行环境进行推断
     // ...更多可选参数配置

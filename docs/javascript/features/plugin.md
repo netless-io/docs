@@ -49,7 +49,10 @@ yarn add @netless/white-audio-plugin
     plugins.setPluginContext("video", {identity: "host"}); // 如果身份是老师填 host 是学生 guest
     plugins.setPluginContext("audio", {identity: "host"});
     // 4、初始化的时候载入 plugins
-    whiteWebSdk = new WhiteWebSdk({plugins: plugins});
+    whiteWebSdk = new WhiteWebSdk({
+        appIdentifier: "{{appIdentifier}}",
+        plugins: plugins
+    });
 ```
 
 ## 启用 plugin

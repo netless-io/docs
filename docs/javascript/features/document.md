@@ -121,6 +121,7 @@ room.pptPreviousStep() // 上一步（上一页）
 
 ```javascript
 const whiteWebSDK = new WhiteWebSdk({
+  appIdentifier: "{{appIdentifier}}"
   // ...其他配置项
   fonts: {
     "Calibri": "https://your-cdn.com/Calibri.ttf",
