@@ -21,7 +21,8 @@ title: 版本历史
 >非音视频插件，web 端不支持插入音视频。
 
 将项目中`import <White-SDK-iOS/WhiteSDK.h>`引用，更改为`import <Whiteboard/Whiteboard.h>`。
-
+## [2.8.1] - 2020-05-22
+- 修复`预热器`数据造成的 sdk 连接失败问题。2.8.0 开始，不再需要预热功能。
 ## [2.8.0] - 2020-05-14
 - <span style="color:red;">不兼容改动</span>：SDK 初始化时，新增必填项：`APP identitier`，获取方式，请查看 [APP identitier](/docs/blog/app-identifier/)
 - 开放画笔渲染引擎选项，新增 canvas 渲染模式（需要主动选择）
