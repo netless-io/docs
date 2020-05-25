@@ -77,3 +77,7 @@ publicFiles.zip
     /root/convertcdn.netless.link/publicFiles/xml/PresetShapeDefinitions.xml
 ```
 该例中公共资源存放在 /root/convertcdn.netless.link 路径下，任务资源存放在 /root/convertcdn.netless.link/dynamicConvert 路径下
+
+文件路径如图：
+
+![resource_path.png](/img/resource_path.png)
