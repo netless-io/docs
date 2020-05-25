@@ -159,7 +159,7 @@ whiteWebSdk.replayRoom({
     onPlayerStateChanged: function(modifyState) {
         // 与 roomState 类似
     },
-    onPlayerStateChanged: function(scheduleTime) {
+    onScheduleTimeChanged: function(scheduleTime) {
         // 时间进度回调，毫秒，scheduleTime 为 number
     },
     onPhaseChanged：function(phase) {
