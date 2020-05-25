@@ -19,7 +19,7 @@ title: 播放速率（三端）
 
 ```js
 const videoJsId = "white-sdk-video-js";
-const mediaPlayer = videojs.getPlayer(videoDom);
+const mediaPlayer = videojs.getPlayer(videoJsId);
 // https://docs.videojs.com/docs/api/player.html#MethodsplaybackRate
 mediaPlayer.playbackRate(1.25);
 ```
