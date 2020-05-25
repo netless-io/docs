@@ -58,6 +58,7 @@ publicFiles.zip
 用户指定 /root 为资源保存的根目录，那么用户的文件目录结构应该为：
 
 > 其中 /root/convertcdn.netless.link 和 /root/convertcdn.netless.link/dynamicConvert 两个文件夹需要用户创建
+> 在支持自定义存储后，convertcdn.netless.link 这个文件夹也应该修改为用户指定存储的域名
 
 ```shell
     /root/convertcdn.netless.link/dynamicConvert/{{taskUUID}}/info.json
