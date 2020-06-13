@@ -7,6 +7,8 @@ title: 版本历史
 >非音视频插件，web 端不支持插入音视频。
 
 >[最新版本列表——发版自动更新](https://jitpack.io/#duty-os/white-sdk-android)
+## [2.9.2] - 2020-06-13
+- 修复 userPayload 显示问题，保持与 web 端一致的显示逻辑。
 ## [2.9.0] - 2020-06-10
 - 优化底层渲染系统，画笔教具渲染引擎，默认为`Canvas`，`svg`为兼容模式。
 - `MemberState`新增`直线``箭头`教具，具体可以查看`com.herewhite.sdk.domain.Appliance`文件。

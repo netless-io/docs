@@ -21,6 +21,8 @@ title: 版本历史
 >非音视频插件，web 端不支持插入音视频。
 
 将项目中`import <White-SDK-iOS/WhiteSDK.h>`引用，更改为`import <Whiteboard/Whiteboard.h>`。
+## [2.9.2] - 2020-06-13
+- 修复 userPayload 显示问题，保持与 web 端一致的显示逻辑。
 ## [2.9.1] - 2020-06-10
 - iOS 11及其以下，画笔渲染引擎更改为 `svg`模式，兼容低版本设备。
 ## [2.9.0] - 2020-06-09
