@@ -10,7 +10,7 @@ title: 版本历史
 ## [2.8.1] - 2020-05-22
 - 修复`预热器`数据造成的 sdk 连接失败问题。2.8.0 开始，不再需要预热功能。
 ## [2.8.0] - 2020-05-14
-- <span style="color:red;">不兼容改动</span>：SDK 初始化参数，新增必填项：`APP identitier`，获取方式，请查看 [APP identifier](/docs/blog/app-identifier/)一栏
+- <span style="color:red;">不兼容改动</span>：SDK 初始化参数，新增必填项：`APP identitier`，获取方式，请查看 [APP identifier](/docs/doc/app-identifier/)一栏
 - 开放画笔渲染引擎选项，新增 canvas 渲染模式（需要主动选择）
 - 修复`isWritable=false`用户无法跟随新主播的问题
 ## [2.7.7] - 2020-04-29

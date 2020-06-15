@@ -21,13 +21,16 @@ title: SDK集成
 <!--DOCUSAURUS_CODE_TABS-->
 <!--使用 js sdk 开发-->
 添加依赖：
+
 ```shell
 # yarn
 yarn add white-web-sdk
 # npm
 npm install white-web-sdk --save
 ```
+
 代码：
+
 ```javascript
 import "white-web-sdk/style/index.css";
 import {WhiteWebSdk} from 'white-web-sdk';
@@ -35,6 +38,7 @@ import {WhiteWebSdk} from 'white-web-sdk';
 
 <!--使用 react-sdk开发-->
 添加依赖：
+
 ```shell
 # yarn
 yarn add white-react-sdk
@@ -43,15 +47,16 @@ npm install white-react-sdk --save
 ```
 
 代码：
+
 ```javascript
 import * as React from "react";
 import "white-web-sdk/style/index.css";
 import {Room, RoomPhase, RoomWhiteboard, WhiteWebSdk} from "white-react-sdk";
-````
+```
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-###  2. script 标签集成
+### 2. script 标签集成
 
 ```html
 <link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.8.0.css">
@@ -80,4 +85,4 @@ import {Room, RoomPhase, RoomWhiteboard, WhiteWebSdk} from "white-react-sdk";
 ## 推荐阅读
 
 1. [开源项目](./open-source.md)
-1. [快速开始-前提条件](../quick-start/precondition.md)、[快速开始-鉴权](../quick-start/token.md)、[快速开始-sdk](../quick-start/precondition.md)
+2. [快速开始-前提条件](../quick-start/precondition.md)、[快速开始-鉴权](../quick-start/token.md)、[快速开始-sdk](../quick-start/precondition.md)

@@ -83,7 +83,7 @@ res = await pptConverter.convert({
     // 需要进行转换资源的网络地址，请确保可以正常访问
     url: pptURL,
     // 转换类型
-    kind: "static" | "dynamic", 
+    kind: "static" | "dynamic",
     // 转换进度监听
     onProgressUpdated: progress => {
       console.log(progress);
@@ -127,6 +127,6 @@ const whiteWebSDK = new WhiteWebSdk({
     "Calibri": "https://your-cdn.com/Calibri.ttf",
     "宋体": "https://your-cdn.com/Songti.ttf",
     "楷体": "https://your-cdn.com/Kaiti.ttf",
-	},
+ },
 });
 ```

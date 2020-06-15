@@ -57,20 +57,24 @@
     ]
   },
   "JavaScript": {
-    "文档结构": [
-      "javascript/overview/js-outline"
-    ],
-    "安装指南": [
-      "javascript/guide/js-sdk",
-      "javascript/guide/js-changelog",
+    "接入准备": [
+      "javascript/overview/js-instruction",
       "javascript/guide/js-open-source",
       "javascript/guide/js-debug"
     ],
     "快速开始": [
-      "javascript/quick-start/js-precondition",
-      "javascript/quick-start/js-token",
-      "javascript/quick-start/js-room",
-      "javascript/quick-start/js-player"
+      "javascript/quick-start/js-native",
+      "javascript/quick-start/js-react"
+    ],
+    "进阶教程": [
+      "javascript/advanced/install",
+      "javascript/advanced/room",
+      "javascript/advanced/tools",
+      "javascript/advanced/ppt-and-page",
+      "javascript/advanced/view",
+      "javascript/advanced/disable",
+      "javascript/advanced/custom-behavior",
+      "javascript/advanced/replay"
     ],
     "初始化参数": [
       "javascript/parameters/js-sdk",
@@ -90,47 +94,53 @@
       "javascript/features/js-readonly",
       "javascript/features/js-plugin"
     ],
-    "升级指南": [
-      "javascript/guide/js-v2.8migration",
-      "javascript/guide/js-v2migration"
+    "迁移与升级": [
+      "javascript/guide/js-changelog",
+      "javascript/guide/js-v2.9migration",
+      "javascript/guide/js-v2.8migration"
     ]
   },
-  "blog": {
-    "FAQ": [
-      "blog/token",
-      "blog/viewmode",
-      "blog/add-driver",
-      "blog/prefetch",
-      "blog/playback-speed",
-      "blog/debug-center",
-      "blog/begin-netless",
-      "blog/handle-net-state",
-      "blog/oss-config",
-      "blog/docs-transform",
-      "blog/visual-rectangle",
-      "blog/debug-help",
-      "blog/replay",
-      "blog/firewall",
-      "blog/scene-about",
-      "blog/about-log",
-      "blog/dosage",
-      "blog/optimization",
-      "blog/large-class",
-      "blog/app-identifier"
+  "Document": {
+    "管理控制台": [
+      "doc/token"
+    ],
+    "客户端": [
+      "doc/viewmode",
+      "doc/add-driver",
+      "doc/prefetch",
+      "doc/playback-speed",
+      "doc/debug-center",
+      "doc/begin-netless",
+      "doc/handle-net-state",
+      "doc/oss-config",
+      "doc/docs-transform",
+      "doc/visual-rectangle",
+      "doc/debug-help",
+      "doc/firewall",
+      "doc/scene-about",
+      "doc/about-log",
+      "doc/optimization",
+      "doc/large-class",
+      "doc/app-identifier"
+    ],
+    "常见问题": [
+      "doc/dosage",
+      "doc/replay"
     ]
   },
   "server": {
     "产品概述": [
-      "server/overview/server-introduction"
+      "server/overview/server-introduction",
+      "server/overview/server-static-conversion",
+      "server/overview/server-dynamic-conversion",
+      "server/overview/server-dynamic-conversion-zip"
     ],
     "服务端 API": [
-      "server/api/server-request",
-      "server/api/server-whiteboard-base",
-      "server/api/server-whiteboard-cover",
-      "server/api/server-whiteboard-scenes",
-      "server/api/server-static-conversion",
-      "server/api/server-dynamic-conversion",
-      "server/api/server-postman-config"
+      "server/api/server-room",
+      "server/api/server-token",
+      "server/api/server-screenshot",
+      "server/api/server-scene",
+      "server/api/server-conversion"
     ]
   }
 }

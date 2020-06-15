@@ -255,6 +255,7 @@ room.setSceneIndex(room.state.sceneState.index + 1);
 #### 注意点
 
 * `setSceneIndex`报错：
+
 >传入了字符串，或者传入的数字索引，小于或大于等于`room.state.sceneState`长度。
 
 ### 插入页面（一个或多个）

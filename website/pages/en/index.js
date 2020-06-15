@@ -18,7 +18,7 @@ class Index extends React.Component {
                         <div className="home-page-cell-icon">
                             <img src={`${siteConfig.baseUrl}img/javascript.svg`}/>
                         </div>
-                        <a href={`${siteConfig.baseUrl}docs/javascript/overview/js-outline`}>
+                        <a href={`${siteConfig.baseUrl}docs/javascript/overview/js-instruction`}>
                             <div className="home-page-cell-inner">文档大纲</div>
                         </a>
                         <a href={`${siteConfig.baseUrl}docs/javascript/guide/js-sdk`}>
@@ -80,20 +80,20 @@ class Index extends React.Component {
                         </a>
                     </div>
                     <div className="home-page-cell">
-                        <div className="home-page-cell-title">FAQ</div>
+                        <div className="home-page-cell-title">文档</div>
                         <div className="home-page-cell-icon">
                             <img src={`${siteConfig.baseUrl}img/blog.svg`} />
                         </div>
-                        <a href={`${siteConfig.baseUrl}docs/blog/add-driver`}>
+                        <a href={`${siteConfig.baseUrl}docs/doc/add-driver`}>
                             <div className="home-page-cell-inner">配置云存储</div>
                         </a>
-                        <a href={`${siteConfig.baseUrl}docs/blog/debug-center`}>
+                        <a href={`${siteConfig.baseUrl}docs/doc/debug-center`}>
                             <div className="home-page-cell-inner">在线 debug</div>
                         </a>
-                        <a href={`${siteConfig.baseUrl}docs/blog/begin-netless`}>
+                        <a href={`${siteConfig.baseUrl}docs/doc/begin-netless`}>
                             <div className="home-page-cell-inner">使用说明</div>
                         </a>
-                        <a href={`${siteConfig.baseUrl}docs/blog/broadcast`}>
+                        <a href={`${siteConfig.baseUrl}docs/doc/broadcast`}>
                             <div className="home-page-cell-inner">主播与观众</div>
                         </a>
                     </div>
