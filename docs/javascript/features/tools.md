@@ -52,6 +52,7 @@ room.setMemberState({
 ### 教具信息查询
 
 可以通过以下方法访问`memberState`中内容。
+
 ```js
 const memberState = room.state.memberState;
 const appliance = room.state.memberState.currentApplianceName;
@@ -69,7 +70,7 @@ const appliance = room.state.memberState.currentApplianceName;
 
 `sdk`支持向当前白板页面中插入网络图片（如需本地图片，请自行处理上传，获得网络图片逻辑）。
 
-### Typescript 方法签名：
+### Typescript 方法签名
 
 ```typescript
 type ImageInformation = {
@@ -98,10 +99,10 @@ public completeImageUpload(uuid: string, src: string): void;
 // 方法1 插入图片占位信息
 // 通过 uuid 来保证，completeImageUpload 更新的是同一张图片地址
 room.insertImage({
-    uuid: uuid, 
-    centerX: x, 
-    centerY: y, 
-    width: imageFile.width, 
+    uuid: uuid,
+    centerX: x,
+    centerY: y,
+    width: imageFile.width,
     height: imageFile.height
 });
 // 方法2 传入图片占位 uuid，以及图片网络地址。
@@ -119,6 +120,7 @@ room.completeImageUpload(uuid, imageUrl)
 ## 抓手工具
 
 ### 快捷键设置
+
 请阅读[初始化参数-SDK参数](../parameters/sdk.md#handToolKey)中的`handToolKey`字段说明。
 
 ### 主动激活/关闭
@@ -133,9 +135,10 @@ room.handToolActive = false;
 ```
 
 ### 激活/关闭回调
+
 当抓手工具被激活（包括主动激活）时，会回调[初始化参数-房间参数](../parameters/room.md#disableeraseimage)中`callbacks`的`onHandToolActive` 方法。
 
-## 禁用教具<span class="anchor" id="disableDeviceInputs">
+## 禁用教具
 
 >2.2.0 新增 API
 

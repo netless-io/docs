@@ -3,11 +3,12 @@ id: js-operation
 title: 白板操作
 ---
 
-## 禁止操作<span class="anchor" id="disableOperations">
+## 禁止操作
 
->2.2.0 开始，该 API 可以由以下两个 API 代替:
+> 2.2.0 开始，该 API 可以由以下两个 API 代替:
+
 1. 视角锁定 API：`disableCameraTransform` (详情请参考 [视角操作-锁定视角](./view.md#disableCameraTransform))；
-1. 禁用教具 API：`disableDeviceInputs` (详情请参考 [教具操作-禁用教具](./tools.md#disableDeviceInputs))
+2. 禁用教具 API：`disableDeviceInputs` (详情请参考 [教具操作-禁用教具](./tools.md#disableDeviceInputs))
 
 ```JavaScript
 /// room.d.ts
@@ -45,6 +46,7 @@ room.setWritable(false).then(function() {
 ```
 
 加入房间后，可以通过如下方法切换到可写模式：
+
 ```typescript
 room.setWritable(true).then(function() {
     // 成功
@@ -64,11 +66,11 @@ const newGlobalState = room.setGlobalState({key: "newValue"});
 
 * 注意点
 
->`globalState`仅限轻量级使用，存储内容尽可能小（建议100KB以内），更新时，只传入`GlobalState`中需要更新的字段。
+> `globalState`仅限轻量级使用，存储内容尽可能小（建议100KB以内），更新时，只传入`GlobalState`中需要更新的字段。
 
 ## 缩放
 
->2.2.0 开始，该 API 不再推荐使用。新 API 提供动画选项，详情请参考 [视角操作-调整视角](./view.md#moveCamera)
+> 2.2.0 开始，该 API 不再推荐使用。新 API 提供动画选项，详情请参考 [视角操作-调整视角](./view.md#moveCamera)
 
 用户可以通过手势，放缩白板。
 另一方面 sdk 也支持通过 `zoomChange` 来缩放。

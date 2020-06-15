@@ -30,6 +30,7 @@ export type DisplayerState = {
 ```
 
 * 相关类定义
+
 ```typescript
 ///Displayer.d.ts
 
@@ -104,11 +105,12 @@ var broadcastState = room.state.broadcastState;
 ```
 
 ## 状态监听
+
 ### 实时房间状态(RoomState)
 
 当房间状态（用户加入退出，白板页面（场景），用户教具变化，主播，全局状态）发生改变时，sdk 会主动回调在`joinRoom`时，`callbacks`参数中的`onRoomStateChanged`方法。
 
->更多回调参数使用，请阅读[初始化参数-房间参数](../parameters/room.md#roomcallbacks)。
+> 更多回调参数使用，请阅读[初始化参数-房间参数](../parameters/room.md#roomcallbacks)。
 
 ```Typescript
 //... 初始化 whiteWebSdk，获取房间鉴权信息
@@ -118,7 +120,7 @@ whiteWebSdk.joinRoom({uuid: uuid, roomToken: roomToken}, {
     onRoomStateChanged: function(modifyRoomState) {
         // 只有发生改变的字段，才存在
         if (modifyRoomState.globalState) {
-            // 完整的 globalState 
+            // 完整的 globalState
             var newGlobalState = modifyRoomState.globalState;
         }
         if (modifyRoomState.memberState) {
@@ -171,4 +173,4 @@ whiteWebSdk.replayRoom({
 })
 ```
 
->更多回调参数使用，请阅读[初始化参数-回放参数](../parameters/player.md#playercallbacks)
+> 更多回调参数使用，请阅读[初始化参数-回放参数](../parameters/player.md#playercallbacks)

@@ -27,7 +27,8 @@ public convertToPointInWorld(point: {x: number, y: number}): {x: number, y: numb
 使用`room.setViewMode("broadcaster")`将房间内的某个用户设为`主播`后，其他用户会自动进入`观众模式`。`sdk`会通过`缩放`，`移动``观众模式`的用户（以下简称`观众`）的白板，来保证观众能看到`主播`用户（以下简称主播）呈现的完整内容。
 
 ### 观众内容多余主播的情况
->根据观众屏幕比例与主播的不同，会造成观众看到的内容可能比主播更多。
+
+> 根据观众屏幕比例与主播的不同，会造成观众看到的内容可能比主播更多。
 
 ![perspective](/screenshot/perspective.jpeg)
 
@@ -104,9 +105,10 @@ console.log(room.state.broadcastState);
 > {mode: "freedom", broadcasterId: undefined, broadcasterInformation: undefined}
 ```
 
-## 更新白板宽高 —— 更新 div 数据<span class="anchor" id="refrehViewSize">
+## 更新白板宽高 —— 更新 div 数据
 
 不同用户的白板可能尺寸不同,在使用`bindHtmlElement`时，`room`与`player`会读取对应`div`的宽高，根据宽高，布局白板所需要展示的内容，并对准`坐标系原点`。
+
 ```typescript
 ///Displayer.d.ts
 //room player 通用
@@ -114,6 +116,7 @@ public bindHtmlElement(element: HTMLDivElement | null): void;
 ```
 
 当白板`div`的宽高发生改变时，由于`room`与`player`没有的宽高数据不再正确匹配`div`，会造成很多意想不到的行为。此时需要调用：
+
 ```typescript
 ///Displayer.d.ts
 public refreshViewSize(): void;
@@ -121,10 +124,11 @@ public refreshViewSize(): void;
 
 >因此，开发者需要在`div`大小发生变化时，调用`room.refreshViewSize()`方法，更新白板宽高数据。  
 >该情况一般发生在：
+>
 >1. 由于 window 发生改变，导致的白板`div`大小变化
 >2. 由于业务需求，改变白板`div`大小
 
-## 调整视角中心 —— 坐标位置，缩放<span class="anchor" id="moveCamera">
+## 调整视角中心 —— 坐标位置，缩放
 
 >2.2.0新增 API，2.2.2 增加动画选项；回放 replay 与 实时房间 room 都支持该 API
 

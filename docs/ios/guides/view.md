@@ -165,4 +165,4 @@ typedef NS_ENUM(NSInteger, WhiteViewMode) {
 
 ## 相关文档
 
-[主播一对多业务实现](/docs/blog/broadcast)
+[主播一对多业务实现](/docs/doc/broadcast)

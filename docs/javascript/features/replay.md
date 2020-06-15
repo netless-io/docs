@@ -10,6 +10,7 @@ title: 回放功能
 >3. 本节中`player`为`sdk`调用`replayRoom`API 后，成功返回的`player`对象。
 
 ### white-react-sdk
+
 `white-react-sdk`，可以使用如下方式进行绑定操作：
 
 ```javascript
@@ -46,7 +47,7 @@ class App extends React.Component {
 
 #### 2. 引用 videojs css
 
-* 在 <head> 标签中引用 sdk 
+* 在 `<head>` 标签中引用 sdk
 
 2.3.0 及其以前的版本，需要手动引用 videojs 的 css，
 
@@ -128,4 +129,4 @@ player.stop();
 ## 相关文档
 
 阅读[初始化参数-回放参数](../parameters/player.md)，查看初始化相关参数。
-阅读[快速开始-回放房间](../quick-start/player.md)，快速回放一个已经有录制内容的房间。
+阅读[快速开始-回放房间](../quick-start/js-start.md)，快速回放一个已经有录制内容的房间。

@@ -38,11 +38,11 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'javascript/overview/js-outline', label: 'JavaScript'},
+    {doc: 'doc/token', label: '文档'},
+    {doc: 'javascript/overview/js-instruction', label: 'JavaScript'},
     {doc: 'android/overview/android-introduction', label: 'Android'},
     {doc: 'ios/overview/ios-introduction', label: 'iOS'},
     {doc: 'server/overview/server-introduction', label: 'Server'},
-    {doc: 'blog/token', label: 'FAQ'},
     {
         href: 'https://github.com/netless-io',
         label: 'GitHub',

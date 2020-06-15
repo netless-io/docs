@@ -5,21 +5,20 @@ title: 集成白板插件
 
 ## 视频、音频插件（支持 mp3 / mp4）
 
-**集成前提**
+### 集成前提
 
 > SDK 版本升级到 2.5.4 以上 (iOS 端可以显示的版本为: 2.5.7，Android 端可以显示的版本为： 2.5.1)。
 > 如果插入调用无效，说明是在 2.3.x 的旧版环境，请联系我们切换到支持 plugin 环境（support@netless.link）。 
 
 在一个白板上面控制视频、音频的播放、暂停、拖动进度条。效果如下：
 
-**视频**
+### 视频
 
 <video style="width: 100%" loop="loop" autoplay="autoplay" id="video">
   <source id="mp4" src="https://white-sdk.oss-cn-beijing.aliyuncs.com/video/video_board.mp4">
 </video>
 
-
-**音频**
+### 音频
 
 <video style="width: 100%" loop="loop" autoplay="autoplay" id="video">
   <source id="mp4" src="https://white-sdk.oss-cn-beijing.aliyuncs.com/video/audio_plugin.mp4">

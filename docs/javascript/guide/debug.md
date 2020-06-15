@@ -11,4 +11,4 @@ title: 快速调试
 ## 推荐阅读
 
 1. [快速开始-实时房间](../quick-start/room.md)
-1. [快速开始-回放房间](../quick-start/player.md)
+1. [快速开始-回放房间](../quick-start/js-start.md)
