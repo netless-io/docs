@@ -24,7 +24,7 @@
       "android/guides/android-replay"
     ],
     "升级指南": [
-      "android/guides/android-v2migration"
+      "android/migration/android-2.9.0"
     ]
   },
   "iOS": {
@@ -53,7 +53,7 @@
       "ios/guides/ios-replay"
     ],
     "升级指南": [
-      "ios/guides/ios-v2migration"
+      "ios/migration/ios-2.9.0"
     ]
   },
   "JavaScript": {
