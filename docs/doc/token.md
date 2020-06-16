@@ -11,7 +11,7 @@ title: 应用与权限
 
 2、获取方式
 
-* 如果还未注册企业账户：进入[管理控制台](https://console.herewhite.com/) 注册账号。
+* 如果还未注册企业账户：进入[管理控制台](https://console.netless.link/) 注册账号。
 * 如果已经注册企业账户，请在管理控制台的个人中心打开蜜钥管理，右侧展示的是 sdkToken。
 
 3、使用注意点
@@ -26,7 +26,7 @@ title: 应用与权限
 
 2、获取方式
 
-* 调用[生成 Room Token 的服务端 API](https://developer.netless.link/server/api-reference/generate-token#sheng-cheng-room-token)可以获取。 // TODO
+* 调用[生成 Room Token 的服务端 API](https://developer.netless.link/docs/server/api/server-token/#post-%E7%94%9F%E6%88%90-room-token)可以获取。
 
 ## uuid
 
@@ -36,4 +36,4 @@ title: 应用与权限
 
 2、获取方式
 
-* 调用[创建房间的服务端 API](https://developer.netless.link/server/api-reference/room#chuang-jian-fang-jian) 可以获取。 // TODO
+* 调用[创建房间的服务端 API](https://developer.netless.link/docs/server/api/server-room/#post-%E5%88%9B%E5%BB%BA%E6%88%BF%E9%97%B4) 可以获取。
