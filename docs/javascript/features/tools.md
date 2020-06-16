@@ -36,6 +36,8 @@ type MemberState = {
 | 椭圆 | `ellipse` | 画出椭圆或正圆（shift按键）|
 | 橡皮 | `eraser` | 删除轨迹 |
 | 文字 | `text` | 编辑、输入文字 |
+| 直线 | `straight` | 画出直线的工具 |
+| 箭头 | `arrow` | 画出箭头的工具 |
 
 ### 调整教具（种类，颜色，粗细，大小）
 
@@ -82,6 +84,7 @@ type ImageInformation = {
     // 想要显示的宽高，该宽高为白板未缩放前宽高
     width: number;
     height: number;
+    locked: boolean;
 };
 
 //插入图片占位符
@@ -103,7 +106,8 @@ room.insertImage({
     centerX: x,
     centerY: y,
     width: imageFile.width,
-    height: imageFile.height
+    height: imageFile.height,
+    locked: false,
 });
 // 方法2 传入图片占位 uuid，以及图片网络地址。
 room.completeImageUpload(uuid, imageUrl)
