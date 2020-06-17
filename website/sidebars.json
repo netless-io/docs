@@ -113,18 +113,17 @@
       "doc/begin-netless",
       "doc/handle-net-state",
       "doc/oss-config",
-      "doc/docs-transform",
-      "doc/visual-rectangle",
-      "doc/debug-help",
       "doc/firewall",
-      "doc/scene-about",
       "doc/about-log",
-      "doc/optimization",
-      "doc/large-class",
-      "doc/app-identifier"
+      "doc/large-class"
     ],
     "常见问题": [
+      "doc/app-identifier",
       "doc/dosage",
+      "doc/debug-help",
+      "doc/docs-transform",
+      "doc/visual-rectangle",
+      "doc/scene-about",
       "doc/replay"
     ]
   },

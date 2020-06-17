@@ -1,6 +1,6 @@
 ---
 id: app-identifier
-title: 应用识别码
+title: appIdentifier
 ---
 
 > Netless 为了增加单账号多应用的功能新增的概念，为了让客户更方便的管理自己的测试账号和主账号。
