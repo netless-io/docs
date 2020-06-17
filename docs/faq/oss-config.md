@@ -11,8 +11,8 @@ title: 阿里云 oss 快速配置
 
 1. 允许公共读写
 
- ![read-write](/img/read-write.png)
+    ![read-write](/img/read-write.png)
 
 2. 跨域设置
 
- ![cross-domain](/img/cross-domain.png)
+    ![cross-domain](/img/cross-domain.png)
