@@ -84,6 +84,7 @@ type ImageInformation = {
     // 想要显示的宽高，该宽高为白板未缩放前宽高
     width: number;
     height: number;
+    // 图片是否允许被删除
     locked: boolean;
 };
 
