@@ -100,35 +100,46 @@
       "javascript/guide/js-v2.8migration"
     ]
   },
-  "Document": {
-    "管理控制台": [
-      "doc/token"
+  "FAQ": {
+    "阅读说明": [
+      "faq/overview"
     ],
-    "客户端": [
+    "集成": [
+      "faq/handle-net-state",
+      "faq/app-identifier",
+      "faq/replay",
+      "faq/oss-config",
+      "faq/scene-about",
+      "faq/large-class",
+      "faq/debug-center"
+    ],
+    "计费与商务": [
+      "faq/dosage"
+    ]
+  },
+  "Document": {
+    "阅读说明": [
+      "doc/overview"
+    ],
+    "管理控制台": [
+      "doc/token",
+      "doc/add-driver"
+    ],
+    "客户端 SDK": [
+      "doc/room-state-management",
+      "doc/business-state-management",
+      "doc/view-and-coordinates",
+      "doc/custom-event",
       "doc/viewmode",
-      "doc/add-driver",
       "doc/prefetch",
       "doc/playback-speed",
-      "doc/debug-center",
       "doc/begin-netless",
-      "doc/handle-net-state",
-      "doc/oss-config",
       "doc/firewall",
-      "doc/about-log",
-      "doc/large-class"
-    ],
-    "常见问题": [
-      "doc/app-identifier",
-      "doc/dosage",
-      "doc/debug-help",
-      "doc/docs-transform",
-      "doc/visual-rectangle",
-      "doc/scene-about",
-      "doc/replay"
+      "doc/about-log"
     ]
   },
   "server": {
-    "产品概述": [
+    "概念说明": [
       "server/overview/server-introduction",
       "server/overview/server-static-conversion",
       "server/overview/server-dynamic-conversion",

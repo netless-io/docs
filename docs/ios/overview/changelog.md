@@ -51,7 +51,7 @@ title: 版本历史
 
 ## [2.8.0] - 2020-05-14
 
-- <span style="color:red;">不兼容改动</span>：SDK 初始化时，新增必填项：`APP identitier`，获取方式，请查看 [APP identitier](/docs/doc/app-identifier/)
+- <span style="color:red;">不兼容改动</span>：SDK 初始化时，新增必填项：`APP identitier`，获取方式，请查看 [APP identitier](/docs/faq/app-identifier/)
 - 开放画笔渲染引擎选项，新增 canvas 渲染模式（需要主动选择）
 - 修复`isWritable=false`用户无法跟随新主播的问题
 

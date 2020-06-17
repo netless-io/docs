@@ -87,7 +87,7 @@ class Index extends React.Component {
                         <a href={`${siteConfig.baseUrl}docs/doc/add-driver`}>
                             <div className="home-page-cell-inner">配置云存储</div>
                         </a>
-                        <a href={`${siteConfig.baseUrl}docs/doc/debug-center`}>
+                        <a href={`${siteConfig.baseUrl}docs/faq/debug-center`}>
                             <div className="home-page-cell-inner">在线 debug</div>
                         </a>
                         <a href={`${siteConfig.baseUrl}docs/doc/begin-netless`}>

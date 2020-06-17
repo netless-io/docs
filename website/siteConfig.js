@@ -38,7 +38,8 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'doc/token', label: '文档'},
+    {doc: 'doc/overview', label: '通用文档'},
+    {doc: 'faq/overview', label: '常见问题'},
     {doc: 'javascript/overview/js-instruction', label: 'JavaScript'},
     {doc: 'android/overview/android-introduction', label: 'Android'},
     {doc: 'ios/overview/ios-introduction', label: 'iOS'},

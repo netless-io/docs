@@ -3,7 +3,7 @@ id: android-v2migration
 title: 2.0迁移指南
 ---
 
-## 新增功能：
+## 新增功能
 
 1. 云端录制：创建房间时，选择可回放房间，SDK 服务器会在云端自动录制
 1. 回放功能：提供回放API
@@ -26,7 +26,7 @@ v2.0移除了部分 API，您需要通过下面的文档，使用新 API 实现�
 
 场景目录，则是文件的所在目录。（SDK 中的场景目录，格式参考的是 Unix 系统下的文件格式。`\dir1\dir`）
 
->推荐阅读 [场景管理](./scenes.md) 
+>推荐阅读 [场景管理](./scenes.md)
 
 ## 修改的 API
 
@@ -111,7 +111,7 @@ public void putScenes(String dir, Scene[] scenes, int index)
 
 现在插入页面 API，增加了插入时，自定义内容（ppt）的接口。所以插入页面 API 和插入 PPT API，现在已经合并成了同一个 API。
 
-*我们现在提供新API支持移动，重命名白板页面*
+> 我们现在提供新API支持移动，重命名白板页面
 
 ### 图片替换 API
 
