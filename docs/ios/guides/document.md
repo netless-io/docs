@@ -3,7 +3,7 @@ id: ios-document
 title: 文档转换与播放
 ---
 
-阅读本文前，请先阅读 server 端文档: [文档转图片](/docs/server/api/server-static-conversion)、[文档转网页](/docs/server/api/server-dynamic-conversion)，确保已经在 [console](https://console.herewhite.com) 开通对应服务。
+阅读本文前，请先阅读 server 端文档: [文档转图片](/docs/server/overview/server-static-conversion)、[文档转网页](/docs/server/overview/server-dynamic-conversion)，确保已经在 [console](https://console.netless.link) 开通对应服务。
 
 SDK 将于 SDK 服务器的交互封装成了 `WhiteConverter` 类，开发者无需在客户端关心与 SDK 服务器端的交互。
 

@@ -17,8 +17,8 @@ title: 如何高效使用文档转换功能
 
 ## 2. 使用这两种服务需要注意什么问题
 
-- [文档转图片注意事项](/docs/server/api/server-static-conversion/#文档转图片注意事项)
-- [文档转网页注意事项](/docs/server/api/server-dynamic-conversion/#文档转网页不支持的功能列表)
+- [文档转图片注意事项](/docs/server/overview/server-static-conversion/#文档转图片注意事项)
+- [文档转网页注意事项](/docs/server/overview/server-dynamic-conversion/#文档转网页不支持的功能列表)
 
 ## 3. 快速接入测试的设计架构
 

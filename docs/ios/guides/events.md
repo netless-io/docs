@@ -51,10 +51,9 @@ title: 自定义事件
 @interface WhiteSDK : NSObject
 - (instancetype)initWithBoardView:(WhiteBoardView *)boardView config:(WhiteSdkConfiguration *)config callbackDelegate:(id<WhiteRoomCallbackDelegate>)callbackDelegate
 @end
-``` 
+```
 
 中的 `callbackDelegate` 参数。
-
 
 当房间中，有用户发送了对应名称的自定义事件时，SDK 会回调  `WhiteRoomCallbackDelegate` 的方法：
 

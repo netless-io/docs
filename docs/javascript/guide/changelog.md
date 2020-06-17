@@ -3,6 +3,32 @@ id: js-changelog
 title: 版本历史
 ---
 
+## 2.9.2 - 2020-06-12
+
+> - room.state 和 player.state 可以配置成 MobX 的 observable 对象。
+> - room.callbacks 和 player.callbacks 可以注册新监听器。
+> - onScheduleTimeChanged 回调被 onProgressTimeChanged 代替。
+> - 部分高版本 react 下使用 TypeScript 编译无法通过。
+
+## 2.9.1 - 2020-06-01
+
+> - selector 选择多个物品后，选择框与 highlight 框位置无法重合。
+> - 有时 canvas 显示的尺寸与实际不符
+> - 特定时段的网络不可用可能会导致网络恢复后，服务依然不可用。
+> - 在 Safari 上橡皮快速拖动，无法显示擦除范围。
+
+## 2.9.0 - 2020-05-12
+
+该版本有 API 变动，若从低版本升级到此版本及以上版本，建议参考[《2.9.0 迁移指南》](/docs/javascript/guide/js-v2.9migration/)。新增
+
+> - 直线工具
+> - 箭头工具
+> - 复制、粘贴
+> - 复刻
+> - 默认禁止用铅笔画点
+> - 快速拖动橡皮时，橡皮会变成范围删除
+> - 某些时候，以只读模式加入房间后，进行设备操作会在 Console 报错
+
 ## 2.8.0 - 2020-05-12
 
 > - <span style="color:red;">不兼容改动</span>：该版本初始化时，必须增加一个 APP identitier 参数，通过 console 获取对应账号的 [APP identitier](/docs/blog/app-identifier/)。改动见 [2.8.0升级指南](./js-v2.8migration)
