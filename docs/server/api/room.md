@@ -22,7 +22,7 @@ https://shunt-api.netless.link/v5/rooms
 | Key | 是否必填 | 类型 | 备注 |
 | --- | --- | --- | --- |
 | name | `optional` | `string` | 房间名字（最长 2048） |
-| isRecord | `optional` | `string` | 是否开启录制 |
+| isRecord | `optional` | `boolean` | 是否开启录制 |
 | limit | `optional` | `integer` | 可写人数上限​，若传 0，目前推荐设置为 0 |
 
 ### <span style="color: #5b908e">Response</span>
