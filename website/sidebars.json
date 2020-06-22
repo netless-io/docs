@@ -155,18 +155,17 @@
     ]
   },
   "Server-v4": {
-    "概念说明": [
-      "server-v4/overview/server-introduction",
-      "server-v4/overview/server-static-conversion",
-      "server-v4/overview/server-dynamic-conversion",
-      "server-v4/overview/server-dynamic-conversion-zip"
+    "产品概述": [
+      "server-v4/overview/server-introduction"
     ],
     "服务端 API": [
-      "server-v4/api/server-room",
-      "server-v4/api/server-token",
-      "server-v4/api/server-screenshot",
-      "server-v4/api/server-scene",
-      "server-v4/api/server-conversion"
+      "server-v4/api/server-request",
+      "server-v4/api/server-whiteboard-base",
+      "server-v4/api/server-whiteboard-cover",
+      "server-v4/api/server-whiteboard-scenes",
+      "server-v4/api/server-static-conversion",
+      "server-v4/api/server-dynamic-conversion",
+      "server-v4/api/server-postman-config"
     ]
   }
 }
