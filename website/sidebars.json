@@ -139,7 +139,7 @@
       "doc/about-log"
     ]
   },
-  "server": {
+  "Server": {
     "概念说明": [
       "server/overview/server-introduction",
       "server/overview/server-static-conversion",
@@ -152,6 +152,21 @@
       "server/api/server-screenshot",
       "server/api/server-scene",
       "server/api/server-conversion"
+    ]
+  },
+  "Server-v4": {
+    "概念说明": [
+      "server-v4/overview/server-introduction",
+      "server-v4/overview/server-static-conversion",
+      "server-v4/overview/server-dynamic-conversion",
+      "server-v4/overview/server-dynamic-conversion-zip"
+    ],
+    "服务端 API": [
+      "server-v4/api/server-room",
+      "server-v4/api/server-token",
+      "server-v4/api/server-screenshot",
+      "server-v4/api/server-scene",
+      "server-v4/api/server-conversion"
     ]
   }
 }
