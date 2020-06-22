@@ -5,7 +5,7 @@ title: 服务端互动白板应用
 
 ## 旧版本入口
 
-<!-- [v4 旧版本 server api 入口]() -->
+[v4 旧版本 server api 入口](/docs/server-v4/overview/server-introduction)
 
 ## 基本模式
 

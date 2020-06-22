@@ -11,22 +11,19 @@ title: 动态文档转换资源包
 ## 资源包下载地址
 
 在转换任务完成后，通过链接
-
-```ts
+```
 https://convertcdn.netless.link/publicFiles.zip  // 公共资源包
 https://convertcdn.netless.link/dynamicConvert/{{taskUUID}}.zip   // 任务资源包
 ```
-
 下载转换任务的资源包，其中，公共资源包是所有动态文档渲染所必须的一些文件，建议下载后保存到本地且不要删除。
 任务资源包对应每一个动态转换任务。
 
-> 目前动态文档转换功能没有支持用户自定义存储，因此下载域名固定为 `https://convertcdn.netless.link`，在支持自定义存储后，这个域名应该是用户自定义的存储域名
+> 目前动态文档转换功能没有支持用户自定义存储，因此下载域名固定为 https://convertcdn.netless.link，在支持自定义存储后，这个域名应该是用户自定义的存储域名
 
 ## 资源包解压后的目录结构
 
 publicFiles.zip
-
-```ts
+```
 /publicFiles
     /icon
         xxx.png
@@ -41,8 +38,7 @@ publicFiles.zip
 ```
 
 {{taskUUID}}.zip
-
-```ts
+```
 /{{taskUUID}}
     /layout
         xxx.xml
@@ -82,7 +78,6 @@ publicFiles.zip
     /root/convertcdn.netless.link/publicFiles/pic/notSupport.png
     /root/convertcdn.netless.link/publicFiles/xml/PresetShapeDefinitions.xml
 ```
-
 该例中公共资源存放在 /root/convertcdn.netless.link 路径下，任务资源存放在 /root/convertcdn.netless.link/dynamicConvert 路径下
 
 文件路径如图：
