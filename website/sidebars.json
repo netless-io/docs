@@ -92,6 +92,7 @@
       "javascript/features/js-document",
       "javascript/features/js-replay",
       "javascript/features/js-readonly",
+      "javascript/features/js-redo-undo",
       "javascript/features/js-plugin"
     ],
     "迁移与升级": [
