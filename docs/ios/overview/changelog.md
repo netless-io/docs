@@ -22,6 +22,13 @@ title: 版本历史
 >非音视频插件，web 端不支持插入音视频。
 
 将项目中`import <White-SDK-iOS/WhiteSDK.h>`引用，更改为`import <Whiteboard/Whiteboard.h>`。
+
+## [2.9.4] - 2020-06-24
+- 修复动态 ppt 返回前一页时文字消失的问题
+- 修复动态 ppt 部分元素会被视频遮挡的问题
+- 修复动态 ppt 部分文本框渲染崩溃问题
+- 添加错误边界，保证动态 ppt 异常后可以翻页
+
 ## [2.9.3] - 2020-06-23
 - 同步更新 white-web-sdk 至 2.9.2 版本
 - 新增`抓手``激光笔`教（见`WhiteApplianceNameKey`）
