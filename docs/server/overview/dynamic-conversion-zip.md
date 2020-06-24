@@ -4,7 +4,10 @@ title: 动态文档转换资源包
 ---
 
 为了提升用户体验，在动态文档转换完成后，我们提供了渲染文档的资源包。
-用户预先下载这些资源包并解压到指定本地目录后，渲染文档时可以直接读取本地资源文件，省去资源的网络下载时间。
+用户预先下载这些资源包并解压到指定本地目录后，用户可以通过拦截替换网络请求的方式直接读取本地资源文件，省去资源的网络下载时间。
+
+ios 示例代码：https://github.com/netless-io/NETURLSchemeHandler
+安卓以及 web 示例代码正在开发中，用户也可以自行实现。
 
 > 注意：2020-05-25 之前已经转换完成的文档没有资源包供下载，只有在该日期之后新发起的转换任务才有资源包，用户需要判断资源包是否存在
 
@@ -88,3 +91,5 @@ publicFiles.zip
 文件路径如图：
 
 ![resource_path.png](/img/resource_path.png)
+
+之后需要将拦截动态文档转换的网络请求，替换为请求本地资源，例如，动态文档在渲染时会请求 https://convertcdn.netless.link/dynamicConvert/{{taskUUID}}/info.json，需要使用工具将该请求拦截并替换为读取本地资源 /root/convertcdn.netless.link/dynamicConvert/{{taskUUID}}/info.json，就完成了本地资源的读取，之后的动态文档使用方式与普通使用没有区别。
