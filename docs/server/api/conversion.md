@@ -27,6 +27,9 @@ https://shunt-api.netless.link/v5/services/conversion/tasks
 | --- | --- | --- | --- |
 | resource | `required` | `string` | 转换任务源文件 url |
 | type | `required` | `string` | 转换任务类型，枚举：dynamic, static |
+| preview | `no` | `boolean` | 是否需要生成预览图，默认为 false |
+
+> 注意：只有动态文档转换支持预览图功能，即 type == "dynamic" 时，同时生成预览图需要消耗较长时间，请谨慎选择
 
 ### <span style="color: #5b908e">Response</span>
 
@@ -35,7 +38,7 @@ https://shunt-api.netless.link/v5/services/conversion/tasks
 ```json
     {
         "uuid": "2fa009xxxxxxxxxxxxxxxxxca93da2ad",  // task uuid
-        "type": "static",  // task 类型，枚举：dynamic, static
+        "type": "dynamic",  // task 类型，枚举：dynamic, static
         "status": "Waiting"  // task 状态，枚举：Waiting, Converting, Finished, Fail
     }
 ```
@@ -73,7 +76,7 @@ https://shunt-api.netless.link/v5/services/conversion/tasks
 ```json
  {
     "uuid": "2fa009xxxxxxxxxxxxxxxxxca93da2ad",  // task uuid
-    "type": "static",  // task 类型，枚举：dynamic, static
+    "type": "dynamic",  // task 类型，枚举：dynamic, static
     "status": "Waiting",  // task 状态，枚举：Waiting, Converting, Finished, Fail
     "failedReason": "",  // 任务失败后的原因
     "progress": {
@@ -83,7 +86,8 @@ https://shunt-api.netless.link/v5/services/conversion/tasks
         "convertedFileList": [{  // 转换结果列表
             "width": 1024,  // 当页跨度
             "height": 960,  // 当页高度
-            "conversionFileUrl": "xxxx://xxxx.xxx.xx/xxxx.xxx" // 转换结果文件地址
+            "conversionFileUrl": "xxxx://xxxx.xxx.xx/xxxx.xxx", // 转换结果文件地址
+            "preview": "xxxx://xxxx.xxx.xx/xxxx.xxx", // 预览图地址，当发起转换时 body 参数 preview 为 true 且 type 为 dynamic 时该字段才会存在
         },{...}]
     }
 }
