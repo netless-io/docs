@@ -23,19 +23,18 @@ title: 版本历史
 
 将项目中`import <White-SDK-iOS/WhiteSDK.h>`引用，更改为`import <Whiteboard/Whiteboard.h>`。
 
-## [2.9.4] - 2020-06-24
-- 修复动态 ppt 返回前一页时文字消失的问题
-- 修复动态 ppt 部分元素会被视频遮挡的问题
-- 修复动态 ppt 部分文本框渲染崩溃问题
-- 添加错误边界，保证动态 ppt 异常后可以翻页
+## [2.9.4] - 2020-06-25
+- 同步更新 white-web-sdk 至 2.9.4 版本
+- 修复`WhiteContentModeConfig`中`scale`为 0 时，实际为 1 的问题
 
 ## [2.9.3] - 2020-06-23
-- 同步更新 white-web-sdk 至 2.9.2 版本
+- 同步更新 white-web-sdk 至 2.9.3 版本
 - 新增`抓手``激光笔`教（见`WhiteApplianceNameKey`）
 - 橡皮教具`disableEraseImage`属性，支持中途切换（见Room `disableEraseImage:`API） 
 - Room 新增`撤销`，`取消撤销`（开启该功能前，请先阅读`disableSerialization:`介绍）
 - Room 提供`复制`，`粘贴`，`副本`，`删除` API，可以对选中的内容，执行上述操作（见`WhiteRoom` 执行操作 API 部分）
 - RoomConfig 弃用`disableOperations`，新增`disableCameraTransform` API，与`disableDeviceInputs`搭配，可以起到同样效果。
+
 ## [2.9.2] - 2020-06-13
 
 - 修复 userPayload 显示问题，保持与 web 端一致的显示逻辑。

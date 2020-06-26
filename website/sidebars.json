@@ -143,15 +143,15 @@
     "概念说明": [
       "server/overview/server-introduction",
       "server/overview/server-static-conversion",
-      "server/overview/server-dynamic-conversion",
-      "server/overview/server-dynamic-conversion-zip"
+      "server/overview/server-dynamic-conversion"
     ],
     "服务端 API": [
       "server/api/server-room",
       "server/api/server-token",
       "server/api/server-screenshot",
       "server/api/server-scene",
-      "server/api/server-conversion"
+      "server/api/server-conversion",
+      "server/api/server-dynamic-conversion-zip"
     ]
   },
   "Server-v4": {
