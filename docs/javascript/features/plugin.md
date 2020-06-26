@@ -65,6 +65,8 @@ yarn add @netless/white-audio-plugin
         height: 270, // 插入视频组件的高
         attributes: {
             pluginVideoUrl: url, // 插入视频的网络地址，注意调试的时候资源允许跨域访问
+            poster: url, // 封面地址
+            isNavigationDisable: boolean // 是否禁用导航栏 true 为禁用
         },
     });
     // 6、插入音频 plugin （字段同上）
@@ -75,6 +77,8 @@ yarn add @netless/white-audio-plugin
         height: 86,
         attributes: {
             pluginAudioUrl: url,
+            poster: url,
+            isNavigationDisable: boolean
         },
     });
 ```
