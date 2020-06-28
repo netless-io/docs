@@ -136,6 +136,7 @@
       "doc/playback-speed",
       "doc/begin-netless",
       "doc/firewall",
+      "doc/docs-transform",
       "doc/about-log"
     ]
   },
