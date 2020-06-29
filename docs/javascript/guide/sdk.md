@@ -32,7 +32,6 @@ npm install white-web-sdk --save
 代码：
 
 ```javascript
-import "white-web-sdk/style/index.css";
 import {WhiteWebSdk} from 'white-web-sdk';
 ```
 
@@ -50,7 +49,6 @@ npm install white-react-sdk --save
 
 ```javascript
 import * as React from "react";
-import "white-web-sdk/style/index.css";
 import {Room, RoomPhase, RoomWhiteboard, WhiteWebSdk} from "white-react-sdk";
 ```
 
@@ -59,7 +57,6 @@ import {Room, RoomPhase, RoomWhiteboard, WhiteWebSdk} from "white-react-sdk";
 ### 2. script 标签集成
 
 ```html
-<link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.8.0.css">
 <script src="https://sdk.herewhite.com/white-web-sdk/2.8.0.js"></script>
 <script>
     //全局变量 WhiteWebSdk

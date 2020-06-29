@@ -25,8 +25,7 @@ NETLESSSDK_YWs9UU9JSkJobEZfYlBPLXdNeSZub25jZT0xNTg3MDkyMzUxMTQ0MDAmcm9sZT0wJnNpZ
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="https://sdk.herewhite.com/white-web-sdk/2.9.0.css">
-        <script src="https://sdk.herewhite.com/white-web-sdk/2.9.0.js"></script>
+        <script src="https://sdk.herewhite.com/white-web-sdk/2.9.6.js"></script>
         <script src="./index.js"></script>
     </head>
     <body>
