@@ -90,12 +90,6 @@ yarn add white-react-sdk
 
 <!--END_DOCUSAURUS_CODE_TABS-->
 
-用合适的编辑器打开 `my-board/src/App.js` 文件，在文件第一行插入如下内容，以引入互动白板的样式文件。
-
-```javascript
-import "white-web-sdk/style/index.css";
-```
-
 ## 实现互动白板应用
 
 用编辑器打开 `my-board/src/App.js` 文件，在该文件中加入更多代码，直到写完互动白板应用的全部业务逻辑代码。
@@ -103,7 +97,6 @@ import "white-web-sdk/style/index.css";
 > 记得将下列代码的第 9 行和第 11 行替换成你提前准备好的内容
 
 ```javascript
-import "white-web-sdk/style/index.css";
 import './App.css';
 
 import React from 'react';
