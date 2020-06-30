@@ -23,6 +23,10 @@ title: 版本历史
 
 将项目中`import <White-SDK-iOS/WhiteSDK.h>`引用，更改为`import <Whiteboard/Whiteboard.h>`。
 
+## [2.9.5] - 2020-06-30
+- 同步更新 white-web-sdk 至 2.9.7
+- 提高 canvas 引擎兼容性
+
 ## [2.9.4] - 2020-06-25
 - 同步更新 white-web-sdk 至 2.9.4 版本
 - 修复`WhiteContentModeConfig`中`scale`为 0 时，实际为 1 的问题
