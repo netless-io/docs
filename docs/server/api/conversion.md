@@ -8,7 +8,7 @@ title: PPT 转换
 
 1.使用 sdktoken 调用 [发起文档转换](/docs/server/api/server-conversion/#post-发起文档转换) api，发起文档转换任务并得到 taskuuid
 
-2.使用 sdktoken 和 taskuuid 调用 [发起文档转换](/docs/server/api/server-token/#post-生成-task-token) api，得到 tasktoken
+2.使用 sdktoken 和 taskuuid 调用 [生成 Task Token](/docs/server/api/server-token/#post-生成-task-token) api，得到 tasktoken
 
 3.使用 tasktoken 和 taskuuid 调用 [查询任务转换进度](/docs/server/api/server-conversion/#get-查询任务转换进度) api，查询任务进度
 
