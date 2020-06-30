@@ -8,11 +8,13 @@ title: PPT 转换
 
 1.使用 sdktoken 调用 [发起文档转换](/docs/server/api/server-conversion/#post-发起文档转换) api，发起文档转换任务并得到 taskuuid
 
-2.使用 sdktoken 和 taskuuid 调用 [发起文档转换](/docs/server/api/server-token/#post-生成-task-token) api，得到 tasktoken
+2.使用 sdktoken 和 taskuuid 调用 [生成 Task Token](/docs/server/api/server-token/#post-生成-task-token) api，得到 tasktoken
 
 3.使用 tasktoken 和 taskuuid 调用 [查询任务转换进度](/docs/server/api/server-conversion/#get-查询任务转换进度) api，查询任务进度
 
-这里我们于安全考虑使用 sdktoken 签出 tasktoken，只有拥有 tasktoken 的用户才能查询对应的任务进度
+由于 sdktoken 的权限过大，我们不建议将 sdktoken 暴露到前端，建议使用 sdktoken 签出 tasktoken，将 tasktoken 传到前端使用，只有拥有 tasktoken 的用户才能查询对应的任务进度。
+
+发起转换以及签出 tasktoken 建议都在后端进行
 
 ## `POST` 发起文档转换
 
