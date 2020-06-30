@@ -39,3 +39,12 @@ import com.herewhite.sdk.domain.*;
 WhiteBroadView whiteBroadView = findViewById(R.id.white);
 WhiteSdk whiteSdk = new WhiteSdk(whiteBroadView this, new WhiteSdkConfiguration(DeviceType.touch, 10, 0.1));
 ```
+
+> 注意： whiteBroadView 对象需要在当前 activity 销毁时一起销毁，否则多次进入可能会造成内存溢出崩溃，代码如下
+```Java
+protected void onDestroy() {
+    super.onDestroy();
+    whiteboardView.removeAllViews();
+    whiteboardView.destroy();
+}
+```

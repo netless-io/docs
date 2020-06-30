@@ -2,6 +2,17 @@
 id: server-conversion
 title: PPT 转换
 ---
+# 转换 API 使用说明
+
+调用转换服务需要涉及三个 api 和两个 token，以下是使用流程说明：
+
+1.使用 sdktoken 调用 [发起文档转换](/docs/server/api/server-conversion/#post-发起文档转换) api，发起文档转换任务并得到 taskuuid
+
+2.使用 sdktoken 和 taskuuid 调用 [发起文档转换](/docs/server/api/server-token/#post-生成-task-token) api，得到 tasktoken
+
+3.使用 tasktoken 和 taskuuid 调用 [查询任务转换进度](/docs/server/api/server-conversion/#get-查询任务转换进度) api，查询任务进度
+
+这里我们于安全考虑使用 sdktoken 签出 tasktoken，只有拥有 tasktoken 的用户才能查询对应的任务进度
 
 ## `POST` 发起文档转换
 
