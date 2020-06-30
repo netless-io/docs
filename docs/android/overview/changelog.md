@@ -5,6 +5,10 @@ title: 版本历史
 
 >[最新版本列表——发版自动更新](https://jitpack.io/#duty-os/white-sdk-android)
 
+## [2.9.6] - 2020-06-30
+- 同步更新 white-web-sdk 至 2.9.7
+- 提高 canvas 引擎兼容性
+
 ## [2.9.5] - 2020-06-30
 - 修复在 WebView Debug 模式下时，动态 ppt 播放音视频崩溃的问题
 
