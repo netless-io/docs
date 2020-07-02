@@ -23,6 +23,17 @@ title: 版本历史
 
 将项目中`import <White-SDK-iOS/WhiteSDK.h>`引用，更改为`import <Whiteboard/Whiteboard.h>`。
 
+## [2.9.7] - 2020-07-02
+- 优化音视频插件，修复 native 进入房间时，正在播放的音视频进度不一致
+
+## [2.9.6] - 2020-07-01
+- 同步更新 white-web-sdk 至 2.9.8
+- 修复动态 PPT 字体重复下载导致的内存占用过多的问题
+
+## [2.9.5] - 2020-06-30
+- 同步更新 white-web-sdk 至 2.9.7
+- 提高 canvas 引擎兼容性
+
 ## [2.9.4] - 2020-06-25
 - 同步更新 white-web-sdk 至 2.9.4 版本
 - 修复`WhiteContentModeConfig`中`scale`为 0 时，实际为 1 的问题
