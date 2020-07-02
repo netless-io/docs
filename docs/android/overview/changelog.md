@@ -5,6 +5,9 @@ title: 版本历史
 
 >[最新版本列表——发版自动更新](https://jitpack.io/#duty-os/white-sdk-android)
 
+## [2.9.8] - 2020-07-01
+- 修复动态 PPT 字体重复下载导致的内存占用过多的问题
+
 ## [2.9.7] - 2020-06-30
 - 修复 CameraBound 初始化时，minScale，maxScale 配置错误问题
 

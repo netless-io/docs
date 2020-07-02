@@ -23,6 +23,10 @@ title: 版本历史
 
 将项目中`import <White-SDK-iOS/WhiteSDK.h>`引用，更改为`import <Whiteboard/Whiteboard.h>`。
 
+## [2.9.6] - 2020-07-01
+- 同步更新 white-web-sdk 至 2.9.8
+- 修复动态 PPT 字体重复下载导致的内存占用过多的问题
+
 ## [2.9.5] - 2020-06-30
 - 同步更新 white-web-sdk 至 2.9.7
 - 提高 canvas 引擎兼容性
