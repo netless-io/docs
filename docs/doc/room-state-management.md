@@ -97,7 +97,7 @@ var joinRoomParams = {
     roomToken: roomToken,
 };
 
-whiteWebSDK.joinRoom(joinRoomParams, {
+whiteWebSdk.joinRoom(joinRoomParams, {
 
     onDisconnectWithError: function(err) {
         // 房间因为错误，和服务端断开连接

@@ -108,17 +108,17 @@ Room Token 只能访问指定房间，权限比 SDK Token 弱，可以根据业�
 >
 > 比如，先请求业务服务器的 API 读取房间列表（每一项中包含房间的 `uuid`）。当点击其中某一个房间时，读取项中的 `uuid` 。并发起一个 fetch 请求调用业务服务器的 API，让服务端应用使用 SDK Token 签出 Room Token，再返回给前端。
 
-首先，创建 `WhiteWebSDK` 实例。
+首先，创建 `WhiteWebSdk` 实例。
 
 ```javascript
-import { WhiteWebSDK } from "white-web-sdk";
+import { WhiteWebSdk } from "white-web-sdk";
 
-var whiteWebSDK = new WhiteWebSDK({
+var whiteWebSdk = new WhiteWebSdk({
     appIdentifier: appIdentify, // 从管理控制台获取 App Identifier
 });
 ```
 
-这个 `whiteWebSDK` 实例我们今后会多次用到。建议将其作为单例全局变量。
+这个 `whiteWebSdk` 实例我们今后会多次用到。建议将其作为单例全局变量。
 
 然后，通过如下代码加入房间。
 
@@ -291,7 +291,7 @@ var joinRoomParams = {
     roomToken: roomToken,
 };
 
-whiteWebSDK.joinRoom(joinRoomParams, {
+whiteWebSdk.joinRoom(joinRoomParams, {
 
     onDisconnectWithError: function(err) {
         // 房间因为错误，和服务端断开连接
