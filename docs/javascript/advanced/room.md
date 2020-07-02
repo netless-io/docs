@@ -113,12 +113,12 @@ Room Token 只能访问指定房间，权限比 SDK Token 弱，可以根据业�
 ```javascript
 import { WhiteWebSdk } from "white-web-sdk";
 
-var whiteWebSDK = new WhiteWebSdk({
+var whiteWebSdk = new WhiteWebSdk({
     appIdentifier: appIdentify, // 从管理控制台获取 App Identifier
 });
 ```
 
-这个 `whiteWebSDK` 实例我们今后会多次用到。建议将其作为单例全局变量。
+这个 `whiteWebSdk` 实例我们今后会多次用到。建议将其作为单例全局变量。
 
 然后，通过如下代码加入房间。
 
@@ -291,7 +291,7 @@ var joinRoomParams = {
     roomToken: roomToken,
 };
 
-whiteWebSDK.joinRoom(joinRoomParams, {
+whiteWebSdk.joinRoom(joinRoomParams, {
 
     onDisconnectWithError: function(err) {
         // 房间因为错误，和服务端断开连接

@@ -120,7 +120,7 @@ room.pptPreviousStep() // 上一步（上一页）
 该 API 需要一个网络地址，开发者需要将字体文件上传到开发者自己的业务服务器或云存储中。然后在初始化`sdk`时，传入`fonts`字段。
 
 ```javascript
-const whiteWebSDK = new WhiteWebSdk({
+const whiteWebSdk = new WhiteWebSdk({
   appIdentifier: "{{appIdentifier}}"
   // ...其他配置项
   fonts: {
