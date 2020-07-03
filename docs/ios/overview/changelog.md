@@ -23,6 +23,9 @@ title: 版本历史
 
 将项目中`import <White-SDK-iOS/WhiteSDK.h>`引用，更改为`import <Whiteboard/Whiteboard.h>`。
 
+## [2.9.8] - 2020-07-03
+- 优化音视频插件
+
 ## [2.9.7] - 2020-07-02
 - 优化音视频插件，修复 native 进入房间时，正在播放的音视频进度不一致
 
