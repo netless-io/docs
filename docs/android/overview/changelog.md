@@ -34,7 +34,7 @@ title: 版本历史
 
 ## [2.9.3] - 2020-06-23
 - 同步更新 white-web-sdk 至 2.9.3 版本
-- 新增`抓手``激光笔`教（见`com.herewhite.sdk.domain.Appliance`）
+- 新增`抓手`，`激光笔`教（见`com.herewhite.sdk.domain.Appliance`）
 - 橡皮教具`disableEraseImage`属性，支持中途切换（见Room `disableEraseImage:`API）
 - Room 新增`撤销`，`取消撤销`（开启该功能前，请先阅读`disableSerialization`介绍）
 - Room 提供`复制`，`粘贴`，`副本`，`删除` API，可以对选中的内容，执行上述操作（见`Room`执行操作 API 部分）
@@ -46,16 +46,16 @@ title: 版本历史
 ## [2.9.0] - 2020-06-10
 
 - 优化底层渲染系统，画笔教具渲染引擎，默认为`Canvas`，`svg`为兼容模式。
-- `MemberState`新增`直线``箭头`教具，具体可以查看`com.herewhite.sdk.domain.Appliance`文件。
-- `PlayerConfiguration``audioUrl`属性更改为`mediaURL`，效果不变。
+- `MemberState`新增`直线`，`箭头`教具，具体可以查看`com.herewhite.sdk.domain.Appliance`文件。
+- `PlayerConfiguration`的`audioUrl`属性更改为`mediaURL`，效果不变。
 - `WhiteSdkConfiguration`：
     1. 删除`zoomMinScale`,`zoomMaxScale`属性。限制视野需求，请阅读`WhiteRoomConfig`,`WhiterPlayerConfig`以及`WhiteCameraBound`相关类和 API。
     2. 删除`sdkStrategyConfig`属性内容。
     3. `debug`属性更改为`log`属性，效果不变。
-    4. `hasUrlInterrupterAPI`字段，更改为`enableInterrupterAPI`。setter 与 getter 更改为`setEnableInterrupterAPI``isEnableInterrupterAPI`。
+    4. `hasUrlInterrupterAPI`字段，更改为`enableInterrupterAPI`。setter 与 getter 更改为`setEnableInterrupterAPI`与`isEnableInterrupterAPI`。
     5. 新增`disableDeviceInputs`配置。
 - 移除`com.herewhite.sdk.Utils.PreFetcher`，SDK 采用更智能的链路选择，`PreFetcher`类的预热结果对 SDK 不再有效果。
-- `WhiteCameraBound`增加初始化方法，方便从`zoomMinScale``zoomMaxScale`迁移的用户。
+- `WhiteCameraBound`增加初始化方法，方便使用`zoomMinScale`，`zoomMaxScale`用户的用户进行迁移。
 - `ImageInformation`类，预埋`locked`字段。
 - 移除 room 的`setViewSize(int width, int height)`方法
 
