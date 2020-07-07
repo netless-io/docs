@@ -23,6 +23,10 @@ title: 版本历史
 
 将项目中`import <White-SDK-iOS/WhiteSDK.h>`引用，更改为`import <Whiteboard/Whiteboard.h>`。
 
+## [2.9.10] - 2020-07-07
+- 同步 web SDK 至 2.9.10
+- 优化截图 API
+
 ## [2.9.9] - 2020-07-07
 - 同步 web SDK 至 2.9.9
 - 修复 native 端动态 PPT 翻页后媒体仍然在播放的 bug
