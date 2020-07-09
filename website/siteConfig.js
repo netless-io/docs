@@ -99,7 +99,7 @@ const siteConfig = {
   scripts: [
     'https://www.googletagmanager.com/gtag/js?id=UA-143392347-1',
     '/js/buttons.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js',
+    '/js/clipboard.min.js',
     '/js/code-block-buttons.js',
     "/js/analytic.js",
     "/js/spec-code.js"
