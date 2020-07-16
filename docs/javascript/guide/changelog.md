@@ -8,7 +8,7 @@ title: 版本历史
 ### 新增
 
 * 自动调整尺寸，无需调用 ``refreshViewSize`` 方法
-* 撤回重做步数 ``canUndoSteps``、``canRedoSteps``
+* ``canUndoSteps``、``canRedoSteps`` 变化可以被监听
 
 ### 修复
 
