@@ -36,13 +36,44 @@ c.startConvertTask("{pptx url}", Converter.ConvertType.Dynamic, new ConverterCal
 });
 ```
 
-## 动态 PPT 播放
+## 动态 PPT 动画/翻页
 
 你可以通过调用如下方法来播放动态 PPT，当当前页面 PPT 的动画全部执行完成后，再次调用该方法时，会自动进入下一页场景。
 
 ```javascript
 room.pptNextStep(); // 下一页（下一步）
 room.pptPreviousStep(); // 上一页（上一步）
+```
+
+## 动态 PPT 音视频通知
+
+>2.9.13 新增 API
+
+`WhiteSdk`新增`commonCallbacks`属性，在设置`commonCallbacks`后，动态 ppt 中的音视频播放，都会回调对应的方法。
+
+```Java
+/**
+ * 部分通用回调，不管是回放房间，还是实时房间，都有该部分通知
+ * @since 2.9.13
+ */
+public interface CommonCallbacks {
+
+    /**
+     *  当sdk出现未捕获的全局错误时，会在此处抛出
+     * @param args
+     */
+    void throwError(Object args);
+
+    /**
+     * 动态 ppt 中的音视频媒体，播放通知
+     */
+    void onPPTMediaPlay();
+
+    /**
+     * 动态 ppt 中的音视频媒体，暂停通知
+     */
+    void onPPTMediaPause();
+}
 ```
 
 ## 自定义字体
