@@ -60,7 +60,8 @@
     "接入准备": [
       "javascript/overview/js-instruction",
       "javascript/guide/js-open-source",
-      "javascript/guide/js-debug"
+      "javascript/guide/js-debug",
+      "javascript/guide/js-changelog"
     ],
     "快速开始": [
       "javascript/quick-start/js-native",
@@ -96,7 +97,6 @@
       "javascript/features/js-plugin"
     ],
     "迁移与升级": [
-      "javascript/guide/js-changelog",
       "javascript/guide/js-v2.9migration",
       "javascript/guide/js-v2.8migration"
     ]
