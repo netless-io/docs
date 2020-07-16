@@ -8,7 +8,7 @@ title: 客户端集成
 ## 前提条件
 
 1. Android Studio
-1. API 18+
+1. API 19+
 
 ## 获取 sdkToken
 
