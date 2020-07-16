@@ -20,6 +20,10 @@ title: 版本历史
 
 将项目中`import <White-SDK-iOS/WhiteSDK.h>`引用，更改为`import <Whiteboard/Whiteboard.h>`。
 
+## [2.9.12] - 2020-07-16
+- 同步 web SDK 至 2.9.11
+- 新增动态 ppt 中音视频播放暂停回调，具体见 `WhiteCommonCallbackDelegate`代理中`pptMediaPlay:``pptMediaPause:`方法及其注释
+
 ## [2.9.11] - 2020-07-09
 - 修复白板背景色 API 设置失效问题
 
