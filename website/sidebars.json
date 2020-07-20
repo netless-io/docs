@@ -61,7 +61,7 @@
       "javascript/overview/js-instruction",
       "javascript/guide/js-open-source",
       "javascript/guide/js-debug",
-      "javascript/guide/js-changelog"
+      "javascript/overview/js-changelog"
     ],
     "快速开始": [
       "javascript/quick-start/js-native",
