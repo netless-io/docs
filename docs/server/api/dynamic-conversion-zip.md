@@ -119,6 +119,8 @@ https://convertcdn.netless.link/publicFiles/xml/PresetShapeDefinitions.xml
 >iOS SDK 从 2.8.1 开放 ppt 自定 Scheme 接口。  
 >具体见`WhiteSdkConfiguration`属性`pptParams`的`scheme`字段。  
 
+[Whiteboard-iOS](https://github.com/netless-io/Whiteboard-iOS#%E5%8A%A8%E6%80%81ppt%E6%9C%AC%E5%9C%B0%E8%B5%84%E6%BA%90%E5%8C%85)example 中，已有实现，具体可见该项目文档。
+
 ### NETURLSchemeHandler
 
 开发者可以使用我们开源的[NETURLSchemeHandler](https://github.com/netless-io/NETURLSchemeHandler)，来进行拦截替换。
@@ -166,6 +168,10 @@ scheme://convertcdn.netless.link/dynamicConvert/{{taskUUID}}/info.json
 
 Android 本身即支持对 webview 的网络请求进行拦截，不需要额外修改`ppt`请求的`scheme`。只需要按照标准的`WebView`拦截，进行操作即可。
 
+具体代码实现，可以参考[white-demo-android](https://github.com/duty-os/white-demo-android#%E5%8A%A8%E6%80%81%E8%B5%84%E6%BA%90%E5%8C%85%E9%A2%84%E5%8A%A0%E8%BD%BD)项目。
+
 ## Web
 
-目前，web 端，可以通过`service-worker`对`img``video``audio`和`fetch`发起的网络请求进行拦截替换。
+目前，web 端，可以通过`service-worker`对`img`，`video`，`audio`以及`fetch`发起的网络请求进行拦截替换。
+
+可以参考[cache-from-zip](https://github.com/mozilla/serviceworker-cookbook/tree/master/cache-from-zip)项目。
