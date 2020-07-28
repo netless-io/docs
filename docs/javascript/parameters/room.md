@@ -333,6 +333,41 @@ ppt 预加载缓存回调，uuid 为 ppt 转换时的 taskId，progress 为 0~1 
 
 >只有在初始化 SDK 时，`preloadDynamicPPT`，设置为 true 时，该回调才有用。
 
+### **onPPTMediaPlay**
+
+* TypeScript 签名
+```typescript
+(shapeId: string, type: "video" | "audio") => void;
+```
+
+```js
+ppt 内的媒体文件播放时的回调，其中 shapeId 代表媒体在 ppt 中当前页面的唯一 id
+```
+
+### **onPPTMediaPause**
+
+* TypeScript 签名
+```typescript
+(shapeId: string, type: "video" | "audio") => void;
+```
+
+```js
+ppt 内的媒体文件停止时的回调，其中 shapeId 代表媒体在 ppt 中当前页面的唯一 id
+```
+
+### **onPPTMediaPlayError**
+
+* TypeScript 签名
+```typescript
+(shapeId: string, type: "video" | "audio", error: Error) => void;
+```
+
+```js
+ppt 内的媒体文件在调用 play() 时的错误回调，其中 shapeId 代表媒体在 ppt 中当前页面的唯一 id
+```
+
+>由于在实际应用中经常会出现中途加入的用户需要自动播放媒体文件的场景，这时候当用户没有与网页进行交互时调用 play() 方法会报 NotAllowedError，这种场景需要用户自行处理
+
 ## 推荐阅读
 
 1. [教具操作](../features/tools.md)
