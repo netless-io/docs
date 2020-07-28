@@ -130,3 +130,20 @@ const whiteWebSdk = new WhiteWebSdk({
  },
 });
 ```
+
+## 动态 PPT 音视频回调
+动态 ppt 内的音视频在播放时会有回调通知用户，回调方法在作为参数在加入房间时传入，包括：
+
+```javascript
+onPPTMediaPlay
+onPPTMediaPause
+onPPTMediaPlayError
+```
+
+具体方法签名请参考： 
+
+[onPPTMediaPlay](/docs/javascript/parameters/js-room#onpptmediaplay)
+
+[onPPTMediaPause](/docs/javascript/parameters/js-room#onpptmediapause)
+
+[onPPTMediaPlayError](/docs/javascript/parameters/js-room#onpptmediaplayerror)
