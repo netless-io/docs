@@ -10,9 +10,10 @@ title: 集成
 1. Android Studio
 1. API 19+
 
-## 获取 sdkToken
+## 获取所需要的信息
 
-阅读 [应用与权限](docs/doc/token)，获取 SDK Token，阅读 [APP Identifier](/faq/app-identifier)，获取 App Identifier
+1. 阅读 [应用与权限](docs/doc/token)，获取 SDK Token
+2. 阅读 [APP Identifier](/faq/app-identifier)，获取 App Identifier
 
 ## 集成 SDK 到项目中
 
