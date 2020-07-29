@@ -11,9 +11,10 @@ sidebar_label: 客户端集成
 1. Xcode 10.10+
 1. iOS 9.0+
 
-## 2. 获取 sdkToken
+## 2. 获取所需要的信息
 
-阅读 [接入准备](/docs/doc/token/)，注册账号，获取 sdk token。
+1. 阅读 [应用与权限](docs/doc/token)，获取 SDK Token
+2. 阅读 [APP Identifier](/faq/app-identifier)，获取 App Identifier
 
 ## 3. 添加 SDK 到项目中
 
