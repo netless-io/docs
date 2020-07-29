@@ -5,7 +5,7 @@ title: 加入房间
 
 在完成创建房间/获取特定房间 RoomToken 操作，拿到房间 UUID 与房间 RoomToken 后，开发者可以调用 `WhiteSDK` `joinRoom` 相关的 API。
 
-本文相关代码，可以在 [Demo](declaration.md#demo) 项目的 `RoomActivity` 中查看。
+>本文相关代码，可以在 [Demo](declaration.md#demo) 项目的 `RoomActivity` 中查看。
 
 ## 加入房间 && 状态回调
 
