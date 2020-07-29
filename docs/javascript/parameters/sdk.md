@@ -30,18 +30,20 @@ var whiteWebSdk = new WhiteWebSdk({
 
 ```Typescript
 // WhiteWebSdk.d.ts
-export type WhiteWebSdkConfiguration = {
-    readonly deviceType?: DeviceType;
-    readonly screenType?: ScreenType;
-    readonly renderEngine?: RenderEngine;
-    readonly fonts?: UserFonts;
-    readonly handToolKey?: string;
-    readonly preloadDynamicPPT?: boolean;
-    readonly loggerOptions?: LoggerOptions;
-    readonly reconnectionOptions?: Partial<ReconnectionOptions> | false;
-    readonly onlyCallbackRemoteStateModify?: boolean;
-    readonly plugins?: Plugins;
-    readonly urlInterrupter?: (url: string) => string;
+export declare type WhiteWebSdkConfiguration = {
+    appIdentifier: string;
+    useMobXState?: boolean;
+    deviceType?: DeviceType;
+    renderEngine?: RenderEngine;
+    fonts?: UserFonts;
+    handToolKey?: string;
+    preloadDynamicPPT?: boolean;
+    loggerOptions?: LoggerOptions;
+    onlyCallbackRemoteStateModify?: boolean;
+    plugins?: Plugins;
+    pptParams?: PptParams;
+    urlInterrupter?: (url: string)=>string;
+    onWhiteSetupFailed?: (error: Error)=>void;
 };
 ```
 
@@ -159,14 +161,22 @@ export enum RenderEngine {
 用户可以放到的最大比例，默认不限制。
 开发者仍然可以使用代码进行放大。
 
->2.3.0 支持更高级 API，在初始化`room`，以及`player`时配置。
+>2.3.0 支持更高级 API，在初始化`room`，以及`player`时配置`cameraBound`。
+>2.9.0 该 API 不再支持该 API
 
 ### zoomMinScale:缩小下限
 
 用户可以缩小的最小比例，默认不限制。
 开发者仍然可以使用代码进行缩小。
 
->2.3.0 支持更高级 API，在初始化`room`，以及`player`时配置。
+>2.3.0 支持更高级 API，在初始化`room`，以及`player`时配置`cameraBound`。
+>2.9.0 该 API 不再支持该 API
+
+### **onWhiteSetupFailed**
+
+白板在初始化时，会向服务器请求，由服务器返回连接配置，如果此时网络异常，会导致 SDK 配置失败，此时调用 SDK 加入房间、回放房间，会一直处于连接等待状态，而无任何响应。  
+`onWhiteSetupFailed`会在白板向服务器请求连接配置失败时，主动回调。  
+开发者在此时需要重新初始化 SDK（一般此时网络不稳定），然后再重新调用房间。
 
 ## 推荐阅读
 
