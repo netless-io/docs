@@ -1,60 +1,17 @@
 ---
 id: android-state
-title: 状态管理
+title: 状态订阅，获取
 ---
 
 你可以通过如下方式获取当前房间的状态
 
-## 1. 房间状态
+## 订阅白板页面状态变化
 
-```java
-//目前 globalState 为空，不再有当前 state 内容。
-GlobalState globalState = room.getGlobalState();
+在初始化房间时，传入对应的方法，当房间出现状态变化时，SDK 会主动调用对应方法，通知开发者，房间状态发生变化。
 
-//获取房间 memberState 状态：教具
-MemberState memberState = room.getMemberState();
+### 1. 房间状态变化
 
-//获取用户当前视角状态
-BroadcastState broadcastState = room.getBroadcastState();
-
-//获取房间成员信息
-RoomMember[] roomMembers = room.getRoomMembers();
-
-//获取房间 SceneState 页面信息，具体见 SceneState 类
-SceneState sceneState = room.getSceneState();
-
-//获取房间当前场景目录下的所有 Scene 页面信息
-Scene scenes = room.getScenes();
-```
-
-## 2. Player 状态
-
-```Java
-/**
- * 获取房间状态
- * 目前：初始状态为 WhitePlayerPhaseWaitingFirstFrame
- * 当 WhitePlayerPhaseWaitingFirstFrame 时，调用 getPlayerStateWithResult 返回值可能为空。
-*/
-public PlayerPhase getPhase();
-
-/**
- * 当 phase 状态为 WhitePlayerPhaseWaitingFirstFrame
- * 回调得到的数据是空的
- */
-public PlayerState getPlayerState()
-
-/** 
- * 获取播放器信息（当前时长，总时长，开始 UTC 时间戳）
- * 时长单位为毫秒
- */
-public void getPlayerTimeInfo(final Promise<PlayerTimeInfo> promise) {
-```
-
-# 订阅白板页面状态变化
-
-## 1. 房间状态变化
-
-以上状态，都有可以通过 API 进行改变，为了监听以上状态的变化，需要在使用 `WhiteSDK` 调用 `joinRoom(final RoomParams roomParams, RoomCallbacks roomCallbacks, Promise<Room> roomPromise)` 方法，直接传入 实现 `RoomCallbacks` 接口的实例，或者 使用 `AbstractRoomCallbacks` ，后者可以只覆盖感兴趣的回调方法。
+在调用`WhiteSDK`的`joinRoom`方法，`roomCallbacks`参数中，传入实现`RoomCallbacks`接口的实例，或者`AbstractRoomCallbacks`，后者可以覆盖感兴趣的回调方法。
 
 ```java
 public interface RoomCallbacks {
@@ -82,12 +39,11 @@ public interface RoomCallbacks {
 }
 ```
 
-## 2. Player 状态变化
+### 2. Player 状态变化
 
-调用该方法 `createPlayer(PlayerConfiguration playerConfiguration, PlayerEventListener playerEventListener, Promise<Player> playerPromise)` 直接传入实现 `PlayerEventListener` 接口类。
+调用 WhiteSdk 的`createPlayer`方法，`playerEventListener`参数，传入实现`PlayerEventListener`接口的实例。
 
 ```Java
-public interface PlayerEventListener {
     /**
      * 播放状态切换回调
      */
@@ -128,6 +84,62 @@ public interface PlayerEventListener {
     void onCatchErrorWhenRender(SDKError error);
 }
 ```
+
+## 主动获取状态
+
+主动获取房间状态 API 分为异步 API 与同步 API。  
+这里只介绍同步 API，对应异步 API 可以通过同步 API 的注释进行查看，此处不做赘述。
+
+### 1. 房间状态
+
+```java
+//目前 globalState 为空，不再有当前 state 内容。
+GlobalState globalState = room.getGlobalState();
+
+//获取房间 memberState 状态：教具
+MemberState memberState = room.getMemberState();
+
+//获取用户当前视角状态
+BroadcastState broadcastState = room.getBroadcastState();
+
+//获取房间成员信息
+RoomMember[] roomMembers = room.getRoomMembers();
+
+//获取房间 SceneState 页面信息，具体见 SceneState 类
+SceneState sceneState = room.getSceneState();
+
+//获取房间当前场景目录下的所有 Scene 页面信息
+Scene scenes = room.getScenes();
+```
+
+### 2. Player 状态
+
+```Java
+/**
+ * 获取房间状态
+ * 目前：初始状态为 WhitePlayerPhaseWaitingFirstFrame
+ * 当 WhitePlayerPhaseWaitingFirstFrame 时，调用 getPlayerStateWithResult 返回值可能为空。
+*/
+public PlayerPhase getPhase();
+
+/**
+ * 当 phase 状态为 WhitePlayerPhaseWaitingFirstFrame
+ * 回调得到的数据是空的
+ */
+public PlayerState getPlayerState()
+
+/** 
+ * 获取播放器信息（当前时长，总时长，开始 UTC 时间戳）
+ * 时长单位为毫秒
+ */
+public void getPlayerTimeInfo(final Promise<PlayerTimeInfo> promise) {
+```
+
+## 注意点
+
+主动获取房间状态，实际上就是 SDK 通过前面API 对房间状态变化进行监听API，然后将发生变化的状态，与已经缓存好的状态属性进行合并。以此方便用户调用。
+
+如果在同一代码块中，使用了能够改变房间状态的 API（更换教具，切换页面等操作），此时立刻通过同步 API 进行查看，会发现状态没有发生改变。这是因为需要在下一个主线程循环中，状态才会被合并。此时，请使用异步 API 进行操作。
 
 ## 自定义 GlobalState<span class="anchor" id="globalstate">
 
