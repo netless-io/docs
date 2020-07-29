@@ -51,23 +51,24 @@ title: 生命周期以及事件回调
 
 ### 断线重连
 
-当房间出现意外断连时，sdk 首先会进行重连操作。
-由于房间连接状态发生变化，sdk 会回调加入房间 API 传入的 callback 代理，调用其实现的 `- (void)firePhaseChanged:` 方法。
+当房间连接状态发生变化，SDK 会回调在加入房间时，传入的`id<WhiteRoomCallbackDelegate>`对象，调用对应`- (void)firePhaseChanged:` 方法。
 
-当 sdk 自动重连失败时，可以使用 sdk 加入房间 API，重新连接。（此时不传入 callbacks，就不会变更 callbacks 代理）。
+当房间出现意外断连时，SDK 首先会进行三次重连操作，此时，房间状态处于`WhiteRoomPhaseReconnecting`。
 
 ```Objective-C
 - (void)firePhaseChanged:(WhiteRoomPhase)phase
 {
-    NSLog(@"%s, %ld", __FUNCTION__, (long)phase);
-    // 增加部分判断，因为在 SDK 初次加入房间时，也会回调此API。
-    if (phase == WhiteRoomPhaseDisconnected && self.sdk && !self.isReconnecting) {
+    if (self.room.disconnectedBySelf || self.isReconnecting || !self.sdk) {
+        return;
+    }
+    
+    if (phase == WhiteRoomPhaseDisconnected && self.roomUuid && self.roomToken) {
         self.reconnecting = YES;
         [self.sdk joinRoomWithUuid:self.roomUuid roomToken:self.roomToken completionHandler:^(BOOL success, WhiteRoom *room, NSError *error) {
             self.reconnecting = NO;
             NSLog(@"reconnected");
             if (error) {
-                NSLog(@"error:%@", [error localizedDescription]);
+                NSLog(@"error:%@", [error description]);
             } else {
                 self.room = room;
             }
