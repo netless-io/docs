@@ -17,7 +17,7 @@ title: 原生 JavaScript
 NETLESSSDK_YWs9UU9JSkJobEZfYlBPLXdNeSZub25jZT0xNTg3MDkyMzUxMTQ0MDAmcm9sZT0wJnNpZz1mYmUzOTI3MjhkZmVhNTc4MzllZTdhNWQ3N2RhZjdjNjkyZmUwNzk1Y2M2MGFhMzE1Y2YxZDY1YmMxODkxNmRi
 ```
 
-这段内容只是举个例子。你需要亲自操作获取自己的内容。
+这段内容只是**举个例子，内容不可用**，你需要亲自操作获取自己的内容。
 
 之后，创建一个文件夹，这将来存放 HTML 文件和 JS 文件。然后，在这个文件夹中新建一个名为 `index.html` 的文件，用编辑器打开它，并插入如下内容。
 
@@ -107,6 +107,8 @@ function joinRoom(roomUUID, roomToken) {
     });
 }
 ```
+
+> Vue 用户注意：Vue 会对所有 property 进行劫持，监听属性中，key-value 的变化，但是这种监听，只对单纯的 key-value 对象有用，白板加入房间后，返回的 room/player 对象，不是单纯的 key-value 对象，不能直接在 Vue 中使用 this.room = room 来进行绑定。绑定操作请使用 this.$room = room。
 
 最后，用浏览器打开 `index.html` 文件，将看到一个空白页面。用鼠标在该页面上写写画画，若一切顺利，可以看到笔迹。
 
