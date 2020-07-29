@@ -5,15 +5,35 @@ title: 教具使用
 
 ## 教具
 
+教具作为当前用户自己的状态，在 SDK 中，属于 `MemberState` 管理。
+
+
 ```java
+public class Appliance {
+    // 铅笔
+    public final static String PENCIL = "pencil";
+    // 选择
+    public final static String SELECTOR = "selector";
+    // 矩形
+    public final static String RECTANGLE = "rectangle";
+    // 椭圆
+    public final static String ELLIPSE = "ellipse";
+    // 橡皮
+    public final static String ERASER = "eraser";
+    // 文字
+    public final static String TEXT = "text";
+    // 直线
+    public final static String STRAIGHT = "straight";
+    // 箭头
+    public final static String ARROW = "arrow";
+    // 抓手工具，切换后，单指即可平移
+    public final static String HAND = "hand";
+    // 激光笔，显示用户鼠标/手指位置，但是不会绘制任何内容
+    public final static String LASER_POINTER = "laserPointer";
+}
+
 public class MemberState {
-    // 当前工具，修改它会切换工具。有如下工具可供挑选：
-    // 1. selector 选择工具
-    // 2. pencil 铅笔工具
-    // 3. rectangle 矩形工具
-    // 4. ellipse 椭圆工具
-    // 5. eraser 橡皮工具
-    // 6. text 文字工具
+    // 当前工具，修改它会切换工具。具体参数可以参考 Appliance 中常量
     private String currentApplianceName;
     // 线条的颜色，将 RGB 写在一个数组中。形如 [255, 128, 255]。
     private int[] strokeColor;
@@ -39,19 +59,7 @@ room.setMemberState(memberState);
 room.getMemberState().getCurrentApplianceName();
 ```
 
-### 教具列表
-
-| 名称 | 字符串 | 描述 |
-| :--- | :--- | :--- |
-| 选择 | selector | 选择、移动、放缩 |
-| 铅笔 | pencil | 画出带颜色的轨迹 |
-| 矩形 | rectangle | 画出矩形 |
-| 椭圆 | ellipse | 画出正圆或椭圆 |
-| 橡皮 | eraser | 删除轨迹 |
-| 文字 | text | 编辑、输入文字 |
-
-
-### 调色盘
+### 颜色
 
 通过如下代码可以修改调色盘的颜色。
 ```java
