@@ -333,4 +333,4 @@ scenePreview(scenePath: string, div: HTMLElement, width: number, height: number)
 
 ### 页面截图
 
-本地截图，存在一定缺陷，推荐使用 [服务器 API —— 封面截图](server/api/whiteboard-cover.md)。
+本地截图，存在一定缺陷，推荐使用 [服务器 API —— 封面截图](docs/server/api/server-screenshot/)。
