@@ -1,6 +1,6 @@
 ---
 id: android-init-sdk
-title: 初始化
+title: 初始化SDK
 ---
 
 在初始化 SDK 前，请确保已经完成注册账号获取 token，集成安装包等操作，详见 [集成客户端](./prepare.md)。
@@ -37,8 +37,37 @@ import com.herewhite.sdk.domain.*;
 
 ...
 WhiteBroadView whiteBroadView = findViewById(R.id.white);
-WhiteSdk whiteSdk = new WhiteSdk(whiteBroadView this, new WhiteSdkConfiguration(DeviceType.touch, 10, 0.1));
+WhiteSdkConfiguration sdkConfiguration = new WhiteSdkConfiguration("AppIdentifier", true);
+WhiteSdk whiteSdk = new WhiteSdk(whiteboardView, this, sdkConfiguration,
+                new CommonCallbacks() {
+                    @Override
+                    public String urlInterrupter(String sourceUrl) {
+                        return sourceUrl;
+                    }
+
+                    @Override
+                    public void sdkSetupFail(SDKError error) {
+                        Log.e("ROOM_ERROR", error.toString());
+                    }
+
+                    @Override
+                    public void throwError(Object args) {
+
+                    }
+
+                    @Override
+                    public void onPPTMediaPlay() {
+                        logAction();
+                    }
+
+                    @Override
+                    public void onPPTMediaPause() {
+                        logAction();
+                    }
+                });
 ```
+
+>[AppIdentifier](/docs/faq/app-identifier)需要在[console](https://console.netless.link)中进行查看。具体请看链接中内容。
 
 > 注意： whiteBroadView 对象需要在当前 activity 销毁时一起销毁，否则多次进入可能会造成内存溢出崩溃，代码如下
 ```Java

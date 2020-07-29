@@ -1,6 +1,6 @@
 ---
 id: android-prepare
-title: 客户端集成
+title: 集成
 ---
 
 本文介绍在正式使用白板 SDK 前，需要准备的开发环境。
@@ -12,9 +12,9 @@ title: 客户端集成
 
 ## 获取 sdkToken
 
-阅读 [接入准备](/docs/doc/begin-netless/)，注册账号，获取 sdk token。
+阅读 [应用与权限](docs/doc/token)，获取 SDK Token，阅读 [APP Identifier](/faq/app-identifier)，获取 App Identifier
 
-## 添加 SDK 到项目中
+## 集成 SDK 到项目中
 
 ### 配置 build.gradle
 
@@ -24,6 +24,7 @@ title: 客户端集成
 allprojects {
     repositories {
         jcenter()
+        // 添加以下内容
         maven { url 'https://jitpack.io' }
     }
 }
@@ -33,10 +34,12 @@ allprojects {
 
 ```gradle
 dependencies {
-    //  数字请自行使用最新版本
-    implementation 'com.github.duty-os:white-sdk-android:2.6.3'
+    // 数字请根据最新版自行添加
+    implementation 'com.github.duty-os:white-sdk-android:2.9.14'
 }
 ```
+
+>最新版本请查看[版本历史](/docs/android/overview/android-changelog)
 
 * 这时你会看到 Android Studio 在编辑器的顶部有一行提示 
 

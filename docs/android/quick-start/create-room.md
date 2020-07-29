@@ -7,6 +7,8 @@ title: 创建房间/获取房间信息
 该部分为服务器逻辑，实际开发中，不应该在客户端实现。
 客户端应该向开发者自己的后端服务器进行请求，获取内容。
 
+>此处文档使用的新用户的 sdkToken，以 NETLESS 开头，无法使用`v4`API，需要根据 [server](/docs/server/overview/server-introduction) 在服务器端进行创建。
+
 ## 安全须知
 
 创建房间/获取房间，需要使用 sdkToken，与 SDK 后端服务器，进行交互。
