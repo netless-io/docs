@@ -13,6 +13,6 @@ title: 概述
 1. 调用 sdk 加入房间方法，传入 uuid 以及 room token。
 1. 实现白板房间状态回调协议
 
-## Demo
+## 源码
 
-demo 地址： [Whiteboard](https://github.com/netless-io/Whiteboard-ios) 中获取。
+本章节所有源码，都可在[Whiteboard](https://github.com/netless-io/Whiteboard-ios) Example 文件项目中进行查看。

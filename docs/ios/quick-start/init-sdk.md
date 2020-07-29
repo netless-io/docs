@@ -41,40 +41,12 @@ title: 初始化 SDK
 
 @implementation WhiteBaseViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self setupViews];
-}
-
-- (void)setupViews
-{
-    // 1. 初始化 WhiteBoardView，
-    // 注意点：提前加入视图栈，防止 iOS12 无法正常初始化
-    self.boardView = [[WhiteBoardView alloc] init];
-    [self.view addSubview:self.boardView];
-
-    // 2. 为 WhiteBoardView 做 iOS10 及其以下兼容。
-    if (@available(iOS 11, *)) {
-    } else {
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
-
-    // 3. 使用 Masonry 做自动布局支持
-    [self.boardView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_topLayoutGuideBottom);
-        make.left.bottom.right.equalTo(self.view);
-    }];
-    [self initSDK];
-}
+...
 
 - (void)initSDK
 {
     // 4. 初始化 SDK 配置类，根据需求设置配置
-    WhiteSdkConfiguration *config = [WhiteSdkConfiguration defaultConfig];
-    
-    // 如果不需要拦截图片API，则不需要开启，页面内容较为复杂时，可能会有性能问题
-    //config.enableInterrupterAPI = YES;
-    config.debug = YES;
+    WhiteSdkConfiguration *config = [[WhiteSdkConfiguration alloc] initWithApp:@"需要填入的 App Identifier"];
 
     // 5. 初始化 WhiteSDK，并传入callback，可以在 Example 中查看 callback 实现
     self.sdk = [[WhiteSDK alloc] initWithWhiteBoardView:self.boardView config:config commonCallbackDelegate:self.commonDelegate];
@@ -85,9 +57,9 @@ title: 初始化 SDK
 
 ### 注意点
 
-1. 请保证在初始化 SDK 时，传入的 WhiteBoardView 已经添加在 ViewController 的视图栈中。
-    * 否则会造成 iOS12 下，无法正确初始化。
-1. WhiteBoardView 内部含有 UIScrollView 实例。
-    * 在部分 NavigationController 的 ViewController 中，如果没有正确设置，会出现异常。
-    * iOS 11 及其以上，sdk 内部已经有做支持。
-    * iOS10 及其以下，需要调用时，对 ViewController 做设置。参考初始化代码。
+>1. 请保证在初始化 SDK 时，传入的 WhiteBoardView 已经添加在 ViewController 的视图栈中。
+>    * 否则 iOS 12 开始，无法正确初始化，且不会有任何错误反馈。
+>1. WhiteBoardView 内部含有 UIScrollView 实例。
+>    * 在部分 NavigationController 的 ViewController 中，如果没有正确设置，会出现异常。
+>    * iOS 11 及其以上，sdk 内部已经有做支持。
+>    * iOS10 及其以下，需要调用时，对 ViewController 做设置。参考初始化代码。
