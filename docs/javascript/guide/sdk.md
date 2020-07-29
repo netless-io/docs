@@ -82,4 +82,3 @@ import {Room, RoomPhase, RoomWhiteboard, WhiteWebSdk} from "white-react-sdk";
 ## 推荐阅读
 
 1. [开源项目](./open-source.md)
-2. [快速开始-前提条件](../quick-start/precondition.md)、[快速开始-鉴权](../quick-start/token.md)、[快速开始-sdk](../quick-start/precondition.md)

@@ -31,7 +31,7 @@ title: 前提条件
 
 ## 关注新版本的发布
 
-- [《回放》](/docs/javascript/guide/js-changelog.md)
+- [版本历史](/docs/javascript/overview/js-changelog/)
 
 ## 从旧版本迁移
 
