@@ -4,7 +4,9 @@ title: 版本历史
 ---
 
 >[最新版本列表——发版自动更新](https://jitpack.io/#duty-os/white-sdk-android)
-
+## [2.9.15] - 2020-07-31
+- 修复 Android 7.1 至 Android 8.1 下，默认渲染模式（Canvas）无法显示内容的问题
+- 修复 room.phase 状态错误，必须使用 `room.getPhase` 异步 API 才能获取正确状态的问题
 ## [2.9.14] - 2020-07-22
 - 同步 web SDK 至 2.9.12
 - 修复以下情况时，webView 中 SDK 初始化/启动失败，没有任何通知的问题。回调通知在 `CommonCallbacks`新增`sdkSetupFail:`方法中；更多具体内容，见源码注释。
