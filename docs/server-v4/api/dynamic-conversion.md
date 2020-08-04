@@ -75,6 +75,9 @@ roomToken 或 token | string | {{roomtoken}} 或 {{token}}|
 --  | -- | -- |
 sourceUrl | stirng | 需要进行转换的文件的地址 |
 serviceType | string | 服务类型，动态文档转换固定为 "dynamic_conversion" |
+preview | boolean | (**可选**)是否需要生成预览图，默认为 false |
+
+> 注意：只有动态文档转换支持预览图功能，即 serviceType == "dynamic_conversion" 时，同时生成预览图需要消耗较长时间，请谨慎选择
 
 * body
 
@@ -82,7 +85,8 @@ serviceType | string | 服务类型，动态文档转换固定为 "dynamic_conve
 {
     //请确保该文件可下载
     "sourceUrl": "https://xxxx.xxx.xxx.com/xxxx.pptx",
-    "serviceType": "dynamic_conversion"
+    "serviceType": "dynamic_conversion",
+    "preview": false
 }
 ```
 
@@ -128,17 +132,20 @@ roomToken 或 token | string | {{roomtoken}} 或 {{token}}|
                 {
                     "width": 960,
                     "height": 720,
-                    "conversionFileUrl": "dynamicConvert/{{taskUUID}}/slide/slide1.xml"
+                    "conversionFileUrl": "dynamicConvert/{{taskUUID}}/slide/slide1.xml",
+                    "preview": "https://xxx.xxx/xxx.png"    // 该字段仅在参数 preview == true 时出现
                 },
                 {
                     "width": 960,
                     "height": 720,
-                    "conversionFileUrl": "dynamicConvert/{{taskUUID}}/slide/slide2.xml"
+                    "conversionFileUrl": "dynamicConvert/{{taskUUID}}/slide/slide2.xml",
+                    "preview": "https://xxx.xxx/xxx.png"
                 },
                 {
                     "width": 960,
                     "height": 720,
-                    "conversionFileUrl": "dynamicConvert/{{taskUUID}}/slide/slide3.xml"
+                    "conversionFileUrl": "dynamicConvert/{{taskUUID}}/slide/slide3.xml",
+                    "preview": "https://xxx.xxx/xxx.png"
                 }
             ],
             "prefix": "pptx://xxxx.xxx.xxx.com/" // 文档转换结果前缀
