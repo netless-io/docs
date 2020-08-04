@@ -63,15 +63,20 @@ roomToken 或 token | string | {{roomtoken}} 或 {{token}}|
 --  | -- | -- |
 sourceUrl | stirng | 需要进行转换的文件的地址 |
 serviceType | string | 服务类型，静态文档转换固定为 "static_conversion" |
+scale | number | (**可选**)图片缩放比例，取值范围在 0.1 到 3 之间，默认为 1.2 |
+
 
 > 在发起转换任务前请确保您已经在 console 上开启了“文档转图片”服务并配置 QPS 上限大于 0，否则该接口将会报"Service not enable"、"Task waiting line is full"等异常
+
+> 注意：只有静态文档转换支持缩放功能，即 serviceType == "static_conversion" 时，不传为默认值，该值会改变生成的图片大小
 
 * body 例子
 
 ```json
 {
     "sourceUrl": "https://xxxx.xxx.xxx.com/xxxx.pptx",
-    "serviceType": "static_conversion"
+    "serviceType": "static_conversion",
+    "scale": 1.2
 }
 ```
 

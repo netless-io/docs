@@ -12,6 +12,12 @@
     "rename-version": "docusaurus-rename-version"
   },
   "devDependencies": {
+    "cz-conventional-changelog": "3.2.0",
     "docusaurus": "*"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
