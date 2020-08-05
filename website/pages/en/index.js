@@ -19,13 +19,13 @@ class Index extends React.Component {
                             <img src={`${siteConfig.baseUrl}img/javascript.svg`}/>
                         </div>
                         <a href={`${siteConfig.baseUrl}docs/javascript/overview/js-instruction`}>
-                            <div className="home-page-cell-inner">文档大纲</div>
+                            <div className="home-page-cell-inner">前期准备</div>
                         </a>
-                        <a href={`${siteConfig.baseUrl}docs/javascript/guide/js-sdk`}>
-                            <div className="home-page-cell-inner">安装指南</div>
-                        </a>
-                        <a href={`${siteConfig.baseUrl}docs/javascript/quick-start/js-precondition`}>
+                        <a href={`${siteConfig.baseUrl}docs/javascript/quick-start/js-native`}>
                             <div className="home-page-cell-inner">快速开始</div>
+                        </a>
+                        <a href={`${siteConfig.baseUrl}docs/javascript/parameters/js-sdk`}>
+                            <div className="home-page-cell-inner">初始化</div>
                         </a>
                         <a href={`${siteConfig.baseUrl}docs/javascript/features/js-tools`}>
                             <div className="home-page-cell-inner">功能介绍</div>
@@ -36,16 +36,16 @@ class Index extends React.Component {
                         <div className="home-page-cell-icon">
                             <img src={`${siteConfig.baseUrl}img/android.svg`}/>
                         </div>
-                        <a href={`${siteConfig.baseUrl}docs/android/overview/android-introduction`}>
-                            <div className="home-page-cell-inner">产品概述</div>
+                        <a href={`${siteConfig.baseUrl}docs/android/overview/android-changelog`}>
+                            <div className="home-page-cell-inner">版本历史</div>
                         </a>
                         <a href={`${siteConfig.baseUrl}docs/android/quick-start/android-declare`}>
                             <div className="home-page-cell-inner">快速开始</div>
                         </a>
-                        <a href={`${siteConfig.baseUrl}docs/android/guides/android-state`}>
+                        <a href={`${siteConfig.baseUrl}docs/android/guides/android-tools`}>
                             <div className="home-page-cell-inner">常用功能</div>
                         </a>
-                        <a href={`${siteConfig.baseUrl}docs/android/guides/android-v2migration`}>
+                        <a href={`${siteConfig.baseUrl}docs/android/migration/android-2.9.0`}>
                             <div className="home-page-cell-inner">升级指南</div>
                         </a>
                     </div>
@@ -54,16 +54,16 @@ class Index extends React.Component {
                         <div className="home-page-cell-icon">
                             <img src={`${siteConfig.baseUrl}img/ios.svg`}/>
                         </div>
-                        <a href={`${siteConfig.baseUrl}docs/ios/overview/ios-introduction`}>
-                            <div className="home-page-cell-inner">产品概述</div>
+                        <a href={`${siteConfig.baseUrl}docs/ios/overview/ios-changelog`}>
+                            <div className="home-page-cell-inner">版本历史</div>
                         </a>
                         <a href={`${siteConfig.baseUrl}docs/ios/quick-start/ios-declare`}>
                             <div className="home-page-cell-inner">快速开始</div>
                         </a>
-                        <a href={`${siteConfig.baseUrl}docs/ios/guides/ios-state`}>
+                        <a href={`${siteConfig.baseUrl}docs/ios/guides/ios-tools`}>
                             <div className="home-page-cell-inner">常用功能</div>
                         </a>
-                        <a href={`${siteConfig.baseUrl}docs/ios/guides/ios-v2migration`}>
+                        <a href={`${siteConfig.baseUrl}docs/ios/migration/ios-2.9.0`}>
                             <div className="home-page-cell-inner">升级指南</div>
                         </a>
                     </div>
@@ -75,7 +75,7 @@ class Index extends React.Component {
                         <a href={`${siteConfig.baseUrl}docs/server/overview/server-introduction`}>
                             <div className="home-page-cell-inner">产品概述</div>
                         </a>
-                        <a href={`${siteConfig.baseUrl}docs/server/api/server-request`}>
+                        <a href={`${siteConfig.baseUrl}docs/server/api/server-room`}>
                             <div className="home-page-cell-inner">服务端 API</div>
                         </a>
                     </div>
@@ -84,16 +84,16 @@ class Index extends React.Component {
                         <div className="home-page-cell-icon">
                             <img src={`${siteConfig.baseUrl}img/blog.svg`} />
                         </div>
-                        <a href={`${siteConfig.baseUrl}docs/doc/add-driver`}>
+                        <a href={`${siteConfig.baseUrl}docs/faq/oss-config`}>
                             <div className="home-page-cell-inner">配置云存储</div>
                         </a>
                         <a href={`${siteConfig.baseUrl}docs/faq/debug-center`}>
                             <div className="home-page-cell-inner">在线 debug</div>
                         </a>
-                        <a href={`${siteConfig.baseUrl}docs/doc/begin-netless`}>
+                        <a href={`${siteConfig.baseUrl}docs/doc/token`}>
                             <div className="home-page-cell-inner">使用说明</div>
                         </a>
-                        <a href={`${siteConfig.baseUrl}docs/doc/broadcast`}>
+                        <a href={`${siteConfig.baseUrl}docs/doc/viewmode`}>
                             <div className="home-page-cell-inner">主播与观众</div>
                         </a>
                     </div>
