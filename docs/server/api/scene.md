@@ -50,6 +50,11 @@ https://shunt-api.netless.link/v5/rooms/:uuid/scenes
     https://shunt-api.netless.link/v5/rooms/:uuid/scenes
 ```
 
+>服务器端 API 对场景API 的限制与客户端一致。
+>1. path 参数，不能与现有页面的路径重叠。（类比与：无法向文件中插入文件）
+>2. path + 插入的 scenes 中的 name，拼接出来的路径，与已有的页面路径一致时，由于路径具有唯一性，新页面会覆盖旧页面（新文件会覆盖旧文件）。
+>具体见 [页面管理-插入页面](/docs/javascript/features/js-scenes)
+
 ### <span style="color: #5b908e">Request</span>
 
 #### Headers
@@ -97,6 +102,11 @@ https://shunt-api.netless.link/v5/rooms/:uuid/scenes
 ```bash
 https://shunt-api.netless.link/v5/rooms/:uuid/scene-state
 ```
+
+>以下情况，将无法正确切换：
+>1. 路径对应的页面不存在。
+>1. 路径对应的是页面目录，而非页面。
+>具体见 [页面管理](/docs/javascript/features/js-scenes)
 
 ### <span style="color: #5b908e">Request</span>
 
