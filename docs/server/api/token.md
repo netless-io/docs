@@ -17,7 +17,7 @@ https://shunt-api.netless.link/v5/tokens/teams
 | --- | --- | --- | --- |
 | accessKey |`required` | `string` |  Access Key |
 | secretAccessKey |`required` | `string` |  Secret Access Key |
-| lifespan |`required` | `string` | 有效时间（ms）设为 0 表示永久有效 |
+| lifespan |`required` | `integer` | 有效时间（ms）设为 0 表示永久有效 |
 | role |`required` | `string` | 权限角色，可取 admin、writer、reader |
 
 ### <span style="color: #5b908e">Response</span>
@@ -55,7 +55,7 @@ https://shunt-api.netless.link/v5/tokens/rooms/:uuid
 | Key | 是否必填 | 类型 | 备注 |
 | --- | --- | --- | --- |
 | ak | `optional` | `string` | Access Key |
-| lifespan | `required` | `string` | 有效时间（ms）0 标示永久有效 |
+| lifespan | `required` | `integer` | 有效时间（ms）0 标示永久有效 |
 | role | `required` | `string` | 权限角色，可取 admin、writer、reader |
 
 ### <span style="color: #5b908e">Response</span>
