@@ -19,6 +19,11 @@ title: 版本历史
 ```
 
 将项目中`import <White-SDK-iOS/WhiteSDK.h>`引用，更改为`import <Whiteboard/Whiteboard.h>`。
+## [2.9.14] - 2020-08-10
+- 修复`room.phase`属性不正确，必须使用异步 API 获取的问题
+- 修复 PPT 视频在播放结束后，可能变空白的问题
+- 修复 `sdkSetupFail`回调检测错误的问题
+- PPT 视频支持同步（需要同步使用 white-web-sdk 2.9.13）
 
 ## [2.9.13] - 2020-07-22
 - 同步 web SDK 至 2.9.12
