@@ -8,7 +8,9 @@ title: 白板操作
 > 2.2.0 开始，该 API 可以由以下两个 API 代替:
 
 1. 视角锁定 API：`disableCameraTransform` (详情请参考 [视角操作-锁定视角](./view.md#disableCameraTransform))；
-2. 禁用教具 API：`disableDeviceInputs` (详情请参考 [教具操作-禁用教具](./tools.md#disableDeviceInputs))
+2. 禁用教具 API：`disableDeviceInputs` (详情
+请参考 [教具操作-禁用教具](./tools.md#disableDeviceInputs))
+> 2.9.0 该 API 已被移除
 
 ```JavaScript
 /// room.d.ts
