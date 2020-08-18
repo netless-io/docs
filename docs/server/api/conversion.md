@@ -42,10 +42,13 @@ https://shunt-api.netless.link/v5/services/conversion/tasks
 | type | `required` | `string` | 转换任务类型，枚举：dynamic, static |
 | preview | `no` | `boolean` | 是否需要生成预览图，默认为 false |
 | scale | `no` | `number` | 图片缩放比例，取值 0.1 到 3 之间的范围，默认为 1.2 |
+| outputFormat | `no` | `string` | 输出图片格式，默认为 png，可选参数为 png/jpg/jpeg/webp |
 
 > 注意：只有动态文档转换支持预览图功能，即 type == "dynamic" 时，同时生成预览图需要消耗较长时间，请谨慎选择
 
 > 注意：只有静态文档转换支持缩放功能，即 type == "static" 时，不传为默认值。该值会改变生成的图片大小
+
+> 注意：只有静态文档转换支持自定义输出格式，即 type == "static" 时，不传为 png，jpg 与 jpeg 输出格式都为 jpeg
 
 ### <span style="color: #5b908e">Response</span>
 
