@@ -60,7 +60,7 @@ https://shunt-api.netless.link/v5/tokens/rooms/:uuid
 
 ### <span style="color: #5b908e">Response</span>
 
-#### 200:OK
+#### 201:Created
 
 创建成功、返回房间描述对象。
 
@@ -98,7 +98,7 @@ https://shunt-api.netless.link/v5/tokens/tasks/:uuid
 
 ### <span style="color: #5b908e">Response</span>
 
-#### 200:OK
+#### 201:Created
 
 创建成功、返回房间描述对象。
 
