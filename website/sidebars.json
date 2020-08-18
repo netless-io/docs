@@ -146,6 +146,7 @@
       "server/overview/server-dynamic-conversion"
     ],
     "服务端 API": [
+      "server/api/restful",
       "server/api/server-room",
       "server/api/server-token",
       "server/api/server-screenshot",
