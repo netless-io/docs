@@ -21,7 +21,8 @@
       "android/guides/android-events",
       "android/guides/android-scenes",
       "android/guides/android-readonly",
-      "android/guides/android-replay"
+      "android/guides/android-replay",
+      "android/guides/android-rtc-audio-mixing"
     ],
     "升级指南": [
       "android/migration/android-2.9.0"
