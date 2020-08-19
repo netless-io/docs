@@ -7,12 +7,12 @@ title: RTC 混音
 1. native 上主播在打开 RTC 后发现 PPT 内的音视频变得小声
 2. natvie 上主播在播放 PPT 上的音视频时发现有回声出现
 
-为了解决这些问题，2.9.14 的白板内置了用于混音的 RTC 接口，用户在根据本章内容进行实现后可以避免这些问题。
+为了解决这些问题，2.9.15 的白板内置了用于混音的 RTC 接口，用户在根据本章内容进行实现后可以避免这些问题。
 > 如果用户使用的 RTC 提供商不支持混音本章内容将会无效
 
 样例代码可以参考 [Android-demo](https://github.com/duty-os/white-demo-android)
 
-> 本文中 RTC 使用 Agora Android SDK 作为实例
+> 本文中 RTC 使用 Agora Android SDK 作为实例，运行 demo 前请先在 strings.xml 中配置好 rtc_app_id 参数
 
 # 实现 AudioMixerBridge
 
@@ -49,7 +49,7 @@ public class AudioMixerBridgeImpl implements AudioMixerBridge {
 
 # 初始化 sdk
 
-在 2.9.14 后的 white sdk 初始化方法中多了一个可选参数 AudioMixerBridge audioMixerBridge。用户如果要使用 RTC 混音功能需要在初始化 sdk 前将 AudioMixerBridge接口实现传入到该方法中：
+在 2.9.15 后的 white sdk 初始化方法中多了一个可选参数 AudioMixerBridge audioMixerBridge。用户如果要使用 RTC 混音功能需要在初始化 sdk 前将 AudioMixerBridge接口实现传入到该方法中：
 
 ```java
 new WhiteSdk(xxx, xxx, xxx, new CommonCallbacks() {
