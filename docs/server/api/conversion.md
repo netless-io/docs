@@ -40,9 +40,9 @@ https://shunt-api.netless.link/v5/services/conversion/tasks
 | --- | --- | --- | --- |
 | resource | `required` | `string` | 转换任务源文件 url |
 | type | `required` | `string` | 转换任务类型，枚举：dynamic, static |
-| preview | `no` | `boolean` | 是否需要生成预览图，默认为 false |
-| scale | `no` | `number` | 图片缩放比例，取值 0.1 到 3 之间的范围，默认为 1.2 |
-| outputFormat | `no` | `string` | 输出图片格式，默认为 png，可选参数为 png/jpg/jpeg/webp |
+| preview | `optional` | `boolean` | 是否需要生成预览图，默认为 false |
+| scale | `optional` | `number` | 图片缩放比例，取值 0.1 到 3 之间的范围，默认为 1.2 |
+| outputFormat | `optional` | `string` | 输出图片格式，默认为 png，可选参数为 png/jpg/jpeg/webp |
 
 > 注意：只有动态文档转换支持预览图功能，即 type == "dynamic" 时，同时生成预览图需要消耗较长时间，请谨慎选择
 
@@ -107,7 +107,10 @@ https://shunt-api.netless.link/v5/services/conversion/tasks
             "height": 960,  // 当页高度
             "conversionFileUrl": "xxxx://xxxx.xxx.xx/xxxx.xxx", // 转换结果文件地址
             "preview": "xxxx://xxxx.xxx.xx/xxxx.xxx", // 预览图地址，当发起转换时 body 参数 preview 为 true 且 type 为 dynamic 时该字段才会存在
-        },{...}]
+        },{...}],
+        "currentStep": "Extracting" // 当前转换任务步骤，只有 type == dynamic 时才有该字段
     }
 }
 ```
+
+> 由于动态转换步骤较多，我们添加了当前步骤字段，用于表示任务进度，可枚举值有 "Extracting"(资源提取) | "Packaging"(资源打包) | "GeneratingPreview"(生成预览图) | "MediaTranscode"(媒体转码)
