@@ -124,6 +124,7 @@ roomToken 或 token | string | {{roomtoken}} 或 {{token}}|
     "msg": {
         "task": {
             "convertStatus": "Finished",
+            "currentStep": "Extracting", // 当前转换任务步骤，只有 serviceType == dynamic_conversion 时才有该字段
             "reason": "",
             "totalPageSize": 3, // 文档总页数
             "convertedPageSize": 3, // 文档已转换完成页数
@@ -164,6 +165,12 @@ roomToken 或 token | string | {{roomtoken}} 或 {{token}}|
 - NotFound: 根据 taskUUID 未找到对应任务信息
 - Finished: 任务执行完成且正常
 - Fail: 任务执行失败，失败时，会有提示 reason
+
+由于动态转换步骤较多，我们添加了当前步骤字段，用于表示任务进度，`currentStep` 存在以下几种取值
+-  Extracting: 资源提取
+-  Packaging: 资源打包
+-  GeneratingPreview: 生成预览图
+-  MediaTranscode: 媒体转码
 
 ## 数据拼接
 
