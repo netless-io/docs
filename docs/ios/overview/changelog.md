@@ -19,6 +19,11 @@ title: 版本历史
 ```
 
 将项目中`import <White-SDK-iOS/WhiteSDK.h>`引用，更改为`import <Whiteboard/Whiteboard.h>`。
+
+## [2.9.15] - 2020-08-24
+- 同步 web sdk 至 2.9.14 版本
+- 添加 RTC 混音接口，具体实现，见 SDK repo 中的 RTC 分支
+
 ## [2.9.14] - 2020-08-10
 - 修复`room.phase`属性不正确，必须使用异步 API 获取的问题
 - 修复 PPT 视频在播放结束后，可能变空白的问题
