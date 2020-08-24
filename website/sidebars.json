@@ -51,7 +51,8 @@
       "ios/guides/ios-events",
       "ios/guides/ios-scenes",
       "ios/guides/ios-readonly",
-      "ios/guides/ios-replay"
+      "ios/guides/ios-replay",
+      "ios/guides/ios-rtc-audio-mixing"
     ],
     "升级指南": [
       "ios/migration/ios-2.9.0"
