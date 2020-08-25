@@ -10,7 +10,7 @@ It is displayed directly in the netless SDK, so it needs to be converted to a mo
 
 ## 1. How to choose which document replacement service to use
 
-Our service provides two conversion services, namely: document to picture & document to web. So how should customers choose which service to use?
+Our service provides two conversion services, namely: document to picture & document to web page. So how should customers choose which service to use?
 
 -Select document to picture: no strong interaction is needed, courseware is just an outline for the teacher's lecture.
 -Select document to web page: You need to keep the details of the sequence and animation of the content in the courseware.
@@ -18,7 +18,7 @@ Our service provides two conversion services, namely: document to picture & docu
 ## 2. What to pay attention to when using these two services
 
 - [Document to picture considerations](/docs/server/api/server-static-conversion/#文档转图片注意事项)
-- [Document to Web Precautions](/docs/server/api/server-dynamic-conversion/#文档转网页不支持的功能列表)
+- [Document to Web Page Precautions](/docs/server/api/server-dynamic-conversion/#文档转网页不支持的功能列表)
 
 ## 3. Design Architecture for Fast Access Test
 

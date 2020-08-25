@@ -111,7 +111,7 @@ class Index extends React.Component {
                                 <div className="home-page-box-banner-cell-title">Home page</div>
                             </div>
                         </a>
-                        <a href="https://console.herewhite.com/" target="_blank">
+                        <a href="https://console.netless.link/" target="_blank">
                             <div className="home-page-box-banner-cell">
                                 <div className="home-page-box-banner-cell-box">
                                     <img style={{width: 108, marginBottom: 12}} src={`${siteConfig.baseUrl}img/console.svg`}/>

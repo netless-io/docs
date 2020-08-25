@@ -38,7 +38,7 @@ class Footer extends React.Component {
           </a>
           <div>
             <h5>Product</h5>
-            <a target="_blank" href="https://console.herewhite.com/">
+            <a target="_blank" href="https://console.netless.link/">
               Console
             </a>
             <a target="_blank" href="https://netless.link/">
