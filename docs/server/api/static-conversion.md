@@ -14,9 +14,11 @@ In the latest version, we have encapsulated this part of the interaction in the 
 5. If you find that the style expression is too inaccurate during the transcoding process, please export the pdf and re-convert.
 6. The implementation of this function is based on [libreoffice](https://www.libreoffice.org/) Because libreoffice has a long history and complex code, it is difficult for us to deal with conversion bugs by ourselves. Therefore, the customer should do a full test before using it. If it does not meet the expectations, please use the three-party conversion service.
 
+> Before calling the following api, please make sure that you have activated the `document to image` service on the console platform, otherwise the api will return the error code 403: service not enable
+
 ## Ready to work
 
-### 1. According to [Configure Cloud Storage](/docs/blog/blog-add-driver) article, configure cloud storage in [console](https://console.herewhite.com)
+### 1. According to [Configure Cloud Storage](/docs/blog/blog-add-driver) article, configure cloud storage in [console](https://console.netless.link)
 
 ### 2. Start the static document service on the management console
 

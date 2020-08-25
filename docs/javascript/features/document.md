@@ -8,9 +8,9 @@ title: Document conversion
 The SDK server provides two ways to convert most documents into resources available on the whiteboard:
 
 1. [Document to image: word, pdf, ppt, pptx -> static conversion](server/api/static-conversion.md)
-1. [Document to Web: pptx -> dynamic conversion](server/api/dynamic-conversion.md)
+1. [Document to Web Page: pptx -> dynamic conversion](server/api/dynamic-conversion.md)
 
-Make sure to enable the corresponding conversion service in the [console](https://console.herewhite.com).
+Make sure to enable the corresponding conversion service in the [console](https://console.netless.link).
 
 ## Conversion task
 

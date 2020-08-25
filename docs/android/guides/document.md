@@ -3,7 +3,7 @@ id: android-document
 title: Doc-conversion & replay
 ---
 
-Before reading this article, please read the server-side documentation: [Document to Picture](/docs/server/api/server-static-conversion), [Document to Web](/docs/server/api/server-dynamic-conversion), and make sure that the corresponding service has been activated in [console](https://console.herewhite.com).
+Before reading this article, please read the server-side documentation: [Document to Picture](/docs/server/api/server-static-conversion), [Document to Web Page](/docs/server/api/server-dynamic-conversion), and make sure that the corresponding service has been activated in [console](https://console.netless.link).
 
 The SDK encapsulates the interaction of the SDK server into a `Converter` class. Developers do not need to care about the interaction with the SDK server on the client.
 
