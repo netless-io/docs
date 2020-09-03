@@ -19,6 +19,8 @@ title: 版本历史
 ```
 
 将项目中`import <White-SDK-iOS/WhiteSDK.h>`引用，更改为`import <Whiteboard/Whiteboard.h>`。
+## [2.9.16] - 2020-09-03
+ - 同步 web sdk 至 2.9.15 版本 
 
 ## [2.9.15] - 2020-08-24
 - 同步 web sdk 至 2.9.14 版本
