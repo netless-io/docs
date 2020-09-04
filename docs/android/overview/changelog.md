@@ -4,6 +4,8 @@ title: 版本历史
 ---
 
 >[最新版本列表——发版自动更新](https://jitpack.io/#duty-os/white-sdk-android)
+## [2.9.18] - 2020-09-03
+- 同步 web sdk 至 2.9.15
 ## [2.9.17] - 2020-08-19
 - 同步 web sdk 至 2.9.14
 - 支持应用层接管 ppt 音视频播放（具体见 AudioMixerBridge 以及 demo 仓库中 demo-rtc 分支）
