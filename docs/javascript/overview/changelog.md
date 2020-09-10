@@ -3,6 +3,16 @@ id: js-changelog
 title: 版本历史
 ---
 
+## 2.9.16 - 2020-09-10
+
+### 新增
+
+* 回放添加字段 ``isPlayable``。
+
+### 修复
+
+* 修复了 2.9.15 版本在加入房间时设置 ``isWritable: false``，之后，无法调用 ``room.setWritable(true)``
+
 ## 2.9.15 - 2020-09-03
 
 ### 新增
