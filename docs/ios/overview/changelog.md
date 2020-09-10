@@ -19,6 +19,12 @@ title: 版本历史
 ```
 
 将项目中`import <White-SDK-iOS/WhiteSDK.h>`引用，更改为`import <Whiteboard/Whiteboard.h>`。
+
+## [2.9.17] - 2020-09-10
+- 同步 web sdk 至 2.9.16 版本
+- 修复部分房间，回放时音频插件内容会自动全屏的问题
+- 优化 WhiteboardView，支持用户使用子类继承
+
 ## [2.9.16] - 2020-09-03
  - 同步 web sdk 至 2.9.15 版本 
 
