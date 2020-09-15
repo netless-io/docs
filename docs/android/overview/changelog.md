@@ -5,6 +5,8 @@ title: 版本历史
 
 >[最新版本列表——发版自动更新](https://jitpack.io/#duty-os/white-sdk-android)
 
+## [2.9.20] - 2020-09-15
+- 切换头像显示组件UI，web 端可以切换至`@netless/cursor-tool`即可保持一致，新组件支持`cursorName`，`avatar`字段。
 ## [2.9.19] - 2020-09-10
 - 同步 web sdk 至 2.9.16
 ## [2.9.18] - 2020-09-03
