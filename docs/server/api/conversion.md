@@ -16,9 +16,9 @@ title: PPT 转换
 
 发起转换以及签出 tasktoken 建议都在后端进行
 
-## `POST` 发起文档转换
+> 在调用以下 api 之前，请确保您已经在 console 平台上开通了 `文档转网页` 或是 `文档转图片` 服务，否则 api 将会返回错误码 403 : service not enable
 
-> 在调用以下 api 之前，请确保您已经在 console 平台上开通了 `文档转网页` 或是 `文档转图片` 服务
+## `POST` 发起文档转换
 
 ```bash
 https://shunt-api.netless.link/v5/services/conversion/tasks
@@ -42,7 +42,7 @@ https://shunt-api.netless.link/v5/services/conversion/tasks
 | type | `required` | `string` | 转换任务类型，枚举：dynamic, static |
 | preview | `optional` | `boolean` | 是否需要生成预览图，默认为 false |
 | scale | `optional` | `number` | 图片缩放比例，取值 0.1 到 3 之间的范围，默认为 1.2 |
-| outputFormat | `optional` | `string` | 输出图片格式，默认为 png，可选参数为 png/jpg/jpeg/webp |
+| outputFormat | `optional` | `string` | 输出图片格式，默认为 png，可选参数为 png/jpg/jpeg |
 
 > 注意：只有动态文档转换支持预览图功能，即 type == "dynamic" 时，同时生成预览图需要消耗较长时间，请谨慎选择
 
