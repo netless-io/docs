@@ -68,7 +68,8 @@ const newGlobalState = room.setGlobalState({key: "newValue"});
 
 * 注意点
 
-> `globalState`仅限轻量级使用，存储内容尽可能小（建议100KB以内），更新时，只传入`GlobalState`中需要更新的字段。
+> 1. `globalState`仅限轻量级使用，存储内容尽可能小（建议100KB以内），更新时，只传入`GlobalState`中需要更新的字段。
+> 2. `globalState`中的字段不支持设置为 null，以及 undefined，如果需要设置这些，请使用空Object `{}` 进行替代。
 
 ## 缩放
 
