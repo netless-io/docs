@@ -3,6 +3,23 @@ id: js-changelog
 title: 版本历史
 ---
 
+## 2.10.0 - 2020-09-30
+
+### 新增
+
+* invisible plugin
+* 为 ``room``、``player`` 新增 ``enableWriteNow`` 字段，以表明当前是否可写
+* 为 ``room``、``player`` 的 ``state`` 新增 ``cameraState`` 字段，以表示当前镜头相关的信息
+* 新增回调函数 ``onEnableWriteNowChanged`` 以监听 ``enableWriteNow`` 的变化
+
+### 更新
+
+* 在 ``onRoomStateChanged``、``onPlayerStateChanged`` 中新增 ``cameraState`` 的变化回调
+
+### 修复
+
+* ``player`` 在 ``buffering`` 状态下调用 ``play`` 方法，有时无法播放，且伴随状态会被锁死
+
 ## 2.9.17 - 2020-09-14
 
 ### 修复
@@ -13,7 +30,7 @@ title: 版本历史
 
 ### 新增
 
-* 回放添加字段 ``isPlayable``。
+* 回放添加字段 ``isPlayable``
 
 ### 修复
 
