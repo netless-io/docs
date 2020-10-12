@@ -25,7 +25,7 @@ NETLESSSDK_YWs9UU9JSkJobEZfYlBPLXdNeSZub25jZT0xNTg3MDkyMzUxMTQ0MDAmcm9sZT0wJnNpZ
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="https://sdk.netless.link/white-web-sdk/2.10.0.js"></script>
+        <script src="https://sdk.netless.link/white-web-sdk/2.10.2.js"></script>
         <script src="./index.js"></script>
     </head>
     <body>
