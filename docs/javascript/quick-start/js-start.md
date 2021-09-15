@@ -51,7 +51,7 @@ var requestInit = {
     headers: {
         "content-type": "application/json",
         "token": sdkToken,
-        "region": "cn-hz"
+        "region": "cn-hz",
     },
 };
 
